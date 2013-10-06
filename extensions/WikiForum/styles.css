@@ -11,7 +11,7 @@ td.mw-wikiforum-innerframe {
 
 table.mw-wikiforum-headerrow {
 	width: 100%;
-	font-size: 14px;
+	font-size: 10px;
 	font-family: Verdana, Arial, sans-serif;
 	margin-top: 1.2em;
 	background: transparent;
@@ -19,7 +19,7 @@ table.mw-wikiforum-headerrow {
 
 table.mw-wikiforum-footerrow {
 	width: 100%;
-	font-size: 14px;
+	font-size: 10px;
 	font-family: Verdana, Arial, sans-serif;
 	margin-bottom: 1.2em;
 	text-transform: uppercase;
@@ -67,7 +67,7 @@ th.mw-wikiforum-title {
 	font-size: 120%;
 	font-weight: bold;
 	text-align: left;
-	padding-left: 14px;
+	padding-left: 10px;
 	border-bottom: 1px solid #a3bfb1;
 	border-top: 1px solid #a3bfb1;
 }
@@ -90,7 +90,7 @@ th.mw-wikiforum-lastpost {
 }
 p.mw-wikiforum-valuetitle {
 	font-family: Verdana, Arial, sans-serif;
-	font-size: 14px;
+	font-size: 10px;
 }
 tr.mw-wikiforum-normal {
 	background: #f5faff;
@@ -100,20 +100,20 @@ tr.mw-wikiforum-sticky {
 }
 td.mw-wikiforum-title {
 	text-align: left;
-	padding-left: 14px;
+	padding-left: 10px;
 	border-bottom: 1px solid #a3bfb1;
 }
 td.mw-wikiforum-value {
 	border-bottom: 1px solid #a3bfb1;
 	text-align: center;
 	font-family: Verdana, Arial, sans-serif;
-	font-size: 14px;
+	font-size: 10px;
 }
 td.mw-wikiforum-admin {
 	border-bottom: 1px solid #a3bfb1;
 	text-align: right;
 	font-family: Verdana, Arial, sans-serif;
-	font-size: 14px;
+	font-size: 10px;
 }
 p.mw-wikiforum-issue {
 	font-weight: bold;
@@ -123,11 +123,11 @@ p.mw-wikiforum-thread {
 p.mw-wikiforum-descr {
 	color: #999999;
 	font-family: Verdana, Arial, sans-serif;
-	font-size: 14px;
+	font-size: 10px;
 }
 
 span.small {
-	font-size: 14px;
+	font-size: 10px;
 	font-family: Verdana, Arial, sans-serif;
 	font-weight: normal;
 }
@@ -135,7 +135,7 @@ span.small {
 table.mw-wikiforum-posted {
 	color: #999999;
 	font-family: Verdana, Arial, sans-serif;
-	font-size: 14px;
+	font-size: 10px;
 	border-top: 1px dashed #999999;
 	width: 100%;
 	background: transparent;
@@ -145,36 +145,36 @@ table.mw-wikiforum-posted {
 
 th.mw-wikiforum-thread-top {
 	font-weight: bold;
-	padding: 5px 14px;
+	padding: 5px 10px;
 	border: 1px solid #cef2e0;
 	background: #e5eaff;
 	text-align: left;
 }
 td.mw-wikiforum-thread-main {
-	padding: 14px;
+	padding: 10px;
 	border: 1px solid #cef2e0;
 	background: #deeff3;
 }
 td.mw-wikiforum-thread-sub {
-	padding: 0px 14px;
+	padding: 0px 10px;
 	border: 1px solid #cef2e0;
 	background: #f0f0ea;
 }
 
 /* Search box */
-#searchbox {
+#mw-wikiforum-searchbox {
 	float: right;
 	margin-bottom: 8px;
 }
 
-#searchbox_border {
+#mw-wikiforum-searchbox-border {
 	border: 1px dotted #ccc;
 	width: 200px;
 	text-align: left;
 	background: #f6f6f6;
 }
 
-#searchbox_picture {
+#mw-wikiforum-searchbox-picture {
 	margin-left: 5px;
 	margin-right: 5px;
 }
@@ -186,7 +186,7 @@ td.mw-wikiforum-thread-sub {
 
 /* Quote styling */
 blockquote {
-	padding: 14px;
+	padding: 10px;
 	border: 1px dotted #ccc;
 	background: #f9f9f9;
 }
@@ -194,7 +194,7 @@ blockquote {
 blockquote p.posted {
 	color: #bbb;
 	font-family: Verdana, Arial, sans-serif;
-	font-size: 14px;
+	font-size: 10px;
 	border-bottom: 1px dotted #999;
 	background: transparent;
 	margin-bottom: 6px;

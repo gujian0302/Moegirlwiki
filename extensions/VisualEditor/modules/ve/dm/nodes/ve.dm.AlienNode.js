@@ -10,19 +10,26 @@
  *
  * @class
  * @abstract
- * @extends ve.dm.GeneratedContentNode
+ * @extends ve.dm.LeafNode
+ * @mixins ve.dm.GeneratedContentNode
+ *
  * @constructor
  * @param {number} [length] Length of content data in document; ignored and overridden to 0
  * @param {Object} [element] Reference to element in linear model
  */
 ve.dm.AlienNode = function VeDmAlienNode( length, element ) {
 	// Parent constructor
-	ve.dm.GeneratedContentNode.call( this, 0, element );
+	ve.dm.LeafNode.call( this, 0, element );
+
+	// Mixin constructors
+	ve.dm.GeneratedContentNode.call( this );
 };
 
 /* Inheritance */
 
-ve.inheritClass( ve.dm.AlienNode, ve.dm.GeneratedContentNode );
+ve.inheritClass( ve.dm.AlienNode, ve.dm.LeafNode );
+
+ve.mixinClass( ve.dm.AlienNode, ve.dm.GeneratedContentNode );
 
 /* Static members */
 
@@ -30,8 +37,7 @@ ve.dm.AlienNode.static.name = 'alien';
 
 ve.dm.AlienNode.static.storeHtmlAttributes = false;
 
-// TODO: Develop better method to test for generated content
-ve.dm.AlienNode.static.generatedContent = true;
+ve.dm.AlienNode.static.enableAboutGrouping = true;
 
 ve.dm.AlienNode.static.toDataElement = function ( domElements, converter ) {
 	var isInline = this.isHybridInline( domElements, converter ),
@@ -45,8 +51,8 @@ ve.dm.AlienNode.static.toDataElement = function ( domElements, converter ) {
 	};
 };
 
-ve.dm.AlienNode.static.toDomElements = function ( dataElement ) {
-	return dataElement.attributes.domElements;
+ve.dm.AlienNode.static.toDomElements = function ( dataElement, doc ) {
+	return ve.copyDomElements( dataElement.attributes.domElements, doc );
 };
 
 /* Concrete subclasses */

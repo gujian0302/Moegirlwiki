@@ -22,6 +22,7 @@ class Threads {
 	const CHANGE_SPLIT_FROM = 12;
 	const CHANGE_ROOT_BLANKED = 13;
 	const CHANGE_ADJUSTED_SORTKEY = 14;
+	const CHANGE_EDITED_SIGNATURE = 15;
 
 	static $VALID_CHANGE_TYPES = array(
 		self::CHANGE_EDITED_SUMMARY,
@@ -39,6 +40,7 @@ class Threads {
 		self::CHANGE_SPLIT_FROM,
 		self::CHANGE_ROOT_BLANKED,
 		self::CHANGE_ADJUSTED_SORTKEY,
+		self::CHANGE_EDITED_SIGNATURE,
 	);
 
 	// Possible values of Thread->editedness.
@@ -340,21 +342,29 @@ class Threads {
 		$rowsAffected = 0;
 		$roundRowsAffected = 1;
 
-		wfProfileIn( __METHOD__ . '-update' );
 		while ( ( !$limit || $rowsAffected < $limit ) && $roundRowsAffected > 0 ) {
 			$roundRowsAffected = 0;
 
 			// Fix wrong title.
-			$dbw->update( 'thread', $titleCond, $fixTitleCond, __METHOD__, $options );
-			$roundRowsAffected += $dbw->affectedRows();
+			$fixTitleCount = $dbr->selectField( 'thread', 'COUNT(*)', $fixTitleCond, __METHOD__ );
+			if ( intval( $fixTitleCount ) ) {
+				wfProfileIn( __METHOD__ . '-update' );
+				$dbw->update( 'thread', $titleCond, $fixTitleCond, __METHOD__, $options );
+				$roundRowsAffected += $dbw->affectedRows();
+				wfProfileOut( __METHOD__ . '-update' );
+			}
 
 			// Fix wrong ID
-			$dbw->update( 'thread', $idCond, $fixIdCond, __METHOD__, $options );
-			$roundRowsAffected += $dbw->affectedRows();
+			$fixIdCount = $dbr->selectField( 'thread', 'COUNT(*)', $fixIdCond, __METHOD__ );
+			if ( intval( $fixIdCount ) ) {
+				wfProfileIn( __METHOD__ . '-update' );
+				$dbw->update( 'thread', $idCond, $fixIdCond, __METHOD__, $options );
+				$roundRowsAffected += $dbw->affectedRows();
+				wfProfileOut( __METHOD__ . '-update' );
+			}
 
 			$rowsAffected += $roundRowsAffected;
 		}
-		wfProfileOut( __METHOD__ . '-update' );
 
 		if ( $limit && ( $rowsAffected >= $limit ) && $queueMore ) {
 			$jobParams = array( 'limit' => $limit, 'cascade' => true );

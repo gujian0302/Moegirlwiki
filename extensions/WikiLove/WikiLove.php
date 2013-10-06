@@ -23,6 +23,7 @@
  * @file
  * @ingroup Extensions
  * @author Ryan Kaldari, Jan Paul Posma
+ * @licence MIT License
  */
 
 # Alert the user that this is not a valid entry point to MediaWiki if they try to access the file directly.
@@ -38,7 +39,7 @@ EOT;
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'WikiLove',
-	'version' => '1.0',
+	'version' => '1.2',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:WikiLove',
 	'author' => array(
 		'Ryan Kaldari', 'Jan Paul Posma'
@@ -66,7 +67,6 @@ $wgExtensionMessagesFiles['WikiLove']             = $dir . 'WikiLove.i18n.php';
 // register hooks
 $wgHooks['GetPreferences'][]                      = 'WikiLoveHooks::getPreferences';
 $wgHooks['SkinTemplateNavigation'][]              = 'WikiLoveHooks::skinTemplateNavigation';
-$wgHooks['SkinTemplateTabs'][]                    = 'WikiLoveHooks::skinTemplateTabs';
 $wgHooks['BeforePageDisplay'][]                   = 'WikiLoveHooks::beforePageDisplay';
 $wgHooks['LoadExtensionSchemaUpdates'][]          = 'WikiLoveHooks::loadExtensionSchemaUpdates';
 $wgHooks['MakeGlobalVariablesScript'][]           = 'WikiLoveHooks::makeGlobalVariablesScript';
@@ -258,6 +258,7 @@ $wgResourceModules += array(
 			'wikilove-err-sig',
 			'wikilove-err-gallery',
 			'wikilove-err-gallery-again',
+			'wikilove-err-invalid-token',
 			'wikilove-what-is-this',
 			'wikilove-what-is-this-link',
 			'wikilove-anon-warning',
@@ -266,9 +267,11 @@ $wgResourceModules += array(
 			'wikilove-commons-url',
 			'wikilove-err-preview-api',
 			'wikilove-err-send-api',
+			'wikilove-err-max-exceeded',
 			'wikilove-terms',
 			'wikilove-terms-link',
 			'wikilove-terms-url',
+			'wikilove-success-number',
 		),
 		'dependencies' => array(
 			'ext.wikiLove.defaultOptions',

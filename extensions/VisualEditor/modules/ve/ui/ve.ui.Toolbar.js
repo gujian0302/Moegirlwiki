@@ -9,33 +9,65 @@
  * UserInterface toolbar.
  *
  * @class
+ * @extends ve.Element
  * @mixins ve.EventEmitter
  *
  * @constructor
- * @param {jQuery} $container
- * @param {ve.Surface} surface
- * @param {Array} config
+ * @param {ve.ui.Surface} surface
+ * @param {Object} [config] Config options
+ * @cfg {boolean} [actions] Add an actions section opposite to the tools
+ * @cfg {boolean} [shadow] Add a shadow below the toolbar
  */
-ve.ui.Toolbar = function VeUiToolbar( $container, surface, config ) {
+ve.ui.Toolbar = function VeUiToolbar( surface, options ) {
+	// Configuration initialization
+	options = options || {};
+
+	// Parent constructor
+	ve.Element.call( this, options );
+
 	// Mixin constructors
 	ve.EventEmitter.call( this );
 
 	// Properties
 	this.surface = surface;
-	this.$ = $container;
-	this.$groups = $( '<div>' );
-	this.config = config || {};
+	this.$bar = this.$$( '<div>' );
+	this.$tools = this.$$( '<div>' );
+	this.$actions = this.$$( '<div>' );
+	this.floating = false;
+	this.$window = null;
+	this.windowEvents = {
+		'resize': ve.bind( this.onWindowResize, this ),
+		'scroll': ve.bind( this.onWindowScroll, this )
+	};
+	this.surfaceViewEvents = {
+		'keyup': ve.bind( this.onSurfaceViewKeyUp, this )
+	};
+
+	// Events
+	this.$
+		.add( this.$bar ).add( this.$tools ).add( this.$actions )
+		.on( 'mousedown', false );
+
+	// Initialization
+	this.$tools.addClass( 've-ui-toolbar-tools' );
+	this.$bar.addClass( 've-ui-toolbar-bar' ).append( this.$tools );
+	if ( options.actions ) {
+		this.$actions.addClass( 've-ui-toolbar-actions' );
+		this.$bar.append( this.$actions );
+	}
+	this.$bar.append( '<div style="clear:both"></div>' );
+	if ( options.shadow ) {
+		this.$bar.append( '<div class="ve-ui-toolbar-shadow"></div>' );
+	}
+	this.$.addClass( 've-ui-toolbar' ).append( this.$bar );
 
 	// Events
 	this.surface.getModel().connect( this, { 'contextChange': 'onContextChange' } );
-
-	// Initialization
-	this.$groups.addClass( 've-ui-toolbarGroups' );
-	this.$.prepend( this.$groups );
-	this.setup();
 };
 
 /* Inheritance */
+
+ve.inheritClass( ve.ui.Toolbar, ve.Element );
 
 ve.mixinClass( ve.ui.Toolbar, ve.EventEmitter );
 
@@ -52,10 +84,68 @@ ve.mixinClass( ve.ui.Toolbar, ve.EventEmitter );
 /* Methods */
 
 /**
+ * Handle window resize events while toolbar floating is enabled.
+ *
+ * @returns {jQuery.Event} e Window resize event
+ */
+ve.ui.Toolbar.prototype.onWindowScroll = function () {
+	var scrollTop = this.$window.scrollTop(),
+		toolbarOffset = this.$.offset();
+
+	if ( scrollTop > toolbarOffset.top ) {
+		this.setPosition(
+			0,
+			toolbarOffset.left,
+			this.$window.width() - this.$.outerWidth() - toolbarOffset.left
+		);
+	} else if ( this.floating ) {
+		this.resetPosition();
+	}
+};
+
+/**
+ * Handle window resize events while toolbar floating is enabled.
+ *
+ * Toolbar will stick to the top of the screen unless it would be over or under the last visible
+ * branch node in the root of the document being edited, at which point it will stop just above it.
+ *
+ * @see ve.ui.Surface#event-toolbarPosition
+ * @returns {jQuery.Event} e Window scroll event
+ */
+ve.ui.Toolbar.prototype.onWindowResize = function () {
+	var offset = this.$.offset();
+
+	if ( this.floating ) {
+		this.$bar.css( {
+			'left': offset.left,
+			'right': this.$window.width() - this.$.outerWidth() - offset.left
+		} );
+		this.surface.emit( 'toolbarPosition', this.$bar );
+	}
+};
+
+/**
+ * Method to scroll to the cursor position while toolbar is floating on keyup only if
+ * the cursor is obscured by the toolbar.
+ *
+ */
+ve.ui.Toolbar.prototype.onSurfaceViewKeyUp = function () {
+	var cursorPos = this.surface.view.getSelectionRect(),
+		barHeight = this.$bar.height(),
+		scrollTo = this.$bar.offset().top - barHeight + ( cursorPos.end.y - cursorPos.start.y ),
+		obscured = cursorPos.start.y - this.$window.scrollTop() < barHeight;
+
+	// If toolbar is floating and cursor is obscured, scroll cursor into view
+	if ( obscured && this.floating ) {
+		$( 'html,body' ).animate( { scrollTop: scrollTo }, 0 );
+	}
+};
+
+/**
  * Gets the surface the toolbar controls.
  *
  * @method
- * @returns {ve.Surface} Surface being controlled
+ * @returns {ve.ui.Surface} Surface being controlled
  */
 ve.ui.Toolbar.prototype.getSurface = function () {
 	return this.surface;
@@ -86,26 +176,31 @@ ve.ui.Toolbar.prototype.onContextChange = function () {
  *
  * @method
  */
-ve.ui.Toolbar.prototype.setup = function () {
+ve.ui.Toolbar.prototype.addTools = function ( tools ) {
 	var i, j, group, $group, tool;
-	for ( i = 0; i < this.config.length; i++ ) {
-		group = this.config[i];
+
+	for ( i = 0; i < tools.length; i++ ) {
+		group = tools[i];
 		// Create group
-		$group = $( '<div class="ve-ui-toolbarGroup"></div>' )
-			.addClass( 've-ui-toolbarGroup-' + group.name );
+		$group = this.$$( '<div class="ve-ui-toolbar-group"></div>' )
+			.on( 'mousedown', false );
 		if ( group.label ) {
-			$group.append( $( '<div class="ve-ui-toolbarLabel"></div>' ).html( group.label ) );
+			$group.append(
+				this.$$( '<div class="ve-ui-toolbar-label"></div>' ).html( group.label )
+			);
 		}
 		// Add tools
 		for ( j = 0; j < group.items.length; j++ ) {
-			tool = ve.ui.toolFactory.create( group.items[j], this );
-			if ( !tool ) {
-				throw new Error( 'Unknown tool: ' + group.items[j] );
+			tool = false;
+			try {
+				tool = ve.ui.toolFactory.create( group.items[j], this );
+			} catch( e ) {}
+			if ( tool ) {
+				$group.append( tool.$ );
 			}
-			$group.append( tool.$ );
 		}
 		// Append group
-		this.$groups.append( $group );
+		this.$tools.append( $group );
 	}
 };
 
@@ -117,6 +212,84 @@ ve.ui.Toolbar.prototype.setup = function () {
  * @method
  */
 ve.ui.Toolbar.prototype.destroy = function () {
+	this.disableFloating();
 	this.surface.getModel().disconnect( this, { 'contextChange': 'onContextChange' } );
 	this.$.remove();
+};
+
+/**
+ * Float the toolbar.
+ *
+ * @see ve.ui.Surface#event-toolbarPosition
+ * @param {number} top Top position, in pixels
+ * @param {number} left Left position, in pixels
+ * @param {number} right Right position, in pixels
+ */
+ve.ui.Toolbar.prototype.setPosition = function ( top, left, right ) {
+	// When switching from default position, manually set the height of the wrapper
+	if ( !this.floating ) {
+		this.$
+			.css( 'height', this.$.height() )
+			.addClass( 've-ui-toolbar-floating' );
+		this.floating = true;
+	}
+	this.$bar.css( { 'top': top, 'left': left, 'right': right } );
+	if ( top > 0 ) {
+		this.$.addClass( 've-ui-toolbar-bottom' );
+	} else {
+		this.$.removeClass( 've-ui-toolbar-bottom' );
+	}
+	this.surface.emit( 'toolbarPosition', this.$bar );
+};
+
+/**
+ * Reset the toolbar to it's default position.
+ *
+ * @see ve.ui.Surface#event-toolbarPosition
+ */
+ve.ui.Toolbar.prototype.resetPosition = function () {
+	this.$
+		.css( 'height', 'auto' )
+		.removeClass( 've-ui-toolbar-floating ve-ui-toolbar-bottom' );
+	this.$bar.css( { 'top': 0, 'left': 0, 'right': 0 } );
+	this.floating = false;
+	this.surface.emit( 'toolbarPosition', this.$bar  );
+};
+
+/**
+ * Add automatic floating behavior to the toolbar.
+ *
+ * Toolbar floating is not enabled by default, call this on setup to enable it.
+ *
+ * @method
+ */
+ve.ui.Toolbar.prototype.enableFloating = function () {
+	this.$window = $( this.getElementWindow() ).on( this.windowEvents );
+	this.$surfaceView = this.surface.getView().$.on( this.surfaceViewEvents );
+
+	// TODO: Place this is a DOM attach event for this.$
+	setTimeout( ve.bind( function () {
+		// The page may load with a non-zero scroll without trigger the scroll event
+		this.onWindowScroll();
+	}, this ), 0 );
+};
+
+/**
+ * Remove automatic floating behavior to the toolbar.
+ *
+ * @method
+ */
+ve.ui.Toolbar.prototype.disableFloating = function () {
+	if ( this.$window ) {
+		this.$window.off( this.windowEvents );
+		this.$window = null;
+	}
+	if ( this.$surfaceView ) {
+		this.$surfaceView.off( this.surfaceViewEvents );
+		this.$surfaceView = null;
+	}
+
+	if ( this.floating ) {
+		this.resetPosition();
+	}
 };

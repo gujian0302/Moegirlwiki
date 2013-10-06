@@ -18,8 +18,9 @@
  * @constructor
  * @param {HTMLDocument|Array|ve.dm.LinearData} documentOrData HTML document, raw linear model data or LinearData to start with
  * @param {ve.dm.Document} [parentDocument] Document to use as root for created nodes
+ * @param {ve.dm.InternalList} [internalList] Internal list to clone; passed when creating a document slice
  */
-ve.dm.Document = function VeDmDocument( documentOrData, parentDocument ) {
+ve.dm.Document = function VeDmDocument( documentOrData, parentDocument, internalList ) {
 	// Parent constructor
 	ve.Document.call( this, new ve.dm.DocumentNode() );
 
@@ -31,7 +32,7 @@ ve.dm.Document = function VeDmDocument( documentOrData, parentDocument ) {
 	 */
 	var i, node, children, meta,
 		doc = parentDocument || this,
-		root = doc.getDocumentNode(),
+		root = this.getDocumentNode(),
 		textLength = 0,
 		inTextNode = false,
 		// Stack of stacks, each containing a
@@ -39,12 +40,13 @@ ve.dm.Document = function VeDmDocument( documentOrData, parentDocument ) {
 		currentStack = stack[1],
 		parentStack = stack[0],
 		currentNode = this.documentNode;
-	this.documentNode.setDocument( doc );
 	this.documentNode.setRoot( root );
-	this.internalList = new ve.dm.InternalList( this );
+	this.documentNode.setDocument( doc );
+	this.internalList = internalList ? internalList.clone( this ) : new ve.dm.InternalList( this );
 
 	// Properties
 	this.parentDocument = parentDocument;
+	this.completeHistory = [];
 
 	if ( documentOrData instanceof ve.dm.LinearData ) {
 		this.data = documentOrData;
@@ -73,8 +75,7 @@ ve.dm.Document = function VeDmDocument( documentOrData, parentDocument ) {
 			if ( !inTextNode ) {
 				// Create a lengthless text node
 				node = new ve.dm.TextNode();
-				// Set the root pointer now, to prevent cascading updates
-				node.setRoot( root );
+				node.setDocument( doc );
 				// Put the node on the current inner stack
 				currentStack.push( node );
 				currentNode = node;
@@ -118,8 +119,7 @@ ve.dm.Document = function VeDmDocument( documentOrData, parentDocument ) {
 				node = ve.dm.nodeFactory.create(
 					this.data.getData( i ).type, [], this.data.getData( i )
 				);
-				// Set the root pointer now, to prevent cascading updates
-				node.setRoot( root );
+				node.setDocument( doc );
 				// Put the childless node on the current inner stack
 				currentStack.push( node );
 				if ( ve.dm.nodeFactory.canNodeHaveChildren( node.getType() ) ) {
@@ -160,9 +160,16 @@ ve.dm.Document = function VeDmDocument( documentOrData, parentDocument ) {
 		currentNode.setLength( textLength );
 		// Don't bother updating currentNode et al, we don't use them below
 	}
+
+	// State variable that allows nodes to know that they are being
+	// appended in order. Used by ve.dm.InternalList.
+	this.buildingNodeTree = true;
+
 	// The end state is stack = [ [this.documentNode] [ array, of, its, children ] ]
 	// so attach all nodes in stack[1] to the root node
 	ve.batchSplice( this.documentNode, 0, 0, stack[1] );
+
+	this.buildingNodeTree = false;
 };
 
 /* Inheritance */
@@ -196,10 +203,15 @@ ve.dm.Document.addAnnotationsToData = function ( data, annotationSet ) {
 	}
 	// Apply annotations to data
 	for ( i = 0, length = data.length; i < length; i++ ) {
-		if ( !ve.isArray( data[i] ) ) {
+		if ( data[i].type ) {
+			// Element
+			continue;
+		} else if ( !ve.isArray( data[i] ) ) {
+			// Wrap in array
 			data[i] = [data[i]];
 			newAnnotationSet = annotationSet.clone();
 		} else {
+			// Add to existing array
 			newAnnotationSet = new ve.dm.AnnotationSet( store, data[i][1] );
 			newAnnotationSet.addSet( annotationSet.clone() );
 		}
@@ -222,6 +234,10 @@ ve.dm.Document.prototype.rollback = function ( transaction ) {
 		throw new Error( 'Cannot roll back a transaction that has not been committed' );
 	}
 	new ve.dm.TransactionProcessor( this, transaction, true ).process();
+	this.completeHistory.push( {
+		'undo': true,
+		'transaction': transaction
+	} );
 	this.emit( 'transact', transaction, true );
 };
 
@@ -238,6 +254,10 @@ ve.dm.Document.prototype.commit = function ( transaction ) {
 		throw new Error( 'Cannot commit a transaction that has already been committed' );
 	}
 	new ve.dm.TransactionProcessor( this, transaction, false ).process();
+	this.completeHistory.push( {
+		'undo': false,
+		'transaction': transaction
+	} );
 	this.emit( 'transact', transaction, false );
 };
 
@@ -284,6 +304,36 @@ ve.dm.Document.prototype.getInternalList = function () {
 };
 
 /**
+ * Get a document from a slice of this document. The new document's store and internal list will be
+ * clones of the ones in this document.
+ *
+ * @param {ve.Range|ve.dm.Node} rangeOrNode Range of data to clone, or node whose contents should be cloned
+ * @returns {ve.dm.Document} New document
+ * @throws {Error} rangeOrNode must be a ve.Range or a ve.dm.Node
+ */
+ve.dm.Document.prototype.getDocumentSlice = function ( rangeOrNode ) {
+	var data, range,
+		store = this.store.clone(),
+		listRange = this.internalList.getListNode().getOuterRange();
+	if ( rangeOrNode instanceof ve.dm.Node ) {
+		range = rangeOrNode.getRange();
+	} else if ( rangeOrNode instanceof ve.Range ) {
+		range = rangeOrNode;
+	} else {
+		throw new Error( 'rangeOrNode must be a ve.Range or a ve.dm.Node' );
+	}
+	data = ve.copyArray( this.getFullData( range, true ) );
+	if ( range.start > listRange.start || range.end < listRange.end ) {
+		// The range does not include the entire internal list, so add it
+		data = data.concat( this.getFullData( listRange ) );
+	}
+	return new this.constructor(
+		new ve.dm.ElementLinearData( store, data ),
+		undefined, this.internalList
+	);
+};
+
+/**
  * Get the metadata replace operation required to keep data & metadata in sync after a splice
  *
  * @method
@@ -292,13 +342,13 @@ ve.dm.Document.prototype.getInternalList = function () {
  * @param {Array} insert Element data being inserted
  * @returns {Object} Metadata replace operation to keep data & metadata in sync
  */
-ve.dm.Document.prototype.getMetadataReplace = function( offset, remove, insert ) {
+ve.dm.Document.prototype.getMetadataReplace = function ( offset, remove, insert ) {
 	var removeMetadata, insertMetadata, replace = {};
 	if ( remove > insert.length ) {
 		// if we are removing more than we are inserting we need to collapse the excess metadata
 		removeMetadata = this.getMetadata( new ve.Range( offset + insert.length, offset + remove + 1 ) );
 		// check removeMetadata is non-empty
-		if ( !ve.compareArrays( removeMetadata, new Array( removeMetadata.length ) ) ) {
+		if ( !ve.compare( removeMetadata, new Array( removeMetadata.length ) ) ) {
 			insertMetadata = ve.dm.MetaLinearData.static.merge( removeMetadata );
 			replace.retain = insert.length;
 			replace.remove = removeMetadata;
@@ -340,14 +390,25 @@ ve.dm.Document.prototype.spliceMetadata = function ( offset, index, remove, inse
 /**
  * Get the full document data including metadata.
  *
- * Metadata will be into the document data to produce the "full data" result.
+ * Metadata will be into the document data to produce the "full data" result. If a range is passed,
+ * metadata at the edges of the range won't be included unless edgeMetadata is set to true. If
+ * no range is passed, the entire document's data is returned and metadata at the edges is
+ * included.
  *
+ * @param {ve.Range} [range] Range to get full data for. If omitted, all data will be returned
+ * @param {boolean} [edgeMetadata=false] Include metadata at the edges of the range
  * @returns {Array} Data with metadata interleaved
  */
-ve.dm.Document.prototype.getFullData = function () {
-	var result = [], i, j, jLen, iLen = this.data.getLength();
-	for ( i = 0; i <= iLen; i++ ) {
-		if ( this.metadata.getData( i ) ) {
+ve.dm.Document.prototype.getFullData = function ( range, edgeMetadata ) {
+	var j, jLen,
+		i = range ? range.start : 0,
+		iLen = range ? range.end : this.data.getLength(),
+		result = [];
+	if ( edgeMetadata === undefined ) {
+		edgeMetadata = !range;
+	}
+	while ( i <= iLen ) {
+		if ( this.metadata.getData( i ) && ( edgeMetadata || ( i !== range.start && i !== range.end ) ) ) {
 			for ( j = 0, jLen = this.metadata.getData( i ).length; j < jLen; j++ ) {
 				result.push( this.metadata.getData( i )[j] );
 				result.push( { 'type': '/' + this.metadata.getData( i )[j].type } );
@@ -356,6 +417,7 @@ ve.dm.Document.prototype.getFullData = function () {
 		if ( i < iLen ) {
 			result.push( this.data.getData( i ) );
 		}
+		i++;
 	}
 	return result;
 };
@@ -387,7 +449,7 @@ ve.dm.Document.prototype.getNodeFromOffset = function ( offset ) {
  */
 ve.dm.Document.prototype.getDataFromNode = function ( node ) {
 	var length = node.getLength(),
-		offset = this.documentNode.getOffsetFromNode( node );
+		offset = node.getOffset();
 	if ( offset >= 0 ) {
 		// XXX: If the node is wrapped in an element than we should increment the offset by one so
 		// we only return the content inside the element.
@@ -471,12 +533,19 @@ ve.dm.Document.prototype.rebuildNodes = function ( parent, index, numNodes, offs
  * @method
  * @param {Array} data Snippet of linear model data to insert
  * @param {number} offset Offset in the linear model where the caller wants to insert data
- * @returns {Object} A (possibly modified) copy of data and a (possibly modified) offset
+ * @returns {Object} A (possibly modified) copy of data, a (possibly modified) offset
+ * and a number of elements to remove
  */
 ve.dm.Document.prototype.fixupInsertion = function ( data, offset ) {
 	var
 		// Array where we build the return value
 		newData = [],
+
+		// Temporary variables for handling combining marks
+		insert, annotations,
+		// An unattached combining mark may require the insertion to remove a character,
+		// so we send this counter back in the result
+		remove = 0,
 
 		// *** Stacks ***
 		// Array of element openings (object). Openings in data are pushed onto this stack
@@ -486,11 +555,6 @@ ve.dm.Document.prototype.fixupInsertion = function ( data, offset ) {
 		// not opened in data (i.e. were already in the document) are pushed onto this stack
 		// and popped off when balanced out by an opening in data
 		closingStack = [],
-
-		// Lazy evaluated first and last child stacks. Null means not yet evaluated.
-		// See get(First|Last)ChildStack private methods for details.
-		firstChildStack = null,
-		lastChildStack = null,
 
 		// Pointer to this document for private methods
 		doc = this,
@@ -503,6 +567,9 @@ ve.dm.Document.prototype.fixupInsertion = function ( data, offset ) {
 		parentType,
 		// Whether we are currently in a text node
 		inTextNode,
+		// Whether this is the first child of its parent
+		// The test for last child isn't a loop so we don't need to cache it
+		isFirstChild,
 
 		// *** Temporary variables that do not persist across iterations ***
 		// The type of the node we're currently inserting. When the to-be-inserted node
@@ -607,53 +674,10 @@ ve.dm.Document.prototype.fixupInsertion = function ( data, offset ) {
 		newData.push( element );
 	}
 
-	/**
-	 * Lazy evaluate the first child stack.
-	 *
-	 * The first child stack comprises all parent nodes for which the current
-	 * node is the first child.
-	 *
-	 * @private
-	 * @method
-	 * @returns {Array} Array of parent node data elements
-	 */
-	function getFirstChildStack() {
-		var i;
-		if ( firstChildStack === null ) {
-			firstChildStack = [];
-			i = offset;
-			while ( doc.data.isOpenElementData( --i ) ) {
-				firstChildStack.push( doc.data.getData( i ) );
-			}
-		}
-		return firstChildStack;
-	}
-
-	/**
-	 * Lazy evaluate the last child stack.
-	 *
-	 * The last child stack comprises all parent nodes for which the current
-	 * node is the last child.
-	 *
-	 * @private
-	 * @method
-	 * @returns {Array} Array of parent node data elements
-	 */
-	function getLastChildStack() {
-		var i;
-		if ( lastChildStack === null ) {
-			lastChildStack = [];
-			i = offset - 1;
-			while ( doc.data.isCloseElementData( ++i ) ) {
-				lastChildStack.push( doc.data.getData( i ) );
-			}
-		}
-		return lastChildStack;
-	}
-
 	parentNode = this.getNodeFromOffset( offset );
 	parentType = parentNode.getType();
 	inTextNode = false;
+	isFirstChild = doc.data.isOpenElementData( offset - 1 );
 
 	for ( i = 0; i < data.length; i++ ) {
 		if ( inTextNode && data[i].type !== undefined ) {
@@ -710,8 +734,9 @@ ve.dm.Document.prototype.fixupInsertion = function ( data, offset ) {
 				);
 				if ( !childrenOK ) {
 					// We can't insert this into this parent
-					if ( getFirstChildStack().length ) {
-						// Abandon this fix up and try again one offset to the left
+					if ( isFirstChild ) {
+						// This element is the first child of its parent, so
+						// abandon this fix up and try again one offset to the left
 						return this.fixupInsertion( data, offset - 1 );
 					}
 
@@ -739,6 +764,29 @@ ve.dm.Document.prototype.fixupInsertion = function ( data, offset ) {
 					}
 				}
 			} while ( !childrenOK );
+
+			if (
+				i === 0 &&
+				childType === 'text' &&
+				ve.isUnattachedCombiningMark( data[i] )
+			) {
+				// Note we only need to check data[0] as combining marks further
+				// along should already have been merged
+				if ( doc.data.isElementData( offset - 1 ) ) {
+					// Inserting a unattached combining mark is generally pretty badly
+					// supported (browser rendering bugs), so we'll just prevent it.
+					continue;
+				} else {
+					offset--;
+					remove++;
+					insert = doc.data.getCharacterData( offset ) + data[i];
+					annotations = doc.data.getAnnotationIndexesFromOffset( offset );
+					if ( annotations.length ) {
+						insert = [ insert, annotations ];
+					}
+					data[i] = insert;
+				}
+			}
 
 			for ( j = 0; j < closings.length; j++ ) {
 				// writeElement() would update openingStack/closingStack, but we've already done
@@ -769,8 +817,9 @@ ve.dm.Document.prototype.fixupInsertion = function ( data, offset ) {
 		}
 	}
 
-	if ( closingStack.length > 0 && getLastChildStack().length > 0 ) {
-		// Abandon this fix up and try again one offset to the left
+	if ( closingStack.length > 0 && doc.data.isCloseElementData( offset ) ) {
+		// This element is the last child of its parent, so
+		// abandon this fix up and try again one offset to the right
 		return this.fixupInsertion( data, offset + 1 );
 	}
 
@@ -796,7 +845,8 @@ ve.dm.Document.prototype.fixupInsertion = function ( data, offset ) {
 
 	return {
 		offset: offset,
-		data: newData
+		data: newData,
+		remove: remove
 	};
 };
 
@@ -806,6 +856,7 @@ ve.dm.Document.prototype.fixupInsertion = function ( data, offset ) {
  * Data will be fixed up so that unopened closings and unclosed openings in the document data slice
  * are balanced.
  *
+ * @param {ve.Range} range Range to get contents of
  * @returns {ve.dm.DocumentSlice} Balanced slice of linear model data
  */
 ve.dm.Document.prototype.getSlice = function ( range ) {
@@ -866,4 +917,21 @@ ve.dm.Document.prototype.getSlice = function ( range ) {
 			.concat( addClosings ),
 		new ve.Range( addOpenings.length, addOpenings.length + range.getLength() )
 	);
+};
+
+/**
+ * Get the length of the complete history stack. This is also the current pointer.
+ * @returns {number} Length of the complete history stack
+ */
+ve.dm.Document.prototype.getCompleteHistoryLength = function () {
+	return this.completeHistory.length;
+};
+
+/**
+ * Get all the items in the complete history stack since a specified pointer.
+ * @param {number} pointer Pointer from where to start the slice
+ * @returns {Array} Array of transaction objects with undo flag
+ */
+ve.dm.Document.prototype.getCompleteHistorySince = function ( pointer ) {
+	return this.completeHistory.slice( pointer );
 };

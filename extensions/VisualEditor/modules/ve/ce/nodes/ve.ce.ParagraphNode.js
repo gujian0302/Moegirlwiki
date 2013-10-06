@@ -12,10 +12,19 @@
  * @extends ve.ce.BranchNode
  * @constructor
  * @param {ve.dm.ParagraphNode} model Model to observe
+ * @param {Object} [config] Config options
  */
-ve.ce.ParagraphNode = function VeCeParagraphNode( model ) {
+ve.ce.ParagraphNode = function VeCeParagraphNode( model, config ) {
 	// Parent constructor
-	ve.ce.ContentBranchNode.call( this, model, $( '<p>' ) );
+	ve.ce.ContentBranchNode.call( this, model, config );
+
+	// DOM changes
+	if (
+		this.model.getElement().internal &&
+		this.model.getElement().internal.generated === 'wrapper'
+	) {
+		this.$.addClass( 've-ce-generated-wrapper' );
+	}
 };
 
 /* Inheritance */
@@ -25,6 +34,8 @@ ve.inheritClass( ve.ce.ParagraphNode, ve.ce.ContentBranchNode );
 /* Static Properties */
 
 ve.ce.ParagraphNode.static.name = 'paragraph';
+
+ve.ce.ParagraphNode.static.tagName = 'p';
 
 ve.ce.ParagraphNode.static.canBeSplit = true;
 

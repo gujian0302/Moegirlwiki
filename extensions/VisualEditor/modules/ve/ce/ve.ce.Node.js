@@ -14,11 +14,12 @@
  *
  * @constructor
  * @param {ve.dm.Node} model Model to observe
- * @param {jQuery} [$element] Element to use as a container
+ * @param {Object} [config] Config options
  */
-ve.ce.Node = function VeCeNode( model, $element ) {
+ve.ce.Node = function VeCeNode( model, config ) {
 	// Parent constructor
-	ve.ce.View.call( this, model, $element );
+	ve.ce.View.call( this, model, config );
+
 	// Mixin constructor
 	ve.Node.call( this );
 
@@ -49,22 +50,6 @@ ve.mixinClass( ve.ce.Node, ve.Node );
  */
 ve.ce.Node.static.canBeSplit = false;
 
-/**
- * Template for shield elements.
- *
- * Uses data URI to inject a 1x1 transparent PNG image into the DOM.
- *
- * Using transparent png instead of gif because IE 10 renders gif as solid red when used as img src.
- *
- * @static
- * @property static.$shieldTemplate
- * @inheritable
- */
-ve.ce.Node.static.$shieldTemplate = $( '<img>' )
-	.addClass( 've-ce-node-shield' )
-	.attr( 'src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAFElEQVR4' +
-		'XgXAAQ0AAABAMP1L30IDCPwC/o5WcS4AAAAASUVORK5CYII=' );
-
 /* Methods */
 
 /**
@@ -78,20 +63,7 @@ ve.ce.Node.static.$shieldTemplate = $( '<img>' )
  * @param {string} from Old value
  * @param {string} to New value
  */
-ve.ce.Node.prototype.onAttributeChange = function ( key, from, to ) {
-	var htmlKey = key.substr( 7 ).toLowerCase();
-	if (
-		this.constructor.static.renderHtmlAttributes &&
-		key.indexOf( 'html/0/' ) === 0 &&
-		htmlKey.length &&
-		this.constructor.static.domAttributeWhitelist.indexOf( htmlKey ) !== -1
-	) {
-		if ( to === undefined ) {
-			this.$.removeAttr( htmlKey );
-		} else {
-			this.$.attr( htmlKey, to );
-		}
-	}
+ve.ce.Node.prototype.onAttributeChange = function () {
 };
 
 /**
@@ -188,7 +160,10 @@ ve.ce.Node.prototype.isContent = function () {
  * @returns {boolean} Whether the node can have a slug before it
  */
 ve.ce.Node.prototype.canHaveSlugBefore = function () {
-	return !this.canContainContent() && this.getParentNodeTypes() === null && this.type !== 'text';
+	return !this.canContainContent() &&
+		this.getParentNodeTypes() === null &&
+		this.type !== 'text' &&
+		this.type !== 'list';
 };
 
 /**
@@ -225,6 +200,16 @@ ve.ce.Node.prototype.getOuterLength = function () {
 };
 
 /**
+ * Get the offset of the node.
+ *
+ * @see ve.dm.Node#getOffset
+ * @returns {number} Offset
+ */
+ve.ce.Node.prototype.getOffset = function () {
+	return this.model.getOffset();
+};
+
+/**
  * Check if the node can be split.
  *
  * @method
@@ -253,4 +238,14 @@ ve.ce.Node.getSplitableNode = function ( node ) {
 	} );
 
 	return splitableNode;
+};
+
+/**
+ * Release all memory.
+ *
+ * @method
+ */
+ve.ce.Node.prototype.destroy = function () {
+	this.parent = null;
+	this.model.disconnect( this );
 };

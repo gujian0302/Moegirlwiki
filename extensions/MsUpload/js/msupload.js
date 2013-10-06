@@ -13,115 +13,109 @@ if ( $.inArray( mw.config.get( 'wgAction' ), ['edit', 'submit'] ) !== -1 ) {
 
 function createUpload(wikiEditor){
 		
-	if(wikiEditor==true){		
-		
 		//create upload button
-		var upload_tab = $(document.createElement("span")).attr('class','tab tab-msupload').prependTo('#wikiEditor-ui-toolbar .tabs');
-				
-		var upload_button = $(document.createElement("span")).attr({ 
-		     id: "upload_select",
-		     title: mw.msg('msu-button_title')
-		}).append('<img src="'+msu_vars.path+'/images/button_upload.gif">').appendTo(upload_tab); 
+		var upload_button = $(document.createElement("div")).attr('id',"upload_select");
+    	var upload_container = $(document.createElement("div")).attr({ 
+      			id: "upload_container",
+      			title: mw.msg('msu-button_title'),
+      			'class': 'start-loading'
+     	}).append(upload_button);
+      
+		if(wikiEditor==true){		
+			//insert upload button
+			var upload_tab = $(document.createElement("div")).attr('class','group ').appendTo('#wikiEditor-ui-toolbar .toolbar');
+			upload_container.appendTo(upload_tab);
+			//create upload div  
+			var upload_div = $(document.createElement("div")).attr("id","upload_div").insertAfter('#wikiEditor-ui-toolbar'); 
+			$('#wikiEditor-ui-toolbar .tool .options').css('z-index', '2'); //headline dropdown		
+		}else{ //only standard editor
+	      upload_container.css('display','inline-block').css('vertical-align', 'middle').appendTo("#toolbar"); 
+	      upload_button.addClass('old_button');
+		  var upload_div = $(document.createElement("div")).attr("id","upload_div").insertAfter("#toolbar"); 
+		} 
 		
-		//create upload div  
-    	var upload_container = $(document.createElement("div")).attr('id',"upload_container").insertAfter('#wikiEditor-ui-toolbar');
-   		var upload_div = $(document.createElement("div")).attr("id","upload_div").appendTo(upload_container); 
-		var container_msu = 'upload_container';
-		$('#wikiEditor-ui-toolbar .tool .options').css('z-index', '2'); //headline dropdown
-	
-	}else{ //only standard editor
+		var status_div = $(document.createElement("div")).attr("id","upload_status").html('No runtime found.').appendTo(upload_div); 
+	    var upload_list = $(document.createElement("ul")).attr("id","upload_list").appendTo(upload_div);
+	    var bottom_div = $(document.createElement("div")).attr("id","upload_bottom").appendTo(upload_div).hide(); 
+	    var start_button = $(document.createElement("a")).attr("id","upload_files").appendTo(bottom_div).hide();
+	    var spacer1 = $(document.createElement("span")).attr("class", "spacer").appendTo(bottom_div).hide();
+    	var clean_all = $(document.createElement("a")).attr("id","clean_all").text(mw.msg('msu-clean_all')).appendTo(bottom_div).hide();	
+		var spacer2 = $(document.createElement("span")).attr("class", "spacer").appendTo(bottom_div).hide();
+		var gallery_insert = $(document.createElement("a")).attr("id","gallery_insert").appendTo(bottom_div).hide();
 		
-	  var upload_button = $(document.createElement("a")).attr({ 
-      id: "upload_select",
-      title: mw.msg('msu-button_title')
-      }).append('<img src="'+msu_vars.path+'/images/button_upload.gif">').appendTo("#toolbar"); 
-	  
-	  var upload_div = $(document.createElement("div")).attr("id","upload_div").insertAfter("#toolbar"); 
-	  var container_msu = 'toolbar';
-	}  
-	      
-    var status_div = $(document.createElement("div")).attr("id","upload_status").html('No runtime found.').appendTo(upload_div); 
-    var upload_list = $(document.createElement("ul")).attr("id","upload_list").appendTo(upload_div);
-    var bottom_div = $(document.createElement("div")).attr("id","upload_bottom").appendTo(upload_div).hide(); 
-    var start_button = $(document.createElement("a")).attr("id","upload_files").appendTo(bottom_div).hide();
-    var spacer = $(document.createElement("span")).attr("class", "spacer").appendTo(bottom_div).hide();
-    var gallery_insert = $(document.createElement("a")).attr("id","gallery_insert").appendTo(bottom_div).hide();
-    
-		//$("#upload_div").append('<form><table id="mw-htmlform-description"><tbody><tr><td id="wpDestFile-warning" colspan="2">&nbsp;</td></tr><tr class="mw-htmlform-field-HTMLTextField"><td class="mw-label"><label for="wpNickName">&lt;人物名&gt;</label></td><td class="mw-input"><input id="wpNickName" name="wpNickName" size="60"></td></tr><tr class="mw-htmlform-field-HTMLTextField"><td class="mw-label"><label for="wpAuthor">&lt;作者&gt;</label></td><td class="mw-input"><input id="wpAuthor" name="wpAuthor" size="60"></td></tbody></table></form>');
-
-       var uploader = new plupload.Uploader({
-    		//runtimes : 'html5,flash',
+        var uploader = new plupload.Uploader({
     		runtimes : 'html5,flash,silverlight,html4',
     		browse_button : 'upload_select',
-    		container : container_msu,
+    		container : 'upload_container',
     		max_file_size : '100mb',
     		drop_element: 'upload_drop',
-    		unique_names: false,
-    		//multipart_params: {} ,     
+    		//unique_names: true,  
+    		//multipart: false, //evtl i
         	url : msu_vars.path+'/../../api.php',
     		flash_swf_url : msu_vars.path+'/js/plupload/plupload.flash.swf',
-    		silverlight_xap_url : msu_vars.path+'/js/plupload/plupload.silverlight.xap'
+    		silverlight_xap_url : msu_vars.path+'/js/plupload.silverlight.xap',
     		
-	     /*
-	     // Specify what files to browse for
+    		//resize : {width : 320, height : 240, quality : 90}, //resize pictures
+
+	     /* Specify what files to browse for
         filters : [
 	            {title : "Image files", extensions : "jpg,gif,png"},
 	            {title : "Zip files", extensions : "zip"}
-        ],
-        // resize pictures
-        //resize : {width : 320, height : 240, quality : 90}
-        */	
+        ], */	
     	});
     
     	uploader.bind('Init', function(up, params) {
+    		
+	    	upload_container.removeClass('start-loading');
     		status_div.html("<b>Debug</b> runtime: " + params.runtime + " drag/drop: "+ (!!up.features.dragdrop));
     		if(msu_vars.debugMode == 'false') status_div.hide(); //hide status if debug mode is disabled
 
-    		if(up.features.dragdrop){
+    		if(up.features.dragdrop && msu_vars.dragdrop == "true"){
 	        	
-	        	var upload_drop = $(document.createElement("div")).attr("id","upload_drop").html('<span class="drop_text">'+mw.msg('msu-dropzone')+'</span>').insertAfter(status_div); 
+	        	var upload_drop = $(document.createElement("div")).attr("id","upload_drop").text(mw.msg('msu-dropzone')).insertAfter(status_div); 
 	        	upload_drop.bind('dragover',function(event){
-					   $(this).addClass('drop_over').css('padding','30px');
+					   $(this).addClass('drop_over').css('padding','20px');
 				}).bind('dragleave',function(event){
 					   $(this).removeClass('drop_over').css('padding','0px');
 				}).bind('drop',function(event){
 					   $(this).removeClass('drop_over').css('padding','0px');
 				});
 
-	        }
+	       	}else{
+	       		upload_div.addClass('nodragdrop');
+	       	} //if
     		
     	});
 
 
       uploader.bind('FilesAdded', function(up, files) {
-    		$.each(files, function(i, file){
+      	$.each(files, function(i, file){
+    			
+    			//iOS6 by SLBoat
+    			if ((navigator.platform == "iPad" || navigator.platform == "iPhone") && file.name.indexOf("image")>-1 && file.name.length<11){
+					var heute=new Date(); 
+					fileNameApple = navigator.platform+'_image_'+heute.getFullYear()+'-'+heute.getMonth()+'-'+heute.getDate()+'-'+heute.getTime(); //because each image is named "image.jpg" in iOS6
+					file.name = fileNameApple+'_'+i+'.'+file.name.split('.').pop(); // image_Y-M-D_0.jpg
+				}
     			file.li = $(document.createElement("li")).attr("id",file.id).attr("class","file").appendTo(upload_list);
-          file.li.type = $(document.createElement("span")).attr("class","file-type").appendTo(file.li);
-          file.li.title = $(document.createElement("span")).attr("class","file-title").text(file.name).appendTo(file.li);
-          file.li.size = $(document.createElement("span")).attr("class","file-size").text(plupload.formatSize(file.size)).appendTo(file.li);
-          file.li.warning = $(document.createElement("span")).attr("class","file-warning").appendTo(file.li);
-          file.li.container = $(document.createElement("span")).appendTo(file.li);
-  				// file.li.remark = $(document.createElement("input")).attr("type","text").addClass("file-remark").appendTo(file.li).val("摘要").click(function(){
-  				// 	if($(this).val()=="摘要")
-  				// 		$(this).val("");
-  				// }).blur(function(){
-  				// 	if($(this).val()=="")
-  				// 		$(this).val("摘要")
-  				// });   
-	        check_extension(file,up); 
 	            
-          file.li.remark = $('<table id="mw-htmlform-description"><tbody><tr class="mw-htmlform-field-HTMLTextField"><td class="mw-label"><label for="wpAuthor">&lt;作者&gt;</label></td><td class="mw-input"><input size="60" name="wpAuthor" id="wpAuthor"></td></tr><tr class="mw-htmlform-field-HTMLTextField"><td class="mw-label"><label for="wpSrcUrl">&lt;源地址&gt;</label></td><td class="mw-input"><input size="60" name="wpSrcUrl" id="wpSrcUrl"></td></tr></tbody></table>')
-          .appendTo(file.li);
-            	
+	            file.li.type = $(document.createElement("span")).attr("class","file-type").appendTo(file.li);
+	            file.li.title = $(document.createElement("span")).attr("class","file-title").text(file.name).appendTo(file.li);
+	            file.li.size = $(document.createElement("span")).attr("class","file-size").text(plupload.formatSize(file.size)).appendTo(file.li);
+	            file.li.loading = $(document.createElement("span")).attr("class","file-loading").appendTo(file.li);
+	            file.li.warning = $(document.createElement("span")).attr("class","file-warning").appendTo(file.li);
+	            
+	            check_extension(file,up); 
     		});
+
     		up.refresh(); // Reposition Flash/Silverlight
     	});
 	
-     uploader.bind('QueueChanged', function(up) {
+     	uploader.bind('QueueChanged', function(up) {
 		uploader.trigger("CheckFiles", up);
      });
       
-     uploader.bind('StateChanged', function(up) {
+    uploader.bind('StateChanged', function(up) {
 		if(msu_vars.debugMode == 'true') console.log(up.state);
 		
 		if (up.files.length === (up.total.uploaded + up.total.failed)) {
@@ -139,19 +133,12 @@ function createUpload(wikiEditor){
     	file.li.title.text(file.name).show(); //show title
     	$('#' + file.id + " input.input_change").hide(); //hide input
     	
-      var catagory = mw.config.get("wgPageName");
-      var author = file.li.remark.find("#wpAuthor").val();
-      var url = file.li.remark.find("#wpSrcUrl").val();
-      var comment = "[[分类:"+catagory+"]]";
-      if(author)comment+=" [[分类:作者:"+author+"]]";
-      if(url)comment+=" 源地址:["+url+"]";
-
     	up.settings.multipart_params = {
     		filename : file.name,
     		token: mw.user.tokens.get( 'editToken' ),
     		action:"upload",
     		ignorewarnings:true,
-    		comment:comment,
+    		comment:mw.msg('msu-comment'),
     		format:"json"
     	}; //set multipart_params
     	$('#' + file.id + " div.file-progress-bar").progressbar({value: '1'});
@@ -196,7 +183,7 @@ function createUpload(wikiEditor){
 				
 			} else {
 			
-			//alert(result.upload.result);
+			//console.log(result.upload.result);
 			/*{"upload":{"result":"Success",
 						"filename":"Msupload_v8.4.jpg",
 						"imageinfo":{
@@ -217,11 +204,10 @@ function createUpload(wikiEditor){
 							"bitdepth":8
 			}}}*/
 			
-			file.li.remark.hide();
 			file.li.type.addClass('ok');
             file.li.addClass('green');
             file.li.warning.fadeOut("slow");
-
+            
     		if(file.kat == true){ //should the categroy be set?
 		        
 		         sajax_do_call( 'wfMsUploadSaveKat', [file.name,wgPageName],function (response) {
@@ -232,21 +218,24 @@ function createUpload(wikiEditor){
     		
     		$(document.createElement("a")).text(mw.msg('msu-insert_link')).click(function(e) { //click
   			    if(msu_vars.use_mslinks == 'true'){
-  			    	msu_vorlage_insert('{{#l:'+file.name+'}}','',''); // insert link		
+  			    	mw.toolbar.insertTags( '{{#l:'+file.name+'}}', '', '', '' ); // insert link
   			    } else {
-  			    	msu_vorlage_insert('[[:File:'+file.name+']]','',''); // insert link
+  			    	mw.toolbar.insertTags( '[[:File:'+file.name+']]', '', '', '' ); // insert link
   			    }
   			    
         	}).appendTo(file.li);
     		
             if (file.group == "pic"){
         		  
+        		file.li.type.addClass('picture_load');
+            	file.li.type.html('<img src="'+result.upload.imageinfo.url+'" height="18">');
         		gallery_arr.push(file.name);	
 
         		  		
         		  if(gallery_arr.length== 2){ //only at first time add click function
 	        		  		gallery_insert.click(function(e) { //click
 	  			
+	  							console.log(gallery_arr);
 	  							add_gallery(); //to take always the actual list
 
 	        				}).text(mw.msg('msu-insert_gallery')).show();
@@ -259,8 +248,8 @@ function createUpload(wikiEditor){
         		$(document.createElement("span")).text(' | ').appendTo(file.li);
         		$(document.createElement("a")).text(mw.msg('msu-insert_picture')).click(function(e) { //click
         			
-        			msu_vorlage_insert('[[File:'+file.name+'|400px]]','','');
-        			
+        			mw.toolbar.insertTags( '[[File:'+file.name+msu_vars.imgParams+']]','','','');
+        		
         		}).appendTo(file.li);
         		
                 
@@ -270,7 +259,7 @@ function createUpload(wikiEditor){
         		$(document.createElement("span")).text(' | ').appendTo(file.li);
         		$(document.createElement("a")).text(mw.msg('msu-insert_movie')).click(function(e) { //click
 
-        			msu_vorlage_insert('[[File:'+file.name+']]','','');
+        			mw.toolbar.insertTags( '[[File:'+file.name+']]','','','');
         			
         		}).appendTo(file.li);
 
@@ -296,32 +285,57 @@ function createUpload(wikiEditor){
 	 });
 	 
     uploader.bind('CheckFiles', function(up) { 
-
 	   	if(msu_vars.debugMode == 'true') console.log(up.files.length);
 
 	    if(gallery_arr.length >= 2){ 
+	    	spacer2.show();	
 	    	gallery_insert.show();
-	        spacer.show();	
 	   	}else{
-	   		spacer.hide();
          	gallery_insert.hide();
+         	spacer2.hide();	
 	   	}
 	   	
 	    if (up.files.length==1){
-        	bottom_div.show();
         	start_button.text(mw.msg('msu-upload_this')).show();
+        	spacer1.show();	
         } else if (up.files.length>1){
-        	bottom_div.show();
         	start_button.text(mw.msg('msu-upload_all')).show();
-        } else {
-        	//bottom_div.hide();
+        	spacer1.show();	
+      	
+        } else { //0 files in list
          	start_button.hide();
+         	spacer1.hide();	
          	if(gallery_arr.length < 2){ 
-	    	bottom_div.hide();
+	    	//bottom_div.hide();
 	    	}
          	
-        }
-        
+        }  
+
+        if (up.files.length>0){
+        	bottom_div.show();
+	        clean_all.text(mw.msg('msu-clean_all')).click(function(e){
+	        				
+				
+				gallery_arr.length = 0; // zurücksetzen
+				
+				if(up.files.length > 0) {
+				//	bottom_div.hide();
+					$.each(up.files, function(i, file){
+						up.removeFile(file);
+						up.refresh(); 
+						//file.li.hide("slow");
+					});
+				}
+				
+				$('#upload_list .file').hide("slow");
+				$(this).hide();
+				bottom_div.hide();
+				uploader.trigger("CheckFiles", uploader);
+				gallery_insert.unbind('click');
+				
+	       	}).show();
+       } 
+       		
         up.refresh();
 	 });
     	
@@ -337,7 +351,6 @@ function createUpload(wikiEditor){
           	return false;
           };
         */
-	
                 
    uploader.init();
 
@@ -349,13 +362,14 @@ function add_gallery(){
 	gallery_text = "Image:";
 	gallery_text += gallery_arr.join("\nImage:");
 	gallery_text +='\n';
-	msu_vorlage_insert(gallery_text,'<gallery>\n\n','\n</gallery>\n'); 
+	mw.toolbar.insertTags( '<gallery>\n\n'+gallery_text+'\n</gallery>\n', '', '', '' ); // insert gallery
 }
+
 
 function check_extension(file,uploader){
 		if(msu_vars.debugMode == 'true') console.log(file);
 		
-        file.li.warning.html("<img src='"+msu_vars.path+"/images/loading.png'>");
+        file.li.loading.show();
 		file.extension = file.name.split('.').pop().toLowerCase();
 
 		if($.inArray(file.extension, wgFileExtensions) != -1) {
@@ -368,13 +382,15 @@ function check_extension(file,uploader){
             	break;
 			  case 'mov':
        	 		file.group = "mov";
+       	 		file.li.type.addClass('film');
              	break;
-        	//case 'pdf':
-            /* handle */
-            //break;
+        	  case 'pdf':
+        	    file.li.type.addClass('pdf');
+             	break;
     		}
     		
             check_file(file.name,file.li);
+            
                    				
 	        file.li.cancel = $(document.createElement("span")).attr("title",mw.msg('msu-cancel_upload')).click(function(e) {
 	                file.li.fadeOut("slow");
@@ -394,7 +410,7 @@ function check_extension(file,uploader){
 
       } else { // wrong datatype
 				
-			file.li.container.hide(1, function() { //create callback
+			file.li.loading.hide(1, function() { //create callback 
 				uploader.removeFile(file);
 				uploader.refresh();  	
 			});
@@ -406,7 +422,7 @@ function check_extension(file,uploader){
 
 function check_file(filename,file_li){
 		 	
-          file_li.warning.html("<img src='"+msu_vars.path+"/images/loading.png'>");
+          //file_li.warning.html("<img src='"+msu_vars.path+"/images/loading.png'>");
               		         
           sajax_do_call( 'SpecialUpload::ajaxGetExistsWarning', [filename], 
         		function (result) {
@@ -416,14 +432,18 @@ function check_file(filename,file_li){
         		if ( warning == '' || warning == '&nbsp;' || warning =='&#160;') {
         			
         			file_li.warning.text(mw.msg('msu-upload_possible')).removeClass('small_warn');
+        			
 
         		} else {
         		
-                	// errorhandling (string eventuell noch kuerzen)
-                	file_li.warning.html('<span class=\'small_warn\'>'+warning+'</span>');
+                	// errorhandling
+                	warning_split = warning.split(". "); //split error
+                	$(document.createElement("span")).attr("class","small_warn").text(warning_split[0]).click(function(e) {
+                		$(this).text(warning_split[0]+'. '+warning_split[1]);
+                	}).appendTo(file_li.warning);
              
                 } //else
-       				
+       			file_li.loading.hide();	
         	});
 }
 
@@ -473,7 +493,7 @@ function build(file){
         }
       } 
       
-
+		
     	file.li.title.mouseover(function() { //mouseover
 			$(this).addClass('title_over');
     	 }).mouseleave(function() {		//mouseout	
@@ -499,4 +519,5 @@ function build(file){
   		});
 
     file.li.append('<div class="file-progress"><div class="file-progress-bar"></div><span class="file-progress-state"></span></div>'); 
+    
 }

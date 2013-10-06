@@ -5,7 +5,7 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
-( function () {
+( function ( oo ) {
 	var ve, hasOwn;
 
 	/**
@@ -14,9 +14,8 @@
 	 * @singleton
 	 */
 	ve = {
-		// List of instances of ve.Surface
+		// List of instances of ve.ui.Surface
 		'instances': []
-		//'actionFactory' instantiated in ve.ActionFactory.js
 	};
 
 	/* Utility Functions */
@@ -29,127 +28,42 @@
 	 * Create an object that inherits from another object.
 	 *
 	 * @method
-	 * @until ES5: Object.create
-	 * @source <https://github.com/Krinkle/K-js>
-	 * @param {Object} origin Object to inherit from
-	 * @return {Object} Empty object that inherits from origin
+	 * @until ES5: Object#create
+	 * @inheritdoc Object#create
 	 */
-	ve.createObject = Object.create || function ( origin ) {
-		function O() {}
-		O.prototype = origin;
-		var r = new O();
-
-		return r;
-	};
+	ve.createObject = Object.create;
 
 	/**
-	 * Utility for common usage of ve.createObject for inheriting from one
-	 * prototype to another.
-	 *
-	 * Beware: This redefines the prototype, call before setting your prototypes.
-	 * Beware: This redefines the prototype, can only be called once on a function.
-	 *  If called multiple times on the same function, the previous prototype is lost.
-	 *  This is how prototypal inheritance works, it can only be one straight chain
-	 *  (just like classical inheritance in PHP for example). If you need to work with
-	 *  multiple constructors consider storing an instance of the other constructor in a
-	 *  property instead, or perhaps use a mixin (see ve.mixinClass).
-	 *
-	 *     function Foo() {}
-	 *     Foo.prototype.jump = function () {};
-	 *
-	 *     function FooBar() {}
-	 *     ve.inheritClass( FooBar, Foo );
-	 *     FooBar.prop.feet = 2;
-	 *     FooBar.prototype.walk = function () {};
-	 *
-	 *     function FooBarQuux() {}
-	 *     ve.inheritClass( FooBarQuux, FooBar );
-	 *     FooBarQuux.prototype.jump = function () {};
-	 *
-	 *     FooBarQuux.prop.feet === 2;
-	 *     var fb = new FooBar();
-	 *     fb.jump();
-	 *     fb.walk();
-	 *     fb instanceof Foo && fb instanceof FooBar && fb instanceof FooBarQuux;
+	 * @method
+	 * @inheritdoc OO#inheritClass
+	 */
+	ve.inheritClass = oo.inheritClass;
+
+	/**
+	 * Checks if an object is an instance of one or more classes.
 	 *
 	 * @method
-	 * @source <https://github.com/Krinkle/K-js>
-	 * @param {Function} targetFn
-	 * @param {Function} originFn
-	 * @throws {Error} If target already inherits from origin
+	 * @param {Object} subject Object to check
+	 * @param {Function[]} classes Classes to compare with
+	 * @return {boolean} Object inherits from one or more of the classes
 	 */
-	ve.inheritClass = function ( targetFn, originFn ) {
-		if ( targetFn.prototype instanceof originFn ) {
-			throw new Error( 'Target already inherits from origin' );
+	ve.isInstanceOfAny = function ( subject, classes ) {
+		var i = classes.length;
+
+		while ( classes[--i] ) {
+			if ( subject instanceof classes[i] ) {
+				return true;
+			}
 		}
-
-		// Doesn't really require ES5 (jshint/jshint#74@github)
-		/*jshint es5: true */
-		var targetConstructor = targetFn.prototype.constructor;
-
-		targetFn.prototype = ve.createObject( originFn.prototype );
-
-		// Restore constructor property of targetFn
-		targetFn.prototype.constructor = targetConstructor;
-
-		// Extend static properties
-		originFn.static = originFn.static || {};
-		targetFn.static = ve.createObject( originFn.static );
-
-		// Copy mixin tracking
-		targetFn.mixins = originFn.mixins ? originFn.mixins.slice( 0 ) : [];
+		return false;
 	};
 
 	/**
-	 * Utility to copy over *own* prototype properties of a mixin.
-	 * The 'constructor' (whether implicit or explicit) is not copied over.
-	 *
-	 * This does not create inheritance to the origin. If inheritance is needed
-	 * use ve.inheritClass instead.
-	 *
-	 * Beware: This can redefine a prototype property, call before setting your prototypes.
-	 * Beware: Don't call before ve.inheritClass.
-	 *
-	 *     function Foo() {}
-	 *     function Context() {}
-	 *
-	 *     // Avoid repeating this code
-	 *     function ContextLazyLoad() {}
-	 *     ContextLazyLoad.prototype.getContext = function () {
-	 *         if ( !this.context ) {
-	 *             this.context = new Context();
-	 *         }
-	 *         return this.context;
-	 *     };
-	 *
-	 *     function FooBar() {}
-	 *     ve.inheritClass( FooBar, Foo );
-	 *     ve.mixinClass( FooBar, ContextLazyLoad );
-	 *
 	 * @method
-	 * @source <https://github.com/Krinkle/K-js>
-	 * @param {Function} targetFn
-	 * @param {Function} originFn
+	 * @inheritdoc OO#mixinClass
 	 */
 	ve.mixinClass = function ( targetFn, originFn ) {
-		var key;
-
-		// Copy prototype properties
-		for ( key in originFn.prototype ) {
-			if ( key !== 'constructor' && hasOwn.call( originFn.prototype, key ) ) {
-				targetFn.prototype[key] = originFn.prototype[key];
-			}
-		}
-
-		// Copy static properties
-		if ( originFn.static ) {
-			targetFn.static = targetFn.static || {};
-			for ( key in originFn.static ) {
-				if ( hasOwn.call( originFn.static, key ) ) {
-					targetFn.static[key] = originFn.static[key];
-				}
-			}
-		}
+		oo.mixinClass( targetFn, originFn );
 
 		// Track mixins
 		targetFn.mixins = targetFn.mixins || [];
@@ -157,55 +71,68 @@
 	};
 
 	/**
-	 * Check if a class or object uses a mixin.
+	 * Check if a constructor or object contains a certain mixin.
 	 *
 	 * @param {Function|Object} a Class or object to check
 	 * @param {Function} mixin Mixin to check for
-	 * @return {Boolean} Class or object uses mixin
+	 * @returns {boolean} Class or object uses mixin
 	 */
 	ve.isMixedIn = function ( subject, mixin ) {
-		if ( subject.constructor ) {
+		// Traverse from instances to the constructor
+		if ( $.type( subject ) !== 'function' ) {
 			subject = subject.constructor;
 		}
-		return subject.mixins && subject.mixins.indexOf( mixin ) !== -1;
+		return !!subject.mixins && subject.mixins.indexOf( mixin ) !== -1;
 	};
 
 	/**
-	 * Create a new object that is an instance of the same
-	 * constructor as the input, inherits from the same object
-	 * and contains the same own properties.
-	 *
-	 * This makes a shallow non-recursive copy of own properties.
-	 * To create a recursive copy of plain objects, use ve.copyObject.
-	 *
-	 *     var foo = new Person( mom, dad );
-	 *     foo.setAge( 21 );
-	 *     var foo2 = ve.cloneObject( foo );
-	 *     foo.setAge( 22 );
-	 *
-	 *     // Then
-	 *     foo2 !== foo; // true
-	 *     foo2 instanceof Person; // true
-	 *     foo2.getAge(); // 21
-	 *     foo.getAge(); // 22
-	 *
 	 * @method
-	 * @source <https://github.com/Krinkle/K-js>
-	 * @param {Object} origin
-	 * @return {Object} Clone of origin
+	 * @inheritdoc OO#cloneObject
 	 */
-	ve.cloneObject = function ( origin ) {
-		var key, r;
+	ve.cloneObject = oo.cloneObject;
 
-		r = ve.createObject( origin.constructor.prototype );
+	/**
+	 * @method
+	 * @inheritdoc OO#cloneObject
+	 */
+	ve.getObjectValues = oo.getObjectValues;
 
-		for ( key in origin ) {
-			if ( hasOwn.call( origin, key ) ) {
-				r[key] = origin[key];
-			}
-		}
+	/**
+	 * @method
+	 * @until ES5: Object#keys
+	 * @inheritdoc Object#keys
+	 */
+	ve.getObjectKeys = Object.keys;
 
-		return r;
+	/**
+	 * @method
+	 * @inheritdoc OO#compare
+	 */
+	ve.compare = oo.compare;
+
+	/**
+	 * @method
+	 * @inheritdoc OO#copy
+	 */
+	ve.copyArray = oo.copy;
+
+	/**
+	 * @method
+	 * @inheritdoc OO#copy
+	 */
+	ve.copyObject = oo.copy;
+
+	/**
+	 * Copy an array of DOM elements, optionally into a different document.
+	 *
+	 * @param {HTMLElement[]} domElements DOM elements to copy
+	 * @param {HTMLDocument} [doc] Document to create the copies in; if unset, simply clone each element
+	 * @return {HTMLElement[]} Copy of domElements with copies of each element
+	 */
+	ve.copyDomElements = function ( domElements, doc ) {
+		return domElements.map( function ( domElement ) {
+			return doc ? doc.importNode( domElement, true ) : domElement.cloneNode( true );
+		} );
 	};
 
 	/**
@@ -214,7 +141,7 @@
 	 * @method
 	 * @source <http://api.jquery.com/jQuery.isPlainObject/>
 	 * @param {Object} obj The object that will be checked to see if it's a plain object
-	 * @return {boolean}
+	 * @returns {boolean}
 	 */
 	ve.isPlainObject = $.isPlainObject;
 
@@ -224,80 +151,52 @@
 	 * @method
 	 * @source <http://api.jquery.com/jQuery.isEmptyObject/>
 	 * @param {Object} obj The object that will be checked to see if it's empty
-	 * @return {boolean}
+	 * @returns {boolean}
 	 */
 	ve.isEmptyObject = $.isEmptyObject;
 
 	/**
-	 * Check whether given variable is an array. Should not use `instanceof` or
-	 * `constructor` due to the inability to detect arrays from a different
-	 * scope.
-	 *
 	 * @method
-	 * @source <http://api.jquery.com/jQuery.isArray/>
-	 * @until ES5: Array.isArray
-	 * @param {Mixed} x
-	 * @return {boolean}
+	 * @until ES5: Array#isArray
+	 * @inheritdoc Array#isArray
 	 */
-	ve.isArray = $.isArray;
+	ve.isArray = Array.isArray;
 
 	/**
+	 * Wrapper for Function#bind.
+	 *
 	 * Create a function that calls the given function in a certain context.
 	 * If a function does not have an explicit context, it is determined at
 	 * execution time based on how it is invoked (e.g. object member, call/apply,
 	 * global scope, etc.).
-	 * Performance optimization: http://jsperf.com/function-bind-shim-perf
+	 *
+	 * Performance optimization: <http://jsperf.com/function-bind-shim-perf>
 	 *
 	 * @method
-	 * @until ES5: Function.prototype.bind
+	 * @source <http://api.jquery.com/jQuery.proxy/>
+	 * @until ES5: Function#bind
 	 * @param {Function} func Function to bind
 	 * @param {Object} context Context for the function
 	 * @param {Mixed...} [args] Variadic list of arguments to prepend to arguments
 	 *   to the bound function
-	 * @return {Function} The bound
+	 * @returns {Function} The bound
 	 */
 	ve.bind = $.proxy;
 
 	/**
-	 * Wrapper for Array.prototype.indexOf.
+	 * Wrapper for Array#indexOf.
 	 *
 	 * Values are compared without type coercion.
 	 *
 	 * @method
-	 * @until ES5
+	 * @source <http://api.jquery.com/jQuery.inArray/>
+	 * @until ES5: Array#indexOf
 	 * @param {Mixed} value Element to search for
 	 * @param {Array} array Array to search in
 	 * @param {number} [fromIndex=0] Index to being searching from
-	 * @return {number} Index of value in array, or -1 if not found
+	 * @returns {number} Index of value in array, or -1 if not found
 	 */
 	ve.indexOf = $.inArray;
-
-	/**
-	 * Array.prototype.filter
-	 *
-	 * @method
-	 * @until ES5
-	 * @param {Array} array Array to filter
-	 * @param {Function} callback Callback to call on each element of array
-	 * @param {Mixed} [context] Context (this object) for callback
-	 * @returns {Array} Array of elements in array for which callback returned true
-	 */
-	ve.filterArray = function ( array, callback, context ) {
-		var i, len, value, result = [];
-		if ( array.filter ) {
-			return array.filter( callback, context );
-		} else {
-			for ( i = 0, len = array.length; i < len; i++ ) {
-				if ( i in array ) {
-					value = array[i];
-					if ( callback.call( context, value, i, array ) ) {
-						result.push( value );
-					}
-				}
-			}
-			return result;
-		}
-	};
 
 	/**
 	 * Compute the union (duplicate-free merge) of a set of arrays.
@@ -389,11 +288,12 @@
 	 * ve.extendObject( { a: 1 } ); sets ve.a = 1;
 	 *
 	 * @method
+	 * @source <http://api.jquery.com/jQuery.extend/>
 	 * @param {boolean} [recursive=false]
 	 * @param {Mixed} [target] Object that will receive the new properties
 	 * @param {Mixed...} [sources] Variadic list of objects containing properties
 	 * to be merged into the targe.
-	 * @return {Mixed} Modified version of first or second argument
+	 * @returns {Mixed} Modified version of first or second argument
 	 */
 	ve.extendObject = $.extend;
 
@@ -409,7 +309,6 @@
 	 * function, we call that function and use its return value rather than hashing the object
 	 * ourselves. This allows classes to define custom hashing.
 	 *
-	 * @method
 	 * @param {Object} val Object to generate hash for
 	 * @returns {string} Hash of object
 	 */
@@ -422,7 +321,6 @@
 	 *
 	 * This is a callback passed into JSON.stringify.
 	 *
-	 * @method
 	 * @param {string} key Property name of value being replaced
 	 * @param {Mixed} val Property value to replace
 	 * @returns {Mixed} Replacement value
@@ -453,193 +351,6 @@
 	};
 
 	/**
-	 * Gets an array of all property names in an object.
-	 *
-	 * This falls back to the native impelentation of Object.keys if available.
-	 * Performance optimization: http://jsperf.com/object-keys-shim-perf#/fnHasown_fnForIfcallLength
-	 *
-	 * @method
-	 * @until ES5
-	 * @param {Object} Object to get properties from
-	 * @returns {string[]} List of object keys
-	 */
-	ve.getObjectKeys = Object.keys || function ( obj ) {
-		var key, keys;
-
-		if ( Object( obj ) !== obj ) {
-			throw new TypeError( 'Called on non-object' );
-		}
-
-		keys = [];
-		for ( key in obj ) {
-			if ( hasOwn.call( obj, key ) ) {
-				keys[keys.length] = key;
-			}
-		}
-
-		return keys;
-	};
-
-	/**
-	 * Gets an array of all property values in an object.
-	 *
-	 * @method
-	 * @param {Object} Object to get values from
-	 * @returns {Array} List of object values
-	 */
-	ve.getObjectValues = function ( obj ) {
-		var key, values;
-
-		if ( Object( obj ) !== obj ) {
-			throw new TypeError( 'Called on non-object' );
-		}
-
-		values = [];
-		for ( key in obj ) {
-			if ( hasOwn.call( obj, key ) ) {
-				values[values.length] = obj[key];
-			}
-		}
-
-		return values;
-	};
-
-	/**
-	 * Recursively compares string and number property between two objects.
-	 *
-	 * A false result may be caused by property inequality or by properties in one object missing from
-	 * the other. An asymmetrical test may also be performed, which checks only that properties in the
-	 * first object are present in the second object, but not the inverse.
-	 *
-	 * @method
-	 * @param {Object} a First object to compare
-	 * @param {Object} b Second object to compare
-	 * @param {boolean} [asymmetrical] Whether to check only that b contains values from a
-	 * @returns {boolean} If the objects contain the same values as each other
-	 */
-	ve.compareObjects = function ( a, b, asymmetrical ) {
-		var aValue, bValue, aType, bType, k;
-		for ( k in a ) {
-			aValue = a[k];
-			bValue = b[k];
-			aType = typeof aValue;
-			bType = typeof bValue;
-			if ( aType !== bType ||
-				( ( aType === 'string' || aType === 'number' ) && aValue !== bValue ) ||
-				( ve.isPlainObject( aValue ) && !ve.compareObjects( aValue, bValue ) ) ) {
-				return false;
-			}
-		}
-		// If the check is not asymmetrical, recursing with the arguments swapped will verify our result
-		return asymmetrical ? true : ve.compareObjects( b, a, true );
-	};
-
-	/**
-	 * Recursively compare two arrays.
-	 *
-	 * @method
-	 * @param {Array} a First array to compare
-	 * @param {Array} b Second array to compare
-	 * @param {boolean} [objectsByValue] Use ve.compareObjects() to compare objects instead of ===
-	 */
-	ve.compareArrays = function ( a, b, objectsByValue ) {
-		var i,
-			aValue,
-			bValue,
-			aType,
-			bType;
-		if ( a.length !== b.length ) {
-			return false;
-		}
-		for ( i = 0; i < a.length; i++ ) {
-			aValue = a[i];
-			bValue = b[i];
-			aType = typeof aValue;
-			bType = typeof bValue;
-			if (
-				aType !== bType ||
-				!(
-					(
-						ve.isArray( aValue ) &&
-						ve.isArray( bValue ) &&
-						ve.compareArrays( aValue, bValue )
-					) ||
-					(
-						objectsByValue &&
-						ve.isPlainObject( aValue ) &&
-						ve.compareObjects( aValue, bValue )
-					) ||
-					aValue === bValue
-				)
-			) {
-				return false;
-			}
-		}
-		return true;
-	};
-
-	/**
-	 * Gets a deep copy of an array's string, number, array, plain-object and cloneable object contents.
-	 *
-	 * @method
-	 * @param {Array} source Array to copy
-	 * @param {Function} [callback] Applied to leaf values before they added to the clone
-	 * @returns {Array} Copy of source array
-	 */
-	ve.copyArray = function ( source, callback ) {
-		var i, sourceValue, sourceType,
-			destination = [];
-		for ( i = 0; i < source.length; i++ ) {
-			sourceValue = source[i];
-			sourceType = typeof sourceValue;
-			if ( ve.isPlainObject( sourceValue ) ) {
-				destination.push( ve.copyObject( sourceValue, callback ) );
-			} else if ( ve.isArray( sourceValue ) ) {
-				destination.push( ve.copyArray( sourceValue, callback ) );
-			} else if ( sourceValue && typeof sourceValue.clone === 'function' ) {
-				destination.push( callback ? callback( sourceValue.clone() ) : sourceValue.clone() );
-			} else if ( sourceValue && typeof sourceValue.cloneNode === 'function' ) {
-				destination.push( callback ? callback( sourceValue.cloneNode( true ) ) : sourceValue.cloneNode( true ) );
-			} else {
-				destination.push( callback ? callback( sourceValue ) : sourceValue );
-			}
-		}
-		return destination;
-	};
-
-	/**
-	 * Gets a deep copy of an object's string, number, array and plain-object properties.
-	 *
-	 * @method
-	 * @param {Object} source Object to copy
-	 * @param {Function} [callback] Applied to leaf values before they added to the clone
-	 * @returns {Object} Copy of source object
-	 */
-	ve.copyObject = function ( source, callback ) {
-		var key, sourceValue, sourceType,
-			destination = {};
-		if ( typeof source.clone === 'function' ) {
-			return source.clone();
-		}
-		for ( key in source ) {
-			sourceValue = source[key];
-			sourceType = typeof sourceValue;
-			if ( ve.isPlainObject( sourceValue ) ) {
-				destination[key] = ve.copyObject( sourceValue, callback );
-			} else if ( ve.isArray( sourceValue ) ) {
-				destination[key] = ve.copyArray( sourceValue, callback );
-			} else if ( sourceValue && typeof sourceValue.clone === 'function' ) {
-				destination[key] = callback ? callback( sourceValue.clone() ) : sourceValue.clone();
-			} else if ( sourceValue && typeof sourceValue.cloneNode === 'function' ) {
-				destination[key] = callback ? callback( sourceValue.cloneNode( true ) ) : sourceValue.cloneNode( true );
-			} else {
-				destination[key] = callback ? callback( sourceValue ) : sourceValue;
-			}
-		}
-		return destination;
-	};
-
-	/**
 	 * Splice one array into another.
 	 *
 	 * This is the equivalent of arr.splice( offset, remove, d1, d2, d3, ... ) except that arguments are
@@ -649,10 +360,9 @@
 	 * performance tests should be conducted on each use of this method to verify this is true for the
 	 * particular use. Also, browsers change fast, never assume anything, always test everything.
 	 *
-	 * @method
 	 * @param {Array} arr Array to remove from and insert into. Will be modified
 	 * @param {number} offset Offset in arr to splice at. This may NOT be negative, unlike the
-	 *                         'index' parameter in Array.prototype.splice
+	 *  'index' parameter in Array#splice
 	 * @param {number} remove Number of elements to remove at the offset. May be zero
 	 * @param {Array} data Array of items to insert at the offset. May not be empty if remove=0
 	 * @returns {Array} Array of items removed
@@ -682,9 +392,10 @@
 	};
 
 	/**
-	 * Insert one array into another. This just calls `ve.batchSplice( dst, offset, 0, src )`.
+	 * Insert one array into another.
 	 *
-	 * @method
+	 * This just a shortcut for `ve.batchSplice( dst, offset, 0, src )`.
+	 *
 	 * @see #batchSplice
 	 */
 	ve.insertIntoArray = function ( dst, offset, src ) {
@@ -748,11 +459,10 @@
 	};
 
 	/**
-	 * Logs data to the console.
+	 * Log data to the console.
 	 *
 	 * This implementation does nothing, to add a real implmementation ve.debug needs to be loaded.
 	 *
-	 * @method
 	 * @param {Mixed...} [args] Data to log
 	 */
 	ve.log = function () {
@@ -760,11 +470,10 @@
 	};
 
 	/**
-	 * Logs an object to the console.
+	 * Log an object to the console.
 	 *
 	 * This implementation does nothing, to add a real implmementation ve.debug needs to be loaded.
 	 *
-	 * @method
 	 * @param {Object} obj
 	 */
 	ve.dir = function () {
@@ -772,17 +481,17 @@
 	};
 
 	/**
-	 * Ported from: http://underscorejs.org/underscore.js
-	 *
-	 * Returns a function, that, as long as it continues to be invoked, will not
+	 * Return a function, that, as long as it continues to be invoked, will not
 	 * be triggered. The function will be called after it stops being called for
 	 * N milliseconds. If `immediate` is passed, trigger the function on the
 	 * leading edge, instead of the trailing.
 	 *
-	 * @method
-	 * @param func
-	 * @param wait
-	 * @param immediate
+	 * Ported from: http://underscorejs.org/underscore.js
+	 *
+	 * @param {Function} func
+	 * @param {number} wait
+	 * @param {boolean} immediate
+	 * @returns {Function}
 	 */
 	ve.debounce = function ( func, wait, immediate ) {
 		var timeout;
@@ -804,9 +513,8 @@
 	};
 
 	/**
-	 * Gets a localized message.
+	 * Get a localized message.
 	 *
-	 * @method
 	 * @param {string} key Message key
 	 * @param {Mixed...} [params] Message parameters
 	 */
@@ -816,13 +524,51 @@
 		return ve.init.platform.getMessage.apply( ve.init.platform, arguments );
 	};
 
+    /**
+     * @method
+     * @inheritdoc unicodeJS.graphemebreak#splitClusters
+     * @see unicodeJS.graphemebreak#splitClusters
+     */
+	ve.splitClusters = unicodeJS.graphemebreak.splitClusters;
+
 	/**
-	 * Escapes non-word characters so they can be safely used as HTML attribute values.
+	 * Determine if the text consists of only unattached combining marks.
 	 *
-	 * This method is basically a copy of mw.html.escape.
+	 * @param {string} text Text to test
+	 * @returns {boolean} The text is unattached combining marks
+	 */
+	ve.isUnattachedCombiningMark = function ( text ) {
+		return ( /^[\u0300-\u036F]+$/ ).test( text );
+	};
+
+	/**
+	 * Convert a grapheme cluster offset to a byte offset.
+	 *
+	 * @param {string} text Text in which to calculate offset
+	 * @param {number} clusterOffset Grapheme cluster offset
+	 * @returns {number} Byte offset
+	 */
+	ve.getByteOffset = function ( text, clusterOffset ) {
+		return ve.splitClusters( text ).slice( 0, clusterOffset ).join( '' ).length;
+	};
+
+	/**
+	 * Convert a byte offset to a grapheme cluster offset.
+	 *
+	 * @param {string} text Text in which to calculate offset
+	 * @param {number} byteOffset Byte offset
+	 * @returns {number} Grapheme cluster offset
+	 */
+	ve.getClusterOffset = function ( text, byteOffset ) {
+		return ve.splitClusters( text.substring( 0, byteOffset ) ).length;
+	};
+
+	/**
+	 * Escape non-word characters so they can be safely used as HTML attribute values.
+	 *
+	 * This method is basically a copy of `mw.html.escape`.
 	 *
 	 * @see #escapeHtml_escapeHtmlCharacter
-	 * @method
 	 * @param {string} value Attribute value to escape
 	 * @returns {string} Escaped attribute value
 	 */
@@ -831,9 +577,9 @@
 	};
 
 	/**
-	 * Helper function for ve.escapeHtml which escapes a character for use in HTML.
+	 * Helper function for #escapeHtml to escape a character for use in HTML.
 	 *
-	 * This is a callback passed into String.prototype.replace.
+	 * This is a callback intended to be passed to String#replace.
 	 *
 	 * @method escapeHtml_escapeHtmlCharacter
 	 * @private
@@ -860,7 +606,7 @@
 	/**
 	 * Generate an opening HTML tag.
 	 *
-	 * This method copies part of mw.html.element() in MediaWiki.
+	 * This method copies part of `mw.html.element` from MediaWiki.
 	 *
 	 * NOTE: While the values of attributes are escaped, the tag name and the names of
 	 * attributes (i.e. the keys in the attributes objects) are NOT ESCAPED. The caller is
@@ -869,7 +615,7 @@
 	 *
 	 * @param {string} tag HTML tag name
 	 * @param {Object} attributes Key-value map of attributes for the tag
-	 * @return {string} Opening HTML tag
+	 * @returns {string} Opening HTML tag
 	 */
 	ve.getOpeningHtmlTag = function ( tagName, attributes ) {
 		var html, attrName, attrValue;
@@ -890,7 +636,8 @@
 	};
 
 	/**
-	 * Get the attributes of a DOM element as an object with key/value pairs
+	 * Get the attributes of a DOM element as an object with key/value pairs.
+	 *
 	 * @param {HTMLElement} element
 	 * @returns {Object}
 	 */
@@ -903,7 +650,7 @@
 	};
 
 	/**
-	 * Set the attributes of a DOM element as an object with key/value pairs
+	 * Set the attributes of a DOM element as an object with key/value pairs.
 	 *
 	 * @param {HTMLElement} element DOM element to apply attributes to
 	 * @param {Object} attributes Attributes to apply
@@ -928,7 +675,60 @@
 	};
 
 	/**
-	 * Check whether a given DOM element is of a block or inline type
+	 * Build a summary of an HTML element.
+	 *
+	 * Summaries include node name, text, attributes and recursive summaries of children.
+	 * Used for serializing or comparing HTML elements.
+	 *
+	 * @private
+	 * @param {HTMLElement} element Element to summarize
+	 * @returns {Object} Summary of element.
+	 */
+	ve.getDomElementSummary = function ( element ) {
+		var i,
+			$element = $( element ),
+			summary = {
+				'type': element.nodeName.toLowerCase(),
+				'text': $element.text(),
+				'attributes': {},
+				'children': []
+			};
+
+		// Gather attributes
+		if ( element.attributes ) {
+			for ( i = 0; i < element.attributes.length; i++ ) {
+				summary.attributes[element.attributes[i].name] = element.attributes[i].value;
+			}
+		}
+		// Summarize children
+		if ( element.childNodes ) {
+			for ( i = 0; i < element.childNodes.length; i++ ) {
+				if ( element.childNodes[i].nodeType !== Node.TEXT_NODE ) {
+					summary.children.push( ve.getDomElementSummary( element.childNodes[i] ) );
+				}
+			}
+		}
+		return summary;
+	};
+
+	/**
+	 * Callback for #copyArray and #copyObject to convert nodes to a comparable summary.
+	 *
+	 * @private
+	 * @param {Object} value Value in the object/array
+	 * @returns {Object} DOM element summary if value is a node, otherwise just the value
+	 */
+	ve.convertDomElements = function ( value ) {
+		// Use duck typing rather than instanceof Node; the latter doesn't always work correctly
+		if ( value && value.nodeType ) {
+			return ve.getDomElementSummary( value );
+		}
+		return value;
+	};
+
+	/**
+	 * Check whether a given DOM element is of a block or inline type.
+	 *
 	 * @param {HTMLElement} element
 	 * @returns {boolean} True if element is block, false if it is inline
 	 */
@@ -937,7 +737,8 @@
 	};
 
 	/**
-	 * Check whether a given tag name is a block or inline tag
+	 * Check whether a given tag name is a block or inline tag.
+	 *
 	 * @param {string} nodeName All-lowercase HTML tag name
 	 * @returns {boolean} True if block, false if inline
 	 */
@@ -946,7 +747,8 @@
 	};
 
 	/**
-	 * Private data for ve.isBlockElementType()
+	 * Private data for #isBlockElementType.
+	 *
 	 */
 	ve.isBlockElementType.blockTypes = [
 		'div', 'p',
@@ -965,7 +767,7 @@
 	];
 
 	/**
-	 * Create an HTMLDocument from an HTML string
+	 * Create an HTMLDocument from an HTML string.
 	 *
 	 * The html parameter is supposed to be a full HTML document with a doctype and an `<html>` tag.
 	 * If you pass a document fragment, it may or may not work, this is at the mercy of the browser.
@@ -975,10 +777,10 @@
 	 * @param {string} html HTML string
 	 * @returns {HTMLDocument} Document constructed from the HTML string
 	 */
-	ve.createDocumentFromHTML = function ( html ) {
+	ve.createDocumentFromHtml = function ( html ) {
 		// Here's how this function should look:
 		//
-		//     var newDocument = document.implementation.createHTMLDocument( '' );
+		//     var newDocument = document.implementation.createHtmlDocument( '' );
 		//     newDocument.open();
 		//     newDocument.write( html );
 		//     newDocument.close();
@@ -1019,9 +821,10 @@
 		// FIXME detaching breaks access to newDocument in IE
 		iframe.parentNode.removeChild( iframe );
 
-		if ( !newDocument.body ) {
-			// Surprise! The document is not a document!
-			// Fun fact: this never happens on Opera when debugging with Dragonfly.
+		if ( !newDocument.documentElement || newDocument.documentElement.cloneNode() === undefined ) {
+			// Surprise! The document is not a document! Only happens on Opera.
+			// (Or its nodes are not actually nodes, while the document
+			// *is* a document. This only happens when debugging with Dragonfly.)
 			newDocument = document.implementation.createHTMLDocument( '' );
 			// Carefully unwrap the HTML out of the root node (and doctype, if any).
 			// <html> might have some arguments here, but they're apparently not important.
@@ -1036,7 +839,7 @@
 	/**
 	 * Get the actual inner HTML of a DOM node.
 	 *
-	 * In most browsers, .innerHTML is broken and eats newlines in `<pre>`s, see
+	 * In most browsers, .innerHTML is broken and eats newlines in `<pre>` elements, see
 	 * https://bugzilla.mozilla.org/show_bug.cgi?id=838954 . This function detects this behavior
 	 * and works around it, to the extent possible. `<pre>\nFoo</pre>` will become `<pre>Foo</pre>`
 	 * if the browser is broken, but newlines are preserved in all other cases.
@@ -1044,17 +847,42 @@
 	 * @param {HTMLElement} element HTML element to get inner HTML of
 	 * @returns {string} Inner HTML
 	 */
-	ve.properInnerHTML = function ( element ) {
+	ve.properInnerHtml = function ( element ) {
+		return ve.fixupPreBug( element ).innerHTML;
+	};
+
+	/**
+	 * Get the actual outer HTML of a DOM node.
+	 *
+	 * @see ve#properInnerHtml
+	 * @param {HTMLElement} element HTML element to get outer HTML of
+	 * @returns {string} Outer HTML
+	 */
+	ve.properOuterHtml = function ( element ) {
+		return ve.fixupPreBug( element ).outerHTML;
+	};
+
+	/**
+	 * Helper function for ve#properInnerHtml and #properOuterHtml.
+	 *
+	 * Detect whether the browser has broken `<pre>` serialization, and if so return a clone
+	 * of the node with extra newlines added to make it serialize properly. If the browser is not
+	 * broken, just return the original node.
+	 *
+	 * @param {HTMLElement} element HTML element to fix up
+	 * @returns {HTMLElement} Either element, or a fixed-up clone of it
+	 */
+	ve.fixupPreBug = function ( element ) {
 		var div, $element;
-		if ( ve.isPreInnerHTMLBroken === undefined ) {
+		if ( ve.isPreInnerHtmlBroken === undefined ) {
 			// Test whether newlines in `<pre>` are serialized back correctly
 			div = document.createElement( 'div' );
 			div.innerHTML = '<pre>\n\n</pre>';
-			ve.isPreInnerHTMLBroken = div.innerHTML === '<pre>\n</pre>';
+			ve.isPreInnerHtmlBroken = div.innerHTML === '<pre>\n</pre>';
 		}
 
-		if ( !ve.isPreInnerHTMLBroken ) {
-			return element.innerHTML;
+		if ( !ve.isPreInnerHtmlBroken ) {
+			return element;
 		}
 
 		// Workaround for bug 42469: if a `<pre>` starts with a newline, that means .innerHTML will
@@ -1063,7 +891,7 @@
 		// `<pre>Foo</pre>` or `<pre>\nFoo</pre>` , but that's a syntactic difference, not a
 		// semantic one, and handling that is Parsoid's job.
 		$element = $( element ).clone();
-		$element.find( 'pre, textarea, listing' ).each( function() {
+		$element.find( 'pre, textarea, listing' ).each( function () {
 			var matches;
 			if ( this.firstChild && this.firstChild.nodeType === Node.TEXT_NODE ) {
 				matches = this.firstChild.data.match( /^(\r\n|\r|\n)/ );
@@ -1073,22 +901,28 @@
 				}
 			}
 		} );
-		return $element.get( 0 ).innerHTML;
+		return $element.get( 0 );
 	};
 
-	// Based on the KeyEvent DOM Level 3 (add more as you need them)
-	// http://www.w3.org/TR/2001/WD-DOM-Level-3-Events-20010410/DOM3-Events.html#events-Events-KeyEvent
-	ve.Keys = window.KeyEvent || {
-		'DOM_VK_UNDEFINED': 0,
-		'DOM_VK_BACK_SPACE': 8,
-		'DOM_VK_RETURN': 13,
-		'DOM_VK_LEFT': 37,
-		'DOM_VK_UP': 38,
-		'DOM_VK_RIGHT': 39,
-		'DOM_VK_DOWN': 40,
-		'DOM_VK_DELETE': 46
+	// Add more as you need
+	ve.Keys = {
+		'UNDEFINED': 0,
+		'BACKSPACE': 8,
+		'DELETE': 46,
+		'LEFT': 37,
+		'RIGHT': 39,
+		'UP': 38,
+		'DOWN': 40,
+		'ENTER': 13,
+		'END': 35,
+		'HOME': 36,
+		'TAB': 9,
+		'PAGEUP': 33,
+		'PAGEDOWN': 34,
+		'ESCAPE': 27,
+		'SHIFT': 16
 	};
 
 	// Expose
 	window.ve = ve;
-}() );
+}( OO ) );

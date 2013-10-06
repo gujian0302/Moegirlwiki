@@ -25,7 +25,7 @@ ve.ui.Tool = function VeUiTool( toolbar, config ) {
 
 	// Events
 	this.toolbar.connect( this, { 'updateState': 'onUpdateState' } );
-	ve.triggerRegistry.connect( this, { 'register': 'onTriggerRegistryRegister' } );
+	ve.ui.triggerRegistry.connect( this, { 'register': 'onTriggerRegistryRegister' } );
 
 	// Initialization
 	this.setTitle();
@@ -66,6 +66,19 @@ ve.ui.Tool.static.cssName = null;
  * @property {string}
  */
 ve.ui.Tool.static.titleMessage = null;
+
+/**
+ * Check if this tool can be used on a model.
+ *
+ * @method
+ * @static
+ * @inheritable
+ * @param {ve.dm.Model} model Model to check
+ * @return {boolean} Tool can be used to edit model
+ */
+ve.ui.Tool.static.canEditModel = function () {
+	return false;
+};
 
 /* Methods */
 
@@ -108,7 +121,7 @@ ve.ui.Tool.prototype.onUpdateState = function () {
  * @chainable
  */
 ve.ui.Tool.prototype.setTitle = function () {
-	var trigger = ve.triggerRegistry.lookup( this.constructor.static.name ),
+	var trigger = ve.ui.triggerRegistry.lookup( this.constructor.static.name ),
 		labelMessage = this.constructor.static.titleMessage,
 		labelText = labelMessage ? ve.msg( labelMessage ) : '';
 

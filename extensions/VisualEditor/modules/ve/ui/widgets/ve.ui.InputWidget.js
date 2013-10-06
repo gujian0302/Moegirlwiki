@@ -26,7 +26,7 @@ ve.ui.InputWidget = function VeUiInputWidget( config ) {
 	ve.ui.Widget.call( this, config );
 
 	// Properties
-	this.$input = this.$$( '<input>' );
+	this.$input = this.getInputElement( config );
 	this.value = '';
 	this.readonly = false;
 
@@ -34,13 +34,10 @@ ve.ui.InputWidget = function VeUiInputWidget( config ) {
 	this.$input.on( 'keydown mouseup cut paste change input select', ve.bind( this.onEdit, this ) );
 
 	// Initialization
-	this.$input.attr( {
-		'type': this.constructor.static.inputType,
-		'name': config.name,
-		'value': config.value
-	} );
+	this.$input.attr( 'name', config.name );
 	this.setReadOnly( config.readOnly );
 	this.$.addClass( 've-ui-inputWidget' ).append( this.$input );
+	this.setValue( config.value );
 };
 
 /* Inheritance */
@@ -54,16 +51,18 @@ ve.inheritClass( ve.ui.InputWidget, ve.ui.Widget );
  * @param value
  */
 
-/**
- * HTML input type.
- *
- * @static
- * @property {string}
- * @inheritable
- */
-ve.ui.InputWidget.static.inputType = '';
-
 /* Methods */
+
+/**
+ * Get input element.
+ *
+ * @method
+ * @param {Object} [config] Config options
+ * @returns {jQuery} Input element
+ */
+ve.ui.InputWidget.prototype.getInputElement = function () {
+	return this.$$( '<input>' );
+};
 
 /**
  * Handle potentially value-changing events.
@@ -89,13 +88,14 @@ ve.ui.InputWidget.prototype.onEdit = function () {
 ve.ui.InputWidget.prototype.getValue = function () {
 	return this.value;
 };
+
 /**
  * Sets the direction of the current input, either RTL or LTR
  *
  * @method
  * @param {boolean} isRTL
  */
-ve.ui.InputWidget.prototype.setRTL = function( isRTL ) {
+ve.ui.InputWidget.prototype.setRTL = function ( isRTL ) {
 	if ( isRTL ) {
 		this.$input.removeClass( 've-ui-ltr' );
 		this.$input.addClass( 've-ui-rtl' );
@@ -120,7 +120,7 @@ ve.ui.InputWidget.prototype.setValue = function ( value ) {
 		this.value = value;
 		// Only update the DOM if we must
 		if ( domValue !== this.value ) {
-			this.$input.val( this.value );
+			this.$input.val( value );
 		}
 		this.emit( 'change', this.value );
 	}
@@ -130,12 +130,14 @@ ve.ui.InputWidget.prototype.setValue = function ( value ) {
 /**
  * Sanitize incoming value.
  *
+ * Ensures value is a string, and converts undefined and null to empty strings.
+ *
  * @method
  * @param {string} value Original value
  * @returns {string} Sanitized value
  */
 ve.ui.InputWidget.prototype.sanitizeValue = function ( value ) {
-	return String( value );
+	return value === undefined || value === null ? '' : String( value );
 };
 
 /**

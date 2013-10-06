@@ -47,7 +47,7 @@ ve.ce.getDomText = function ( element ) {
 			$element = $( element );
 
 		if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
-			if ( $element.hasClass( 've-ce-slug' ) ) {
+			if ( $element.hasClass( 've-ce-branchNode-slug' ) ) {
 				// Slugs are not represented in the model at all, but they do
 				// contain a single nbsp/FEFF character in the DOM, so make sure
 				// that character isn't counted
@@ -95,7 +95,7 @@ ve.ce.getDomHash = function ( element ) {
 	} else if ( nodeType === 1 || nodeType === 9 ) {
 		hash += '<' + nodeName + '>';
 		// Traverse its children
-		for ( element = element.firstChild; element; element = element.nextSibling) {
+		for ( element = element.firstChild; element; element = element.nextSibling ) {
 			hash += ve.ce.getDomHash( element );
 		}
 		hash += '</' + nodeName + '>';
@@ -157,14 +157,15 @@ ve.ce.getOffsetFromTextNode = function ( domNode, domOffset ) {
 		item = current[0][current[1]];
 		if ( item.nodeType === Node.TEXT_NODE ) {
 			if ( item === domNode ) {
-				offset += domOffset;
+				// domOffset is a byte offset, convert it to a grapheme cluster offset
+				offset += ve.getClusterOffset( item.textContent, domOffset );
 				break;
 			} else {
-				offset += item.textContent.length;
+				offset += ve.getClusterOffset( item.textContent, item.textContent.length );
 			}
 		} else if ( item.nodeType === Node.ELEMENT_NODE ) {
 			$item = current[0].eq( current[1] );
-			if ( $item.hasClass( 've-ce-slug' ) ) {
+			if ( $item.hasClass( 've-ce-branchNode-slug' ) ) {
 				if ( $item.contents()[0] === domNode ) {
 					break;
 				}
@@ -173,9 +174,9 @@ ve.ce.getOffsetFromTextNode = function ( domNode, domOffset ) {
 			} else if ( $item.hasClass( 've-ce-branchNode' ) ) {
 				offset += $item.data( 'view' ).getOuterLength();
 			} else {
-				stack.push( [$item.contents(), 0 ] );
+				stack.push( [ $item.contents(), 0 ] );
 				current[1]++;
-				current = stack[stack.length-1];
+				current = stack[ stack.length - 1 ];
 				continue;
 			}
 		}
@@ -198,7 +199,7 @@ ve.ce.getOffsetFromElementNode = function ( domNode, domOffset, addOuterLength )
 		nodeModel,
 		node;
 
-	if ( $domNode.hasClass( 've-ce-slug' ) ) {
+	if ( $domNode.hasClass( 've-ce-branchNode-slug' ) ) {
 		if ( $domNode.prev().length ) {
 			nodeModel = $domNode.prev().data( 'view' ).getModel();
 			return nodeModel.getOffset() + nodeModel.getOuterLength();
@@ -222,7 +223,7 @@ ve.ce.getOffsetFromElementNode = function ( domNode, domOffset, addOuterLength )
 			if ( addOuterLength === true ) {
 				return nodeModel.getOffset() + nodeModel.getOuterLength();
 			} else {
-				return nodeModel.getOffset() + (nodeModel.isWrapped() ? 1 : 0);
+				return nodeModel.getOffset() + ( nodeModel.isWrapped() ? 1 : 0 );
 			}
 		} else {
 			node = $domNode.contents().last()[0];
@@ -246,7 +247,7 @@ ve.ce.getOffsetFromElementNode = function ( domNode, domOffset, addOuterLength )
  * @returns {number} Linear model offset
  * @throws {Error}
  */
-ve.ce.getOffsetOfSlug  = function ( $node ) {
+ve.ce.getOffsetOfSlug = function ( $node ) {
 	var model;
 	if ( $node.index() === 0 ) {
 		model = $node.parent().data( 'view' ).getModel();
@@ -260,11 +261,11 @@ ve.ce.getOffsetOfSlug  = function ( $node ) {
 };
 
 ve.ce.isLeftOrRightArrowKey = function ( keyCode ) {
-	return keyCode === ve.Keys.DOM_VK_LEFT || keyCode === ve.Keys.DOM_VK_RIGHT;
+	return keyCode === ve.Keys.LEFT || keyCode === ve.Keys.RIGHT;
 };
 
 ve.ce.isUpOrDownArrowKey = function ( keyCode ) {
-	return keyCode === ve.Keys.DOM_VK_UP || keyCode === ve.Keys.DOM_VK_DOWN;
+	return keyCode === ve.Keys.UP || keyCode === ve.Keys.DOWN;
 };
 
 ve.ce.isArrowKey = function ( keyCode ) {

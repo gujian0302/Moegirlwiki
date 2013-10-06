@@ -50,15 +50,16 @@ ve.ui.LinkTargetInputWidget.prototype.onEdit = function () {
 		setTimeout( ve.bind( function () {
 			// RTL/LTR check
 			if ( $( 'body' ).hasClass( 'rtl' ) ) {
-				var isExt = ve.init.platform.getExternalLinkUrlProtocolsRegExp().test( this.$input.val() );
+				var isExt = ve.init.platform.getExternalLinkUrlProtocolsRegExp()
+					.test( this.$input.val() );
 				// If URL is external, flip to LTR. Otherwise, set back to RTL
 				this.setRTL( !isExt );
 			}
 			this.setValue( this.$input.val() );
 		}, this ) );
 	}
-
 };
+
 /**
  * Set the value of the input.
  *
@@ -81,7 +82,7 @@ ve.ui.LinkTargetInputWidget.prototype.setValue = function ( value ) {
 		} ) );
 	}
 
-	// Call parent method
+	// Parent method
 	ve.ui.TextInputWidget.prototype.setValue.call( this, value );
 };
 
@@ -97,9 +98,10 @@ ve.ui.LinkTargetInputWidget.prototype.setValue = function ( value ) {
 ve.ui.LinkTargetInputWidget.prototype.setAnnotation = function ( annotation ) {
 	this.annotation = annotation;
 
-	// Call parent method
+	// Parent method
 	ve.ui.TextInputWidget.prototype.setValue.call(
-		this, this.getTargetFromAnnotation( annotation )
+		this,
+		this.getTargetFromAnnotation( annotation )
 	);
 
 	return this;

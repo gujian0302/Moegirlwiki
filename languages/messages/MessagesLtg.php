@@ -192,7 +192,6 @@ $messages = array(
 'disclaimers' => 'Daīšmu nūstatejumi',
 'disclaimerpage' => 'Project:Dasaīšonu nūstateišona',
 'edithelp' => 'Paleigs',
-'edithelppage' => 'Help:Pataiseišona',
 'helppage' => 'Help:Turīņs',
 'mainpage' => 'Suoku puslopa',
 'mainpage-description' => 'Suoku puslopa',
@@ -386,7 +385,6 @@ n = nasvareigs lobuojums.',
 'prevn' => 'īprīškejuos {{PLURAL:$1|$1}}',
 'nextn' => 'nuokamuos {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Apsavērt ($1 {{int:pipe-separator}} $2) ($3 vīnā lopā).',
-'searchhelp-url' => 'Help:Turīņs',
 'searchprofile-articles' => 'Rakstīņuos',
 'search-result-size' => '$1 ({{PLURAL:$2|$2 vuords|$2 vuordi|$2 vuordi}})',
 'search-redirect' => '(puoradresiešona nu $1)',
@@ -453,9 +451,11 @@ n = nasvareigs lobuojums.',
 'right-upload_by_url' => 'Īsyuteit failu nu URL adresa',
 'right-delete' => 'Iztreit puslopys',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Jaunūs lītuotuoju registrs',
+
 # User rights log
 'rightslog' => 'Lītuotuoju tīseibu registrs',
-'rightsnone' => '(navā)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'skaiteit itū puslopu',
@@ -589,14 +589,11 @@ Lopys, kas ir tovā [[Special:Watchlist|puorraugamūs rokstu sarokstā]] ir '''r
 # Special:ListUsers
 'listusers-submit' => 'Paruodeit',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Jaunūs lītuotuoju registrs',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(dalinīku saroksts)',
 'listgrouprights-addgroup' => 'Dalikt {{PLURAL:$2|grupu|grupys}}: $1',
 
-# E-mail user
+# Email user
 'emailuser' => 'Syuteit e-postu itam lītuotuojam',
 'emailmessage' => 'Viestejums:',
 
@@ -893,13 +890,13 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 'version-software-product' => 'Produkts',
 'version-software-version' => 'Verseja',
 
-# Special:FilePath
-'filepath-page' => 'Fails:',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Faila pasauka:',
 
 # Special:SpecialPages
 'specialpages' => 'Specialuos puslopys',
+
+# New logging system
+'rightsnone' => '(navā)',
 
 );

@@ -9,11 +9,16 @@
  * UserInterface context.
  *
  * @class
+ * @extends ve.Element
  *
  * @constructor
- * @param {ve.Surface} surface
+ * @param {ve.ui.Surface} surface
+ * @param {Object} [config] Config options
  */
-ve.ui.Context = function VeUiContext( surface ) {
+ve.ui.Context = function VeUiContext( surface, config ) {
+	// Parent constructor
+	ve.Element.call( this, config );
+
 	// Properties
 	this.surface = surface;
 	this.inspectors = {};
@@ -21,11 +26,11 @@ ve.ui.Context = function VeUiContext( surface ) {
 	this.showing = false;
 	this.selecting = false;
 	this.relocating = false;
+	this.embedded = false;
 	this.selection = null;
 	this.toolbar = null;
-	this.$ = $( '<div>' );
-	this.popup = new ve.ui.PopupWidget();
-	this.$menu = $( '<div>' );
+	this.popup = new ve.ui.PopupWidget( { '$$': this.$$, '$container': this.surface.getView().$ } );
+	this.$menu = this.$$( '<div>' );
 	this.inspectors = new ve.ui.WindowSet( surface, ve.ui.inspectorFactory );
 
 	// Initialization
@@ -49,11 +54,17 @@ ve.ui.Context = function VeUiContext( surface ) {
 		'open': 'onInspectorOpen',
 		'close': 'onInspectorClose'
 	} );
-	$( window ).on( {
-		'resize': ve.bind( this.update, this ),
-		'focus': ve.bind( this.onWindowFocus, this )
+
+	this.$$( this.getElementWindow() ).on( {
+		'resize': ve.bind( this.update, this )
 	} );
+	this.$.add( this.$menu )
+		.on( 'mousedown', false );
 };
+
+/* Inheritance */
+
+ve.inheritClass( ve.ui.Context, ve.Element );
 
 /* Methods */
 
@@ -67,9 +78,6 @@ ve.ui.Context = function VeUiContext( surface ) {
  * @param {ve.Range} selection Change selection
  */
 ve.ui.Context.prototype.onChange = function ( transactions, selection ) {
-	if ( selection && selection.start === 0 ) {
-		return;
-	}
 	if ( selection && !this.selecting && !this.draggingAndDropping ) {
 		this.update();
 	}
@@ -118,15 +126,6 @@ ve.ui.Context.prototype.onRelocationEnd = function () {
 };
 
 /**
- * Handle window focus events on the view.
- *
- * @method
- */
-ve.ui.Context.prototype.onWindowFocus = function () {
-	this.hide();
-};
-
-/**
  * Handle an inspector being setup.
  *
  * @method
@@ -162,7 +161,7 @@ ve.ui.Context.prototype.onInspectorClose = function () {
  * Gets the surface the context is being used in.
  *
  * @method
- * @returns {ve.Surface} Surface of context
+ * @returns {ve.ui.Surface} Surface of context
  */
 ve.ui.Context.prototype.getSurface = function () {
 	return this.surface;
@@ -187,7 +186,7 @@ ve.ui.Context.prototype.destroy = function () {
  * @chainable
  */
 ve.ui.Context.prototype.update = function () {
-	var i, nodes, views, view,
+	var i, nodes, tools, tool,
 		fragment = this.surface.getModel().getFragment( null, false ),
 		selection = fragment.getRange(),
 		inspector = this.inspectors.getCurrent();
@@ -197,8 +196,8 @@ ve.ui.Context.prototype.update = function () {
 		this.show();
 	} else {
 		// No inspector is open, or the selection has changed, show a menu of available inspectors
-		views = ve.ui.viewRegistry.getViewsForAnnotations( fragment.getAnnotations() );
-		nodes = fragment.getLeafNodes();
+		tools = ve.ui.toolFactory.getToolsForAnnotations( fragment.getAnnotations() );
+		nodes = fragment.getCoveredNodes();
 		for ( i = 0; i < nodes.length; i++ ) {
 			if ( nodes[i].range && nodes[i].range.isCollapsed() ) {
 				nodes.splice( i, 1 );
@@ -206,28 +205,19 @@ ve.ui.Context.prototype.update = function () {
 			}
 		}
 		if ( nodes.length === 1 ) {
-			view = ve.ui.viewRegistry.getViewForNode( nodes[0].node );
-			if ( view ) {
-				views.push( view );
+			tool = ve.ui.toolFactory.getToolForNode( nodes[0].node );
+			if ( tool ) {
+				tools.push( tool );
 			}
 		}
-		for ( i = 0; i < views.length; i++ ) {
-			if ( !ve.ui.toolFactory.lookup( views[i] ) ) {
-				views.splice( i, 1 );
-				i--;
-			}
-		}
-		if ( views.length ) {
+		if ( tools.length ) {
 			// There's at least one inspectable annotation, build a menu and show it
 			this.$menu.empty();
 			if ( this.toolbar ) {
 				this.toolbar.destroy();
 			}
-			this.toolbar = new ve.ui.Toolbar(
-				$( '<div class="ve-ui-context-toolbar"></div>' ),
-				this.surface,
-				[{ 'name': 'inspectors', 'items' : views }]
-			);
+			this.toolbar = new ve.ui.Toolbar( this.surface );
+			this.toolbar.addTools( [{ 'name': 'inspectors', 'items' : tools }] );
 			this.$menu.append( this.toolbar.$ );
 			this.show();
 		} else if ( this.visible ) {
@@ -249,14 +239,40 @@ ve.ui.Context.prototype.update = function () {
  * @chainable
  */
 ve.ui.Context.prototype.updateDimensions = function ( transition ) {
-	var position, $container,
-		inspector = this.inspectors.getCurrent();
+	var $container, focusableOffset, focusableWidth,
+		surface = this.surface.getView(),
+		inspector = this.inspectors.getCurrent(),
+		focusedNode = surface.getFocusedNode(),
+		// Get cursor position
+		position = surface.getSelectionRect(),
+		surfaceOffset = surface.$.offset();
 
-	// Get cursor position
-	position = ve.ce.Surface.getSelectionRect();
-	position = position && position.end;
+	// translate from ce surface
+	position = {
+		y: position.end.y - surfaceOffset.top,
+		x: position.end.x - surfaceOffset.left
+	};
+
 	if ( position ) {
-		$container = inspector ? this.inspectors.$ : this.$menu;
+		if ( this.embedded ) {
+			focusableOffset = ve.Element.getRelativePosition(
+				focusedNode.$focusable, this.surface.$
+			);
+			focusableWidth = focusedNode.$focusable.outerWidth();
+			$container = this.$menu;
+			position = { 'y': focusableOffset.top };
+			// HACK: Proper RTL detection plz!
+			if ( $( 'body' ).is( '.rtl,.ve-rtl' ) ) {
+				position.x = focusableOffset.left;
+				this.popup.align = 'left';
+			} else {
+				position.x = focusableOffset.left + focusableWidth;
+				this.popup.align = 'right';
+			}
+		} else {
+			$container = inspector ? this.inspectors.$ : this.$menu;
+			this.popup.align = 'center';
+		}
 		this.$.css( { 'left': position.x, 'top': position.y } );
 		this.popup.display(
 			position.x,
@@ -277,12 +293,14 @@ ve.ui.Context.prototype.updateDimensions = function ( transition ) {
  * @chainable
  */
 ve.ui.Context.prototype.show = function ( transition ) {
-	var inspector = this.inspectors.getCurrent();
+	var inspector = this.inspectors.getCurrent(),
+		focusedNode = this.surface.getView().getFocusedNode();
 
 	if ( !this.showing ) {
 		this.showing = true;
 
 		this.$.show();
+		this.popup.show();
 
 		// Show either inspector or menu
 		if ( inspector ) {
@@ -297,6 +315,16 @@ ve.ui.Context.prototype.show = function ( transition ) {
 			}, this ), 200 );
 		} else {
 			this.inspectors.$.hide();
+			if (
+				focusedNode &&
+				focusedNode.$focusable.outerHeight() > this.$menu.outerHeight() * 2
+			) {
+				this.$.addClass( 've-ui-context-embed' );
+				this.embedded = true;
+			} else {
+				this.$.removeClass( 've-ui-context-embed' );
+				this.embedded = false;
+			}
 			this.$menu.show();
 		}
 
@@ -324,8 +352,7 @@ ve.ui.Context.prototype.hide = function () {
 		return this;
 	}
 
-	this.inspectors.$.hide();
-	this.$menu.hide();
+	this.popup.hide();
 	this.$.hide();
 	this.visible = false;
 
@@ -340,6 +367,8 @@ ve.ui.Context.prototype.hide = function () {
  * @chainable
  */
 ve.ui.Context.prototype.openInspector = function ( name ) {
-	this.inspectors.open( name );
+	if ( !this.inspectors.currentWindow ) {
+		this.inspectors.open( name );
+	}
 	return this;
 };

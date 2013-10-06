@@ -83,8 +83,6 @@ $messages = array(
 'tog-shownumberswatching' => 'निगरानी गरिरहेका प्रयोगकर्ताहरुको संख्या देखाउने',
 'tog-oldsig' => 'वर्तमान हस्ताक्षर:',
 'tog-fancysig' => 'मेरो दस्तखतलाई विकि पाठको रुपमा लिने(स्वत सम्वन्ध बिना)',
-'tog-externaleditor' => 'पूर्वनिर्धारित रुपमा बाह्य सम्पादक प्रयोग गर्नुहोस् (विज्ञहरुको लागि मात्र, तपाईको कम्प्युटरमा विशेष अनुकुलता आवश्यक हुन्छ [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff' => 'पूर्वनिर्धारित रुपमा बाह्य diff प्रयोग गर्नुहोस (विज्ञ प्रयोगकर्ताहरुको लागि मात्र, तपाईंको कम्प्युटरमा विशेष अनुकुलता आवश्यक हुन्छ [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks' => '"जाने" पहुँच सम्वन्ध सक्रिय पार्ने',
 'tog-uselivepreview' => 'प्रत्यक्ष पूर्वरुप प्रयोग गर्नुहोस् ( जाभा स्क्रिप्ट आवश्यक) (प्रयोगात्मक)',
 'tog-forceeditsummary' => 'खाली सम्पादन सार प्रविष्टि गरेमा मलाई सोध्ने',
@@ -189,6 +187,7 @@ $messages = array(
 'newwindow' => '(नयाँ विन्डोमा खुल्छ)',
 'cancel' => 'रद्द',
 'moredotdotdot' => 'थप...',
+'morenotlisted' => 'थप जानकारी दिइएको  छैन',
 'mypage' => 'पृष्ठ',
 'mytalk' => 'वार्ता',
 'anontalk' => 'यस IP को वारेमा वार्तालाप गर्नुहोस्',
@@ -200,7 +199,6 @@ $messages = array(
 'qbbrowse' => 'ब्राउज गर्ने',
 'qbedit' => 'सम्पादन गर्ने',
 'qbpageoptions' => 'यो पेज',
-'qbpageinfo' => 'सन्दर्भ',
 'qbmyoptions' => 'मेरो पेज',
 'qbspecialpages' => 'विशेष पृष्ठहरु',
 'faq' => 'धैरै सोधिएका प्रश्नहरु',
@@ -223,6 +221,7 @@ $messages = array(
 'namespaces' => 'नेमस्पेस',
 'variants' => 'बहुरुपहरु',
 
+'navigation-heading' => 'नेविगेशन मेनू',
 'errorpagetitle' => 'त्रुटि',
 'returnto' => '$1 मा फर्कनुहोस् ।',
 'tagline' => '{{SITENAME}}बाट',
@@ -297,7 +296,6 @@ $1',
 'disclaimers' => 'अस्विकारोक्तिहरु',
 'disclaimerpage' => 'Project:सामान्य अस्वीकारोक्ति',
 'edithelp' => 'सम्पादन सहायता',
-'edithelppage' => 'Help:सम्पादन',
 'helppage' => 'Help:विषयवस्तुहरू',
 'mainpage' => 'मुख्य पृष्ठ',
 'mainpage-description' => 'मुख्य पृष्ठ',
@@ -459,10 +457,9 @@ $2',
 
 # Login and logout pages
 'logouttext' => "'''तपाईं अहिले बाहिर निस्कनु भएको छ।'''
-तपाईंले नाम/खाताविनै पनि {{SITENAME}}मा प्रयोग गर्न सक्नुहुन्छ, अथवा अघिकै वा अर्कै कुनै नामको खाताबाट [[Special:UserLogin|फेरि प्रवेश गर्न]] पनि सक्नुहुन्छ।
+तपाईंले नाम/खाताविनै पनि {{SITENAME}}मा प्रयोग गर्न सक्नुहुन्छ, अथवा अघिकै वा अर्कै कुनै नामको खाताबाट <span class='plainlinks'>[$1 फेरि प्रवेश गर्न]</span> पनि सक्नुहुन्छ।
 याद राख्नुहोस् तपाईंले ब्राउजरको स्मरण भण्डार खालि नगर्दासम्म कुनै पृष्ठहरूमा तपाईं अझै प्रवेश गरिराखेको देखाउन सक्छ।",
-'welcomecreation' => '== स्वागतम् , $1! ==
-तपाँईको खाता खोलिएको छ। [[Special:Preferences|{{SITENAME}} preferences]]मा आफ्ना अभिरुचिहरू परिवर्तन गर्न नबिर्सिनुहोला।',
+'welcomeuser' => '$1जी स्वागत छ!',
 'yourname' => 'प्रयोगकर्ता नाम:',
 'yourpassword' => 'पासवर्ड',
 'yourpasswordagain' => 'पासवर्ड फेरि टाईप गर्नुहोस्',
@@ -552,7 +549,7 @@ $2',
 'loginlanguagelabel' => 'भाषा: $1',
 'suspicious-userlogout' => 'तपाईंको निर्गमन अनुरोध अस्विकार गरिन्छ किन कि यो खराब ब्राउजर वा क्यासिङ प्रोक्सिले पठाएको जस्तो देखिन्छ।',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP मेल() क्रियामा अज्ञात त्रुटि',
 'user-mail-no-addy' => 'इमेल ठेगाना बिना नै इमेल पठाउन खोजिएको थियो।',
 
@@ -577,10 +574,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'प्रवेशशव्द पुनः तय गर्ने',
-'passwordreset-text' => 'तपाईंको खाता-विवरणको  इमेल अनुस्मारक प्राप्त गर्न यो फारम पूरा गर्नुहोस्।',
 'passwordreset-legend' => 'प्रवेशशव्द पुनः तय गर्ने',
 'passwordreset-disabled' => 'प्रवेश शव्द पुनः निर्धारण गर्ने व्यवस्था यस विकिमा निस्क्रिय पारिएको छ।',
-'passwordreset-pretext' => '{{PLURAL:$1||तल दिएका आँकड़ाका टुकुरा मध्ये एउटा प्रविष्ट गर्नुहोस्}}',
 'passwordreset-username' => 'प्रयोगकर्ता-नाम:',
 'passwordreset-domain' => 'डोमेन',
 'passwordreset-capture' => 'निस्कने इमेलको नमुना हेर्ने ?',
@@ -789,7 +784,6 @@ $2
 'hiddencategories' => 'यो पृष्ठ निम्न {{PLURAL:$1|1 लुकाइएको श्रेणी|$1 लुकाइएका श्रेणीहरु}}को सदस्य हो :',
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
 'edittools-upload' => '-',
-'nocreatetitle' => 'पृष्ठ सृजना सीमित गरिएको',
 'nocreatetext' => '{{SITENAME}} ले नयाँ पृष्ठ सृजना गर्न सक्ने क्षमतामा रोक लगाएको छ।
 तपाईँ पछाडि जानु भइ रहिआएको पृष्ठ सम्पादन गर्नसक्नुहुन्छ , अथवा [[Special:UserLogin|प्रवेश गर्नुहोस या नयाँ खाता सृजना गर्नुहोस् ]]।',
 'nocreate-loggedin' => 'नयाँ पृष्ठ सृजनागर्नको लागि तपाईँलाई अनुमति छैन ।',
@@ -1023,7 +1017,6 @@ $1",
 'searchmenu-legend' => 'खोज विकल्प',
 'searchmenu-exists' => "''' \"[[:\$1]]\" नाम गरेको पृष्ठ  यो विकीमा रहेको छ'''",
 'searchmenu-new' => "'''यस विकिमा  \"[[:\$1]]\" शीर्षक भएको पृष्ठ बनाउनुहोस् !'''",
-'searchhelp-url' => 'Help:सामग्री',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|पृष्ठहरु प्रिफिक्सले हेर्नुहोस् ]]',
 'searchprofile-articles' => 'सामग्री पृष्ठहरु',
 'searchprofile-project' => 'सहायता र आयोजना पृष्ठहरु',
@@ -1067,15 +1060,6 @@ $1",
 'searchdisabled' => '{{SITENAME}} खोज निस्क्रिय पारिएको छ ।
 हाललाई तपाईले गूगलद्वारा खोज्न सक्नुहुन्छ ।
 याद गर्नुहोस् उनीहरुको {{SITENAME}}को सूची सामग्री पुरानो भएको हुनसक्छ ।',
-
-# Quickbar
-'qbsettings' => 'क्विकबार',
-'qbsettings-none' => 'कुनैपनि होइन',
-'qbsettings-fixedleft' => 'देब्रे निश्चित गरिएको',
-'qbsettings-fixedright' => 'दाहिने निश्चित गरिएको',
-'qbsettings-floatingleft' => 'देब्रे तैरने',
-'qbsettings-floatingright' => 'दाहिने तैरने',
-'qbsettings-directionality' => 'तपाईको भाषाको लेखाइ दिशाको आधारमा मिलान गरिएको छ',
 
 # Preferences page
 'preferences' => 'रोजाईहरू',
@@ -1196,7 +1180,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'prefs-displaywatchlist' => 'प्रदर्शन विकल्पहरू',
 'prefs-diffs' => 'diffs(भिन्नता)',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ई मेल ठेगाना मान्य भएको प्रतीत हुन्छ',
 'email-address-validity-invalid' => 'मान्य ईमेल ठेगाना दिनुहोस्',
 
@@ -1307,12 +1291,12 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'right-sendemail' => 'अन्य प्रयोगकर्ताहरुलाई इमेल गर्ने',
 'right-passwordreset' => 'पासवर्ड परिवर्तन गर्ने ईमेलहरु हेर्नुहोस',
 
+# Special:Log/newusers
+'newuserlogpage' => 'प्रयोगकर्ता श्रृजना लग',
+
 # User rights log
 'rightslog' => 'प्रयोगकर्ता अधिकार लग',
 'rightslogtext' => 'यो प्रयोगकर्ता अधिकारहरुको परिवर्तन लग हो ।',
-'rightslogentry' => '$1 समूह सदस्याता $2 बाट $3 मा परिवर्तन गरिएको छ',
-'rightslogentry-autopromote' => ' $2 बाट $3 मा स्वत: बढुवा गरिएको छ',
-'rightsnone' => '(कुनैपनि होइन)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'यो पृष्ठ पढ्ने',
@@ -1547,7 +1531,6 @@ $1',
 'http-read-error' => 'HTTP बुझाइमा त्रुटि।',
 'http-timed-out' => 'HTTP माँगिएको समय सकियो।',
 'http-curl-error' => 'URL $1 लिनमा त्रुटि',
-'http-host-unreachable' => 'URL मा पुग्न सकिएन।',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URLमा पुग्न सकिएन',
@@ -1814,9 +1797,6 @@ $1',
 'activeusers-hidesysops' => 'प्रबन्धकहरु लुकाउने',
 'activeusers-noresult' => 'प्रयोगकर्ताहरु भेटिएनन्।',
 
-# Special:Log/newusers
-'newuserlogpage' => 'प्रयोगकर्ता श्रृजना लग',
-
 # Special:ListGroupRights
 'listgrouprights' => 'प्रयोगकर्ता समूह अधिकार',
 'listgrouprights-summary' => 'निम्न सूची यस विकिमा परिभाषित समूहहरु र तिनीहरुले प्रयोगगर्न सक्ने संबद्ध  अधिकारहरुको हो।
@@ -1835,7 +1815,7 @@ $1',
 'listgrouprights-removegroup-self' => '{{PLURAL:$2|समूह|समूहहरु}} यस  $1 खाताबाट हटाउने',
 'listgrouprights-addgroup-self-all' => 'सबै समूहहरु निजी खातामा थप्ने',
 
-# E-mail user
+# Email user
 'mailnologin' => 'ईमेल पठाउने ठेगाना नै भएन ।',
 'mailnologintext' => 'तपाईले अरु प्रयोगकर्ताहरुलाई ईमेल पठाउनको लागि आफु पहिले [[Special:UserLogin|प्रवेश(लगइन)गरेको]] हुनुपर्छ र [[Special:Preferences|आफ्नो रोजाइहरुमा]] एउटा वैध ईमेल ठेगाना भएको हुनुपर्छ।',
 'emailuser' => 'यो प्रयोगकर्तालाई ई-मेल पठाउनुहोस्',
@@ -1890,8 +1870,8 @@ $1',
 'notvisiblerev' => 'पूर्वावलोकन हटाइयो',
 'watchnochange' => 'दिइएको समय अवधीभित्र निगरानी सुचीमा रहेका कुनै पनि सामाग्री सम्पादन भएको छैनन ।',
 'watchlist-details' => 'तपाईको निगरानी सूचीमा रहेका{{PLURAL:$1|$1 पृष्ठ|$1 पृष्ठहरु}}वार्तालापमा पृष्ठमा गनिएका छैनन् ।',
-'wlheader-enotif' => '* ईमेलद्वारा जानकारी गराउने तरिका सक्रिय गरियो ।',
-'wlheader-showupdated' => "* तपाइले पछिल्लो पल्ट भ्रमण गरेपछि परिवर्तन भएका पृष्ठहरूलाई '''गाढा''' गरेर देखाइएको छ ।",
+'wlheader-enotif' => 'ईमेलद्वारा जानकारी गराउने तरिका सक्रिय गरियो ।',
+'wlheader-showupdated' => "तपाइले पछिल्लो पल्ट भ्रमण गरेपछि परिवर्तन भएका पृष्ठहरूलाई '''गाढा''' गरेर देखाइएको छ ।",
 'watchmethod-recent' => 'निगरानी सुचीमा रहेका पृष्ठमा गरिएका सम्पादनहरु जाँच्दै',
 'watchmethod-list' => 'सम्पदान गरिएका निगरानी सुचीमा रहेका पृष्ठहरुको सम्पादन जाँच्दै',
 'watchlistcontains' => 'तपाईको निगरानी सुचीमा $1 {{PLURAL:$1|पृष्ठ|पृष्ठहरु}}रहेका छन् ।',
@@ -1907,11 +1887,7 @@ $1',
 
 'enotif_mailer' => '{{SITENAME}} जानकारी प्रेषक',
 'enotif_reset' => 'सबै पृष्ठहरु भनी दाग दिने',
-'enotif_newpagetext' => 'यो नयाँ पृष्ठ हो।',
 'enotif_impersonal_salutation' => '{{SITENAME}} प्रयोगकर्ता',
-'changed' => 'परिवर्तन भइसकेको',
-'created' => 'बनाइएको',
-'enotif_subject' => '$PAGEEDITORद्वारा {{SITENAME}} पृष्ठ $PAGETITLE $CHANGEDORCREATED गरिएको',
 'enotif_lastvisited' => 'अघिल्लो हेराइपछिका सबै परिवर्तनहरुको निम्ति हेर्नुहोस्: $1',
 'enotif_lastdiff' => 'यस परिवर्तनको निम्ति यो $1 हेर्नुहोस्',
 'enotif_anon_editor' => 'अज्ञात  प्रयोगकर्ता  $1',
@@ -1945,6 +1921,8 @@ $UNWATCHURL
 
 प्रतिक्रिया र अन्य सहयोगको निम्ति:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'बनाइएको',
+'changed' => 'परिवर्तन भइसकेको',
 
 # Delete
 'deletepage' => 'पृष्ठ मेट्नुहोस्',
@@ -2526,17 +2504,11 @@ $1को बन्देजको कारण : "$2" हो',
 
 # Stylesheets
 'common.css' => '/* यहाँ राखिएका CSS सबै खोलहरुमा लागु हुनेछन् */',
-'standard.css' => '/* यहाँ राखिएका CSS हरुले स्तरीय खोल प्रयोग गर्ने प्रयोगकर्ताहरुलाई प्रभावित पार्छ  */',
-'nostalgia.css' => '/* यहाँ राखिएको CSS ले नस्टाल्जिया स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
 'cologneblue.css' => '/* यहाँ राखिएको CSS ले कोलोग्ने ब्लु स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
 'monobook.css' => '/* यहाँ राखिएको CSS ले मोनोबुक स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
-'myskin.css' => '/* यहाँ राखिएको CSS ले माइस्किन स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
-'chick.css' => '/* यहाँ राखिएको CSS ले चिक स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
-'simple.css' => '/* यहाँ राखिएको CSS ले सिम्पल स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
 'modern.css' => '/* यहाँ राखिएको CSS ले मोनोबुक मोडर्न प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
 'vector.css' => '/* यहाँ राखिएको CSS ले भेक्टर स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
 'print.css' => '/* यहाँ राखिएको CSS मुद्रण नतिजालाई प्रभावित गर्छ  */',
-'handheld.css' => '/* यहाँ राखिएको CSS ले हाते मेसिनहरु(मोबाईल) स्किनलाई प्रभावित गर्छ जुन $wgHandheldStyle मा निर्धारण गरिएको छ  */',
 
 # Metadata
 'notacceptable' => 'विकि सर्भर तपाइको क्लाइन्टलाइ जुन प्रकारको डाटा चाहिन्छ त्यस प्रकारले दिन सक्दैन।',
@@ -2571,13 +2543,8 @@ $1को बन्देजको कारण : "$2" हो',
 'pageinfo-authors' => 'फरक सम्पादकरुको संख्या',
 
 # Skin names
-'skinname-standard' => 'क्लासिक',
-'skinname-nostalgia' => 'नोस्टाल्जिया',
 'skinname-cologneblue' => 'कोलोग्ने निलो',
 'skinname-monobook' => 'मोनोबुक',
-'skinname-myskin' => 'माइस्किन',
-'skinname-chick' => 'चिक',
-'skinname-simple' => 'सिम्पल',
 'skinname-modern' => 'मोडर्न',
 'skinname-vector' => 'भेक्टर',
 
@@ -2682,7 +2649,7 @@ Others will be hidden by default.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'चौडाइ',
 'exif-imagelength' => 'उचाई',
 'exif-bitspersample' => 'घटक प्रति बिट्स',
@@ -2856,7 +2823,7 @@ $4, $5, $6 $7
 $8',
 'exif-subjectnewscode-value' => '$2 ($1)',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'नखादिएको(कम्प्रेस नगरिएको)',
 'exif-compression-2' => 'CCITT समूह 3 1-Dimensional Modified Huffman संचालन इन्कोडिङ्ग',
 'exif-compression-3' => 'CCITT Group 3  फ्याक्स इन्कोडिङ्ग',
@@ -3078,7 +3045,7 @@ $8',
 'monthsall' => 'सबै',
 'limitall' => 'सबै',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'इमेल ठेगाना पक्का गर्नुहोस्',
 'confirmemail_noemail' => 'तपाईको प्रयोगकर्ता [[Special:Preferences|अभिरुचीमा]] मान्य इमेल ठेगाना राखीएको छैन ।',
 'confirmemail_pending' => 'तपाईको इमेलमा प्रपाणिकरण कोड पहिले नै पठाइ सकिएको छ;
@@ -3329,15 +3296,6 @@ $5
 'version-software-product' => 'उत्पादन',
 'version-software-version' => 'संस्करण',
 
-# Special:FilePath
-'filepath' => 'फाइल मार्ग:',
-'filepath-page' => 'फाइल',
-'filepath-submit' => 'जाने',
-'filepath-summary' => 'यस पृष्ठले फाइको पूरा बाटो(पाथ) दिन्छ ।
-तस्विरहु पूरा रिजोल्युशनमा देखाइन्छ अरु फाइहरु निका सम्बन्धित अनुप्रयोगहरुसँग खोलिन्छन ।
-
- "{{ns:file}}:" प्रिफिक्स(पूर्वसर्ग) बिना फाइल नाम प्रविष्ट गर्नुहोस् । .',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'नक्कल फाइल खोज्ने',
 'fileduplicatesearch-summary' => 'ह्यास मानको आधारमा दुरुस्त नक्कल फाइहरु खोज्ने ।',
@@ -3439,7 +3397,7 @@ $5
 'revdelete-restricted' => 'प्रबन्धकहरुमाथि सीमितता लागू गरियो',
 'revdelete-unrestricted' => 'प्रवन्धककोलागि निषेधहरु हटाइयो ।',
 'logentry-move-move' => '$1 द्वारा $3 पृष्ठलाई $4 मा सारियो',
-'newuserlog-byemail' => 'इ मेलबाट पठाइएको प्रवेशशव्द',
+'rightsnone' => '(कुनैपनि होइन)',
 
 # Feedback
 'feedback-subject' => 'विषय:',

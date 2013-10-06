@@ -22,10 +22,10 @@ class WikiForumGui {
 
 		$specialPageObj = SpecialPage::getTitleFor( 'WikiForum' );
 
-		$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/zoom.png" id="searchbox_picture" title="' . wfMsg( 'search' ) . '" />';
+		$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/zoom.png" id="mw-wikiforum-searchbox-picture" title="' . wfMsg( 'search' ) . '" />';
 
-		$output = '<div id="searchbox"><form method="post" action="' . $specialPageObj->escapeFullURL() . '">' .
-			'<div id="searchbox_border">' . $icon .
+		$output = '<div id="mw-wikiforum-searchbox"><form method="post" action="' . $specialPageObj->escapeFullURL() . '">' .
+			'<div id="mw-wikiforum-searchbox-border">' . $icon .
 			'<input type="text" value="" name="txtSearch" id="txtSearch" /></div>
 		</form></div>';
 
@@ -42,7 +42,7 @@ class WikiForumGui {
 		global $wgUser, $wgWikiForumAllowAnonymous;
 
 		$output = '<table class="mw-wikiforum-headerrow"><tr><td class="mw-wikiforum-leftside">';
-		if(
+		if (
 			strlen( $additionalLinks ) == 0 ||
 			$catId > 0 && strlen( $catName ) > 0
 		)
@@ -50,16 +50,16 @@ class WikiForumGui {
 			$specialPageObj = SpecialPage::getTitleFor( 'WikiForum' );
 			$output .= '<a href="' . $specialPageObj->escapeFullURL() . '">' .
 				wfMsg( 'wikiforum-overview' ) . '</a>';
-			if( $catId > 0 && strlen( $catName ) > 0 ) {
+			if ( $catId > 0 && strlen( $catName ) > 0 ) {
 				$output .= ' &gt; <a href="' .
 					$specialPageObj->escapeFullURL( 'category=' . $catId ) . '">' .
 					$catName . '</a>';
 			}
-			if( $forumId > 0 && strlen( $forumName ) > 0 ) {
+			if ( $forumId > 0 && strlen( $forumName ) > 0 ) {
 				$output .= ' &gt; <a href="' . $specialPageObj->escapeFullURL( 'forum=' . $forumId ) . '">' . $forumName . '</a>';
 			}
 		}
-		if(
+		if (
 			strlen( $additionalLinks ) > 0 &&
 			( $wgWikiForumAllowAnonymous || $wgUser->getId() > 0 )
 		)
@@ -85,10 +85,10 @@ class WikiForumGui {
 		$output = '';
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
-		if( $maxissues / $limit > 1 ) {
+		if ( $maxissues / $limit > 1 ) {
 			$output = '<table class="mw-wikiforum-footerrow"><tr><td class="mw-wikiforum-leftside">' .
 				wfMsg( 'wikiforum-pages' ) . wfMsg( 'word-separator' );
-			for( $i = 1; $i < ( $maxissues / $limit ) + 1; $i++ ) {
+			for ( $i = 1; $i < ( $maxissues / $limit ) + 1; $i++ ) {
 				// URL query parameters
 				$urlParams = array(
 					'lp' => $i
@@ -96,24 +96,24 @@ class WikiForumGui {
 				// Thread ID is optional, but if it was given, we need to get
 				// rid of the forum parameter for the thread parameter to take
 				// precedence. Stupid, I know.
-				if( $threadId ) {
+				if ( $threadId ) {
 					$urlParams['thread'] = $threadId;
 				} else {
 					$urlParams['forum'] = $forumId;
 				}
-				if( $i != $page + 1 ) {
+				if ( $i != $page + 1 ) {
 					$output .= '<a href="' . $specialPage->escapeFullURL( $urlParams ) . '">';
 				} else {
 					$output .= '[';
 				}
 
-				if( $i <= 9 ) {
+				if ( $i <= 9 ) {
 					$output .= '0' . $i;
 				} else {
 					$output .= $i;
 				}
 
-				if( $i != $page + 1 ) {
+				if ( $i != $page + 1 ) {
 					$output .= '</a>';
 				} else {
 					$output .= ']';
@@ -146,7 +146,7 @@ class WikiForumGui {
 	public static function getMainHeaderRow( $title1, $title2, $title3, $title4, $title5 ) {
 		$output = '<tr class="mw-wikiforum-title">
 					<th class="mw-wikiforum-title">' . $title1 . '</th>';
-		if( $title5 ) {
+		if ( $title5 ) {
 			$output .= '<th class="mw-wikiforum-admin"><p class="mw-wikiforum-valuetitle">' .
 				$title5 . '</p></th>';
 		}
@@ -159,13 +159,13 @@ class WikiForumGui {
 
 	public static function getMainBody( $col_value1, $col_value2, $col_value3, $col_value4, $col_title5, $marked ) {
 		$output = '<tr class="mw-wikiforum-';
-		if( $marked ) {
+		if ( $marked ) {
 			$output .= $marked;
 		} else {
 			$output .= 'normal';
 		}
 		$output .= '"><td class="mw-wikiforum-title">' . $col_value1 . '</td>';
-		if( $col_title5 ) {
+		if ( $col_title5 ) {
 			$output .= '<td class="mw-wikiforum-admin">' . $col_title5 . '</td>';
 		}
 		$output .= '
@@ -247,7 +247,7 @@ class WikiForumGui {
 		$output = '<table cellspacing="0" cellpadding="0" class="mw-wikiforum-posted">' .
 			'<tr><td class="mw-wikiforum-leftside">' . $posted . '</td>';
 
-		if( $wgUser->isLoggedIn() ) {
+		if ( $wgUser->isLoggedIn() ) {
 			$output .= '<td class="mw-wikiforum-rightside">' . $buttons . '</td>';
 		}
 
@@ -261,14 +261,27 @@ class WikiForumGui {
 			$message . '</td></tr>';
 	}
 
+	/**
+	 * Get the editor form for writing a new thread, a reply, etc.
+	 *
+	 * @param $type String: either 'addthread' or 'editthread', depending on
+	 * what we are doing to a thread.
+	 * @param $action Array: action parameter(s) to be passed to the WikiForum
+	 * special page call (i.e. array( 'thread' => $threadId ))
+	 * @param $input String: usually whatever WikiForumGui::getInput() returns
+	 * @param $height String: height of the textarea, i.e. '10em'
+	 * @param $text_prev
+	 * @param $saveButton String: save button text
+	 * @return String: HTML
+	 */
 	public static function getWriteForm( $type, $action, $input, $height, $text_prev, $saveButton ) {
-		global $wgOut, $wgUser, $wgScriptPath, $wgWikiForumAllowAnonymous;
+		global $wgOut, $wgUser, $wgWikiForumAllowAnonymous;
 
 		$output = '';
 
-		if( $wgWikiForumAllowAnonymous || $wgUser->isLoggedIn() ) {
+		if ( $wgWikiForumAllowAnonymous || $wgUser->isLoggedIn() ) {
 			// Required for the edit buttons to display
-			$wgOut->addScriptFile( 'edit.js' );
+			$wgOut->addModules( 'mediawiki.action.edit' );
 			$toolbar = EditPage::getEditToolbar();
 			$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
@@ -278,13 +291,13 @@ class WikiForumGui {
 					<td>' . $toolbar . '</td>
 				</tr>
 				<tr>
-					<td><textarea name="frmText" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
+					<td><textarea name="frmText" id="wpTextbox1" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
 				</tr>
 				<tr>
 					<td>
 						<input name="butSave" type="submit" value="' . $saveButton . '" accesskey="s" title="' . $saveButton . ' [s]" />
 						<input name="butPreview" type="submit" value="' . wfMsg( 'wikiforum-button-preview' ) . '" accesskey="p" title="' . wfMsg( 'wikiforum-button-preview' ) . ' [p]" />';
-			if( $type == 'addthread' ) {
+			if ( $type == 'addthread' ) {
 				$output .= ' <input name="butCancel" type="button" value="' . wfMsg( 'cancel' ) . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMsg( 'cancel' ) . ' [c]" />';
 			}
 			$output .= '</td>
@@ -309,7 +322,7 @@ class WikiForumGui {
 	public static function getFormCatForum( $type, $categoryName, $action, $title_prev, $text_prev, $saveButton, $overviewObj ) {
 		global $wgUser;
 
-		if( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
+		if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
 			$title_prev = str_replace( '"', '&quot;', $title_prev );
 			$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 			$output = '
@@ -324,7 +337,7 @@ class WikiForumGui {
 						<input type="text" name="frmTitle" style="width: 100%" value="' . $title_prev . '" />
 					</td>
 				</tr>';
-			if( $type == 'addforum' || $type == 'editforum' ) {
+			if ( $type == 'addforum' || $type == 'editforum' ) {
 				$check = '';
 				if ( is_object( $overviewObj ) && $overviewObj->wff_announcement == true ) {
 					$check = 'checked="checked"';

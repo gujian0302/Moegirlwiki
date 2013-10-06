@@ -10,14 +10,10 @@
  *
  * @class
  * @abstract
- * @extends ve.ce.LeafNode
+ *
  * @constructor
- * @param {ve.dm.GeneratedContentNode} model Model to observe
  */
-ve.ce.GeneratedContentNode = function VeCeGeneratedContentNode( model ) {
-	// Parent constructor
-	ve.ce.LeafNode.call( this, model );
-
+ve.ce.GeneratedContentNode = function VeCeGeneratedContentNode() {
 	// DOM Changes
 	this.$.addClass( 've-ce-generatedContentNode' );
 	this.$.attr( 'contenteditable', false );
@@ -29,13 +25,19 @@ ve.ce.GeneratedContentNode = function VeCeGeneratedContentNode( model ) {
 	this.onUpdate();
 };
 
-/* Inheritance */
+/* Events */
 
-ve.inheritClass( ve.ce.GeneratedContentNode, ve.ce.LeafNode );
+/**
+ * @event setup
+ */
 
-/* Static Properties */
+/**
+ * @event teardown
+ */
 
-ve.ce.GeneratedContentNode.static.name = 'generatedContent';
+/**
+ * @event rerender
+ */
 
 /* Methods */
 
@@ -43,12 +45,25 @@ ve.ce.GeneratedContentNode.static.name = 'generatedContent';
  * Handle update events.
  *
  * @method
+ * @emits setup
+ * @emits teardown
+ * @emits rerender
  */
 ve.ce.GeneratedContentNode.prototype.onUpdate = function () {
-	var store = this.model.doc.getStore(),
+	var doc = this.getElementDocument(),
+		store = this.model.doc.getStore(),
 		index = store.indexOfHash( ve.getHash( this.model ) );
 	if ( index !== null ) {
-		this.$.empty().append( store.value( index ) );
+		if ( this.live ) {
+			this.emit( 'teardown' );
+		}
+		this.$.empty().append(
+			ve.copyDomElements( store.value( index ), doc )
+		);
+		if ( this.live ) {
+			this.emit( 'setup' );
+			this.emit( 'rerender' );
+		}
 	} else {
 		this.startGenerating();
 		this.generateContents()
@@ -94,7 +109,3 @@ ve.ce.GeneratedContentNode.prototype.doneGenerating = function ( domElements ) {
 ve.ce.GeneratedContentNode.prototype.failGenerating = function () {
 	// TODO: remove 'generating' style
 };
-
-/* Registration */
-
-ve.ce.nodeFactory.register( ve.ce.GeneratedContentNode );

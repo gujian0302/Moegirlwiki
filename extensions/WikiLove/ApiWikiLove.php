@@ -1,9 +1,12 @@
 <?php
 class ApiWikiLove extends ApiBase {
 	public function execute() {
-		global $wgRequest, $wgWikiLoveLogging, $wgParser;
+		global $wgWikiLoveLogging, $wgParser;
 
 		$params = $this->extractRequestParams();
+
+		// In some cases we need the wiki mark-up stripped from the subject
+		$strippedSubject = $wgParser->stripSectionName( $params['subject'] );
 
 		$title = Title::newFromText( $params['title'] );
 		if ( is_null( $title ) ) {
@@ -11,30 +14,32 @@ class ApiWikiLove extends ApiBase {
 		}
 
 		$talk = WikiLoveHooks::getUserTalkPage( $title );
-		if ( is_null( $talk ) ) {
-			$this->dieUsageMsg( array( 'invaliduser', $params['title'] ) );
+		// getUserTalkPage() returns a string on error
+		if ( is_string( $talk ) ) {
+			$this->dieUsage( $talk, 'nowikilove' );
 		}
 
 		if ( $wgWikiLoveLogging ) {
 			$this->saveInDb( $talk, $params['subject'], $params['message'], $params['type'], isset( $params['email'] ) ? 1 : 0 );
 		}
 
-		// not using section => 'new' here, as we like to give our own edit summary
+		// Requires MediaWiki 1.19 or later
+		$apiParamArray = array(
+			'action' => 'edit',
+			'title' => $talk->getFullText(),
+			'section' => 'new',
+			'sectiontitle' => $params['subject'],
+			'text' => $params['text'],
+			'token' => $params['token'],
+			'summary' => $this->msg( 'wikilove-summary', $strippedSubject )->inContentLanguage()
+				->text(),
+			'notminor' => true
+		);
+
 		$api = new ApiMain(
 			new DerivativeRequest(
-				$wgRequest,
-				array(
-					'action'     => 'edit',
-					'title'      => $talk->getFullText(),
-					// need to do this, as Article::replaceSection fails for non-existing pages
-					'appendtext' => ( $talk->exists() ? "\n\n" : '' ) . 
-						wfMsgForContent( 'newsectionheaderdefaultlevel', $params['subject'] )
-						. "\n\n" . $params['text'],
-					'token'      => $params['token'],
-					'summary'    => wfMsgForContent( 'wikilove-summary', 
-						$wgParser->stripSectionName( $params['subject'] ) ),
-					'notminor'   => true
-				),
+				$this->getRequest(),
+				$apiParamArray,
 				false // was posted?
 			),
 			true // enable write?
@@ -43,11 +48,11 @@ class ApiWikiLove extends ApiBase {
 		$api->execute();
 
 		if ( isset( $params['email'] ) ) {
-			$this->emailUser( $talk, $params['subject'], $params['email'], $params['token'] );
+			$this->emailUser( $talk, $strippedSubject, $params['email'], $params['token'] );
 		}
 
 		$this->getResult()->addValue( 'redirect', 'pageName', $talk->getPrefixedDBkey() );
-		$this->getResult()->addValue( 'redirect', 'fragment', Title::escapeFragmentForURL( $params['subject'] ) );
+		$this->getResult()->addValue( 'redirect', 'fragment', Title::escapeFragmentForURL( $strippedSubject ) );
 		// note that we cannot use Title::makeTitle here as it doesn't sanitize the fragment
 	}
 
@@ -60,19 +65,22 @@ class ApiWikiLove extends ApiBase {
 	 * @return void
 	 */
 	private function saveInDb( $talk, $subject, $message, $type, $email ) {
-		global $wgUser;
+		wfProfileIn( __METHOD__ );
+
 		$dbw = wfGetDB( DB_MASTER );
 		$receiver = User::newFromName( $talk->getSubjectPage()->getBaseText() );
 		if ( $receiver === false || $receiver->isAnon() ) {
 			$this->setWarning( 'Not logging unregistered recipients' );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
+		$user = $this->getUser();
 		$values = array(
 			'wll_timestamp' => $dbw->timestamp(),
-			'wll_sender' => $wgUser->getId(),
-			'wll_sender_editcount' => $wgUser->getEditCount(),
-			'wll_sender_registration' => $wgUser->getRegistration(),
+			'wll_sender' => $user->getId(),
+			'wll_sender_editcount' => $user->getEditCount(),
+			'wll_sender_registration' => $user->getRegistration(),
 			'wll_receiver' => $receiver->getId(),
 			'wll_receiver_editcount' => $receiver->getEditCount(),
 			'wll_receiver_registration' => $receiver->getRegistration(),
@@ -87,6 +95,7 @@ class ApiWikiLove extends ApiBase {
 		} catch( DBQueryError $dbqe ) {
 			$this->setWarning( 'Action was not logged' );
 		}
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -96,21 +105,25 @@ class ApiWikiLove extends ApiBase {
 	 * @param $token string
 	 */
 	private function emailUser( $talk, $subject, $text, $token ) {
-		global $wgRequest;
-
-		$api = new ApiMain( new FauxRequest( array(
-			'action' => 'emailuser',
-			'target' => User::newFromName( $talk->getSubjectPage()->getBaseText() )->getName(),
-			'subject' => $subject,
-			'text' => $text,
-			'token' => $token,
-		), false, array( 'wsEditToken' => $wgRequest->getSessionData( 'wsEditToken' ) ) ), true );
+		wfProfileIn( __METHOD__ );
+		$api = new ApiMain( new FauxRequest(
+			array(
+				'action' => 'emailuser',
+				'target' => User::newFromName( $talk->getSubjectPage()->getBaseText() )->getName(),
+				'subject' => $subject,
+				'text' => $text,
+				'token' => $token
+			),
+			false,
+			array( 'wsEditToken' => $this->getRequest()->getSessionData( 'wsEditToken' ) )
+		), true );
 
 		try {
 			$api->execute();
 		} catch( DBQueryError $dbqe ) {
-			$this->setWarning( 'E-mail was not sent' );
+			$this->setWarning( 'Email was not sent' );
 		}
+		wfProfileOut( __METHOD__ );
 	}
 
 	public function getAllowedParams() {
@@ -152,8 +165,8 @@ class ApiWikiLove extends ApiBase {
 				'or when on a MediaWiki page through mw.user.tokens',
 			),
 			'subject' => 'Subject header of the new section',
-			'email' => array( 'Content of the optional e-mail message to send to the user.',
-				'A warning will be returned if the user cannot be e-mailed. WikiLove will be sent to user talk page either way.',
+			'email' => array( 'Content of the optional email message to send to the user.',
+				'A warning will be returned if the user cannot be emailed. WikiLove will be sent to user talk page either way.',
 			),
 			'type' => array( 'Type of WikiLove (for statistics); this corresponds with a type',
 				'selected in the left menu, and optionally a subtype after that',
@@ -189,6 +202,6 @@ class ApiWikiLove extends ApiBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id: ApiWikiLove.php 114404 2012-03-21 20:31:24Z catrope $';
+		return __CLASS__ . ': 1.1';
 	}
 }

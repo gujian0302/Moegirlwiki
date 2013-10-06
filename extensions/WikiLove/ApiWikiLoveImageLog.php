@@ -58,6 +58,6 @@ class ApiWikiLoveImageLog extends ApiBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id: ApiWikiLoveImageLog.php 100473 2011-10-21 23:07:16Z reedy $';
+		return __CLASS__ . ': $Id$';
 	}
 }

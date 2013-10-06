@@ -155,7 +155,6 @@ $messages = array(
 'disclaimers' => 'Мийö сöстöмöсь йöз одзын',
 'disclaimerpage' => 'Project:Мийö сöстöмöсь йöз одзын',
 'edithelp' => 'Уджкерись понда отсöт',
-'edithelppage' => 'Help:Уджкерись понда отсöт',
 'helppage' => 'Help:Отсöт',
 'mainpage' => 'Пондöтчан листбок',
 'mainpage-description' => 'Пондöтчан листбок',
@@ -385,6 +384,9 @@ $messages = array(
 
 'grouppage-sysop' => '{{ns:project}}:Веськöтлiссез',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Уджкерисьö гижöтчан журнал',
+
 # User rights log
 'rightslog' => 'Уджкерисьлö позяннэз сьöртi журнал',
 
@@ -489,13 +491,10 @@ $messages = array(
 # Special:LinkSearch
 'linksearch' => 'Вики сайöдз ыстöттэз',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Уджкерисьö гижöтчан журнал',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(уджкериссезлöн нимлёдз)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Этiя ужкерисьлö гижöт',
 'emailfrom' => 'Кинсянь:',
 'emailto' => 'Кинлö:',
@@ -737,7 +736,7 @@ $messages = array(
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Пасьта',
 'exif-imagelength' => 'Вылына',
 

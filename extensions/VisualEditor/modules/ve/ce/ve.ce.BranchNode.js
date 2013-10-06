@@ -16,24 +16,21 @@
  * @mixins ve.BranchNode
  * @constructor
  * @param {ve.dm.BranchNode} model Model to observe
- * @param {jQuery} [$element] Element to use as a container
+ * @param {Object} [config] Config options
  */
-ve.ce.BranchNode = function VeCeBranchNode( model, $element ) {
+ve.ce.BranchNode = function VeCeBranchNode( model, config ) {
 	// Mixin constructor
 	ve.BranchNode.call( this );
 
 	// Parent constructor
-	ve.ce.Node.call( this, model, $element );
+	ve.ce.Node.call( this, model, config );
 
 	// Properties
-	this.domWrapperElementType = this.$.get( 0 ).nodeName.toLowerCase();
+	this.tagName = this.$.get( 0 ).nodeName.toLowerCase();
 	this.slugs = {};
 
 	// Events
 	this.model.connect( this, { 'splice': 'onSplice' } );
-
-	// DOM Changes
-	this.$.addClass( 've-ce-branchNode' );
 
 	// Initialization
 	this.onSplice.apply( this, [0, 0].concat( model.getChildren() ) );
@@ -55,76 +52,54 @@ ve.mixinClass( ve.ce.BranchNode, ve.BranchNode );
 
 /* Static Properties */
 
-
 /**
  * Inline slug template.
+ *
+ * TODO: Make iframe safe
  *
  * @static
  * @property {jQuery}
  */
 ve.ce.BranchNode.$inlineSlugTemplate = $( '<span>' )
-	.addClass( 've-ce-slug' )
+	.addClass( 've-ce-branchNode-slug ve-ce-branchNode-inlineSlug' )
 	.html( $.browser.msie ? '&nbsp;' : '&#xFEFF;' );
 
 /**
  * Block slug template.
  *
+ * TODO: Make iframe safe
+ *
  * @static
  * @property {jQuery}
  */
-ve.ce.BranchNode.$blockSlugTemplate =
-	ve.ce.BranchNode.$inlineSlugTemplate.clone().addClass( 've-ce-slugBlock' );
-
-/* Static Methods */
-
-/**
- * Get the appropriate element type for the DOM wrapper of a node.
- *
- * This method reads the `key` attribute from a `model` and looks up a type in the node's statically
- * defined `domWrapperElementTypes` member, which is a mapping of possible values of that attribute
- * and DOM element types.
- *
- * @method
- * @param {ve.dm.BranchNode} model Model node is based on
- * @param {string} key Attribute name to read type value from
- * @returns {string} DOM element type for wrapper
- * @throws {Error} Attribute is not defined in the model
- * @throws {Error} Attribute value is not a key in `domWrapperElementTypes`
- */
-ve.ce.BranchNode.getDomWrapperType = function ( model, key ) {
-	var types,
-		value = model.getAttribute( key );
-	if ( value === undefined ) {
-		throw new Error( 'Undefined attribute: ' + key );
-	}
-	types = ve.ce.nodeFactory.lookup( model.getType() ).domWrapperElementTypes;
-	if ( types[value] === undefined ) {
-		throw new Error( 'Invalid attribute value: ' + value );
-	}
-	return types[value];
-};
-
-/**
- * Get a new DOM wrapper.
- *
- * This method uses #getDomWrapperType to determine the proper element type to use.
- *
- * @method
- * @param {ve.dm.BranchNode} model Model node is based on
- * @param {string} key Attribute name to read type value from
- * @returns {jQuery} Selection of DOM wrapper
- */
-ve.ce.BranchNode.getDomWrapper = function ( model, key ) {
-	var type = ve.ce.BranchNode.getDomWrapperType( model, key );
-	return $( document.createElement( type ) );
-};
+ve.ce.BranchNode.$blockSlugTemplate = $( '<span>' )
+	.addClass( 've-ce-branchNode-slug ve-ce-branchNode-blockSlug' )
+	.html( $.browser.msie ? '&nbsp;' : '&#xFEFF;' );
 
 /* Methods */
 
 /**
- * Update the DOM wrapper.
+ * Handle setup event.
  *
- * This method uses {getDomWrapperType} to determine the proper element type to use.
+ * @method
+ */
+ve.ce.BranchNode.prototype.onSetup = function () {
+	ve.ce.Node.prototype.onSetup.call( this );
+	this.$.addClass( 've-ce-branchNode' );
+};
+
+/**
+ * Handle teardown event.
+ *
+ * @method
+ */
+ve.ce.BranchNode.prototype.onTeardown = function () {
+	ve.ce.Node.prototype.onTeardown.call( this );
+	this.$.removeClass( 've-ce-branchNode' );
+};
+
+/**
+ * Update the DOM wrapper.
  *
  * WARNING: The contents, .data( 'view' ) and any classes the wrapper already has will be moved to
  * the new wrapper, but other attributes and any other information added using $.data() will be
@@ -132,29 +107,24 @@ ve.ce.BranchNode.getDomWrapper = function ( model, key ) {
  * 'rewrap' event and copy information from the {$old} wrapper the {$new} wrapper.
  *
  * @method
- * @param {string} key Attribute name to read type value from
  * @emits rewrap
  */
-ve.ce.BranchNode.prototype.updateDomWrapper = function ( key ) {
+ve.ce.BranchNode.prototype.updateTagName = function () {
 	var $element,
-		type = ve.ce.BranchNode.getDomWrapperType( this.model, key );
+		tagName = this.getTagName();
 
-	if ( type !== this.domWrapperElementType ) {
-		$element = $( document.createElement( type ) );
-		// Copy classes
-		$element.attr( 'class', this.$.attr( 'class' ) );
-		// Copy .data( 'view' )
-		$element.data( 'view', this.$.data( 'view' ) );
+	if ( tagName !== this.tagName ) {
+		this.emit( 'teardown' );
+		$element = this.$$( this.$$.context.createElement( tagName ) );
 		// Move contents
 		$element.append( this.$.contents() );
-		// Emit an event that can be handled to copy other things over if needed
-		this.emit( 'rewrap', this.$, $element );
 		// Swap elements
 		this.$.replaceWith( $element );
 		// Use new element from now on
 		this.$ = $element;
-		// Remember which type we are using now
-		this.domWrapperElementType = type;
+		this.emit( 'setup' );
+		// Remember which tag name we are using now
+		this.tagName = tagName;
 	}
 };
 
@@ -179,10 +149,14 @@ ve.ce.BranchNode.prototype.onModelUpdate = function ( transaction ) {
  * @param {ve.dm.BranchNode...} [nodes] Variadic list of nodes to insert
  */
 ve.ce.BranchNode.prototype.onSplice = function ( index ) {
-	var i,
+	var i, j,
 		length,
 		args = Array.prototype.slice.call( arguments ),
 		$anchor,
+		afterAnchor,
+		node,
+		parentNode,
+		firstChild,
 		removals;
 	// Convert models to views and attach them to this node
 	if ( args.length >= 3 ) {
@@ -194,10 +168,9 @@ ve.ce.BranchNode.prototype.onSplice = function ( index ) {
 	removals = this.children.splice.apply( this.children, args );
 	for ( i = 0, length = removals.length; i < length; i++ ) {
 		removals[i].model.disconnect( this, { 'update': 'onModelUpdate' } );
-		removals[i].detach();
-		// Update DOM
-		removals[i].$.detach();
 		removals[i].setLive( false );
+		removals[i].detach();
+		removals[i].$.detach();
 	}
 	if ( args.length >= 3 ) {
 		if ( index ) {
@@ -207,9 +180,19 @@ ve.ce.BranchNode.prototype.onSplice = function ( index ) {
 		for ( i = args.length - 1; i >= 2; i-- ) {
 			args[i].attach( this );
 			if ( index ) {
-				$anchor.after( args[i].$ );
+				// DOM equivalent of $anchor.after( args[i].$ );
+				afterAnchor = $anchor[0].nextSibling;
+				parentNode = $anchor[0].parentNode;
+				for ( j = 0, length = args[i].$.length; j < length; j++ ) {
+					parentNode.insertBefore( args[i].$[j], afterAnchor );
+				}
 			} else {
-				this.$.prepend( args[i].$ );
+				// DOM equivalent of this.$.prepend( args[j].$ );
+				node = this.$[0];
+				firstChild = node.firstChild;
+				for ( j = args[i].$.length - 1; j >= 0; j-- ) {
+					node.insertBefore( args[i].$[j], firstChild );
+				}
 			}
 			if ( this.live !== args[i].isLive() ) {
 				args[i].setLive( this.live );
@@ -228,28 +211,37 @@ ve.ce.BranchNode.prototype.onSplice = function ( index ) {
  * @method
  */
 ve.ce.BranchNode.prototype.setupSlugs = function () {
-	var key, $slug, i;
+	var key, slug, i, len, first, last, doc = this.getElementDocument();
 
 	// Remove all slugs in this branch
 	for ( key in this.slugs ) {
-		this.slugs[key].remove();
+		if ( this.slugs[key].parentNode ) {
+			this.slugs[key].parentNode.removeChild( this.slugs[key] );
+		}
 		delete this.slugs[key];
 	}
 
 	if ( this.canHaveChildrenNotContent() ) {
-		$slug = ve.ce.BranchNode.$blockSlugTemplate.clone();
+		slug = ve.ce.BranchNode.$blockSlugTemplate[0];
 	} else {
-		$slug = ve.ce.BranchNode.$inlineSlugTemplate.clone();
+		slug = ve.ce.BranchNode.$inlineSlugTemplate[0];
 	}
 
 	if ( this.getLength() === 0 ) {
-		this.slugs[0] = $slug.clone().appendTo( this.$ );
+		this.slugs[0] = doc.importNode( slug, true );
+		this.$[0].appendChild( this.slugs[0] );
 	} else {
 		// Iterate over all children of this branch and add slugs in appropriate places
-		for ( i = 0; i < this.children.length; i++ ) {
+		for ( i = 0, len = this.children.length; i < len; i++ ) {
+			// Don't put slugs after internal nodes.
+			if ( ve.dm.nodeFactory.isNodeInternal( this.children[i].model.type ) ) {
+				continue;
+			}
 			// First sluggable child (left side)
 			if ( i === 0 && this.children[i].canHaveSlugBefore() ) {
-				this.slugs[i] = $slug.clone().insertBefore( this.children[i].$.first() );
+				this.slugs[i] = doc.importNode( slug, true );
+				first = this.children[i].$[0];
+				first.parentNode.insertBefore( this.slugs[i], first );
 			}
 			if ( this.children[i].canHaveSlugAfter() ) {
 				if (
@@ -258,7 +250,9 @@ ve.ce.BranchNode.prototype.setupSlugs = function () {
 					// Sluggable child followed by another sluggable child (in between)
 					( this.children[i + 1] && this.children[i + 1].canHaveSlugBefore() )
 				) {
-					this.slugs[i + 1] = $slug.clone().insertAfter( this.children[i].$.last() );
+					this.slugs[i + 1] = doc.importNode( slug, true );
+					last = this.children[i].$[this.children[i].$.length - 1];
+					last.parentNode.insertBefore( this.slugs[i + 1], last.nextSibling );
 				}
 			}
 		}
@@ -270,6 +264,7 @@ ve.ce.BranchNode.prototype.setupSlugs = function () {
  *
  * @method
  * @param {number} offset Offset to get slug at
+ * @returns {HTMLElement}
  */
 ve.ce.BranchNode.prototype.getSlugAtOffset = function ( offset ) {
 	var i,
@@ -294,8 +289,7 @@ ve.ce.BranchNode.prototype.getSlugAtOffset = function ( offset ) {
  * @emits live
  */
 ve.ce.BranchNode.prototype.setLive = function ( live ) {
-	this.live = live;
-	this.emit( 'live' );
+	ve.ce.Node.prototype.setLive.call( this, live );
 	for ( var i = 0; i < this.children.length; i++ ) {
 		this.children[i].setLive( live );
 	}

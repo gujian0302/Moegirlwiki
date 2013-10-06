@@ -31,7 +31,7 @@ class LqtHooks {
 	 * @param $rc RecentChange
 	 * @return bool
 	 */
-	static function customizeOldChangesList( &$changeslist, &$s, $rc ) {
+	static function customizeOldChangesList( &$changeslist, &$s, $rc, &$classes ) {
 		if ( $rc->getTitle()->getNamespace() != NS_LQT_THREAD ) {
 			return true;
 		}
@@ -375,6 +375,7 @@ class LqtHooks {
 		$updater->addExtensionField( 'thread', 'thread_signature', "$dir/schema-changes/thread_signature.sql" );
 
 		$updater->addExtensionIndex( 'thread', 'thread_summary_page', "$dir/schema-changes/index-summary_page.sql" );
+		$updater->addExtensionIndex( 'thread', 'thread_parent', "$dir/schema-changes/index-thread_parent.sql"  );
 
 		return true;
 	}
@@ -895,6 +896,16 @@ class LqtHooks {
 					$result->addValue( array( 'query', 'pages' ), $pageid, array( 'islqttalkpage' => '' ) );
 				}
 			}
+		}
+
+		return true;
+	}
+
+	public static function onInfoAction( $context, $pageInfo ) {
+		if ( LqtDispatch::isLqtPage( $context->getTitle() ) ) {
+			$pageInfo['header-basic'][] = array(
+				wfMessage( 'pageinfo-usinglqt' ), wfMessage( 'pageinfo-usinglqt-yes' )
+			);
 		}
 
 		return true;

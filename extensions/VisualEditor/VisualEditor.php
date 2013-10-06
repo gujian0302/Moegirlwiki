@@ -18,16 +18,26 @@ $wgVisualEditorParsoidURL = 'http://localhost:8000';
 $wgVisualEditorParsoidPrefix = 'localhost';
 // Timeout for HTTP requests to Parsoid in seconds
 $wgVisualEditorParsoidTimeout = 100;
-// URL to post reports from the "Report problem" dialog to
-// Defaults to "$wgVisualEditorParsoidURL/_bugs/" if null
-$wgVisualEditorParsoidProblemReportURL = null;
 // Namespaces to enable VisualEditor in
 $wgVisualEditorNamespaces = array( NS_MAIN );
 // Whether to use change tagging for VisualEditor edits
 $wgVisualEditorUseChangeTagging = true;
+// Whether to log analytic events using EventLogging
+$wgVisualEditorEnableEventLogging = false;
+// Whether to disable for logged-in users
+// This allows you to enable the 'visualeditor-enable' preference by default
+// but still disable VE for logged-out users (by setting this to false).
+$wgVisualEditorDisableForAnons = false;
 // Whether to enable incomplete experimental code
 $wgVisualEditorEnableExperimentalCode = false;
-
+// Whether to use the 'add' or 'replace' tabLayout
+// * add: Adds #ca-ve-edit.
+// * replace: Re-creates #ca-edit for VisualEditor and adds #ca-editsource.
+$wgVisualEditorTabLayout = 'replace';
+// Conduct an optional survey (the user can decline to answer) on the user's gender
+// upon signup.
+// Depends on GuidedTour and EventLogging extensions.
+$wgVisualEditorEnableGenderSurvey = false;
 /* Setup */
 
 $wgExtensionCredits['other'][] = array(
@@ -59,15 +69,12 @@ $wgVisualEditorResourceTemplate = array(
 	'group' => 'ext.visualEditor',
 );
 
-$wgVisualEditorEditNotices = array( 'visualeditor-alphawarning' );
-
-$wgVisualEditorEnableSectionEditLinks = false;
-
 $wgResourceModules += array(
+
 	'rangy' => $wgVisualEditorResourceTemplate + array(
 		'scripts' => array(
-			'rangy/rangy-core.js',
-			'rangy/rangy-position.js',
+			'rangy/rangy-core-1.3.js',
+			'rangy/rangy-position-1.3.js',
 			'rangy/rangy-export.js',
 		),
 	),
@@ -76,14 +83,59 @@ $wgResourceModules += array(
 			'jquery/jquery.visibleText.js',
 		),
 	),
+	'oojs' => $wgVisualEditorResourceTemplate + array(
+		'scripts' => array(
+			'oojs/oo.js',
+		),
+	),
 	'unicodejs.wordbreak' => $wgVisualEditorResourceTemplate + array(
 		'scripts' => array(
 			'unicodejs/unicodejs.js',
 			'unicodejs/unicodejs.textstring.js',
-			'unicodejs/unicodejs.wordbreak.groups.js',
+			'unicodejs/unicodejs.graphemebreakproperties.js',
+			'unicodejs/unicodejs.graphemebreak.js',
+			'unicodejs/unicodejs.wordbreakproperties.js',
 			'unicodejs/unicodejs.wordbreak.js',
 		),
 	),
+
+	// Added for 18-Jun-2013 split test; safe to remove after
+	'ext.visualEditor.splitTest' => $wgVisualEditorResourceTemplate + array(
+		'scripts' => array(
+			've-mw/init/ve.init.mw.splitTest.js',
+		)
+	),
+
+	'ext.guidedTour.tour.vegendersurvey' => $wgVisualEditorResourceTemplate + array(
+		'scripts' => array(
+			've-mw/init/tours/vegendersurvey.js',
+		),
+		'dependencies' => array(
+			'ext.guidedTour.lib',
+		),
+		'messages' => array(
+			'guidedtour-tour-vegendersurvey-title',
+			'guidedtour-tour-vegendersurvey-description',
+			'guidedtour-tour-vegendersurvey-male',
+			'guidedtour-tour-vegendersurvey-female',
+			'guidedtour-tour-vegendersurvey-optout'
+		),
+	),
+
+	'ext.visualEditor.genderSurvey' => $wgVisualEditorResourceTemplate + array(
+		'scripts' => array(
+			've-mw/init/ve.init.mw.genderSurvey.js',
+		),
+		'styles' => array(
+			've-mw/init/ve.init.mw.genderSurvey.css',
+		),
+		'dependencies' => array(
+			'ext.guidedTour.lib',
+			'ext.guidedTour.tour.vegendersurvey',
+			'ext.visualEditor.mediawiki',
+		),
+	),
+
 	// Alias for backwards compat, safe to remove after
 	'ext.visualEditor.editPageInit' => $wgVisualEditorResourceTemplate + array(
 		'dependencies' => array(
@@ -92,90 +144,86 @@ $wgResourceModules += array(
 	),
 	'ext.visualEditor.viewPageTarget.icons-raster' => $wgVisualEditorResourceTemplate + array(
 		'styles' => array(
-			've/init/mw/styles/ve.init.mw.ViewPageTarget.Icons-raster.css',
+			've-mw/init/styles/ve.init.mw.ViewPageTarget.Icons-raster.css',
 		),
 	),
 	'ext.visualEditor.viewPageTarget.icons-vector' => $wgVisualEditorResourceTemplate + array(
 		'styles' => array(
-			've/init/mw/styles/ve.init.mw.ViewPageTarget.Icons-vector.css',
+			've-mw/init/styles/ve.init.mw.ViewPageTarget.Icons-vector.css',
 		),
+	),
+	'ext.visualEditor.viewPageTarget.init' => $wgVisualEditorResourceTemplate + array(
+		'scripts' => 've-mw/init/targets/ve.init.mw.ViewPageTarget.init.js',
+		'styles' => 've-mw/init/styles/ve.init.mw.ViewPageTarget.init.css',
+		'dependencies' => array(
+			'jquery.client',
+			'mediawiki.Uri',
+			'mediawiki.util',
+		),
+		'messages' => array(
+			'accesskey-ca-editsource',
+			'accesskey-ca-ve-edit',
+			'pipe-separator',
+			'tooltip-ca-createsource',
+			'tooltip-ca-editsource',
+			'tooltip-ca-ve-edit',
+			'visualeditor-ca-createsource',
+			'visualeditor-ca-editsource',
+			'visualeditor-ca-editsource-section',
+			'visualeditor-ca-ve-create',
+			'visualeditor-ca-ve-edit',
+		),
+		'position' => 'top',
 	),
 	'ext.visualEditor.viewPageTarget' => $wgVisualEditorResourceTemplate + array(
 		'scripts' => array(
-			've/init/mw/targets/ve.init.mw.ViewPageTarget.js',
+			've-mw/init/targets/ve.init.mw.ViewPageTarget.js',
 		),
 		'styles' => array(
-			've/init/mw/styles/ve.init.mw.ViewPageTarget.css',
+			've-mw/init/styles/ve.init.mw.ViewPageTarget.css',
 		),
 		'skinStyles' => array(
 			'vector' => array(
-				've/init/mw/styles/ve.init.mw.ViewPageTarget-vector.css',
-				've/init/mw/styles/ve.init.mw.ViewPageTarget-vector-hd.css' => array(
+				've-mw/init/styles/ve.init.mw.ViewPageTarget-vector.css',
+				've-mw/init/styles/ve.init.mw.ViewPageTarget-vector-hd.css' => array(
 					'media' => 'screen and (min-width: 982px)'
 				),
 			),
 			'apex' => array(
-				've/init/mw/styles/ve.init.mw.ViewPageTarget-apex.css',
+				've-mw/init/styles/ve.init.mw.ViewPageTarget-apex.css',
 			),
 			'monobook' => array(
-				've/init/mw/styles/ve.init.mw.ViewPageTarget-monobook.css',
+				've-mw/init/styles/ve.init.mw.ViewPageTarget-monobook.css',
 			)
 		),
 		'dependencies' => array(
 			'ext.visualEditor.base',
+			'ext.visualEditor.mediawiki',
 			'jquery.byteLength',
 			'jquery.byteLimit',
 			'jquery.client',
 			'jquery.placeholder',
 			'jquery.visibleText',
+			'mediawiki.feedback',
 			'mediawiki.jqueryMsg',
+			'mediawiki.notify',
 			'mediawiki.Title',
 			'mediawiki.Uri',
 			'mediawiki.user',
-			'mediawiki.util',
-			'mediawiki.notify',
-			'mediawiki.feedback',
 			'user.options',
 			'user.tokens',
 		),
 		'messages' => array(
-			'minoredit',
-			'cancel',
-			'watchthis',
-			'copyrightwarning',
-			'copyrightpage',
-			'accesskey-ca-editsource',
-			'accesskey-ca-ve-edit',
-			'tooltip-ca-editsource',
-			'tooltip-ca-ve-edit',
-			'visualeditor-ca-editsource',
-			'visualeditor-ca-ve-edit',
-			'visualeditor-ca-ve-create',
-			'visualeditor-notification-saved',
+			// MW core messages
+			'creating',
+			'editing',
+
+			// Messages needed by VE in init phase only (rest go below)
+			'visualeditor-loadwarning',
+			'visualeditor-loadwarning-token',
 			'visualeditor-notification-created',
 			'visualeditor-notification-restored',
-			'visualeditor-notification-reported',
-			'visualeditor-loadwarning',
-			'visualeditor-editsummary',
-			'visualeditor-problem',
-			'visualeditor-editnotices-tool',
-			'visualeditor-feedback-tool',
-			'visualeditor-feedback-link',
-			'visualeditor-restore-page',
-			'visualeditor-create-page',
-			'visualeditor-save-title',
-			'visualeditor-report-notice',
-			'visualeditor-toolbar-savedialog',
-			'visualeditor-savedialog-title-review',
-			'visualeditor-savedialog-title-report',
-			'visualeditor-savedialog-title-save',
-			'visualeditor-savedialog-label-review-wrong',
-			'visualeditor-savedialog-label-review-good',
-			'visualeditor-savedialog-label-report',
-			'visualeditor-savedialog-label-create',
-			'visualeditor-savedialog-label-save',
-			'visualeditor-savedialog-label-restore',
-			'visualeditor-savedialog-label-report',
+			'visualeditor-notification-saved',
 		),
 	),
 	'ext.visualEditor.base' => $wgVisualEditorResourceTemplate + array(
@@ -188,15 +236,38 @@ $wgResourceModules += array(
 			've/init/ve.init.js',
 			've/init/ve.init.Platform.js',
 			've/init/ve.init.Target.js',
-			've/init/mw/ve.init.mw.js',
-			've/init/mw/ve.init.mw.Platform.js',
-			've/init/mw/ve.init.mw.Target.js',
-		),
-		'dependencies' => array(
-			'jquery.client',
 		),
 		'debugScripts' => array(
 			've/ve.debug.js',
+		),
+		'dependencies' => array(
+			'oojs',
+			'unicodejs.wordbreak',
+			'mediawiki.util',
+		),
+	),
+	'ext.visualEditor.mediawiki' => $wgVisualEditorResourceTemplate + array(
+		'scripts' => array(
+			// init
+			've-mw/init/ve.init.mw.js',
+			've-mw/init/ve.init.mw.Platform.js',
+			've-mw/init/ve.init.mw.Target.js',
+		),
+		'dependencies' => array(
+			'jquery.client',
+			'mediawiki.Uri',
+			'ext.visualEditor.base',
+		),
+	),
+	'ext.visualEditor.standalone' => $wgVisualEditorResourceTemplate + array(
+		'scripts' => array(
+			// init
+			've/init/sa/ve.init.sa.js',
+			've/init/sa/ve.init.sa.Platform.js',
+			've/init/sa/ve.init.sa.Target.js',
+		),
+		'dependencies' => array(
+			'ext.visualEditor.base',
 		),
 	),
 	'ext.visualEditor.specialMessages' => $wgVisualEditorResourceTemplate + array(
@@ -207,27 +278,13 @@ $wgResourceModules += array(
 			// ve
 			've/ve.Registry.js',
 			've/ve.Factory.js',
-			've/ve.Trigger.js',
-			've/ve.CommandRegistry.js',
-			've/ve.TriggerRegistry.js',
 			've/ve.Range.js',
 			've/ve.Node.js',
 			've/ve.NamedClassFactory.js',
 			've/ve.BranchNode.js',
 			've/ve.LeafNode.js',
-			've/ve.Surface.js',
+			've/ve.Element.js',
 			've/ve.Document.js',
-			've/ve.Action.js',
-			've/ve.ActionFactory.js',
-
-			// actions
-			've/actions/ve.AnnotationAction.js',
-			've/actions/ve.ContentAction.js',
-			've/actions/ve.FormatAction.js',
-			've/actions/ve.HistoryAction.js',
-			've/actions/ve.IndentationAction.js',
-			've/actions/ve.InspectorAction.js',
-			've/actions/ve.ListAction.js',
 
 			// dm
 			've/dm/ve.dm.js',
@@ -282,20 +339,34 @@ $wgResourceModules += array(
 			've/dm/nodes/ve.dm.TableSectionNode.js',
 			've/dm/nodes/ve.dm.TextNode.js',
 
-			've/dm/nodes/ve.dm.MWEntityNode.js',
-			've/dm/nodes/ve.dm.MWHeadingNode.js',
-			've/dm/nodes/ve.dm.MWPreformattedNode.js',
+			've-mw/dm/nodes/ve.dm.MWEntityNode.js',
+			've-mw/dm/nodes/ve.dm.MWHeadingNode.js',
+			've-mw/dm/nodes/ve.dm.MWPreformattedNode.js',
+			've-mw/dm/nodes/ve.dm.MWInlineImageNode.js',
+			've-mw/dm/nodes/ve.dm.MWBlockImageNode.js',
+			've-mw/dm/nodes/ve.dm.MWImageCaptionNode.js',
+			've-mw/dm/nodes/ve.dm.MWTransclusionNode.js',
+			've-mw/dm/nodes/ve.dm.MWReferenceListNode.js',
+			've-mw/dm/nodes/ve.dm.MWReferenceNode.js',
 
 			've/dm/annotations/ve.dm.LinkAnnotation.js',
-			've/dm/annotations/ve.dm.MWExternalLinkAnnotation.js',
-			've/dm/annotations/ve.dm.MWInternalLinkAnnotation.js',
+			've-mw/dm/annotations/ve.dm.MWExternalLinkAnnotation.js',
+			've-mw/dm/annotations/ve.dm.MWInternalLinkAnnotation.js',
 			've/dm/annotations/ve.dm.TextStyleAnnotation.js',
 
 			've/dm/metaitems/ve.dm.AlienMetaItem.js',
-			've/dm/metaitems/ve.dm.MWAlienMetaItem.js',
-			've/dm/metaitems/ve.dm.MWCategoryMetaItem.js',
-			've/dm/metaitems/ve.dm.MWDefaultSortMetaItem.js',
-			've/dm/metaitems/ve.dm.MWLanguageMetaItem.js',
+			've-mw/dm/metaitems/ve.dm.MWAlienMetaItem.js',
+			've-mw/dm/metaitems/ve.dm.MWCategoryMetaItem.js',
+			've-mw/dm/metaitems/ve.dm.MWDefaultSortMetaItem.js',
+			've-mw/dm/metaitems/ve.dm.MWLanguageMetaItem.js',
+
+			've-mw/dm/models/ve.dm.MWTransclusionModel.js',
+			've-mw/dm/models/ve.dm.MWTransclusionPartModel.js',
+			've-mw/dm/models/ve.dm.MWTransclusionContentModel.js',
+			've-mw/dm/models/ve.dm.MWTemplateSpecModel.js',
+			've-mw/dm/models/ve.dm.MWTemplateModel.js',
+			've-mw/dm/models/ve.dm.MWTemplatePlaceholderModel.js',
+			've-mw/dm/models/ve.dm.MWTemplateParameterModel.js',
 
 			// ce
 			've/ce/ve.ce.js',
@@ -309,6 +380,7 @@ $wgResourceModules += array(
 			've/ce/ve.ce.BranchNode.js',
 			've/ce/ve.ce.ContentBranchNode.js',
 			've/ce/ve.ce.LeafNode.js',
+			've/ce/ve.ce.ProtectedNode.js',
 			've/ce/ve.ce.FocusableNode.js',
 			've/ce/ve.ce.RelocatableNode.js',
 			've/ce/ve.ce.ResizableNode.js',
@@ -338,32 +410,51 @@ $wgResourceModules += array(
 			've/ce/nodes/ve.ce.TableSectionNode.js',
 			've/ce/nodes/ve.ce.TextNode.js',
 
-			've/ce/nodes/ve.ce.MWEntityNode.js',
-			've/ce/nodes/ve.ce.MWHeadingNode.js',
-			've/ce/nodes/ve.ce.MWPreformattedNode.js',
+			've-mw/ce/nodes/ve.ce.MWEntityNode.js',
+			've-mw/ce/nodes/ve.ce.MWHeadingNode.js',
+			've-mw/ce/nodes/ve.ce.MWPreformattedNode.js',
+			've-mw/ce/nodes/ve.ce.MWInlineImageNode.js',
+			've-mw/ce/nodes/ve.ce.MWBlockImageNode.js',
+			've-mw/ce/nodes/ve.ce.MWImageCaptionNode.js',
+			've-mw/ce/nodes/ve.ce.MWTransclusionNode.js',
+			've-mw/ce/nodes/ve.ce.MWReferenceListNode.js',
+			've-mw/ce/nodes/ve.ce.MWReferenceNode.js',
 
 			've/ce/annotations/ve.ce.LinkAnnotation.js',
-			've/ce/annotations/ve.ce.MWExternalLinkAnnotation.js',
-			've/ce/annotations/ve.ce.MWInternalLinkAnnotation.js',
+			've-mw/ce/annotations/ve.ce.MWExternalLinkAnnotation.js',
+			've-mw/ce/annotations/ve.ce.MWInternalLinkAnnotation.js',
 			've/ce/annotations/ve.ce.TextStyleAnnotation.js',
 
 			// ui
 			've/ui/ve.ui.js',
+			've/ui/ve.ui.Surface.js',
 			've/ui/ve.ui.Context.js',
 			've/ui/ve.ui.Frame.js',
 			've/ui/ve.ui.Window.js',
 			've/ui/ve.ui.WindowSet.js',
-			've/ui/ve.ui.ViewRegistry.js',
 			've/ui/ve.ui.Inspector.js',
 			've/ui/ve.ui.InspectorFactory.js',
 			've/ui/ve.ui.Dialog.js',
 			've/ui/ve.ui.DialogFactory.js',
-			've/ui/ve.ui.Element.js',
 			've/ui/ve.ui.Layout.js',
 			've/ui/ve.ui.Widget.js',
 			've/ui/ve.ui.Tool.js',
-			've/ui/ve.ui.Toolbar.js',
 			've/ui/ve.ui.ToolFactory.js',
+			've/ui/ve.ui.Toolbar.js',
+			've/ui/ve.ui.CommandRegistry.js',
+			've/ui/ve.ui.Trigger.js',
+			've/ui/ve.ui.TriggerRegistry.js',
+			've/ui/ve.ui.Action.js',
+			've/ui/ve.ui.ActionFactory.js',
+			've-mw/ui/ve.ui.MWDialog.js',
+
+			've/ui/actions/ve.ui.AnnotationAction.js',
+			've/ui/actions/ve.ui.ContentAction.js',
+			've/ui/actions/ve.ui.FormatAction.js',
+			've/ui/actions/ve.ui.HistoryAction.js',
+			've/ui/actions/ve.ui.IndentationAction.js',
+			've/ui/actions/ve.ui.InspectorAction.js',
+			've/ui/actions/ve.ui.ListAction.js',
 
 			've/ui/elements/ve.ui.LabeledElement.js',
 			've/ui/elements/ve.ui.GroupElement.js',
@@ -372,6 +463,7 @@ $wgResourceModules += array(
 			've/ui/widgets/ve.ui.PopupWidget.js',
 			've/ui/widgets/ve.ui.SelectWidget.js',
 			've/ui/widgets/ve.ui.OptionWidget.js',
+			've/ui/widgets/ve.ui.SearchWidget.js',
 			've/ui/widgets/ve.ui.ButtonWidget.js',
 			've/ui/widgets/ve.ui.IconButtonWidget.js',
 			've/ui/widgets/ve.ui.InputWidget.js',
@@ -379,28 +471,39 @@ $wgResourceModules += array(
 			've/ui/widgets/ve.ui.TextInputWidget.js',
 			've/ui/widgets/ve.ui.OutlineItemWidget.js',
 			've/ui/widgets/ve.ui.OutlineWidget.js',
+			've/ui/widgets/ve.ui.OutlineControlsWidget.js',
 			've/ui/widgets/ve.ui.MenuItemWidget.js',
 			've/ui/widgets/ve.ui.MenuSectionItemWidget.js',
 			've/ui/widgets/ve.ui.MenuWidget.js',
-			've/ui/widgets/ve.ui.PendingInputWidget.js',
 			've/ui/widgets/ve.ui.LookupInputWidget.js',
 			've/ui/widgets/ve.ui.TextInputMenuWidget.js',
 			've/ui/widgets/ve.ui.LinkTargetInputWidget.js',
-			've/ui/widgets/ve.ui.MWLinkTargetInputWidget.js',
-			've/ui/widgets/ve.ui.MWCategoryInputWidget.js',
-			've/ui/widgets/ve.ui.MWCategoryPopupWidget.js',
-			've/ui/widgets/ve.ui.MWCategoryItemWidget.js',
-			've/ui/widgets/ve.ui.MWCategoryWidget.js',
+			've-mw/ui/widgets/ve.ui.MWLinkTargetInputWidget.js',
+			've-mw/ui/widgets/ve.ui.MWCategoryInputWidget.js',
+			've-mw/ui/widgets/ve.ui.MWCategoryPopupWidget.js',
+			've-mw/ui/widgets/ve.ui.MWCategoryItemWidget.js',
+			've-mw/ui/widgets/ve.ui.MWCategoryWidget.js',
+			've-mw/ui/widgets/ve.ui.MWMediaSearchWidget.js',
+			've-mw/ui/widgets/ve.ui.MWMediaResultWidget.js',
+			've-mw/ui/widgets/ve.ui.MWParameterSearchWidget.js',
+			've-mw/ui/widgets/ve.ui.MWParameterResultWidget.js',
+			've-mw/ui/widgets/ve.ui.MWReferenceSearchWidget.js',
+			've-mw/ui/widgets/ve.ui.MWReferenceResultWidget.js',
+			've-mw/ui/widgets/ve.ui.MWTitleInputWidget.js',
 
+			've/ui/layouts/ve.ui.FieldsetLayout.js',
 			've/ui/layouts/ve.ui.GridLayout.js',
 			've/ui/layouts/ve.ui.PanelLayout.js',
-			've/ui/layouts/panels/ve.ui.StackPanelLayout.js',
-			've/ui/layouts/panels/ve.ui.PagePanelLayout.js',
+			've/ui/layouts/ve.ui.StackPanelLayout.js',
 
-			've/ui/dialogs/ve.ui.ContentDialog.js',
-			've/ui/dialogs/ve.ui.MediaDialog.js',
 			've/ui/dialogs/ve.ui.PagedDialog.js',
-			've/ui/dialogs/ve.ui.MWMetaDialog.js',
+			've-mw/ui/dialogs/ve.ui.MWMetaDialog.js',
+			've-mw/ui/dialogs/ve.ui.MWMediaInsertDialog.js',
+			've-mw/ui/dialogs/ve.ui.MWMediaEditDialog.js',
+			've-mw/ui/dialogs/ve.ui.MWTransclusionDialog.js',
+			've-mw/ui/dialogs/ve.ui.MWReferenceListDialog.js',
+			've-mw/ui/dialogs/ve.ui.MWReferenceEditDialog.js',
+			've-mw/ui/dialogs/ve.ui.MWReferenceInsertDialog.js',
 
 			've/ui/tools/ve.ui.ButtonTool.js',
 			've/ui/tools/ve.ui.AnnotationButtonTool.js',
@@ -413,41 +516,49 @@ $wgResourceModules += array(
 			've/ui/tools/buttons/ve.ui.BoldButtonTool.js',
 			've/ui/tools/buttons/ve.ui.ItalicButtonTool.js',
 			've/ui/tools/buttons/ve.ui.ClearButtonTool.js',
-			've/ui/tools/buttons/ve.ui.MediaButtonTool.js',
 			've/ui/tools/buttons/ve.ui.LinkButtonTool.js',
-			've/ui/tools/buttons/ve.ui.MWLinkButtonTool.js',
+			've-mw/ui/tools/buttons/ve.ui.MWLinkButtonTool.js',
+			've-mw/ui/tools/buttons/ve.ui.MWMediaInsertButtonTool.js',
+			've-mw/ui/tools/buttons/ve.ui.MWMediaEditButtonTool.js',
 			've/ui/tools/buttons/ve.ui.BulletButtonTool.js',
 			've/ui/tools/buttons/ve.ui.NumberButtonTool.js',
 			've/ui/tools/buttons/ve.ui.IndentButtonTool.js',
 			've/ui/tools/buttons/ve.ui.OutdentButtonTool.js',
 			've/ui/tools/buttons/ve.ui.RedoButtonTool.js',
 			've/ui/tools/buttons/ve.ui.UndoButtonTool.js',
+			've-mw/ui/tools/buttons/ve.ui.MWTransclusionButtonTool.js',
+			've-mw/ui/tools/buttons/ve.ui.MWReferenceListButtonTool.js',
+			've-mw/ui/tools/buttons/ve.ui.MWReferenceEditButtonTool.js',
+			've-mw/ui/tools/buttons/ve.ui.MWReferenceInsertButtonTool.js',
 
 			've/ui/tools/dropdowns/ve.ui.FormatDropdownTool.js',
-			've/ui/tools/dropdowns/ve.ui.MWFormatDropdownTool.js',
+			've-mw/ui/tools/dropdowns/ve.ui.MWFormatDropdownTool.js',
 
+			've/ui/inspectors/ve.ui.AnnotationInspector.js',
 			've/ui/inspectors/ve.ui.LinkInspector.js',
-			've/ui/inspectors/ve.ui.MWLinkInspector.js',
+			've-mw/ui/inspectors/ve.ui.MWLinkInspector.js',
 		),
 		'styles' => array(
-			// ve
-			've/styles/ve.Surface.css',
 			// ce
-			've/ce/styles/ve.ce.DocumentNode.css',
 			've/ce/styles/ve.ce.Node.css',
+			've-mw/ce/styles/ve.ce.Node.css',
 			've/ce/styles/ve.ce.Surface.css',
 			// ui
 			've/ui/styles/ve.ui.css',
+			've/ui/styles/ve.ui.Surface.css',
 			've/ui/styles/ve.ui.Context.css',
 			've/ui/styles/ve.ui.Frame.css',
 			've/ui/styles/ve.ui.Window.css',
-			've/ui/styles/ve.ui.Dialog.css',
-			've/ui/styles/ve.ui.Inspector.css',
 			've/ui/styles/ve.ui.Toolbar.css',
 			've/ui/styles/ve.ui.Tool.css',
+			've-mw/ui/styles/ve.ui.Tool.css',
 			've/ui/styles/ve.ui.Element.css',
 			've/ui/styles/ve.ui.Layout.css',
 			've/ui/styles/ve.ui.Widget.css',
+			've-mw/ui/styles/ve.ui.Widget.css',
+			've/ui/styles/ve.ui.Inspector.css',
+			've/ui/styles/ve.ui.Dialog.css',
+			've-mw/ui/styles/ve.ui.MWDialog.css',
 		),
 		'dependencies' => array(
 			'jquery',
@@ -458,85 +569,174 @@ $wgResourceModules += array(
 			'jquery.autoEllipsis',
 		),
 		'messages' => array(
+			// VE messages for the editor (NOT experimental mode messages)
 			'visualeditor',
-			'visualeditor-inspector-title',
-			'visualeditor-linkinspector-title',
-			'visualeditor-linkinspector-label-pagetitle',
-			'visualeditor-linkinspector-suggest-matching-page',
-			'visualeditor-linkinspector-suggest-new-page',
-			'visualeditor-linkinspector-suggest-external-link',
-			'visualeditor-formatdropdown-title',
-			'visualeditor-formatdropdown-format-paragraph',
-			'visualeditor-formatdropdown-format-heading1',
-			'visualeditor-formatdropdown-format-heading2',
-			'visualeditor-formatdropdown-format-heading3',
-			'visualeditor-formatdropdown-format-heading4',
-			'visualeditor-formatdropdown-format-heading5',
-			'visualeditor-formatdropdown-format-heading6',
-			'visualeditor-formatdropdown-format-preformatted',
+			'visualeditor-aliennode-tooltip',
 			'visualeditor-annotationbutton-bold-tooltip',
 			'visualeditor-annotationbutton-italic-tooltip',
 			'visualeditor-annotationbutton-link-tooltip',
-			'visualeditor-dialogbutton-media-tooltip',
-			'visualeditor-indentationbutton-indent-tooltip',
-			'visualeditor-indentationbutton-outdent-tooltip',
-			'visualeditor-listbutton-number-tooltip',
-			'visualeditor-listbutton-bullet-tooltip',
+			'visualeditor-beta-label',
+			'visualeditor-beta-warning',
+			'visualeditor-browserwarning',
 			'visualeditor-clearbutton-tooltip',
-			'visualeditor-historybutton-undo-tooltip',
-			'visualeditor-historybutton-redo-tooltip',
-			'visualeditor-inspector-close-tooltip',
-			'visualeditor-inspector-remove-tooltip',
-			'visualeditor-viewpage-savewarning',
-			'visualeditor-differror',
-			'visualeditor-serializeerror',
-			'visualeditor-saveerror',
-			'visualeditor-editconflict',
-			'visualeditor-aliennode-tooltip',
-			'visualeditor-dialog-meta-title',
-			'visualeditor-dialog-media-title',
-			'visualeditor-dialog-content-title',
 			'visualeditor-dialog-action-apply',
 			'visualeditor-dialog-action-cancel',
 			'visualeditor-dialog-action-close',
-			'visualeditor-category-input-placeholder',
-			'visualeditor-category-settings-label'
+			'visualeditor-dialog-media-content-section',
+			'visualeditor-dialog-media-insert-button',
+			'visualeditor-dialog-media-insert-title',
+			'visualeditor-dialog-media-title',
+			'visualeditor-dialog-meta-categories-category',
+			'visualeditor-dialog-meta-categories-data-label',
+			'visualeditor-dialog-meta-categories-defaultsort-label',
+			'visualeditor-dialog-meta-categories-input-matchingcategorieslabel',
+			'visualeditor-dialog-meta-categories-input-movecategorylabel',
+			'visualeditor-dialog-meta-categories-input-newcategorylabel',
+			'visualeditor-dialog-meta-categories-input-placeholder',
+			'visualeditor-dialog-meta-categories-options',
+			'visualeditor-dialog-meta-categories-section',
+			'visualeditor-dialog-meta-categories-sortkey-label',
+			'visualeditor-dialog-meta-languages-code-label',
+			'visualeditor-dialog-meta-languages-label',
+			'visualeditor-dialog-meta-languages-link-label',
+			'visualeditor-dialog-meta-languages-readonlynote',
+			'visualeditor-dialog-meta-languages-section',
+			'visualeditor-dialog-meta-title',
+			'visualeditor-dialog-reference-content-section',
+			'visualeditor-dialog-reference-insert-button',
+			'visualeditor-dialog-reference-insert-title',
+			'visualeditor-dialog-reference-options-group-label',
+			'visualeditor-dialog-reference-options-name-label',
+			'visualeditor-dialog-reference-options-section',
+			'visualeditor-dialog-reference-title',
+			'visualeditor-dialog-referencelist-title',
+			'visualeditor-dialogbutton-reference-insert-tooltip',
+			'visualeditor-dialogbutton-reference-tooltip',
+			'visualeditor-dialog-transclusion-add-content',
+			'visualeditor-dialog-transclusion-add-param',
+			'visualeditor-dialog-transclusion-add-template',
+			'visualeditor-dialog-transclusion-content',
+			'visualeditor-dialog-transclusion-options',
+			'visualeditor-dialog-transclusion-placeholder',
+			'visualeditor-dialog-transclusion-remove-content',
+			'visualeditor-dialog-transclusion-remove-param',
+			'visualeditor-dialog-transclusion-remove-template',
+			'visualeditor-dialog-transclusion-title',
+			'visualeditor-dialog-transclusion-wikitext-label',
+			'visualeditor-dialogbutton-media-tooltip',
+			'visualeditor-dialogbutton-meta-tooltip',
+			'visualeditor-dialogbutton-reference-tooltip',
+			'visualeditor-dialogbutton-referencelist-tooltip',
+			'visualeditor-dialogbutton-transclusion-tooltip',
+			'visualeditor-diff-nochanges',
+			'visualeditor-differror',
+			'visualeditor-editconflict',
+			'visualeditor-editnotices-tool',
+			'visualeditor-editsummary',
+			'visualeditor-feedback-link',
+			'visualeditor-feedback-tool',
+			'visualeditor-formatdropdown-format-mw-heading1',
+			'visualeditor-formatdropdown-format-mw-heading2',
+			'visualeditor-formatdropdown-format-mw-heading3',
+			'visualeditor-formatdropdown-format-mw-heading4',
+			'visualeditor-formatdropdown-format-mw-heading5',
+			'visualeditor-formatdropdown-format-mw-heading6',
+			'visualeditor-formatdropdown-format-paragraph',
+			'visualeditor-formatdropdown-format-preformatted',
+			'visualeditor-formatdropdown-title',
+			'visualeditor-help-link',
+			'visualeditor-help-label',
+			'visualeditor-help-title',
+			'visualeditor-historybutton-redo-tooltip',
+			'visualeditor-historybutton-undo-tooltip',
+			'visualeditor-indentationbutton-indent-tooltip',
+			'visualeditor-indentationbutton-outdent-tooltip',
+			'visualeditor-inspector-close-tooltip',
+			'visualeditor-inspector-remove-tooltip',
+			'visualeditor-linkinspector-suggest-external-link',
+			'visualeditor-linkinspector-suggest-matching-page',
+			'visualeditor-linkinspector-suggest-new-page',
+			'visualeditor-linkinspector-title',
+			'visualeditor-languageinspector-block-tooltip',
+			'visualeditor-languageinspector-block-tooltip-rtldirection',
+			'visualeditor-listbutton-bullet-tooltip',
+			'visualeditor-listbutton-number-tooltip',
+			'visualeditor-media-input-placeholder',
+			'visualeditor-meta-tool',
+			'visualeditor-outline-control-move-down',
+			'visualeditor-outline-control-move-up',
+			'visualeditor-outline-control-move-up',
+			'visualeditor-parameter-input-placeholder',
+			'visualeditor-parameter-search-no-unused',
+			'visualeditor-parameter-search-unknown',
+			'visualeditor-reference-input-placeholder',
+			'visualeditor-reference-search-create',
+			'visualeditor-reference-search-reuse',
+			'visualeditor-referencelist-isempty',
+			'visualeditor-referencelist-missingref',
+			'visualeditor-savedialog-error-badtoken',
+			'visualeditor-savedialog-label-create',
+			'visualeditor-savedialog-label-error',
+			'visualeditor-savedialog-label-report',
+			'visualeditor-savedialog-label-resolve-conflict',
+			'visualeditor-savedialog-label-restore',
+			'visualeditor-savedialog-label-review',
+			'visualeditor-savedialog-label-review-good',
+			'visualeditor-savedialog-label-save',
+			'visualeditor-savedialog-label-warning',
+			'visualeditor-savedialog-title-conflict',
+			'visualeditor-savedialog-title-nochanges',
+			'visualeditor-savedialog-title-review',
+			'visualeditor-savedialog-title-save',
+			'visualeditor-savedialog-warning-dirty',
+			'visualeditor-saveerror',
+			'visualeditor-serializeerror',
+			'visualeditor-toolbar-cancel',
+			'visualeditor-toolbar-savedialog',
+			'visualeditor-viewpage-savewarning',
+			'visualeditor-window-title',
+
+			// Only used if FancyCaptcha is installed and triggered on save
+			'captcha-label',
+			'fancycaptcha-edit',
+			'colon-separator',
 		),
 	),
 	'ext.visualEditor.experimental' => $wgVisualEditorResourceTemplate + array(
 		'scripts' => array(
-			've/dm/nodes/ve.dm.MWInlineImageNode.js',
-			've/dm/nodes/ve.dm.MWBlockImageNode.js',
-			've/dm/nodes/ve.dm.MWImageCaptionNode.js',
-			've/dm/nodes/ve.dm.MWTemplateNode.js',
-			've/dm/nodes/ve.dm.MWReferenceListNode.js',
-			've/dm/nodes/ve.dm.MWReferenceNode.js',
-
-			've/ce/nodes/ve.ce.MWInlineImageNode.js',
-			've/ce/nodes/ve.ce.MWBlockImageNode.js',
-			've/ce/nodes/ve.ce.MWImageCaptionNode.js',
-			've/ce/nodes/ve.ce.MWTemplateNode.js',
-			've/ce/nodes/ve.ce.MWReferenceListNode.js',
-			've/ce/nodes/ve.ce.MWReferenceNode.js',
+			've-mw/ce/nodes/ve.ce.MWMathNode.js',
+			've-mw/dm/nodes/ve.dm.MWMathNode.js',
+			've-mw/ui/inspectors/ve.ui.MWMathInspector.js',
+			've-mw/ui/tools/buttons/ve.ui.MWMathButtonTool.js',
+			've/dm/annotations/ve.dm.LanguageAnnotation.js',
+			've/ce/annotations/ve.ce.LanguageAnnotation.js',
 		),
 		'dependencies' => array(
 			'ext.visualEditor.core',
-		)
+		),
+		'messages' => array(
+			// VE messages needed by code that is only in experimental mode
+			'visualeditor-mwmathinspector-title',
+		),
 	),
 	'ext.visualEditor.icons-raster' => $wgVisualEditorResourceTemplate + array(
 		'styles' => array(
 			've/ui/styles/ve.ui.Icons-raster.css',
+			've-mw/ui/styles/ve.ui.Icons-raster.css',
 		),
 	),
 	'ext.visualEditor.icons-vector' => $wgVisualEditorResourceTemplate + array(
 		'styles' => array(
 			've/ui/styles/ve.ui.Icons-vector.css',
+			've-mw/ui/styles/ve.ui.Icons-vector.css',
 		),
 	),
 );
 // Parsoid Wrapper API
 $wgAutoloadClasses['ApiVisualEditor'] = $dir . 'ApiVisualEditor.php';
+$wgAutoloadClasses['ApiVisualEditorEdit'] = $dir . 'ApiVisualEditorEdit.php';
 $wgAPIModules['visualeditor'] = 'ApiVisualEditor';
+$wgAPIModules['visualeditoredit'] = 'ApiVisualEditorEdit';
 
 // Integration Hooks
 $wgAutoloadClasses['VisualEditorHooks'] = $dir . 'VisualEditor.hooks.php';
@@ -546,5 +746,12 @@ $wgHooks['ListDefinedTags'][] = 'VisualEditorHooks::onListDefinedTags';
 $wgHooks['MakeGlobalVariablesScript'][] = 'VisualEditorHooks::onMakeGlobalVariablesScript';
 $wgHooks['ResourceLoaderGetConfigVars'][] = 'VisualEditorHooks::onResourceLoaderGetConfigVars';
 $wgHooks['ResourceLoaderTestModules'][] = 'VisualEditorHooks::onResourceLoaderTestModules';
+
+// Bug 49604: Running split test in production if $wgVisualEditorEnableSplitTest is true.
+// This requires that GuidedTour and EventLogging are also enabled on the wiki.
+$wgHooks['AddNewAccount'][] = 'VisualEditorHooks::onAddNewAccount';
+$wgHooks['BeforeWelcomeCreation'][] = 'VisualEditorHooks::onBeforeWelcomeCreation';
+
+$wgExtensionFunctions[] = 'VisualEditorHooks::onSetup';
 
 $wgAutoloadClasses['VisualEditorMessagesModule'] = $dir . 'VisualEditorMessagesModule.php';

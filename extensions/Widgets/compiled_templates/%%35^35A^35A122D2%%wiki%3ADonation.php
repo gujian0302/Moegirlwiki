@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18-dev, created on 2013-05-05 05:36:44
+<?php /* Smarty version 2.6.18-dev, created on 2013-06-23 21:38:12
          compiled from wiki:Donation */ ?>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">

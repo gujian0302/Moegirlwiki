@@ -24,7 +24,7 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'Gadgets',
 	'author' => array( 'Daniel Kinzler', 'Max Semenik' ),
-	'url' => 'https://mediawiki.org/wiki/Extension:Gadgets',
+	'url' => 'https://www.mediawiki.org/wiki/Extension:Gadgets',
 	'descriptionmsg' => 'gadgets-desc',
 );
 
@@ -33,7 +33,7 @@ $wgHooks['BeforePageDisplay'][]             = 'GadgetHooks::beforePageDisplay';
 $wgHooks['UserGetDefaultOptions'][]         = 'GadgetHooks::userGetDefaultOptions';
 $wgHooks['GetPreferences'][]                = 'GadgetHooks::getPreferences';
 $wgHooks['ResourceLoaderRegisterModules'][] = 'GadgetHooks::registerModules';
-$wgHooks['UnitTestsList'][]                 = 'GadgetHooks::unitTestsList';
+$wgHooks['UnitTestsList'][]                 = 'GadgetHooks::onUnitTestsList';
 
 $dir = dirname( __FILE__ ) . '/';
 $wgExtensionMessagesFiles['Gadgets'] = $dir . 'Gadgets.i18n.php';

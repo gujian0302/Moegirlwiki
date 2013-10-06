@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18-dev, created on 2013-05-05 01:11:32
+<?php /* Smarty version 2.6.18-dev, created on 2013-06-24 10:48:45
          compiled from wiki:Youku */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'wiki:Youku', 3, false),array('modifier', 'default', 'wiki:Youku', 4, false),)), $this); ?>

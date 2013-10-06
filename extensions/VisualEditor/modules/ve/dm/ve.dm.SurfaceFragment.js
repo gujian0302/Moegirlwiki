@@ -9,6 +9,7 @@
  * DataModel surface fragment.
  *
  * @class
+ *
  * @constructor
  * @param {ve.dm.Surface} surface Target surface
  * @param {ve.Range} [range] Range within target document, current selection used by default
@@ -37,7 +38,7 @@ ve.dm.SurfaceFragment = function VeDmSurfaceFragment( surface, range, noAutoSele
 		Math.min( Math.max( this.range.from, 0 ), length ),
 		Math.min( Math.max( this.range.to, 0 ), length )
 	);
-	this.historyPointer = this.getSurface().getCompleteHistoryLength();
+	this.historyPointer = this.document.getCompleteHistoryLength();
 };
 
 /* Static Properties */
@@ -59,8 +60,8 @@ ve.dm.SurfaceFragment.static = {};
 ve.dm.SurfaceFragment.prototype.update = function () {
 	var i, length, txs;
 	// Small optimisation: check history pointer is in the past
-	if ( this.historyPointer < this.getSurface().getCompleteHistoryLength() ) {
-		txs = this.getSurface().getCompleteHistorySince( this.historyPointer );
+	if ( this.historyPointer < this.document.getCompleteHistoryLength() ) {
+		txs = this.document.getCompleteHistorySince( this.historyPointer );
 		for ( i = 0, length = txs.length; i < length; i++ ) {
 			this.range = txs[i].transaction.translateRange( this.range, txs[i].undo );
 			this.historyPointer++;
@@ -352,7 +353,7 @@ ve.dm.SurfaceFragment.prototype.getText = function () {
  * argument to get all annotations that occur within the fragment.
  *
  * @method
- * @param {boolean} [all] Get annotations cover some of the fragment
+ * @param {boolean} [all] Get annotations which only cover some of the fragment
  * @returns {ve.dm.AnnotationSet} All annotation objects range is covered by
  */
 ve.dm.SurfaceFragment.prototype.getAnnotations = function ( all ) {
@@ -400,7 +401,7 @@ ve.dm.SurfaceFragment.prototype.getCoveredNodes = function () {
 	if ( !this.surface ) {
 		return [];
 	}
-	return this.document.selectNodes( this.getRange(), 'coveredNodes' );
+	return this.document.selectNodes( this.getRange(), 'covered' );
 };
 
 /**
@@ -449,6 +450,48 @@ ve.dm.SurfaceFragment.prototype.select = function () {
 };
 
 /**
+ * Change one or more attributes on covered nodes.
+ *
+ * @method
+ * @param {Object} attr List of attributes to change, use undefined to remove an attribute
+ * @param {string} [type] Node type to restrict changes to
+ * @chainable
+ */
+ve.dm.SurfaceFragment.prototype.changeAttributes = function ( attr, type ) {
+	// Handle null fragment
+	if ( !this.surface ) {
+		return this;
+	}
+
+	var i, len, result,
+		txs = [],
+		covered = this.getCoveredNodes();
+
+	for ( i = 0, len = covered.length; i < len; i++ ) {
+		result = covered[i];
+		if (
+			// Non-wrapped nodes have no attributes
+			!result.node.isWrapped() ||
+			// Filtering by node type
+			( type && result.node.getType() !== type ) ||
+			// Ignore zero-length results
+			( result.range && result.range.isCollapsed() )
+		) {
+			continue;
+		}
+		txs.push(
+			ve.dm.Transaction.newFromAttributeChanges(
+				this.document, result.nodeOuterRange.start, attr
+			)
+		);
+	}
+	if ( txs.length ) {
+		this.surface.change( txs );
+	}
+	return this;
+};
+
+/**
  * Apply an annotation to content in the fragment.
  *
  * To avoid problems identified in bug 33108, use the {ve.dm.SurfaceFragment.trimRange} method.
@@ -468,13 +511,17 @@ ve.dm.SurfaceFragment.prototype.annotateContent = function ( method, nameOrAnnot
 	if ( !this.surface ) {
 		return this;
 	}
-	var annotations, i, ilen, tx, txs = [], newRange = this.getRange();
+	var annotation, annotations, i, ilen, tx, txs = [], newRange = this.getRange();
 	if ( nameOrAnnotation instanceof ve.dm.Annotation ) {
 		annotations = [ nameOrAnnotation ];
-	} else if ( method === 'set' ) {
-		annotations = [ ve.dm.annotationFactory.create( nameOrAnnotation, data ) ];
 	} else {
-		annotations = this.document.data.getAnnotationsFromRange( this.getRange(), true ).get();
+		annotation = ve.dm.annotationFactory.create( nameOrAnnotation, data );
+		if ( method === 'set' ) {
+			annotations = [ annotation ];
+		} else {
+			annotations = this.document.data.getAnnotationsFromRange( this.getRange(), true )
+				.getComparableAnnotations( annotation ).get();
+		}
 	}
 	if ( this.getRange( true ).getLength() ) {
 		// Apply to selection
@@ -489,11 +536,11 @@ ve.dm.SurfaceFragment.prototype.annotateContent = function ( method, nameOrAnnot
 		// Apply annotation to stack
 		if ( method === 'set' ) {
 			for ( i = 0, ilen = annotations.length; i < ilen; i++ ) {
-				this.surface.addInsertionAnnotation( annotations[i] );
+				this.surface.addInsertionAnnotations( annotations[i] );
 			}
 		} else if ( method === 'clear' ) {
 			for ( i = 0, ilen = annotations.length; i < ilen; i++ ) {
-				this.surface.removeInsertionAnnotation( annotations[i] );
+				this.surface.removeInsertionAnnotations( annotations[i] );
 			}
 		}
 	}
@@ -521,7 +568,7 @@ ve.dm.SurfaceFragment.prototype.insertContent = function ( content, annotate ) {
 	}
 	// Auto-convert content to array of plain text characters
 	if ( typeof content === 'string' ) {
-		content = content.split( '' );
+		content = ve.splitClusters( content );
 	}
 	if ( content.length ) {
 		if ( annotate ) {
@@ -568,8 +615,9 @@ ve.dm.SurfaceFragment.prototype.convertNodes = function ( type, attr ) {
 	if ( !this.surface ) {
 		return this;
 	}
-	var tx =
-		ve.dm.Transaction.newFromContentBranchConversion( this.document, this.getRange(), type, attr );
+	var tx = ve.dm.Transaction.newFromContentBranchConversion(
+		this.document, this.getRange(), type, attr
+	);
 	this.surface.change( tx, !this.noAutoSelect && tx.translateRange( this.getRange() ) );
 	return this;
 };
@@ -829,7 +877,7 @@ ve.dm.SurfaceFragment.prototype.isolateAndUnwrap = function ( isolateForType ) {
 		}
 		startSplitNode = startSplitNode.getParent();
 		if ( startSplitRequired ) {
-			startSplitNodes.unshift(startSplitNode);
+			startSplitNodes.unshift( startSplitNode );
 		} else {
 			startOffset = startSplitNode.getOuterRange().start;
 		}
@@ -845,7 +893,7 @@ ve.dm.SurfaceFragment.prototype.isolateAndUnwrap = function ( isolateForType ) {
 		}
 		endSplitNode = endSplitNode.getParent();
 		if ( endSplitRequired ) {
-			endSplitNodes.unshift(endSplitNode);
+			endSplitNodes.unshift( endSplitNode );
 		} else {
 			endOffset = endSplitNode.getOuterRange().end;
 		}

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18-dev, created on 2013-02-25 03:48:40
+<?php /* Smarty version 2.6.18-dev, created on 2013-06-04 18:27:22
          compiled from wiki:qqvideo */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'wiki:qqvideo', 3, false),array('modifier', 'default', 'wiki:qqvideo', 3, false),)), $this); ?>

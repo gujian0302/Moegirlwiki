@@ -21,10 +21,14 @@
 		<script src="../jquery/jquery.js"></script>
 		<script src="unicodejs.js"></script>
 		<script src="unicodejs.textstring.js"></script>
-		<script src="unicodejs.wordbreak.groups.js"></script>
+		<script src="unicodejs.graphemebreakproperties.js"></script>
+		<script src="unicodejs.graphemebreak.js"></script>
+		<script src="unicodejs.wordbreakproperties.js"></script>
 		<script src="unicodejs.wordbreak.js"></script>
 
-		<script src="unicodejs.wordbreak.test.js"></script>
+		<script src="test/unicodejs.test.js"></script>
+		<script src="test/unicodejs.graphemebreak.test.js"></script>
+		<script src="test/unicodejs.wordbreak.test.js"></script>
 	</head>
 	<body>
 		<div id="qunit"></div>

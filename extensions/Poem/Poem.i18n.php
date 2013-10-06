@@ -2,13 +2,14 @@
 /**
  * Internationalisation file for Poem extension.
  *
- * @addtogroup Extensions
+ * @file
+ * @ingroup Extensions
  */
 
 $messages = array();
 
 $messages['en'] = array(
-	'poem-desc' => 'Adds <tt>&lt;poem&gt;</tt> tag for poem formatting',
+	'poem-desc' => 'Adds <code>&lt;poem&gt;</code> tag for poem formatting',
 );
 
 /** Message documentation (Message documentation)
@@ -22,279 +23,331 @@ $messages['qqq'] = array(
  * @author Naudefj
  */
 $messages['af'] = array(
-	'poem-desc' => "Maak 'n <tt>&lt;poem&gt;</tt> etiket beskikbaar vir die formatering van poësie",
+	'poem-desc' => "Maak 'n <code>&lt;poem&gt;</code> etiket beskikbaar vir die formatering van poësie",
 );
 
-/** Aragonese (Aragonés)
+/** Aragonese (aragonés)
  * @author Juanpabl
  */
 $messages['an'] = array(
-	'poem-desc' => 'Adibe a etiqueta <tt>&lt;poem&gt;</tt> ta formateyar poesía',
+	'poem-desc' => 'Adibe a etiqueta <code>&lt;poem&gt;</code> ta formateyar poesía',
 );
 
 /** Arabic (العربية)
  * @author Meno25
  */
 $messages['ar'] = array(
-	'poem-desc' => 'يضيف الوسم <tt>&lt;poem&gt;</tt> لصياغة القصيدة',
+	'poem-desc' => 'يضيف الوسم <code>&lt;poem&gt;</code> لصياغة القصيدة',
 );
 
 /** Egyptian Spoken Arabic (مصرى)
  * @author Ramsis II
  */
 $messages['arz'] = array(
-	'poem-desc' => 'بيضيف تاج ال <tt>&lt;poem&gt;</tt> لصياغة القصيدة',
+	'poem-desc' => 'بيضيف تاج ال <code>&lt;poem&gt;</code> لصياغة القصيدة',
 );
 
-/** Asturian (Asturianu)
+/** Asturian (asturianu)
  * @author Esbardu
  */
 $messages['ast'] = array(
-	'poem-desc' => 'Añade la etiqueta <tt>&lt;poem&gt;</tt> pal formatu de poemes',
+	'poem-desc' => 'Añade la etiqueta <code>&lt;poem&gt;</code> pal formatu de poemes',
+);
+
+/** Azerbaijani (azərbaycanca)
+ * @author Sortilegus
+ */
+$messages['az'] = array(
+	'poem-desc' => 'Şeirlərin formatlaşdırılması üçün <code>&lt;poem&gt;</code> teqini əlavə edir',
+);
+
+/** Bashkir (башҡортса)
+ * @author Assele
+ */
+$messages['ba'] = array(
+	'poem-desc' => 'Шиғырҙарҙы форматлау өсөн <code>&lt;poem&gt;</code> билдәһен өҫтәй',
 );
 
 /** Bavarian (Boarisch)
  * @author Man77
  */
 $messages['bar'] = array(
-	'poem-desc' => "Fügt s'<tt>&lt;poem&gt;</tt>-Tag zum Formatian vu Gedichtln dazua",
+	'poem-desc' => "Fügt s'<code>&lt;poem&gt;</code>-Tag zum Formatian vu Gedichtln dazua",
 );
 
 /** Southern Balochi (بلوچی مکرانی)
  * @author Mostafadaneshvar
  */
 $messages['bcc'] = array(
-	'poem-desc' => 'هورکنت <tt>&lt;poem&gt;</tt> برچسپء په فرمت شئر',
+	'poem-desc' => 'هورکنت <code>&lt;poem&gt;</code> برچسپء په فرمت شئر',
 );
 
-/** Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
+/** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
  * @author Jim-by
  */
 $messages['be-tarask'] = array(
-	'poem-desc' => 'Дадае тэг <tt>&lt;poem&gt;</tt> для фарматаваньня вершаў',
+	'poem-desc' => 'Дадае тэг <code>&lt;poem&gt;</code> для фарматаваньня вершаў',
 );
 
-/** Bulgarian (Български)
+/** Bulgarian (български)
  * @author DCLXVI
  */
 $messages['bg'] = array(
-	'poem-desc' => 'Добавя етикет <tt>&lt;poem&gt;</tt> за форматиране на стихове',
+	'poem-desc' => 'Добавя етикет <code>&lt;poem&gt;</code> за форматиране на стихове',
 );
 
 /** Bengali (বাংলা)
  * @author Bellayet
  */
 $messages['bn'] = array(
-	'poem-desc' => 'কবিতার ফরমেটিং এর জন্য <tt>&lt;poem&gt;</tt> ট্যাগ যোগ করুন',
+	'poem-desc' => 'কবিতার ফরমেটিং এর জন্য <code>&lt;poem&gt;</code> ট্যাগ যোগ করুন',
 );
 
-/** Breton (Brezhoneg)
+/** Breton (brezhoneg)
  * @author Fulup
  */
 $messages['br'] = array(
-	'poem-desc' => 'Ouzhpennañ a ra ar valizenn <tt>&lt;poem&gt;</tt> da furmadiñ testennoù barzhonegoù.',
+	'poem-desc' => 'Ouzhpennañ a ra ar valizenn <code>&lt;poem&gt;</code> da furmadiñ testennoù barzhonegoù.',
 );
 
-/** Bosnian (Bosanski)
+/** Bosnian (bosanski)
  * @author CERminator
  */
 $messages['bs'] = array(
-	'poem-desc' => 'Dodaje oznaku <tt>&lt;poem&gt;</tt> za formatiranje stihova',
+	'poem-desc' => 'Dodaje oznaku <code>&lt;poem&gt;</code> za formatiranje stihova',
 );
 
-/** Catalan (Català)
+/** Catalan (català)
  * @author Paucabot
  */
 $messages['ca'] = array(
-	'poem-desc' => "Afegeix l'etiqueta <tt>&lt;poem&gt;</tt> per al formatatge  de poemes",
+	'poem-desc' => "Afegeix l'etiqueta <code>&lt;poem&gt;</code> per al formatatge  de poemes",
 );
 
-/** Czech (Česky)
+/** Sorani Kurdish (کوردی)
+ * @author Asoxor
+ */
+$messages['ckb'] = array(
+	'poem-desc' => 'تاگی <code>&lt;poem&gt;</code> زێدەدەکات بۆ ڕێکخستنی ھۆنراوەکان',
+);
+
+/** Czech (česky)
  * @author Matěj Grabovský
  */
 $messages['cs'] = array(
-	'poem-desc' => 'Přidává značku <tt>&lt;poem&gt;</tt> pro formátování básní',
+	'poem-desc' => 'Přidává značku <code>&lt;poem&gt;</code> pro formátování básní',
+);
+
+/** Danish (dansk)
+ * @author Peter Alberti
+ */
+$messages['da'] = array(
+	'poem-desc' => 'Tilføjer tagget <code>&lt;poem&gt;</code> til formatering af digte',
 );
 
 /** German (Deutsch)
+ * @author Kghbln
  * @author Raimond Spekking
  */
 $messages['de'] = array(
-	'poem-desc' => 'Fügt das <tt>&lt;poem&gt;</tt>-Tag zur Formatierung von Gedichten hinzu',
+	'poem-desc' => 'Ergänzt das Tag <code>&lt;poem&gt;</code> zur Formatierung von Gedichten',
 );
 
 /** Zazaki (Zazaki)
  * @author Aspar
  */
 $messages['diq'] = array(
-	'poem-desc' => 'qey fesaldayişê şiiri etiketê <tt>&lt;poem&gt;</tt>i têarê keno',
+	'poem-desc' => 'qey fesaldayişê şiiri etiketê <code>&lt;poem&gt;</code>i têarê keno',
 );
 
-/** Lower Sorbian (Dolnoserbski)
+/** Lower Sorbian (dolnoserbski)
  * @author Michawiki
  */
 $messages['dsb'] = array(
-	'poem-desc' => 'Pśidawa toflicku <tt>&lt;poem&gt;</tt> za formatěrowanje basnjow',
+	'poem-desc' => 'Pśidawa toflicku <code>&lt;poem&gt;</code> za formatěrowanje basnjow',
 );
 
 /** Greek (Ελληνικά)
  * @author Dead3y3
  */
 $messages['el'] = array(
-	'poem-desc' => 'Προσθέτει την ετικέτα <tt>&lt;poem&gt;</tt> για την μορφοποίηση ποιημάτων',
+	'poem-desc' => 'Προσθέτει την ετικέτα <code>&lt;poem&gt;</code> για την μορφοποίηση ποιημάτων',
 );
 
 /** Esperanto (Esperanto)
  * @author Yekrats
  */
 $messages['eo'] = array(
-	'poem-desc' => 'Aldonas <tt>&lt;poem&gt;</tt> etikedon por formatado de poezio.',
+	'poem-desc' => 'Aldonas <code>&lt;poem&gt;</code> etikedon por formatado de poezio.',
 );
 
-/** Spanish (Español)
+/** Spanish (español)
  * @author Muro de Aguas
  */
 $messages['es'] = array(
-	'poem-desc' => 'Añade la etiqueta <tt>&lt;poem&gt;</tt> para dar el formato propio de un poema.',
+	'poem-desc' => 'Añade la etiqueta <code>&lt;poem&gt;</code> para dar el formato propio de un poema.',
 );
 
-/** Estonian (Eesti)
+/** Estonian (eesti)
  * @author Pikne
  */
 $messages['et'] = array(
-	'poem-desc' => 'Lisab <tt>&lt;poem&gt;</tt>-märgendi luuletuse vormindamiseks.',
+	'poem-desc' => 'Lisab <code>&lt;poem&gt;</code>-sildi luuletuse vormindamiseks.',
 );
 
-/** Basque (Euskara)
+/** Basque (euskara)
  * @author Theklan
  */
 $messages['eu'] = array(
-	'poem-desc' => '<tt>&lt;poem&gt;</tt> etiketa gehitzen du olerkien formaturako',
+	'poem-desc' => '<code>&lt;poem&gt;</code> etiketa gehitzen du olerkien formaturako',
 );
 
 /** Persian (فارسی)
  * @author Huji
  */
 $messages['fa'] = array(
-	'poem-desc' => 'برچسب <tt>&lt;poem&gt;</tt> را برای قالب‌بندی شعرها می‌افزاید',
+	'poem-desc' => 'برچسب <code>&lt;poem&gt;</code> را برای قالب‌بندی شعرها می‌افزاید',
 );
 
-/** Finnish (Suomi)
+/** Finnish (suomi)
  * @author Nike
  */
 $messages['fi'] = array(
-	'poem-desc' => 'Mahdollistaa runojen muotoilun <tt><nowiki><poem></nowiki></tt>-elementillä.',
+	'poem-desc' => 'Mahdollistaa runojen muotoilun <code>&lt;poem&gt;</code>-elementillä.',
 );
 
-/** French (Français)
+/** French (français)
  * @author Grondin
  */
 $messages['fr'] = array(
-	'poem-desc' => 'Ajoute la balise <tt>&lt;poem&gt;</tt> pour le formatage des poèmes',
+	'poem-desc' => 'Ajoute la balise <code>&lt;poem&gt;</code> pour le formatage des poèmes',
 );
 
-/** Franco-Provençal (Arpetan)
+/** Franco-Provençal (arpetan)
  * @author ChrisPtDe
  */
 $messages['frp'] = array(
-	'poem-desc' => 'Apond la balisa <tt>&lt;poem&gt;</tt> por lo formatâjo des poèmos.',
+	'poem-desc' => 'Apond la balisa <code>&lt;poem&gt;</code> por lo formatâjo des poèmos.',
 );
 
-/** Galician (Galego)
+/** Northern Frisian (Nordfriisk)
+ * @author Murma174
+ */
+$messages['frr'] = array(
+	'poem-desc' => 'Saat <code>&lt;poem&gt;</code> diartu, am dachtangen tu formatiarin',
+);
+
+/** Galician (galego)
  * @author Alma
  */
 $messages['gl'] = array(
-	'poem-desc' => 'Engada a etiqueta <tt>&lt;poem&gt;</tt> para o formato poema',
+	'poem-desc' => 'Engada a etiqueta <code>&lt;poem&gt;</code> para o formato poema',
 );
 
 /** Swiss German (Alemannisch)
  * @author Als-Holder
  */
 $messages['gsw'] = array(
-	'poem-desc' => 'Fiegt s <tt>&lt;poem&gt;</tt>-Tag zue zum Formatiere vu Gedicht',
+	'poem-desc' => 'Fiegt s <code>&lt;poem&gt;</code>-Tag zue zum Formatiere vu Gedicht',
 );
 
-/** Hebrew (עברית) */
+/** Hebrew (עברית)
+ */
 $messages['he'] = array(
-	'poem-desc' => 'הוספת התגית <tt>&lt;poem&gt;</tt> לעיצוב שירה',
+	'poem-desc' => 'הוספת התגית <code>&lt;poem&gt;</code> לעיצוב שירה',
 );
 
 /** Hindi (हिन्दी)
  * @author Kaustubh
  */
 $messages['hi'] = array(
-	'poem-desc' => 'कविता लिखने के लिये आवश्यक <tt>&lt;poem&gt;</tt> टॅग देता हैं',
+	'poem-desc' => 'कविता लिखने के लिये आवश्यक <code>&lt;poem&gt;</code> टॅग देता हैं',
 );
 
 /** Hiligaynon (Ilonggo)
  * @author Tagimata
  */
 $messages['hil'] = array(
-	'poem-desc' => 'Gadugang <tt>&lt;poem&gt;</tt> tag para sa pagformat sang tula',
+	'poem-desc' => 'Gadugang <code>&lt;poem&gt;</code> tag para sa pagformat sang tula',
 );
 
-/** Croatian (Hrvatski)
+/** Croatian (hrvatski)
  * @author Dalibor Bosits
  */
 $messages['hr'] = array(
-	'poem-desc' => 'Dodaje <tt>&lt;poem&gt;</tt> oznaku za formatiranje pjesama',
+	'poem-desc' => 'Dodaje <code>&lt;poem&gt;</code> oznaku za formatiranje pjesama',
 );
 
-/** Upper Sorbian (Hornjoserbsce)
+/** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
 $messages['hsb'] = array(
-	'poem-desc' => 'Přidawa tafličku <tt>&lt;poem&gt;</tt> za formatowanje basnjow',
+	'poem-desc' => 'Přidawa tafličku <code>&lt;poem&gt;</code> za formatowanje basnjow',
 );
 
-/** Hungarian (Magyar)
+/** Hungarian (magyar)
  * @author Dani
  */
 $messages['hu'] = array(
-	'poem-desc' => '<tt>&lt;poem&gt;</tt> tag a versek formázásához',
+	'poem-desc' => '<code>&lt;poem&gt;</code> tag a versek formázásához',
 );
 
-/** Interlingua (Interlingua)
+/** Interlingua (interlingua)
  * @author McDutchie
  */
 $messages['ia'] = array(
-	'poem-desc' => 'Adde le etiquetta <tt>&lt;poem&gt;</tt> pro formatar poemas',
+	'poem-desc' => 'Adde le etiquetta <code>&lt;poem&gt;</code> pro formatar poemas',
 );
 
 /** Indonesian (Bahasa Indonesia)
  * @author IvanLanin
  */
 $messages['id'] = array(
-	'poem-desc' => 'Menambahkan tag <tt>&lt;poem&gt;</tt> tag untuk pemformatan puisi',
+	'poem-desc' => 'Menambahkan tag <code>&lt;poem&gt;</code> tag untuk pemformatan puisi',
 );
 
-/** Italian (Italiano)
+/** Iloko (Ilokano)
+ * @author Lam-ang
+ */
+$messages['ilo'] = array(
+	'poem-desc' => 'Ikkan na iti<code>&lt;poem&gt;</code> nga tag para ti pagporma ti daniw',
+);
+
+/** Italian (italiano)
  * @author BrokenArrow
  */
 $messages['it'] = array(
-	'poem-desc' => 'Aggiunge il tag <tt>&lt;poem&gt;</tt> per la formattazione dei testi poetici',
+	'poem-desc' => 'Aggiunge il tag <code>&lt;poem&gt;</code> per la formattazione dei testi poetici',
 );
 
 /** Japanese (日本語)
  * @author Aotake
  * @author JtFuruhata
+ * @author Shirayuki
  */
 $messages['ja'] = array(
-	'poem-desc' => '詩の書式を整えるための <tt>&lt;poem&gt;</tt> タグを追加する',
+	'poem-desc' => '詩を整形する <code>&lt;poem&gt;</code> タグを追加する',
 );
 
-/** Jutish (Jysk)
+/** Jutish (jysk)
  * @author Huslåke
  */
 $messages['jut'] = array(
-	'poem-desc' => 'Tilføje <tt>&lt;poem&gt;</tt> tag før digt formåter',
+	'poem-desc' => 'Tilføje <code>&lt;poem&gt;</code> tag før digt formåter',
 );
 
 /** Javanese (Basa Jawa)
  * @author Meursault2004
  */
 $messages['jv'] = array(
-	'poem-desc' => 'Nambahaké tag <tt>&lt;poem&gt;</tt> tag kanggo formatting tembang utawa puisi',
+	'poem-desc' => 'Nambahaké tag <code>&lt;poem&gt;</code> tag kanggo formatting tembang utawa puisi',
+);
+
+/** Georgian (ქართული)
+ * @author David1010
+ */
+$messages['ka'] = array(
+	'poem-desc' => 'ამატებს ტეგს <code>&lt;პოემა&gt;</code> ლექსების ფორმატირებისათვის',
 );
 
 /** Khmer (ភាសាខ្មែរ)
@@ -302,128 +355,134 @@ $messages['jv'] = array(
  * @author Thearith
  */
 $messages['km'] = array(
-	'poem-desc' => 'ដាក់ប្លាក <tt>&lt;poem&gt;</tt> សម្រាប់ទ្រង់ទ្រាយកំណាព្យ',
+	'poem-desc' => 'ដាក់ប្លាក <code>&lt;poem&gt;</code> សម្រាប់ទ្រង់ទ្រាយកំណាព្យ',
 );
 
 /** Korean (한국어)
  * @author ToePeu
  */
 $messages['ko'] = array(
-	'poem-desc' => '시 형식을 위해 <tt>&lt;poem&gt;</tt> 태그를 추가',
+	'poem-desc' => '시 형식을 위해 <code>&lt;poem&gt;</code> 태그를 추가',
 );
 
-/** Ripoarisch (Ripoarisch)
+/** Colognian (Ripoarisch)
  * @author Purodha
  */
 $messages['ksh'] = array(
-	'poem-desc' => 'Brengk et <tt>&lt;poem&gt;</tt>-Kommando met, för Jedeeshte ze jeshtallde.',
+	'poem-desc' => 'Brengk et <code>&lt;poem&gt;</code>-Kommando met, för Jedeeshte ze jeshtallde.',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
 $messages['lb'] = array(
-	'poem-desc' => "Setzt de <tt>&lt;poem&gt;</tt>-Tag fir d'Formatéierung vu Gedichter derbäi",
+	'poem-desc' => "Setzt de <code>&lt;poem&gt;</code>-Tag fir d'Formatéierung vu Gedichter derbäi",
 );
 
 /** Limburgish (Limburgs)
  * @author Matthias
  */
 $messages['li'] = array(
-	'poem-desc' => 'Voegt de tag <tt>&lt;poem&gt;</tt> toe veur de opmaak van poëzie',
+	'poem-desc' => 'Voegt de tag <code>&lt;poem&gt;</code> toe veur de opmaak van poëzie',
 );
 
-/** Lithuanian (Lietuvių)
+/** Lithuanian (lietuvių)
  * @author Garas
  * @author Hugo.arg
  */
 $messages['lt'] = array(
-	'poem-desc' => 'Prideda <tt>&lt;poem&gt;</tt> gaires poemų formatavimui',
+	'poem-desc' => 'Prideda <code>&lt;poem&gt;</code> gaires poemų formatavimui',
 );
 
-/** Latvian (Latviešu)
+/** Mizo (Mizo ţawng)
+ * @author RMizo
+ */
+$messages['lus'] = array(
+	'poem-desc' => 'Hlahril tàrphung siamrem  nan tàrreuh  <code>&lt;poem&gt;</code>   hi a belh.',
+);
+
+/** Latvian (latviešu)
  * @author Xil
  */
 $messages['lv'] = array(
-	'poem-desc' => 'Pievieno <tt>&lt;poem&gt;</tt> tagu dzejas formatēšanai',
+	'poem-desc' => 'Pievieno <code>&lt;poem&gt;</code> tagu dzejas formatēšanai',
 );
 
-/** Macedonian (Македонски)
+/** Macedonian (македонски)
  * @author Bjankuloski06
  * @author Brest
  */
 $messages['mk'] = array(
-	'poem-desc' => 'Додава <tt>&lt;poem&gt;</tt> ознака за форматирање на стихови',
+	'poem-desc' => 'Додава <code>&lt;poem&gt;</code> ознака за форматирање на стихови',
 );
 
 /** Malayalam (മലയാളം)
  * @author Shijualex
  */
 $messages['ml'] = array(
-	'poem-desc' => 'പദ്യത്തിന്റെ ഫോര്‍മാറ്റിങ്ങിനു <tt>&lt;poem&gt;</tt>  എന്ന ടാഗ് ചേര്‍ക്കുന്നു',
+	'poem-desc' => 'പദ്യത്തിന്റെ ഫോർമാറ്റിങ്ങിനു <code>&lt;poem&gt;</code>  എന്ന ടാഗ് ചേർക്കുന്നു',
 );
 
 /** Marathi (मराठी)
  * @author Kaustubh
  */
 $messages['mr'] = array(
-	'poem-desc' => 'कवितेच्या सादरीकरणासाठी आवश्यक असणारा <tt>&lt;poem&gt;</tt> टॅग देतो.',
+	'poem-desc' => 'कवितेच्या सादरीकरणासाठी आवश्यक असणारा <code>&lt;poem&gt;</code> टॅग देतो.',
 );
 
 /** Malay (Bahasa Melayu)
  * @author Aviator
  */
 $messages['ms'] = array(
-	'poem-desc' => 'Menambah tag <tt>&lt;poem&gt;</tt> untuk pemformatan puisi',
+	'poem-desc' => 'Menambah tag <code>&lt;poem&gt;</code> untuk pemformatan puisi',
+);
+
+/** Norwegian Bokmål (norsk bokmål)
+ */
+$messages['nb'] = array(
+	'poem-desc' => 'Legger til taggen <code>&lt;poem&gt;</code> for å kunne formatere dikt',
 );
 
 /** Low German (Plattdüütsch)
  * @author Slomox
  */
 $messages['nds'] = array(
-	'poem-desc' => 'Föögt dat <tt>&lt;poem&gt;</tt>-Tag för dat Formateren vun Gedichten to',
+	'poem-desc' => 'Föögt dat <code>&lt;poem&gt;</code>-Tag för dat Formateren vun Gedichten to',
 );
 
 /** Dutch (Nederlands)
  * @author Siebrand
  */
 $messages['nl'] = array(
-	'poem-desc' => 'Voegt de tag <tt>&lt;poem&gt;</tt> toe voor de opmaak van poëzie',
+	'poem-desc' => 'Voegt de tag <code>&lt;poem&gt;</code> toe voor de opmaak van poëzie',
 );
 
-/** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
+/** Norwegian Nynorsk (norsk nynorsk)
  * @author Harald Khan
  */
 $messages['nn'] = array(
-	'poem-desc' => 'Legg til merket <tt>&lt;poem&gt;</tt> for å kunna formatera dikt',
+	'poem-desc' => 'Legg til merket <code>&lt;poem&gt;</code> for å kunna formatera dikt',
 );
 
-/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
- * @author Jon Harald Søby
- */
-$messages['no'] = array(
-	'poem-desc' => 'Legger til taggen <tt>&lt;poem&gt;</tt> for å kunne formatere dikt',
-);
-
-/** Occitan (Occitan)
+/** Occitan (occitan)
  * @author Cedric31
  */
 $messages['oc'] = array(
-	'poem-desc' => 'Apond la balisa <tt>&lt;poem&gt;</tt> pel formatatge dels poèmas',
+	'poem-desc' => 'Apond la balisa <code>&lt;poem&gt;</code> pel formatatge dels poèmas',
 );
 
-/** Polish (Polski)
+/** Polish (polski)
  * @author Sp5uhe
  */
 $messages['pl'] = array(
-	'poem-desc' => 'Dodaje znacznik <tt>&lt;poem&gt;</tt> służący do formatowania wierszy',
+	'poem-desc' => 'Dodaje znacznik <code>&lt;poem&gt;</code> służący do formatowania wierszy',
 );
 
 /** Piedmontese (Piemontèis)
  * @author Dragonòt
  */
 $messages['pms'] = array(
-	'poem-desc' => 'A gionta ël tag <tt>&lt;poem&gt;</tt> për formatassion ëd poema',
+	'poem-desc' => 'A gionta ël tag <code>&lt;poem&gt;</code> për formatassion ëd poema',
 );
 
 /** Pashto (پښتو)
@@ -433,208 +492,230 @@ $messages['ps'] = array(
 	'poem-desc' => 'د شعر بڼه ورکولو کړنې لپاره د <tt>&lt;شعر&gt;</tt> وييکه ورګډوي',
 );
 
-/** Portuguese (Português)
+/** Portuguese (português)
+ * @author Hamilton Abreu
  * @author Malafaya
  */
 $messages['pt'] = array(
-	'poem-desc' => 'Adiciona a marca <tt>&lt;poem&gt;</tt> para formatação de poemas',
+	'poem-desc' => 'Adiciona o elemento <code>&lt;poem&gt;</code> para formatação de poemas',
 );
 
-/** Brazilian Portuguese (Português do Brasil)
+/** Brazilian Portuguese (português do Brasil)
  * @author Eduardo.mps
  */
 $messages['pt-br'] = array(
-	'poem-desc' => 'Adiciona a marca <tt>&lt;poem&gt;</tt> para formatação de poemas',
+	'poem-desc' => 'Adiciona a marca <code>&lt;poem&gt;</code> para formatação de poemas',
 );
 
 /** Tarifit (Tarifit)
  * @author Aryaz
  */
 $messages['rif'] = array(
-	'poem-desc' => 'Issadaf <tt>&lt;poem&gt;</tt> i usmal d tira n tmdyazt',
+	'poem-desc' => 'Issadaf <code>&lt;poem&gt;</code> i usmal d tira n tmdyazt',
 );
 
-/** Romanian (Română)
+/** Romanian (română)
  * @author Mihai
  */
 $messages['ro'] = array(
-	'poem-desc' => 'Adaugă eticheta <tt>&lt;poem&gt;</tt> pentru formatarea poem',
+	'poem-desc' => 'Adaugă eticheta <code>&lt;poem&gt;</code> pentru formatarea poem',
 );
 
-/** Tarandíne (Tarandíne)
+/** tarandíne (tarandíne)
  * @author Joetaras
  */
 $messages['roa-tara'] = array(
-	'poem-desc' => "Aggiunge 'u tag <tt>&lt;poem&gt;</tt> p'a formattazione de le poesie",
+	'poem-desc' => "Aggiunge 'u tag <code>&lt;poem&gt;</code> p'a formattazione de le poesie",
 );
 
-/** Russian (Русский)
+/** Russian (русский)
  * @author Александр Сигачёв
  */
 $messages['ru'] = array(
-	'poem-desc' => 'Добавляет тег <tt>&lt;poem&gt;</tt> для форматирования стихов',
+	'poem-desc' => 'Добавляет тег <code>&lt;poem&gt;</code> для форматирования стихов',
 );
 
-/** Yakut (Саха тыла)
+/** Rusyn (русиньскый)
+ * @author Gazeb
+ */
+$messages['rue'] = array(
+	'poem-desc' => 'Додасть значку <code>&lt;poem&gt;</code> про форматованя віршів',
+);
+
+/** Sakha (саха тыла)
  * @author HalanTul
  */
 $messages['sah'] = array(
-	'poem-desc' => 'Хоһооннору суруйарга <tt>&lt;poem&gt;</tt> тиэги эбэр',
+	'poem-desc' => 'Хоһооннору суруйарга <code>&lt;poem&gt;</code> тиэги эбэр',
 );
 
-/** Sicilian (Sicilianu)
+/** Sicilian (sicilianu)
  * @author Melos
  */
 $messages['scn'] = array(
-	'poem-desc' => 'Iunci lu tag <tt>&lt;poem&gt;</tt> pi la furmattazioni di li testa puetici',
+	'poem-desc' => 'Iunci lu tag <code>&lt;poem&gt;</code> pi la furmattazioni di li testa puetici',
 );
 
-/** Slovak (Slovenčina)
+/** Slovak (slovenčina)
  * @author Helix84
  */
 $messages['sk'] = array(
-	'poem-desc' => 'Pridáva značku <tt>&lt;poem&gt;</tt> pre formátovanie básní',
+	'poem-desc' => 'Pridáva značku <code>&lt;poem&gt;</code> pre formátovanie básní',
+);
+
+/** Slovenian (slovenščina)
+ * @author Dbc334
+ */
+$messages['sl'] = array(
+	'poem-desc' => 'Doda etiketo <code>&lt;poem&gt;</code> za oblikovanje pesmi',
 );
 
 /** Lower Silesian (Schläsch)
  * @author Piotron
  */
 $messages['sli'] = array(
-	'poem-desc' => 'Fiegt is <tt>&lt;poem&gt;</tt>-Tag zur Furmatierung voo Gedichta hinzu',
+	'poem-desc' => 'Fiegt is <code>&lt;poem&gt;</code>-Tag zur Furmatierung voo Gedichta hinzu',
 );
 
-/** Albanian (Shqip)
+/** Albanian (shqip)
  * @author Puntori
  */
 $messages['sq'] = array(
-	'poem-desc' => 'Vendosë kodin <tt>&lt;poem&gt;</tt> për formatim të poezive',
+	'poem-desc' => 'Vendosë kodin <code>&lt;poem&gt;</code> për formatim të poezive',
 );
 
-/** Serbian Cyrillic ekavian (Српски (ћирилица))
+/** Serbian (Cyrillic script) (српски (ћирилица)‎)
  * @author Millosh
  * @author Nikola Smolenski
  */
 $messages['sr-ec'] = array(
-	'poem-desc' => 'Додаје <tt>&lt;poem&gt;</tt> ознаку за форматирање песама.',
+	'poem-desc' => 'Додаје <code>&lt;poem&gt;</code> ознаку за форматирање песама.',
 );
 
-/** Serbian Latin ekavian (Srpski (latinica))
+/** Serbian (Latin script) (srpski (latinica)‎)
  * @author Michaello
  */
 $messages['sr-el'] = array(
-	'poem-desc' => 'Dodaje <tt>&lt;poem&gt;</tt> oznaku za formatiranje pesama.',
+	'poem-desc' => 'Dodaje <code>&lt;poem&gt;</code> oznaku za formatiranje pesama.',
 );
 
 /** Seeltersk (Seeltersk)
  * @author Pyt
  */
 $messages['stq'] = array(
-	'poem-desc' => 'Föiget dät <tt>&lt;poem&gt;</tt>-Tag tou ju Formatierenge fon Gedichte bietou',
+	'poem-desc' => 'Föiget dät <code>&lt;poem&gt;</code>-Tag tou ju Formatierenge fon Gedichte bietou',
 );
 
-/** Swedish (Svenska)
+/** Swedish (svenska)
  * @author Lejonel
  */
 $messages['sv'] = array(
-	'poem-desc' => 'Lägger till taggen <tt>&lt;poem&gt;</tt> för att formatera dikter',
+	'poem-desc' => 'Lägger till taggen <code>&lt;poem&gt;</code> för att formatera dikter',
 );
 
 /** Telugu (తెలుగు)
  * @author Veeven
  */
 $messages['te'] = array(
-	'poem-desc' => 'పద్యాల ఫార్మాటింగుకై <tt>&lt;poem&gt;</tt> అనే టాగుని చేరుస్తుంది',
+	'poem-desc' => 'పద్యాల ఫార్మాటింగుకై <code>&lt;poem&gt;</code> అనే టాగుని చేరుస్తుంది',
 );
 
-/** Tajik (Cyrillic) (Тоҷикӣ (Cyrillic))
+/** Tajik (Cyrillic script) (тоҷикӣ)
  * @author Ibrahim
  */
 $messages['tg-cyrl'] = array(
-	'poem-desc' => 'Барчасби <tt>&lt;poem&gt;</tt>-ро барои қолаббандиҳои шеърҳо илова мекунад',
+	'poem-desc' => 'Барчасби <code>&lt;poem&gt;</code>-ро барои қолаббандиҳои шеърҳо илова мекунад',
 );
 
-/** Tajik (Latin) (Тоҷикӣ (Latin))
+/** Tajik (Latin script) (tojikī)
  * @author Liangent
  */
 $messages['tg-latn'] = array(
-	'poem-desc' => "Barcasbi <tt>&lt;poem&gt;</tt>-ro baroi qolabbandihoi şe'rho ilova mekunad",
+	'poem-desc' => "Barcasbi <code>&lt;poem&gt;</code>-ro baroi qolabbandihoi şe'rho ilova mekunad",
+);
+
+/** Thai (ไทย)
+ * @author Octahedron80
+ */
+$messages['th'] = array(
+	'poem-desc' => 'เพิ่มแท็ก <code>&lt;poem&gt;</code> สำหรับการจัดรูปแบบบทกวี',
 );
 
 /** Turkmen (Türkmençe)
  * @author Hanberke
  */
 $messages['tk'] = array(
-	'poem-desc' => 'Goşgy formatirlemesi üçin <tt>&lt;poem&gt;</tt> tegini goşýar',
+	'poem-desc' => 'Goşgy formatirlemesi üçin <code>&lt;poem&gt;</code> tegini goşýar',
 );
 
 /** Tagalog (Tagalog)
  * @author AnakngAraw
  */
 $messages['tl'] = array(
-	'poem-desc' => 'Nagdaragdag ng tatak na <tt>&lt;poem&gt;</tt> para sa pagpopormat ng tula',
+	'poem-desc' => 'Nagdaragdag ng tatak na <code>&lt;poem&gt;</code> para sa pagpopormat ng tula',
 );
 
 /** Turkish (Türkçe)
  * @author Joseph
  */
 $messages['tr'] = array(
-	'poem-desc' => 'Şiir biçimlendirmesi için <tt>&lt;poem&gt;</tt> etiketini ekler',
+	'poem-desc' => 'Şiir biçimlendirmesi için <code>&lt;poem&gt;</code> etiketini ekler',
 );
 
-/** Ukrainian (Українська)
+/** Ukrainian (українська)
  * @author Ahonc
  */
 $messages['uk'] = array(
-	'poem-desc' => 'Додає тег <tt>&lt;poem&gt;</tt> для форматування віршів',
+	'poem-desc' => 'Додає тег <code>&lt;poem&gt;</code> для форматування віршів',
 );
 
-/** Vèneto (Vèneto)
+/** vèneto (vèneto)
  * @author Candalua
  */
 $messages['vec'] = array(
-	'poem-desc' => 'Zonta el tag <tt>&lt;poem&gt;</tt> par la formatazion dei testi poetici',
+	'poem-desc' => 'Zonta el tag <code>&lt;poem&gt;</code> par la formatazion dei testi poetici',
 );
 
-/** Veps (Vepsan kel')
+/** Veps (vepsän kel’)
  * @author Игорь Бродский
  */
 $messages['vep'] = array(
-	'poem-desc' => 'Ližadab <tt>&lt;poem&gt;</tt>-virg runod formatiruides',
+	'poem-desc' => 'Ližadab <code>&lt;poem&gt;</code>-virg runod formatiruides',
 );
 
 /** Vietnamese (Tiếng Việt)
  * @author Minh Nguyen
  */
 $messages['vi'] = array(
-	'poem-desc' => 'Thêm thẻ <tt>&lt;poem&gt;</tt> để định dạng các bài thơ',
+	'poem-desc' => 'Thêm thẻ <code>&lt;poem&gt;</code> để định dạng các bài thơ',
 );
 
 /** Volapük (Volapük)
  * @author Smeira
  */
 $messages['vo'] = array(
-	'poem-desc' => 'Läükon mali: <tt>&lt;poem&gt;</tt> pro fomät: poedot',
+	'poem-desc' => 'Läükon mali: <code>&lt;poem&gt;</code> pro fomät: poedot',
 );
 
-/** Yue (粵語)
+/** Cantonese (粵語)
  * @author Shinjiman
  */
 $messages['yue'] = array(
-	'poem-desc' => '加 <tt>&lt;poem&gt;</tt> 標籤畀詩格式用',
+	'poem-desc' => '加 <code>&lt;poem&gt;</code> 標籤畀詩格式用',
 );
 
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (中文（简体）‎)
  * @author Shinjiman
  * @author Wmr89502270
+ * @author Xiaomingyan
  */
 $messages['zh-hans'] = array(
-	'poem-desc' => '加入 <tt>&lt;poem&gt;</tt> 标签用于诗歌格式',
+	'poem-desc' => '添加“<code>&lt;poem&gt;</code>”标签用于诗歌格式',
 );
 
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (中文（繁體）‎)
  * @author Shinjiman
  */
 $messages['zh-hant'] = array(
-	'poem-desc' => '加入 <tt>&lt;poem&gt;</tt> 標籤給予詩歌格式使用',
+	'poem-desc' => '加入 <code>&lt;poem&gt;</code> 標籤給予詩歌格式使用',
 );
-

@@ -31,7 +31,7 @@ $magicWords['bs'] = array(
 
 /** Chechen (нохчийн) */
 $magicWords['ce'] = array(
-	'useliquidthreads' => array( 0, 'ЛелайеLiquidThreads', 'ИспользоватьLiquidThreads', 'UseLiquidThreads' ),
+	'useliquidthreads' => array( 0, 'ЛелайеLiquidThreads', 'ИспользоватьLiquidThreads' ),
 );
 
 /** German (Deutsch) */
@@ -52,6 +52,17 @@ $magicWords['es'] = array(
 	'lqtpagelimit' => array( 0, 'limitedepaginasdehlq', 'límitedepáginasdehlq' ),
 );
 
+/** French (français) */
+$magicWords['fr'] = array(
+	'useliquidthreads' => array( 0, 'UtilliserLiquidThreads' ),
+	'lqtpagelimit' => array( 0, 'limitepagelqt' ),
+);
+
+/** Italian (italiano) */
+$magicWords['it'] = array(
+	'useliquidthreads' => array( 0, 'UsaLiquidThreads' ),
+);
+
 /** Japanese (日本語) */
 $magicWords['ja'] = array(
 	'useliquidthreads' => array( 0, 'スレッド使用' ),
@@ -70,7 +81,7 @@ $magicWords['mk'] = array(
 	'lqtpagelimit' => array( 0, 'ОгранСтранТечниНишки' ),
 );
 
-/** Nedersaksisch (Nedersaksisch) */
+/** Low Saxon (Netherlands) (Nedersaksies) */
 $magicWords['nds-nl'] = array(
 	'useliquidthreads' => array( 0, 'LiquidThreads_gebruken', 'LiquidThreadsGebruiken' ),
 );

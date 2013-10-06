@@ -140,7 +140,6 @@ $messages = array(
 'qbbrowse' => 'Trifouille',
 'qbedit' => 'Editer',
 'qbpageoptions' => 'Chol pache-lo',
-'qbpageinfo' => 'Conteske',
 'qbmyoptions' => 'Mes paches',
 'qbspecialpages' => 'Espéciales paches',
 'faq' => 'FAQ',
@@ -229,7 +228,6 @@ $messages = array(
 'disclaimers' => 'Démintis',
 'disclaimerpage' => 'Project:Déminti général',
 'edithelp' => 'Éditer el aiyude',
-'edithelppage' => 'Help:Édichion',
 'helppage' => 'Help:Étnus',
 'mainpage' => 'Moaite Pache',
 'mainpage-description' => 'Moaite Pache',
@@ -315,10 +313,6 @@ Si s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <b
 'virus-unknownscanner' => 'intivirus poin connu:',
 
 # Login and logout pages
-'welcomecreation' => "== Binv'nute, $1 ! ==
-
-Vote compte o té créé.
-N'obliez poin d'parsonnaliser vos [[Special:Preferences|préférinches édseur {{SITENAME}}]].",
 'yourname' => "nom d'uzeu:",
 'yourpassword' => "Mot d'passe:",
 'yourpasswordagain' => "Intrer à nouvieu ch'mot d'passe:",
@@ -530,7 +524,7 @@ Léginde : ({{MediaWiki:Cur}}) = différinches aveuc el vérchon à ch'momint-ch
 'youremail' => 'Imèle:',
 'username' => "Nom d'uzeu:",
 'uid' => 'ID dech uzeu:',
-'prefs-memberingroups' => 'Mimbe éd {{PLURAL:$1|groupe|groupes}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Mimbe}}  {{PLURAL:$1|du groupe|des groupes}}:',
 'yourrealname' => 'Vrai nom:',
 'yourlanguage' => 'Langache:',
 'badsiglength' => 'Vote signature est gramint longue.
@@ -555,6 +549,9 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'group-bureaucrat-member' => '{{GENDER:$1|buroécrate}}',
 
 'grouppage-sysop' => '{{ns:project}}:Aménistrateus',
+
+# Special:Log/newusers
+'newuserlogpage' => "Jornal éd chés créachons d'comptes d'uzeu",
 
 # User rights log
 'rightslog' => "Jornal d'chés droés dechl uzeu",
@@ -650,10 +647,15 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'imagelinks' => 'Usage dech fichié',
 'linkstoimage' => "{{PLURAL:$1|L'pache d'apreu est liée|Chés $1 paches d'apreu sont liées}} à ch'fichié-lo :",
 'nolinkstoimage' => "Autchune pache n'est loïée aveuc ch'fichié-lo",
-'sharedupload' => "Cht'fichié vient éd $1 pi i put ète imploïé par d'eutes proujés.",
-'sharedupload-desc-here' => "Ch'fichié i vient éd $1. I put ète uzer pèr d’eutes prodjés.
-Vir apré ([$2 pache]).",
+'sharedupload' => "Ch'fichié i vient éd $1. I put ète imploïé par d'eutes proujés.",
+'sharedupload-desc-there' => "Ch'fichié i vient éd $1. I put ète uzé pèr d’eutes prodjés. Vir l'pache [$2 édseur Commons].",
+'sharedupload-desc-here' => "Ch'fichié i vient éd $1. I put ète uzé pèr d’eutes prodjés.
+Vir l'pache [$2 édseur Commons].",
+'sharedupload-desc-edit' => "Ch'fichié i vient éd $1. I put ète imploïé par d'eutes proujés. Os pouvez canjer l' déscripcion dsu s' [$2 pache Commons].",
+'sharedupload-desc-create' => "Ch'fichié i vient éd $1. I put ète imploïé par d'eutes proujés. Os pouvez canjer l' déscripcion dsu s' [$2 pache Commons].",
 'uploadnewversion-linktext' => 'Quértcher eune novèle vérchion del pache-lo',
+'shared-repo-from' => 'à : $1',
+'shared-repo' => 'un dépôt partagé',
 
 # MIME search
 'mimesearch' => 'Tracher pèr type éd contenu MIME',
@@ -748,14 +750,11 @@ Vir apré ([$2 pache]).",
 # Special:ActiveUsers
 'activeusers' => 'Lisse des ouvreus uzeus',
 
-# Special:Log/newusers
-'newuserlogpage' => "Jornal éd chés créachons d'comptes d'uzeu",
-
 # Special:ListGroupRights
 'listgrouprights-summary' => "L'pache-lo ch'est ène lisse d'chés groupes d'uzeus définis édseur ech wiki aveuc chés drouots d'intrèe achuchonnés.<br />I put y avoèr ichi d'eutes [[MediaWiki:Listgrouprights-helppage|informacions]] édseur chés drouots individuèls. ([[{{MediaWiki:Listgrouprights-helppage}}|vir]])",
 'listgrouprights-members' => '(lisse éd chés mimbes)',
 
-# E-mail user
+# Email user
 'emailuser' => "Imèle echl'uzeu-lo",
 'emailpage' => 'Imèle dech uzeu',
 
@@ -779,7 +778,7 @@ Vir apré ([$2 pache]).",
 # Delete
 'deletepage' => "Défacer l'pache",
 'confirmdeletetext' => "Vos alez défacer eune pache ou un fichié aveuc toutes chés antieusses vérchons.<br /> Confreumer éq ch'est cho éq vos voulez foaire, éq vos conprindez chés consécanches et pi éq ch'est bin s'lon el [[{{MediaWiki:Policy-url}}|politique éd MédiaWiki]].",
-'actioncomplete' => 'Plònne acchon',
+'actioncomplete' => 'Accion toute piéte',
 'actionfailed' => "L’action n'a poin réussi",
 'deletedtext' => "« $1 » o té défacé.
 Vir $2 pou eune lisse d'chés darinnes défachons.",
@@ -989,6 +988,9 @@ Os pouvez vir l'source",
 'tooltip-preferences-save' => 'Warder chés préférinches.',
 'tooltip-summary' => 'Intrer un tiot résumè',
 
+# Info page
+'pageinfo-toolboxlink' => "Informacions édseur l'page",
+
 # Browsing diffs
 'previousdiff' => '← Pu vieille édition',
 'nextdiff' => 'Nouvèle édichon →',
@@ -1055,9 +1057,6 @@ Chés eutes cans is s'ront muchés pèr défeut.
 
 # Special:Version
 'version-specialpages' => 'Paches éspéchiales',
-
-# Special:FilePath
-'filepath-page' => 'Fichié :',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Dénicher chés doublons',

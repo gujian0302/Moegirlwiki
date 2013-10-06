@@ -19,23 +19,28 @@ ve.ce.ResizableNode = function VeCeResizableNode( $resizable ) {
 	this.$resizable = $resizable || this.$;
 	this.ratio = this.model.getAttribute( 'width' ) / this.model.getAttribute( 'height' );
 	this.resizing = false;
-	this.$resizeHandles = $( '<div>' );
+	this.$resizeHandles = this.$$( '<div>' );
 
 	// Events
-	this.connect( this, { 'focus': 'onResizableFocus', 'blur': 'onResizableBlur' } );
+	this.connect( this, {
+		'focus': 'onResizableFocus',
+		'blur': 'onResizableBlur',
+		'live': 'onResizableLive',
+		'resize': 'onResizableFocus'
+	} );
 
 	// Initialization
 	this.$resizeHandles
 		.addClass( 've-ce-resizableNode-handles' )
-		.append( $( '<div>' ).addClass( 've-ce-resizableNode-nwHandle' ) )
-		.append( $( '<div>' ).addClass( 've-ce-resizableNode-neHandle' ) )
-		.append( $( '<div>' ).addClass( 've-ce-resizableNode-seHandle' ) )
-		.append( $( '<div>' ).addClass( 've-ce-resizableNode-swHandle' ) )
-		.children()
-			.on( {
-				'mousedown': ve.bind( this.onResizeHandlesCornerMouseDown, this )
-			} );
+		.append( this.$$( '<div>' ).addClass( 've-ce-resizableNode-nwHandle' ) )
+		.append( this.$$( '<div>' ).addClass( 've-ce-resizableNode-neHandle' ) )
+		.append( this.$$( '<div>' ).addClass( 've-ce-resizableNode-seHandle' ) )
+		.append( this.$$( '<div>' ).addClass( 've-ce-resizableNode-swHandle' ) );
 };
+
+/* Static Properties */
+
+ve.ce.ResizableNode.static = {};
 
 /* Methods */
 
@@ -45,28 +50,29 @@ ve.ce.ResizableNode = function VeCeResizableNode( $resizable ) {
  * @method
  */
 ve.ce.ResizableNode.prototype.onResizableFocus = function () {
-	var offset = this.$resizable.offset();
+	this.$resizeHandles.appendTo( this.root.getSurface().getSurface().$localOverlayControls );
+
+	this.setResizableHandlesSizeAndPosition();
 
 	this.$resizeHandles
-		.css( {
-			'width': 0,
-			'height': 0,
-			'top': offset.top,
-			'left': offset.left
-		} )
-		.appendTo( $( 'body' ) );
+		.find( '.ve-ce-resizableNode-neHandle' )
+			.css( { 'margin-right': -this.$resizable.width() } )
+			.end()
+		.find( '.ve-ce-resizableNode-swHandle' )
+			.css( { 'margin-bottom': -this.$resizable.height() } )
+			.end()
+		.find( '.ve-ce-resizableNode-seHandle' )
+			.css( {
+				'margin-right': -this.$resizable.width(),
+				'margin-bottom': -this.$resizable.height()
+			} );
 
-	this.$resizeHandles
-		.find('.ve-ce-resizableNode-neHandle').css( {
-			'margin-right': -this.$resizable.width()
-		} ).end()
-		.find('.ve-ce-resizableNode-swHandle').css( {
-			'margin-bottom': -this.$resizable.height()
-		} ).end()
-		.find('.ve-ce-resizableNode-seHandle').css( {
-			'margin-right': -this.$resizable.width(),
-			'margin-bottom': -this.$resizable.height()
-		} );
+	this.$resizeHandles.children()
+		.off( '.ve-ui-resizableNode' )
+		.on(
+			'mousedown.ve-ui-resizableNode',
+			ve.bind( this.onResizeHandlesCornerMouseDown, this )
+		);
 };
 
 /**
@@ -76,6 +82,22 @@ ve.ce.ResizableNode.prototype.onResizableFocus = function () {
  */
 ve.ce.ResizableNode.prototype.onResizableBlur = function () {
 	this.$resizeHandles.detach();
+};
+
+/**
+ * Handle live event.
+ *
+ * @method
+ */
+ve.ce.ResizableNode.prototype.onResizableLive = function () {
+	var surfaceModel = this.getRoot().getSurface().getModel();
+
+	if ( this.live ) {
+		surfaceModel.connect( this, { 'history': 'setResizableHandlesSizeAndPosition' } );
+	} else {
+		surfaceModel.disconnect( this, { 'history': 'setResizableHandlesSizeAndPosition' } );
+		this.onResizableBlur();
+	}
 };
 
 /**
@@ -92,7 +114,7 @@ ve.ce.ResizableNode.prototype.onResizeHandlesCornerMouseDown = function ( e ) {
 
 	// Set bounding box width and undo the handle margins
 	this.$resizeHandles
-		.addClass( 've-ce-resizableNode-handles-resizing' )
+		.addClass( 've-ui-resizableNode-handles-resizing' )
 		.css( {
 			'width': this.$resizable.width(),
 			'height': this.$resizable.height()
@@ -108,17 +130,47 @@ ve.ce.ResizableNode.prototype.onResizeHandlesCornerMouseDown = function ( e ) {
 		'left': this.$resizeHandles.position().left,
 		'height': this.$resizeHandles.height(),
 		'width': this.$resizeHandles.width(),
-		'handle': e.target.className,
+		'handle': e.target.className
 	};
 
 	// Bind resize events
 	this.resizing = true;
-	$( document ).on( {
+	$( this.getElementDocument() ).on( {
 		'mousemove.ve-ce-resizableNode': ve.bind( this.onDocumentMouseMove, this ),
 		'mouseup.ve-ce-resizableNode': ve.bind( this.onDocumentMouseUp, this )
 	} );
 
 	return false;
+};
+
+/**
+ * Set the proper size and position for resize handles
+ *
+ * @method
+ */
+ve.ce.ResizableNode.prototype.setResizableHandlesSizeAndPosition = function () {
+	var offset = ve.Element.getRelativePosition(
+		this.$resizable, this.getRoot().getSurface().getSurface().$
+	);
+
+	this.$resizeHandles
+		.css( {
+			'width': 0,
+			'height': 0,
+			'top': offset.top,
+			'left': offset.left
+		} )
+		.find( '.ve-ce-resizableNode-neHandle' )
+			.css( { 'margin-right': -this.$resizable.width() } )
+			.end()
+		.find( '.ve-ce-resizableNode-swHandle' )
+			.css( { 'margin-bottom': -this.$resizable.height() } )
+			.end()
+		.find( '.ve-ce-resizableNode-seHandle' )
+			.css( {
+				'margin-right': -this.$resizable.width(),
+				'margin-bottom': -this.$resizable.height()
+			} );
 };
 
 /**
@@ -211,40 +263,26 @@ ve.ce.ResizableNode.prototype.onDocumentMouseUp = function () {
 		height = this.$resizeHandles.outerHeight(),
 		surfaceModel = this.getRoot().getSurface().getModel(),
 		documentModel = surfaceModel.getDocument(),
-		selection = surfaceModel.getSelection();
+		selection = surfaceModel.getSelection(),
+		attrChanges = {};
 
-	this.$resizeHandles.removeClass( 've-ce-resizableNode-handles-resizing' );
-	$( document ).off( '.ve-ce-resizableNode' );
+	this.$resizeHandles.removeClass( 've-ui-resizableNode-handles-resizing' );
+	$( this.getElementDocument() ).off( '.ve-ce-resizableNode' );
 	this.resizing = false;
 
-	// Transition image resize
-	this.$resizable
-		.addClass( 've-ce-resizableNode-transitioning' )
-		.css( { 'width': width, 'height': height } );
+	// Apply changes to the model
+	if ( this.model.getAttribute( 'width' ) !== width ) {
+		attrChanges.width = width;
+	}
+	if ( this.model.getAttribute( 'height' ) !== height ) {
+		attrChanges.height = height;
+	}
+	if ( !ve.isEmptyObject( attrChanges ) ) {
+		surfaceModel.change(
+			ve.dm.Transaction.newFromAttributeChanges( documentModel, offset, attrChanges ),
+			selection
+		);
+	}
 
-	// Allow resize to occur before re-rendering
-	setTimeout( ve.bind( function () {
-		var txs = [];
-
-		// Prevent further transitioning
-		this.$resizable.removeClass( 've-ce-resizableNode-transitioning' );
-
-		// Apply changes to the model
-		if ( this.model.getAttribute( 'width' ) !== width ) {
-			txs.push( ve.dm.Transaction.newFromAttributeChange(
-				documentModel, offset, 'width', width
-			) );
-		}
-		if ( this.model.getAttribute( 'height' ) !== height ) {
-			txs.push( ve.dm.Transaction.newFromAttributeChange(
-				documentModel, offset, 'height', height
-			) );
-		}
-		if ( txs.length > 0 ) {
-			surfaceModel.change( txs, selection );
-		}
-
-		// HACK: Update bounding box
-		this.onResizableFocus();
-	}, this ), 200 );
+	this.emit( 'resize' );
 };

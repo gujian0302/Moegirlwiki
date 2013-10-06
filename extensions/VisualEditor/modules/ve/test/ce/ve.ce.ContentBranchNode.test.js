@@ -221,32 +221,6 @@ QUnit.test( 'getRenderedContents', function ( assert ) {
 				{ 'type': '/paragraph' }
 			],
 			'html': 'abc<i><u><b>d</b></u></i><b><u>ef</u></b>ghi'
-		},
-		{
-			'msg': 'Annotation spanning text and inline nodes',
-			'data': [
-				{ 'type': 'paragraph' },
-				'a',
-				['b', [ { 'type': 'textStyle/bold' } ]],
-				{
-					'type': 'MWentity',
-					'attributes': { 'character': 'c', 'html/0/typeof': 'mw:Entity' },
-					'annotations': [ { 'type': 'textStyle/bold' } ]
-				},
-				{ 'type': '/MWentity' },
-				['d', [ { 'type': 'textStyle/bold' } ]],
-				{
-					'type': 'alienInline',
-					'attributes': { 'domElements': $( '<tt>e</tt>' ).toArray() },
-					'annotations': [ { 'type': 'textStyle/bold' } ]
-				},
-				{ 'type': '/alienInline' },
-				{ 'type': '/paragraph' }
-			],
-			'html': 'a<b>b<span typeof="mw:Entity" class="ve-ce-leafNode ' +
-				've-ce-MWEntityNode" contenteditable="false">c</span>d<div ' +
-				'class="ve-ce-leafNode ve-ce-generatedContentNode ve-ce-alienNode ve-ce-alienInlineNode" ' +
-				'contenteditable="false"><tt>e</tt></div></b>'
 		}
 	];
 	QUnit.expect( cases.length );

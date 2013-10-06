@@ -26,3 +26,16 @@ ve.init.Target = function VeInitTarget( $container ) {
 /* Inheritance */
 
 ve.mixinClass( ve.init.Target, ve.EventEmitter );
+
+/* Static Properties */
+
+ve.init.Target.static.toolbarTools = [
+	{ 'items': ['undo', 'redo'] },
+	{ 'items': ['format'] },
+	{ 'items': ['bold', 'italic', 'link', 'clear'] },
+	{ 'items': ['number', 'bullet', 'outdent', 'indent'] }
+];
+
+ve.init.Target.static.surfaceCommands = [
+	'bold', 'italic', 'link', 'undo', 'redo', 'indent', 'outdent'
+];

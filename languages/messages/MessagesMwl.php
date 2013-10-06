@@ -107,8 +107,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Rebelar l miu andereço de correio eiletrónico nas noteficaçones',
 'tog-shownumberswatching' => "Amostrar l númaro d'outelizadores a begiar",
 'tog-fancysig' => 'Tratar assinatura cumo wikitesto (sin lhigaçon outomática)',
-'tog-externaleditor' => 'Por oumisson, outelizar un eiditor sterno (solo para outelizadores abançados, eisige cunfiguraçones adecionales ne l tou cumputador)',
-'tog-externaldiff' => 'Por oumisson, outelizar defrenças sternas (solo para outelizadores abançados, eisige cunfiguraçones adicionales ne l tou cumputador)',
 'tog-showjumplinks' => 'Posseblitar lhigaçones d\'acessibelidade "{{ant:jumpto}}"',
 'tog-uselivepreview' => "Ousar l'antebison an tiempo rial (JavaScrit) (Spurmental)",
 'tog-forceeditsummary' => 'Abisar-me al antroduzir un sumairo bazio',
@@ -211,7 +209,6 @@ $messages = array(
 'qbbrowse' => 'Nabegar',
 'qbedit' => 'Eiditar',
 'qbpageoptions' => 'Esta páigina',
-'qbpageinfo' => 'Cuntesto',
 'qbmyoptions' => 'Mies páiginas',
 'qbspecialpages' => 'Páiginas speciales',
 'faq' => 'FAQ',
@@ -276,7 +273,6 @@ $messages = array(
 'disclaimers' => 'Abiso de Cuntenido',
 'disclaimerpage' => 'Project:Abiso giral',
 'edithelp' => 'Ajuda de eidiçon',
-'edithelppage' => 'Help:Eiditar',
 'helppage' => 'Help:Cuntenidos',
 'mainpage' => 'Páigina Percipal',
 'mainpage-description' => 'Páigina Percipal',
@@ -556,7 +552,6 @@ Legenda: (atu) = defrénças de la berson atual,
 'prevn' => 'anteriores {{PLURAL:$1|$1}}',
 'nextn' => 'próssimos {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Ber ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Conteúdos',
 'searchprofile-images' => 'Multimédia',
 'searchprofile-everything' => 'Todo',
 'searchprofile-advanced' => 'Abançado',
@@ -640,9 +635,11 @@ Causo l çponiblizes, este será outelizado pa te dar crédito pul tou trabalho.
 'right-move' => 'Arrastrar páiginas',
 'right-movefile' => 'Arrastrar fexeiros',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Registro de criaçon de outelizadores',
+
 # User rights log
 'rightslog' => 'Registro de dreitos de l outelizador',
-'rightsnone' => '(nanhun)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lher esta páigina',
@@ -847,14 +844,11 @@ Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an
 # Special:ListUsers
 'listusers-submit' => 'Amostrar',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Registro de criaçon de outelizadores',
-
 # Special:ListGroupRights
 'listgrouprights-rights' => 'Dreitos',
 'listgrouprights-members' => '(lista de nembros)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Ambiar carta eiletrónica a este outelizador',
 'emailfrom' => 'De:',
 'emailto' => 'Para:',
@@ -876,8 +870,8 @@ Altaraçones feturas na tal páigina i páiginas de çcusson a eilha associadas 
 'watching' => 'A begiar...',
 'unwatching' => 'A deixar de begiar...',
 
-'changed' => 'demudada',
 'created' => 'criada',
+'changed' => 'demudada',
 
 # Delete
 'deletepage' => 'Botar fuora páigina',
@@ -1089,13 +1083,8 @@ Por fabor, scuolhe outro nome.',
 Premite ajuntar la rezon de la eidiçon ne l sumário.',
 
 # Skin names
-'skinname-standard' => 'Clássico',
-'skinname-nostalgia' => 'Suidade',
 'skinname-cologneblue' => 'Azul',
 'skinname-monobook' => 'Lhibro',
-'skinname-myskin' => 'Piel',
-'skinname-chick' => 'Cipe-Çape',
-'skinname-simple' => 'Simpre',
 'skinname-modern' => 'Moderno',
 
 # Browsing diffs
@@ -1140,7 +1129,7 @@ Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns de
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Ancho',
 'exif-imagelength' => 'Altura',
 'exif-imagedescription' => 'Títalo de la eimaige',
@@ -1215,11 +1204,6 @@ Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns de
 'version-software-product' => 'Perduto',
 'version-software-version' => 'Berson',
 
-# Special:FilePath
-'filepath' => 'Camino de l fexeiro',
-'filepath-page' => 'Fexeiro',
-'filepath-submit' => 'Camino',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Nome de l fexeiro',
 'fileduplicatesearch-submit' => 'Percurar',
@@ -1233,5 +1217,8 @@ Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns de
 # Special:Tags
 'tags-title' => 'Eitiquetas',
 'tags-edit' => 'eiditar',
+
+# New logging system
+'rightsnone' => '(nanhun)',
 
 );

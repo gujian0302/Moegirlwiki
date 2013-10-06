@@ -37,7 +37,7 @@ ve.dm.Transaction.newFromInsertion = function ( doc, offset, insertion ) {
 	// Retain up to insertion point, if needed
 	tx.pushRetain( insertion.offset );
 	// Insert data
-	tx.pushReplace( doc, offset, 0, insertion.data );
+	tx.pushReplace( doc, insertion.offset, insertion.remove, insertion.data );
 	// Retain to end of document, if needed (for completeness)
 	tx.pushRetain( data.length - insertion.offset );
 	return tx;
@@ -154,20 +154,46 @@ ve.dm.Transaction.newFromRemoval = function ( doc, range ) {
 };
 
 /**
- * Generate a transaction that changes an attribute.
+ * Generate a transaction that replaces the contents of a branch node.
+ *
+ * The node whose contents are being replaced should be an unrestricted branch node.
+ *
+ * @param {ve.dm.Document} doc Document to create transaction for
+ * @param {ve.dm.Node|ve.Range} nodeOrRange Branch node or inner range of such
+ * @param {Array} newData Linear model data to replace the contents of the node with
+ * @returns {ve.dm.Transaction} Transaction that replaces the contents of the node
+ * @throws {Error} nodeOrRange must be a ve.dm.Node or a ve.Range
+ */
+ve.dm.Transaction.newFromNodeReplacement = function ( doc, nodeOrRange, newData ) {
+	var tx = new ve.dm.Transaction(), range = nodeOrRange;
+	if ( range instanceof ve.dm.Node ) {
+		range = range.getRange();
+	}
+	if ( !( range instanceof ve.Range ) ) {
+		throw new Error( 'nodeOrRange must be a ve.dm.Node or a ve.Range' );
+	}
+	tx.pushRetain( range.start );
+	tx.pushReplace( doc, range.start, range.end - range.start, newData );
+	tx.pushRetain( doc.data.getLength() - range.end );
+	return tx;
+};
+
+/**
+ * Generate a transaction that changes one or more attributes.
  *
  * @static
  * @method
  * @param {ve.dm.Document} doc Document to create transaction for
  * @param {number} offset Offset of element
- * @param {string} key Attribute name
- * @param {Mixed} value New value, or undefined to remove the attribute
+ * @param {Object.<string,Mixed>} attr List of attribute key and value pairs, use undefined value
+ *   to remove an attribute
  * @returns {ve.dm.Transaction} Transaction that changes an element
  * @throws {Error} Cannot set attributes to non-element data
  * @throws {Error} Cannot set attributes on closing element
  */
-ve.dm.Transaction.newFromAttributeChange = function ( doc, offset, key, value ) {
-	var tx = new ve.dm.Transaction(),
+ve.dm.Transaction.newFromAttributeChanges = function ( doc, offset, attr ) {
+	var key,
+		tx = new ve.dm.Transaction(),
 		data = doc.getData();
 	// Verify element exists at offset
 	if ( data[offset].type === undefined ) {
@@ -180,9 +206,11 @@ ve.dm.Transaction.newFromAttributeChange = function ( doc, offset, key, value ) 
 	// Retain up to element
 	tx.pushRetain( offset );
 	// Change attribute
-	tx.pushReplaceElementAttribute(
-		key, 'attributes' in data[offset] ? data[offset].attributes[key] : undefined, value
-	);
+	for ( key in attr ) {
+		tx.pushReplaceElementAttribute(
+			key, 'attributes' in data[offset] ? data[offset].attributes[key] : undefined, attr[key]
+		);
+	}
 	// Retain to end of document
 	tx.pushRetain( data.length - offset );
 	return tx;
@@ -411,7 +439,7 @@ ve.dm.Transaction.newFromContentBranchConversion = function ( doc, range, type, 
 		branch = selected.node.isContent() ? selected.node.getParent() : selected.node;
 		if ( branch.canContainContent() ) {
 			// Skip branches that are already of the target type and have identical attributes
-			if ( branch.getType() === type && ve.compareObjects( branch.getAttributes(), attr ) ) {
+			if ( branch.getType() === type && ve.compare( branch.getAttributes(), attr ) ) {
 				continue;
 			}
 			branchOuterRange = branch.getOuterRange();
@@ -821,7 +849,7 @@ ve.dm.Transaction.prototype.addSafeRemoveOps = function ( doc, removeStart, remo
 	var i, retainStart, internalStackDepth = 0;
 	// Iterate over removal range and use a stack counter to determine if
 	// we are inside an internal node
-	for ( i = removeStart; i <= removeEnd; i++ ) {
+	for ( i = removeStart; i < removeEnd; i++ ) {
 		if ( doc.data.isElementData( i ) && ve.dm.nodeFactory.isNodeInternal( doc.data.getType( i ) ) ) {
 			if ( !doc.data.isCloseElementData( i ) ) {
 				if ( internalStackDepth === 0 ) {

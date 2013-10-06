@@ -251,13 +251,16 @@ ve.dm.MetaList.prototype.getAllItems = function () {
  * Insert new metadata into the document. This builds and processes a transaction that inserts
  * metadata into the document.
  * @param {Object|ve.dm.MetaItem} meta Metadata element (or MetaItem) to insert
- * @param {Number} offset Offset at which to insert the new metadata
- * @param {Number} [index] Index at which to insert the new metadata, or undefined to add to the end
+ * @param {Number} [offset] Offset to insert the new metadata, or undefined to add to the end
+ * @param {Number} [index] Index to insert the new metadata, or undefined to add to the end
  */
 ve.dm.MetaList.prototype.insertMeta = function ( meta, offset, index ) {
 	var tx;
 	if ( meta instanceof ve.dm.MetaItem ) {
 		meta = meta.getElement();
+	}
+	if ( offset === undefined ) {
+		offset = this.document.data.getLength();
 	}
 	if ( index === undefined ) {
 		index = ( this.document.metadata.getData( offset ) || [] ).length;
@@ -288,7 +291,7 @@ ve.dm.MetaList.prototype.removeMeta = function ( item ) {
  * insertItem().
  *
  * @param {number} offset Offset in the linear model of the new item
- * @param {number} index  Index of the new item in the metadata array at offset
+ * @param {number} index Index of the new item in the metadata array at offset
  * @param {ve.dm.MetaItem} item Item object
  * @emits insert
  */

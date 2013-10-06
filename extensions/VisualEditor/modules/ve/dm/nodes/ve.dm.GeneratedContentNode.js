@@ -10,27 +10,16 @@
  *
  * @class
  * @abstract
- * @extends ve.dm.LeafNode
  * @constructor
  * @param {number} [length] Length of content data in document; ignored and overridden to 0
  * @param {Object} [element] Reference to element in linear model
  */
-ve.dm.GeneratedContentNode = function VeDmGeneratedContentNode( length, element ) {
-	// Parent constructor
-	ve.dm.LeafNode.call( this, 0, element );
+ve.dm.GeneratedContentNode = function VeDmGeneratedContentNode() {
 };
 
-/* Inheritance */
+/* Static methods */
 
-ve.inheritClass( ve.dm.GeneratedContentNode, ve.dm.LeafNode );
-
-/* Static members */
-
-ve.dm.GeneratedContentNode.static.name = 'generatedContent';
-
-ve.dm.GeneratedContentNode.static.matchTagNames = [];
-
-ve.dm.GeneratedContentNode.static.enableAboutGrouping = true;
+ve.dm.GeneratedContentNode.static = {};
 
 /**
  * Store HTML of DOM elements, hashed on data element
@@ -39,11 +28,7 @@ ve.dm.GeneratedContentNode.static.enableAboutGrouping = true;
  * @param {ve.dm.IndexValueStore} store Index-value store
  * @returns {number} Index of stored data
  */
-ve.dm.GeneratedContentNode.static.storeDomElements = function( dataElement, domElements, store ) {
+ve.dm.GeneratedContentNode.static.storeDomElements = function ( dataElement, domElements, store ) {
 	var hash = ve.getHash( this.getHashObject( dataElement ) );
 	return store.index( domElements, hash );
 };
-
-/* Registration */
-
-ve.dm.modelRegistry.register( ve.dm.GeneratedContentNode );

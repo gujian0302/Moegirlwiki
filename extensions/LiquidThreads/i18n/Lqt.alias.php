@@ -35,7 +35,7 @@ $specialPageAliases['arz'] = array(
 	'MergeThread' => array( 'دمج_الخيط' ),
 );
 
-/** Assamese (অসমীয়া) */
+/** Assamese (অসমীয়া) */
 $specialPageAliases['as'] = array(
 	'NewMessages' => array( 'নতুন_সংবাদসমূহ' ),
 );
@@ -89,9 +89,9 @@ $specialPageAliases['de'] = array(
 $specialPageAliases['diq'] = array(
 	'DeleteThread' => array( 'SernameBesterne' ),
 	'MoveThread' => array( 'SernameAhulne' ),
-	'NewMessages' => array( 'MesacêNewey' ),
+	'NewMessages' => array( 'MesacéNewey' ),
 	'SplitThread' => array( 'SernameLetekerdış' ),
-	'MergeThread' => array( 'SernameJewkerdış' ),
+	'MergeThread' => array( 'SernameZewkerdış' ),
 );
 
 /** Lower Sorbian (dolnoserbski) */
@@ -106,6 +106,15 @@ $specialPageAliases['el'] = array(
 	'DeleteThread' => array( 'ΔιαγραφήΝήματος' ),
 	'MoveThread' => array( 'ΜετακίνησηΝήματος' ),
 	'NewMessages' => array( 'ΝέαΜηνύματα' ),
+);
+
+/** Esperanto (Esperanto) */
+$specialPageAliases['eo'] = array(
+	'DeleteThread' => array( 'Forigi_fadenon' ),
+	'MoveThread' => array( 'Movi_fadenon' ),
+	'NewMessages' => array( 'Novaj_mesaĝoj' ),
+	'SplitThread' => array( 'Disigi_fadenon' ),
+	'MergeThread' => array( 'Kunigi_fadenon', 'Unuigi_fadenon' ),
 );
 
 /** Spanish (español) */
@@ -283,7 +292,7 @@ $specialPageAliases['ksh'] = array(
 
 /** Cornish (kernowek) */
 $specialPageAliases['kw'] = array(
-	'NewMessages' => array( 'MessajowNowyth' ),
+	'NewMessages' => array( 'MessajysNowyth' ),
 );
 
 /** Ladino (Ladino) */
@@ -340,7 +349,7 @@ $specialPageAliases['myv'] = array(
 	'MergeThread' => array( 'ПальдямсСуре' ),
 );
 
-/** Norwegian Bokmål (norsk (bokmål)‎) */
+/** Norwegian Bokmål (norsk bokmål) */
 $specialPageAliases['nb'] = array(
 	'DeleteThread' => array( 'Slett_tråd' ),
 	'MoveThread' => array( 'Flytt_tråd' ),
@@ -349,7 +358,7 @@ $specialPageAliases['nb'] = array(
 	'MergeThread' => array( 'Slå_sammen_tråd' ),
 );
 
-/** Nedersaksisch (Nedersaksisch) */
+/** Low Saxon (Netherlands) (Nedersaksies) */
 $specialPageAliases['nds-nl'] = array(
 	'DeleteThread' => array( 'Draod_vortdoon' ),
 	'MoveThread' => array( 'Draod_verplaotsen' ),
@@ -367,7 +376,7 @@ $specialPageAliases['nl'] = array(
 	'MergeThread' => array( 'OnderwerpSamenvoegen' ),
 );
 
-/** Norwegian Nynorsk (norsk (nynorsk)‎) */
+/** Norwegian Nynorsk (norsk nynorsk) */
 $specialPageAliases['nn'] = array(
 	'DeleteThread' => array( 'Slett_tråd' ),
 	'MoveThread' => array( 'Flytt_tråd' ),
@@ -412,6 +421,15 @@ $specialPageAliases['sa'] = array(
 	'DeleteThread' => array( 'सूत्रपरित्यजति' ),
 	'MoveThread' => array( 'सूत्रस्थानान्तर' ),
 	'NewMessages' => array( 'नूतनसन्देश' ),
+);
+
+/** Sicilian (sicilianu) */
+$specialPageAliases['scn'] = array(
+	'DeleteThread' => array( 'CancellaDiscussione' ),
+	'MoveThread' => array( 'SpostaDiscussione' ),
+	'NewMessages' => array( 'NuoviMessaggi' ),
+	'SplitThread' => array( 'DividiDiscussione' ),
+	'MergeThread' => array( 'UnisciThread' ),
 );
 
 /** Sinhala (සිංහල) */
@@ -491,6 +509,15 @@ $specialPageAliases['vec'] = array(
 	'NewMessages' => array( 'MessagiNovi' ),
 	'SplitThread' => array( 'DividiArgomento' ),
 	'MergeThread' => array( 'UnissiArgomento' ),
+);
+
+/** Vietnamese (Tiếng Việt) */
+$specialPageAliases['vi'] = array(
+	'DeleteThread' => array( 'Xóa_luồng', 'Xoá_luồng' ),
+	'MoveThread' => array( 'Di_chuyển_luồng' ),
+	'NewMessages' => array( 'Tin_nhắn_mới' ),
+	'SplitThread' => array( 'Chia_luồng' ),
+	'MergeThread' => array( 'Hợp_nhất_luồng' ),
 );
 
 /** Yiddish (ייִדיש) */

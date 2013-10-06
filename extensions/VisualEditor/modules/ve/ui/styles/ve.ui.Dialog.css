@@ -15,7 +15,6 @@
 	line-height: 1em;
 	background-color: #fff;
 	background-color: rgba(255,255,255,0.5);
-	z-index: 200;
 	-webkit-animation: ve-ui-fade-in 250ms ease-in-out 0 1 normal;
 	-moz-animation: ve-ui-fade-in 250ms ease-in-out 0 1 normal;
 	-ms-animation: ve-ui-fade-in 250ms ease-in-out 0 1 normal;
@@ -66,9 +65,9 @@
 	height: 100%;
 }
 
-.ve-ui-window-head,
-.ve-ui-window-body,
-.ve-ui-window-foot {
+.ve-ui-dialog-content .ve-ui-window-head,
+.ve-ui-dialog-content .ve-ui-window-body,
+.ve-ui-dialog-content .ve-ui-window-foot {
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -78,45 +77,81 @@
 	overflow: hidden;
 }
 
-.ve-ui-window-head {
+.ve-ui-dialog-content .ve-ui-window-head {
 	top: 0;
 	height: 3.8em;
 	padding: 0.5em;
 }
 
-.ve-ui-window-foot {
+.ve-ui-dialog-content .ve-ui-window-foot {
 	bottom: 0;
 	height: 4.8em;
 	padding: 1em;
 }
 
-.ve-ui-window-body {
+.ve-ui-dialog-content .ve-ui-window-body {
 	box-shadow: 0 0 0.66em rgba(0,0,0,0.25);
-	background-color: #fff;
 	top: 3.8em;
 	bottom: 4.8em;
 }
 
-.ve-ui-window-icon {
+.ve-ui-dialog-content .ve-ui-window-icon {
 	width: 2.4em;
 	height: 2.8em;
 	line-height: 2.8em;
 }
 
-.ve-ui-window-title {
+.ve-ui-dialog-content .ve-ui-window-title {
 	line-height: 2.8em;
 }
 
-.ve-ui-window-foot .ve-ui-buttonWidget {
+.ve-ui-dialog-content .ve-ui-window-foot .ve-ui-buttonWidget {
 	float: right;
 	margin: 0.125em 0.25em;
 }
 
-.ve-ui-window-closeButton {
+.ve-ui-dialog-content .ve-ui-window-closeButton {
 	float: right;
 	margin: 0.25em 0.25em;
 }
 
+.ve-ui-dialog-content .ve-ui-window-body .ve-ui-surface {
+	border: solid 1px #ddd;
+	border-radius: 0.25em;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+}
+
 .ve-ui-pagedDialog-outlinePanel {
 	border-right: solid 1px #ddd;
+}
+
+.ve-ui-pagedDialog-outlinePanel-editable .ve-ui-outlineWidget {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 3em;
+	overflow-y: auto;
+}
+
+.ve-ui-pagedDialog-outlinePanel .ve-ui-outlineControlsWidget {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	box-shadow: 0 0 0.25em rgba(0,0,0,0.25);
+}
+
+.ve-ui-pagedDialog-pagesPanel .ve-ui-panelLayout {
+	padding: 1.5em;
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.ve-ui-window-body .ve-ce-documentNode {
+	padding: 0 1.875em; /* 1.5/0.8 */
 }

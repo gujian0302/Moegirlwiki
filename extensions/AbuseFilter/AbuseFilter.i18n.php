@@ -523,8 +523,8 @@ Copy from the textbox that appears, and paste it into this textbox, then click "
  */
 $messages['qqq'] = array(
 	'abusefilter-desc' => '{{desc|name=Abuse Filter|url=http://www.mediawiki.org/wiki/Extension:AbuseFilter}}',
-	'abusefilter' => '{{doc-special|AbuseFilter}}',
-	'abuselog' => '{{doc-special|AbuseLog}}',
+	'abusefilter' => 'Name of Special:AbuseFilter in [[Special:SpecialPages]] and title of special page.',
+	'abuselog' => 'Name of Special:AbuseLog in [[Special:SpecialPages]] and title of special page.',
 	'abusefilter-intro' => 'Introduction text for the list of filter rules.',
 	'abusefilter-mustbeeditor' => '"No access" message shown when a user does not have access rights.',
 	'abusefilter-warning' => 'A warning message shown when a user tries to save an edit which matches some abuse filter rule. Parameters:
@@ -5010,7 +5010,6 @@ $messages['bg'] = array(
 /** Bengali (বাংলা)
  * @author Bellayet
  * @author Ehsanulhb
- * @author Leemon2010
  * @author Nasir8891
  * @author Samritmaity
  * @author Wikitanvir
@@ -5044,7 +5043,6 @@ $messages['bn'] = array(
 	'abusefilter-log-search-user' => 'ব্যবহারকারী:',
 	'abusefilter-log-search-filter' => 'ফিল্টার আইডি:',
 	'abusefilter-log-search-title' => 'শিরোনাম:',
-	'abusefilter-log-search-wiki' => 'উইকি:',
 	'abusefilter-log-search-submit' => 'অনুসন্ধান',
 	'abusefilter-log-detailedentry-global' => 'গ্লোবাল ফিল্টার $1',
 	'abusefilter-log-detailedentry-local' => 'ফিল্টার $1',
@@ -5097,13 +5095,11 @@ $messages['bn'] = array(
 	'abusefilter-list-options-deleted-only' => 'শুধুমাত্র অপসারিত ফিল্টারগুলো দেখাও',
 	'abusefilter-list-options-deleted-hide' => 'অপসারিত ফিল্টারগুলো লুকাও',
 	'abusefilter-list-options-deleted-show' => 'অপসারিত ফিল্টারগুলো যোগ করো',
-	'abusefilter-list-options-scope-local' => 'স্থানীয় উইকি',
 	'abusefilter-list-options-disabled' => 'ফিল্টারগুলো নিষ্ক্রিয় করো',
 	'abusefilter-list-options-hidedisabled' => 'নিষ্ক্রিয় ফিল্টারগুলো লুকাও',
 	'abusefilter-list-options-submit' => 'হালনাগাদ',
 	'abusefilter-tools-expr' => 'এক্সপ্রেশন পরীক্ষক',
 	'abusefilter-tools-reautoconfirm-user' => 'ব্যবহারকারী:',
-	'abusefilter-tools-reautoconfirm-submit' => 'পুনরায়-স্বয়ংক্রিয়ভাবে নিশ্চিত',
 	'abusefilter-edit-subtitle' => '$1 ফিল্টার সম্পাদনা',
 	'abusefilter-edit-subtitle-new' => 'নতুন ফিল্টার তৈরি করুন',
 	'abusefilter-edit-status-label' => 'পরিসংখ্যান:',
@@ -7863,7 +7859,7 @@ Kopiere fra tekstfeltet der vises, og indsætte det i denne tekstboks, og klik d
  * @author Xqt
  */
 $messages['de'] = array(
-	'abusefilter-desc' => 'Wendet automatische Heuristiken auf Bearbeitungen an',
+	'abusefilter-desc' => 'Wendet automatische Heuristiken auf Änderungen an',
 	'abusefilter' => 'Missbrauchsfilter-Einstellungen',
 	'abuselog' => 'Missbrauchsfilter-Logbuch',
 	'abusefilter-intro' => 'Willkommen auf der Missbrauchsfilter-Management-Oberfläche.
@@ -8422,7 +8418,7 @@ Hereket: $6;
 Deskripsiyonê filitreyî: $7 ($8)',
 	'abusefilter-log-detailedentry-global' => 'filitreyê globalî $1',
 	'abusefilter-log-detailedentry-local' => 'filitreyê $1î',
-	'abusefilter-log-detailslink' => 'teferruati',
+	'abusefilter-log-detailslink' => 'detayî',
 	'abusefilter-log-diff' => 'ferq',
 	'abusefilter-log-hidelink' => 'vinayişi eyar bike',
 	'abusefilter-log-details-legend' => 'Detayî ser log entryê $1î',
@@ -8456,7 +8452,7 @@ Deskripsiyonê filitreyî: $7 ($8)',
 	'abusefilter-list-visibility' => 'Vinayîşî',
 	'abusefilter-list-hitcount' => 'Amarê reytingî',
 	'abusefilter-list-edit' => 'Bıvurne',
-	'abusefilter-list-details' => 'Teferruati',
+	'abusefilter-list-details' => 'Detayi',
 	'abusefilter-list-limit' => 'Amarî ser yew pel:',
 	'abusefilter-list-lastmodified' => 'Vurnayîşê tewr penî',
 	'abusefilter-list-group' => 'Parzûnê grube',
@@ -9178,8 +9174,6 @@ Za połne drobnostki glědaj [[Special:AbuseFilter/history|lisćinu]] nejnowšyc
 	'abusefilter-diff-pattern' => 'Filtrowe wuměnjenja',
 	'abusefilter-diff-invalid' => 'Njemóžno pominane wersije wobstaraś',
 	'abusefilter-diff-backhistory' => 'Slědk k filtrowym stawiznam',
-	'abusefilter-diff-prev' => 'Starša změna',
-	'abusefilter-diff-next' => 'Nowša změna',
 	'abusefilter-import-intro' => 'Móžoš toś ten interfejs wužywaś, aby importěrował filtry z drugich wikijow.
 Klikni w žrědłowem wikiju na "{{int:abusefilter-edit-export}}" pód "{{int:abusefilter-edit-tools}}" na wobźěłowańskem interfejsu. Kopěruj z tekstowego póla, kótarež se pokazujo do toś togo tekstowego póla a klikni pótom na "{{int:abusefilter-import-submit}}",',
 	'abusefilter-import-submit' => 'Daty importěrowaś',
@@ -14120,7 +14114,6 @@ $messages['haw'] = array(
  * @author StuB
  * @author YaronSh
  * @author Yonidebest
- * @author ערן
  */
 $messages['he'] = array(
 	'abusefilter-desc' => 'ביצוע בדיקות אוטומטיות לעריכות כדי לאתר השחתות',
@@ -14403,7 +14396,7 @@ $messages['he'] = array(
 	'abusefilter-edit-builder-vars-user-groups' => 'קבוצות (כולל קבוצות משתמעות) בהן נמצא המשתמש',
 	'abusefilter-edit-builder-vars-user-blocked' => 'אם המשתמש נחסם',
 	'abusefilter-edit-builder-vars-user-emailconfirm' => 'התאריך בו אומתה כתובת הדוא"ל',
-	'abusefilter-edit-builder-vars-recent-contributors' => 'עשרת התורמים האחרונים לדף',
+	'abusefilter-edit-builder-vars-recent-contributors' => 'חמשת התורמים האחרונים לדף',
 	'abusefilter-edit-builder-vars-all-links' => 'כל הקישורים החיצוניים בטקסט החדש',
 	'abusefilter-edit-builder-vars-added-links' => 'כל הקישורים החיצוניים שנוספו בעריכה',
 	'abusefilter-edit-builder-vars-removed-links' => 'כל הקישורים החיצוניים שהוסרו בעריכה',
@@ -20871,7 +20864,6 @@ $messages['ku-latn'] = array(
 	'abusefilter-action-degroup' => 'Ji koman rake',
 	'abusefilter-action-disallow' => 'Nehêle',
 	'abusefilter-revert-filter' => 'Fîltre:',
-	'abusefilter-revert-reasonfield' => 'Sedem:',
 	'abusefilter-test-submit' => 'Test',
 	'abusefilter-examine-user' => 'Bikarhêner:',
 	'abusefilter-examine-title' => 'Sernavê rûpelê:',
@@ -21082,7 +21074,6 @@ Eng kuerz Beschreiwung vun der Mëssbrauchsregel op déi Är Aktioun reagéiert 
 	'right-abusefilter-view-private' => 'Mëssbrauchsfilter weisen déi als privat markéiert sinn',
 	'right-abusefilter-hide-log' => 'Rubriken am Mëssbrauchsfilter verstoppen',
 	'right-abusefilter-hidden-log' => "Verstoppten Androungen an d'Mëssbrauchslogbuch kucken",
-	'right-abusefilter-modify-global' => 'Global Mëssbrauchsfilteren uleeën oder änneren',
 	'action-abusefilter-modify' => "Mëssbrauchsfilteren z'änneren",
 	'action-abusefilter-view' => 'Mëssbrauchsfilteren ze kucken',
 	'action-abusefilter-log' => "d'Logbuch vum Mëssbrauch ze kucken",
@@ -28444,7 +28435,6 @@ Krótki opis reguły nadużycia, do której Twoja akcji została dopasowana: $1'
 	'right-abusefilter-log-private' => 'Wyświetlanie wpisów do logów filtrów nadużyć oznaczonych jako prywatne',
 	'right-abusefilter-hide-log' => 'Ukrywanie wpisów w rejestrze nadużyć',
 	'right-abusefilter-hidden-log' => 'Podgląd ukrytych wpisów w rejestrze nadużyć',
-	'right-abusefilter-modify-global' => 'tworzyć lub modyfikować globalne filtry nadużyć',
 	'action-abusefilter-modify' => 'modyfikowania filtru nadużyć',
 	'action-abusefilter-view' => 'przeglądania filtrów nadużyć',
 	'action-abusefilter-log' => 'przeglądania rejestru nadużyć',
@@ -28538,7 +28528,6 @@ wpisów w rejestrze nadużyć.',
 	'abusefilter-reautoconfirm-notallowed' => 'Nie masz uprawnień, aby przywrócić statusu automatycznie zatwierdzonego.',
 	'abusefilter-reautoconfirm-done' => 'Został przywrócony status automatycznego zatwierdzania zmian wykonywanych przez użytkowników',
 	'abusefilter-status' => 'Z {{PLURAL:$1|ostatniej $1 akcji|ostatnich $1 akcji}}, $2 {{PLURAL:$2|osiągnęła|osiągnęły|osiągnęło}} ($3%) stan limitu $4. $5  {{PLURAL:$5|pasował|pasowały|pasowało}} ($6%) do jednego z obecnie włączonych filtrów.',
-	'abusefilter-edit' => 'Edytujesz filtr nadużyć',
 	'abusefilter-edit-subtitle' => 'Edytowanie filtru $1',
 	'abusefilter-edit-subtitle-new' => 'Tworzenie filtru',
 	'abusefilter-edit-oldwarning' => '<strong>Edytujesz starą wersję tego filtru. Statystyka są notowane dla najnowszej wersji filtru. Jeśli zapiszesz zmiany, zostaną nadpisane wszystkie późniejsze wersje niż ta, którą edytujesz.</strong> &bull; [[Special:AbuseFilter/history/$2|Powrót do historii filtru]]',
@@ -28605,7 +28594,6 @@ wpisów w rejestrze nadużyć.',
 	'abusefilter-edit-bad-tags' => 'Co najmniej jedno z oznaczeń jest niepoprawne.
 Oznaczenia powinny być krótkie i nie powinny zawierać znaków specjalnych.',
 	'abusefilter-edit-notallowed' => 'Nie posiadasz uprawnienia do tworzenia lub edytowania filtrów nadużyć',
-	'abusefilter-edit-notallowed-global' => 'Nie posiadasz uprawnienia do tworzenia lub edytowania globalnych filtrów nadużyć',
 	'abusefilter-edit-builder-select' => 'Wybierz opcję, aby wkleić ją na pozycji kursora',
 	'abusefilter-edit-builder-group-op-arithmetic' => 'Operatory arytmetyczne',
 	'abusefilter-edit-builder-op-arithmetic-addition' => 'Dodawanie (+)',
@@ -28668,7 +28656,6 @@ Oznaczenia powinny być krótkie i nie powinny zawierać znaków specjalnych.',
 	'abusefilter-edit-builder-vars-article-ns' => 'Przestrzeń nazw strony',
 	'abusefilter-edit-builder-vars-article-text' => 'Tytuł strony (bez przestrzeni nazw)',
 	'abusefilter-edit-builder-vars-article-prefixedtext' => 'Pełny tytuł strony',
-	'abusefilter-edit-builder-vars-article-views' => 'Liczba odwiedzin strony',
 	'abusefilter-edit-builder-vars-movedfrom-id' => 'Identyfikator źródła przenoszonej strony',
 	'abusefilter-edit-builder-vars-movedfrom-ns' => 'Przestrzeń nazw źródła przenoszonej strony',
 	'abusefilter-edit-builder-vars-movedfrom-text' => 'Tytuł źródła przenoszonej strony',
@@ -28811,8 +28798,6 @@ Pełne informacje odnajdziesz w [[Special:AbuseFilter/history|rejestrze]] ostatn
 	'abusefilter-diff-pattern' => 'Warunki filtru',
 	'abusefilter-diff-invalid' => 'Nie można pobrać żądanej wersji',
 	'abusefilter-diff-backhistory' => 'Powrót do historii filtru',
-	'abusefilter-diff-prev' => 'Poprzednia zmiana',
-	'abusefilter-diff-next' => 'Następna zmiana',
 	'abusefilter-import-intro' => 'Ten interfejs służy do importowania filtrów z innych wiki.
 W trybie edycji filtru kliknij w źródłowej wiki „{{int:abusefilter-edit-export}}” przy nagłówku „{{int:abusefilter-edit-tools}}”.
 Skopiuj zawartość pola tekstowego, które się pojawi, i wklej ją do poniższego pola tekstowego, a następnie kliknij przycisk „{{int:abusefilter-import-submit}}”,',
@@ -29388,7 +29373,6 @@ $messages['ps'] = array(
  * @author Malafaya
  * @author Pedroca cerebral
  * @author SandroHc
- * @author Sarilho1
  * @author Waldir
  * @author 555
  */
@@ -29403,8 +29387,8 @@ Esta interface mostra uma lista dos filtros definidos e permite que estes sejam 
 	'abusefilter-warning' => "'''Aviso:''' esta operação foi identificada de forma automática como prejudicial.
 As edições não construtivas serão revertidas rapidamente,
 e a repetição destas edições resultará no bloqueio da sua conta ou do seu endereço IP.
-Se crê que esta ação é construtiva, pode clicar enviar novamente para confirmá-lo.
-Uma breve descrição da regra de abuso com a qual a sua acção coincidiu é: $1",
+Se crê que esta edição é construtiva, pode clicar novamente o botão \"Enviar\" para confirmá-lo.
+Uma breve descrição da regra de abuso com a qual a sua acção coincidiu é: \$1", # Fuzzy
 	'abusefilter-disallowed' => 'Esta operação foi identificada automaticamente como prejudicial,
 e foi consequentemente bloqueada.
 Se crê que a sua edição foi construtiva, por favor contacte um administrador, e informe-o do que estava a tentar fazer.
@@ -35825,7 +35809,6 @@ Krůtki uopis zńyłużyćo, ke keremu bůła przipasowano twojo akcyjo: $1', # 
 );
 
 /** Tamil (தமிழ்)
- * @author ElangoRamanujam
  * @author Kanags
  * @author Karthi.dr
  * @author Logicwiki
@@ -36032,7 +36015,6 @@ Filter description: $7 ($8)',
 	'abusefilter-edit-builder-vars-article-ns' => 'பக்கத்தின் பெயர்வெளி',
 	'abusefilter-edit-builder-vars-article-text' => 'பக்கத்தின் தலைப்பு (பெயர்வெளி இல்லாமல்)',
 	'abusefilter-edit-builder-vars-article-prefixedtext' => 'முழு பக்கத்தின் தலைப்பு',
-	'abusefilter-edit-builder-vars-article-views' => 'பக்க நோக்குகள்',
 	'abusefilter-edit-builder-vars-movedto-text' => 'நகர்த்தல் இலக்குப் பக்கத்தின் தலைப்பு',
 	'abusefilter-edit-builder-vars-user-editcount' => 'பயனரின் தொகுப்புக்களின் எண்ணிக்கை',
 	'abusefilter-edit-builder-vars-user-age' => 'பயனர் கணக்கின் வயது',
@@ -40146,80 +40128,6 @@ $messages['wa'] = array(
 	'abusefilter-examine-user' => 'Uzeu:',
 	'abusefilter-examine-title' => 'Tite del pådje:',
 	'abusefilter-examine-submit' => 'Cweri',
-);
-
-/** Waray (Winaray)
- * @author JinJian
- */
-$messages['war'] = array(
-	'abusefilter-log-search-user' => 'Gumaramit:',
-	'abusefilter-log-search-title' => 'Titulo:',
-	'abusefilter-log-search-wiki' => 'Wiki:',
-	'abusefilter-log-search-submit' => 'Pamilnga',
-	'abusefilter-log-detailslink' => 'mga detalye',
-	'abusefilter-log-details-private' => 'Pribado nga datos',
-	'abusefilter-log-details-ip' => 'Gintikangan nga IP address',
-	'abusefilter-log-noactions' => 'Waray',
-	'abusefilter-log-linkoncontribs' => 'log han pag-abuso',
-	'abusefilter-log-hide-reason' => 'Rason:',
-	'abusefilter-list-status' => 'Kahimtang',
-	'abusefilter-list-hitcount' => 'Ihap hit igo',
-	'abusefilter-list-edit' => 'Igliwat',
-	'abusefilter-list-details' => 'Mga detalye',
-	'abusefilter-list-limit' => 'Ihap kada pakli:',
-	'abusefilter-list-lastmodified' => 'Kataposan nga ginsaliwanan',
-	'abusefilter-list-group' => 'Grupo hit pagsara',
-	'abusefilter-hidden' => 'Pribado',
-	'abusefilter-unhidden' => 'Publiko',
-	'abusefilter-enabled' => 'Ginpaandar',
-	'abusefilter-deleted' => 'Ginpara',
-	'abusefilter-disabled' => 'Ginparong',
-	'abusefilter-new' => 'Paghimo hin bag-o nga panara',
-	'abusefilter-status-global' => 'Kalibutanon',
-	'abusefilter-list-options' => 'Mga opsyon',
-	'abusefilter-list-options-deleted' => 'Ginpara an mga sara:',
-	'abusefilter-list-options-deleted-only' => 'Igpakita la an mga ginpara nga panara',
-	'abusefilter-list-options-deleted-hide' => 'Igtago an mga ginpara nga panara',
-	'abusefilter-list-options-deleted-show' => 'Iglakip an mga ginpara nga panara',
-	'abusefilter-list-options-scope' => 'Igpakita an mga panara tikang:',
-	'abusefilter-list-options-scope-local' => 'Lokal nga wiki',
-	'abusefilter-list-options-disabled' => 'Ginparong an mga panara:',
-	'abusefilter-list-options-hidedisabled' => 'Igtago an mga ginparong nga mga panara',
-	'abusefilter-list-options-submit' => 'Igpayana',
-	'abusefilter-tools-reautoconfirm-user' => 'Gumaramit:',
-	'abusefilter-edit-warn-other' => 'Iba nga mensahe',
-	'abusefilter-edit-history' => 'Kaagi:',
-	'abusefilter-edit-tools' => 'Mga higamit:',
-	'abusefilter-edit-builder-op-arithmetic-addition' => 'Pagdugangdugang (+)',
-	'abusefilter-edit-builder-op-arithmetic-subtraction' => 'Pag-iban-iban (-)',
-	'abusefilter-edit-builder-op-arithmetic-multiplication' => 'Pagpilo-pilo (*)',
-	'abusefilter-edit-builder-op-arithmetic-divide' => 'Pagtunga-tunga (/)',
-	'abusefilter-edit-builder-op-arithmetic-modulo' => 'Modulo (%)',
-	'abusefilter-edit-builder-op-comparison-equal' => 'Pareho ha (==)',
-	'abusefilter-edit-builder-op-comparison-notequal' => 'Diri pareho ha (!=)',
-	'abusefilter-edit-builder-op-comparison-lt' => 'ubos ha (<)',
-	'abusefilter-edit-builder-op-comparison-gt' => 'Labaw ha (>)',
-	'abusefilter-edit-builder-op-comparison-lte' => 'Ubos ha o pareho ha (<=)',
-	'abusefilter-edit-builder-op-comparison-gte' => 'Labaw ha o pareho ha (>=)',
-	'abusefilter-edit-builder-op-bool-not' => 'Diri (!)',
-	'abusefilter-edit-builder-op-bool-and' => 'Ngan (&)',
-	'abusefilter-edit-builder-op-bool-or' => 'O (|)',
-	'abusefilter-edit-builder-vars-newsize' => 'Bag-o nga kadako hin pakli',
-	'abusefilter-edit-builder-vars-oldsize' => 'Daan nga kadako hin pakli',
-	'abusefilter-edit-builder-vars-removedlines' => 'Mga linya gintanggal ha pagliwat',
-	'abusefilter-history-foruser' => 'Mga ginliwat ni $1',
-	'abusefilter-history-hidden' => 'Nakatago',
-	'abusefilter-history-enabled' => 'Ginpaandar',
-	'abusefilter-history-global' => 'Kalibutanon',
-	'abusefilter-history-timestamp' => 'Oras',
-	'abusefilter-history-user' => 'Gumaramit',
-	'abusefilter-revert-reasonfield' => 'Rason:',
-	'abusefilter-test-load' => 'Ginkarga',
-	'abusefilter-examine-user' => 'Gumaramit:',
-	'abusefilter-examine-title' => 'Titulo han pakli:',
-	'abusefilter-examine-submit' => 'Pamilnga',
-	'abusefilter-topnav-home' => 'Balay',
-	'abusefilter-log-noresults' => 'Waray mga resulta',
 );
 
 /** Wu (吴语)

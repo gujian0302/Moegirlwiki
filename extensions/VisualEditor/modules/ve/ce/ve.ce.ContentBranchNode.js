@@ -14,20 +14,17 @@
  * @extends ve.ce.BranchNode
  * @constructor
  * @param {ve.dm.BranchNode} model Model to observe
- * @param {jQuery} [$element] Element to use as a container
+ * @param {Object} [config] Config options
  */
-ve.ce.ContentBranchNode = function VeCeContentBranchNode( model, $element ) {
+ve.ce.ContentBranchNode = function VeCeContentBranchNode( model, config ) {
 	// Parent constructor
-	ve.ce.BranchNode.call( this, model, $element );
+	ve.ce.BranchNode.call( this, model, config );
 
 	// Properties
 	this.surfaceModelState = null;
 
 	// Events
 	this.connect( this, { 'childUpdate': 'onChildUpdate' } );
-
-	// Initialization
-	this.renderContents();
 };
 
 /* Inheritance */
@@ -51,7 +48,7 @@ ve.inheritClass( ve.ce.ContentBranchNode, ve.ce.BranchNode );
  */
 ve.ce.ContentBranchNode.prototype.onChildUpdate = function ( transaction ) {
 	var surfaceModel = this.getRoot().getSurface().getModel(),
-		surfaceModelState = surfaceModel.getCompleteHistoryLength();
+		surfaceModelState = surfaceModel.getDocument().getCompleteHistoryLength();
 
 	if ( transaction instanceof ve.dm.Transaction ) {
 		if ( surfaceModelState === this.surfaceModelState ) {
@@ -71,8 +68,9 @@ ve.ce.ContentBranchNode.prototype.onChildUpdate = function ( transaction ) {
  * @method
  */
 ve.ce.ContentBranchNode.prototype.onSplice = function () {
-	// Call parent implementation
+	// Parent method
 	ve.ce.BranchNode.prototype.onSplice.apply( this, arguments );
+
 	// Rerender to make sure annotations are applied correctly
 	this.renderContents();
 };
@@ -81,50 +79,49 @@ ve.ce.ContentBranchNode.prototype.onSplice = function () {
  * Get an HTML rendering of the contents.
  *
  * @method
- * @returns {jQuery}
+ * @returns {HTMLElement[]}
  */
 ve.ce.ContentBranchNode.prototype.getRenderedContents = function () {
-	var i, itemHtml, itemAnnotations, $ann,
+	var i, ilen, j, jlen, item, itemAnnotations, ann,
 		store = this.model.doc.getStore(),
 		annotationStack = new ve.dm.AnnotationSet( store ),
 		annotatedHtml = [],
-		$wrapper = $( '<div>' ),
-		$current = $wrapper,
+		wrapper = document.createElement( 'div' ),
+		current = wrapper,
 		buffer = '';
 
-	function flushBuffer() {
+	function openAnnotation( annotation ) {
 		if ( buffer !== '' ) {
-			$current.append( buffer );
+			current.appendChild( document.createTextNode( buffer ) );
 			buffer = '';
 		}
-	}
-
-	function openAnnotation( annotation ) {
-		flushBuffer();
 		// Create a new DOM node and descend into it
-		$ann = ve.ce.annotationFactory.create( annotation.getType(), annotation ).$;
-		$current.append( $ann );
-		$current = $ann;
+		ann = ve.ce.annotationFactory.create( annotation.getType(), annotation ).$[0];
+		current.appendChild( ann );
+		current = ann;
 	}
 
 	function closeAnnotation() {
-		flushBuffer();
+		if ( buffer !== '' ) {
+			current.appendChild( document.createTextNode( buffer ) );
+			buffer = '';
+		}
 		// Traverse up
-		$current = $current.parent();
+		current = current.parentNode;
 	}
 
 	// Gather annotated HTML from the child nodes
-	for ( i = 0; i < this.children.length; i++ ) {
+	for ( i = 0, ilen = this.children.length; i < ilen; i++ ) {
 		annotatedHtml = annotatedHtml.concat( this.children[i].getAnnotatedHtml() );
 	}
 
 	// Render HTML with annotations
-	for ( i = 0; i < annotatedHtml.length; i++ ) {
+	for ( i = 0, ilen = annotatedHtml.length; i < ilen; i++ ) {
 		if ( ve.isArray( annotatedHtml[i] ) ) {
-			itemHtml = annotatedHtml[i][0];
+			item = annotatedHtml[i][0];
 			itemAnnotations = new ve.dm.AnnotationSet( store, annotatedHtml[i][1] );
 		} else {
-			itemHtml = annotatedHtml[i];
+			item = annotatedHtml[i];
 			itemAnnotations = new ve.dm.AnnotationSet( store );
 		}
 
@@ -132,16 +129,25 @@ ve.ce.ContentBranchNode.prototype.getRenderedContents = function () {
 			openAnnotation, closeAnnotation
 		);
 
-		// Handle the actual HTML
-		if ( typeof itemHtml === 'string' ) {
-			buffer += itemHtml;
+		// Handle the actual item
+		if ( typeof item === 'string' ) {
+			buffer += item;
 		} else {
-			flushBuffer();
-			$current.append( itemHtml );
+			if ( buffer !== '' ) {
+				current.appendChild( document.createTextNode( buffer ) );
+				buffer = '';
+			}
+			// DOM equivalent of $( current ).append( itemHtml );
+			for ( j = 0, jlen = item.length; j < jlen; j++ ) {
+				current.appendChild( item[j] );
+			}
 		}
 	}
-	flushBuffer();
-	return $wrapper.contents();
+	if ( buffer !== '' ) {
+		current.appendChild( document.createTextNode( buffer ) );
+		buffer = '';
+	}
+	return Array.prototype.slice.apply( wrapper.childNodes );
 
 };
 
@@ -151,18 +157,24 @@ ve.ce.ContentBranchNode.prototype.getRenderedContents = function () {
  * @method
  */
 ve.ce.ContentBranchNode.prototype.renderContents = function () {
+	var i, len, node, rendered;
 	if ( this.root instanceof ve.ce.DocumentNode && !this.root.getSurface().isRenderingEnabled() ) {
 		return;
 	}
 
 	// Detach all child nodes from this.$
-	// We can't use this.$.empty() because that destroys .data() and event handlers
-	this.$.contents().each( function () {
-		$( this ).detach();
-	} );
+	for ( i = 0, len = this.$.length; i < len; i++ ) {
+		node = this.$[i];
+		while ( node.firstChild ) {
+			node.removeChild( node.firstChild );
+		}
+	}
 
 	// Reattach child nodes with the right annotations
-	this.$.append( this.getRenderedContents() );
+	rendered = this.getRenderedContents();
+	for ( i = 0, len = rendered.length; i < len; i++ ) {
+		this.$[0].appendChild( rendered[i] );
+	}
 
 	// Add slugs
 	this.setupSlugs();

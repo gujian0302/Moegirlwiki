@@ -204,7 +204,7 @@ class TalkpageView extends LqtView {
 		);
 		$html .= $sortOrderSelect->getHTML();
 
-		$html .= Xml::submitButton( wfMessage( 'go' )->text(), array( 'class' => 'lqt_go_sort' ) );
+		$html .= Xml::submitButton( wfMessage( 'lqt-changesortorder' )->text(), array( 'class' => 'lqt_go_sort' ) );
 		$html .= Html::hidden( 'title', $this->title->getPrefixedText() );
 
 
@@ -240,7 +240,7 @@ class TalkpageView extends LqtView {
 		$urlPrefix = wfScript( 'api' ) . '?';
 		foreach ( $wgFeedClasses as $format => $class ) {
 			$theseParams = $apiParams + array( 'feedformat' => $format );
-			$url = $urlPrefix . wfArrayToCGI( $theseParams );
+			$url = $urlPrefix . wfArrayToCgi( $theseParams );
 			$this->output->addFeedLink( $format, $url );
 		}
 
@@ -265,7 +265,7 @@ class TalkpageView extends LqtView {
 			);
 
 			$t = SpecialPage::getTitleFor( 'Search' );
-			$url = $t->getLocalURL( wfArrayToCGI( $params ) );
+			$url = $t->getLocalURL( wfArrayToCgi( $params ) );
 
 			$this->output->redirect( $url );
 			return true;
@@ -323,10 +323,7 @@ class TalkpageView extends LqtView {
  		}
 
 		if ( $this->methodApplies( 'talkpage_new_thread' ) ) {
-			$params = array( 'class' => 'lqt-new-thread lqt-edit-form' );
-			$this->output->addHTML( Xml::openElement( 'div', $params ) );
 			$this->showNewThreadForm( $this->talkpage );
-			$this->output->addHTML( Xml::closeElement( 'div' ) );
 		} else {
 			$this->output->addHTML( Xml::tags( 'div',
 				array( 'class' => 'lqt-new-thread lqt-edit-form' ), '' ) );

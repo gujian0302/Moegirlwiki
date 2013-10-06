@@ -68,8 +68,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Gözegçilikde saklaýan ulanyjylaryň sanyny görkez',
 'tog-oldsig' => 'Bar bolan gol:',
 'tog-fancysig' => 'Gola wikitekst hökmünde çemeleş (awtomatik çykgytsyz)',
-'tog-externaleditor' => 'Gaýybana daşarky redaktor ulan (diňe hünärmenler üçin, kompýuteriňizde ýörite sazlamalar talap edilýär. [//www.mediawiki.org/wiki/Manual:External_editors Jikme-jik.])',
-'tog-externaldiff' => 'Başga programmalaryň üsti bilen deňeşdir (diňe hünärmenler üçin, kompýuteriňizde ýörite sazlamalar talap edilýär)',
 'tog-showjumplinks' => '"Git" çykgydyny işlet',
 'tog-uselivepreview' => 'Gönümel deslapky syny ulan (JavaScript) (Synag edilýär)',
 'tog-forceeditsummary' => 'Gysgaça mazmuny boş galdyran mahalym maňa ýatlat',
@@ -182,7 +180,6 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'qbbrowse' => 'Göz aýla',
 'qbedit' => 'Redaktirle',
 'qbpageoptions' => 'Bu sahypa',
-'qbpageinfo' => 'Kontekst',
 'qbmyoptions' => 'Meniň sahypalarym',
 'qbspecialpages' => 'Ýörite sahypalar',
 'faq' => 'KSS',
@@ -205,6 +202,7 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'namespaces' => 'At giňişlikleri',
 'variants' => 'Wariantlar',
 
+'navigation-heading' => 'Nawigasiýa menýusy',
 'errorpagetitle' => 'Säwlik',
 'returnto' => '$1.',
 'tagline' => '{{SITENAME}} saýtyndan',
@@ -278,7 +276,6 @@ $1',
 'disclaimers' => 'Jogapkärçilikden boýun gaçyrma',
 'disclaimerpage' => 'Project:Umumy jogapkärçilikden boýun gaçyrma',
 'edithelp' => 'Nähili redaktirlenýär?',
-'edithelppage' => 'Help:Redaktirleme',
 'helppage' => 'Help:Içindäkiler',
 'mainpage' => 'Baş Sahypa',
 'mainpage-description' => 'Baş Sahypa',
@@ -300,9 +297,9 @@ Bu sahypany ulanmak üçin MediaWikiniň $1 wersiýasy talap edilýär. [[Specia
 'ok' => 'OK',
 'retrievedfrom' => '"$1" adresinden alyndy.',
 'youhavenewmessages' => 'Size $1 bar. ($2)',
-'newmessageslink' => 'täze habarlaşyk',
+'newmessageslink' => 'täze habar',
 'newmessagesdifflink' => 'soňky üýtgeşme',
-'youhavenewmessagesmulti' => 'Size $1-de täze habarlaşyk bar.',
+'youhavenewmessagesmulti' => 'Size $1-de täze habar bar.',
 'editsection' => 'redaktirle',
 'editold' => 'redaktirle',
 'viewsourceold' => 'çeşmäni gör',
@@ -424,12 +421,9 @@ Görkezilen sebäp: ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Sessiýany ýapdyňyz.'''
 
-Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir ýa-da başga bir at bilen [[Special:UserLogin|sessiýany ýaňadan]] açyp bilersiňiz.
+Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir ýa-da başga bir at bilen <span class='plainlinks'>[$1 sessiýany ýaňadan]</span> açyp bilersiňiz.
 Web brauzeriňiziň keşini arassalaýançaňyz käbir sahypalar sessiýaňyzyň açyk wagtkysy ýaly görünip biler.",
-'welcomecreation' => '== Hoş geldiňiz, $1! ==
-
-Hasabyňyz açyldy.
-[[Special:Preferences|{{SITENAME}} saýtyndaky ileri tutmalaryňyzy]] üýtgetmegi ýatdan çykarmaň.',
+'welcomeuser' => 'Hoş geldiňiz, $1!',
 'yourname' => 'Ulanyjy adyňyz:',
 'yourpassword' => 'Parolyňyz:',
 'yourpasswordagain' => 'Paroly gaýtadan ýaz:',
@@ -719,7 +713,6 @@ Gündeligiň iň soňky ýazgysy salgylanmak üçin aşakda berilýär:",
 'template-protected' => '(goragly)',
 'template-semiprotected' => '(ýarym goragly)',
 'hiddencategories' => 'Bu sahypa {{PLURAL:$1|1 gizlin kategoriýa|$1 gizlin kategoriýa}} degişlidir:',
-'nocreatetitle' => 'Sahypa döretmeklik çäklendirildi',
 'nocreatetext' => '{{SITENAME}} täze sahypa döretmek mümkinçiligini çäklendirdi.
 Yza gaýdyp, bar bolan sahypalary redaktirläp bilersiňiz ýa-da bolmasa [[Special:UserLogin|sessiýa açyp]] ýa-da [[Special:UserLogin|hasap döredip]] bilersiňiz.',
 'nocreate-loggedin' => 'Täze sahypa döretmäge rugsadyňyz ýok.',
@@ -743,6 +736,11 @@ Düşündiriş berilmedi.',
 'edit-no-change' => 'Özgerdişiňize ähmiýet berilmedi, sebäbi tekstde üýtgeşme edilmedi.',
 'edit-already-exists' => 'Täze sahypa döredip bolanok.
 Ol eýýäm bar.',
+
+# Content models
+'content-model-wikitext' => 'wikitekst',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Duýduryş:''' Bu sahypada resurs talap ediji funksiýalara çakdanaşa köp çagyryş bar.
@@ -966,7 +964,6 @@ Nawigasiýa çykgytlaryny ulanmaklygyň bu sütüni başky ýagdaýyna getirjekd
 'searchmenu-legend' => 'Gözleg opsiýalary',
 'searchmenu-exists' => "'''Bu wikide \"[[:\$1]]\" atly sahypa bar'''",
 'searchmenu-new' => "'''Bu wikide \"[[:\$1]]\" sahypasyny döret!'''",
-'searchhelp-url' => 'Help:Içindäkiler',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Şu prefiksli sahypalara göz aýla]]',
 'searchprofile-articles' => 'Mazmunly sahypalar',
 'searchprofile-project' => 'Ýardam we Taslama sahypalary',
@@ -1010,14 +1007,6 @@ Gözlegiňiziň başyna '''all:''' pristawkasyny goşup tutuş mazmuny (şol san
 'searchdisabled' => '{{SITENAME}} saýtynda gözleg geçirmeklik ýapyk.
 Ýogsa-da, oňa çenli Google bilen gözleg geçirip bilersiňiz.
 Emma olaryň {{SITENAME}} indeksleriniň möwriti geçen bolmagy mümkindir.',
-
-# Quickbar
-'qbsettings' => 'Tiz panel',
-'qbsettings-none' => 'Hiç biri',
-'qbsettings-fixedleft' => 'Çepe berkidildi',
-'qbsettings-fixedright' => 'Saga berkidildi',
-'qbsettings-floatingleft' => 'Çepe ýaplanýar',
-'qbsettings-floatingright' => 'Saga ýaplanýar',
 
 # Preferences page
 'preferences' => 'Ileri tutmalar',
@@ -1236,11 +1225,13 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'right-override-export-depth' => 'Sahypalary, şol sanda çykgytly sahypalary 5-e çenli çuňlukda eksportirle',
 'right-sendemail' => 'Başga ulanyjylara e-poçta iber',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Täze ulanyjy gündeligi',
+'newuserlogpagetext' => 'Ulanyjy döretme gündeligi.',
+
 # User rights log
 'rightslog' => 'Ulanyjy hukuklarynyň gündeligi',
 'rightslogtext' => 'Ulanyjy hukuklaryndaky üýtgeşmeler gündeligi.',
-'rightslogentry' => '$1 üçin topar agzalygyny $2 toparyndan $3 toparyna üýtgetdi',
-'rightsnone' => '(hiç biri)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'bu sahypany okamaga',
@@ -1481,7 +1472,6 @@ Howpsuzlygyň optimizasiýasy üçin, img_auth.php ýapylyp goýuldy.',
 'http-read-error' => 'HTTP okamak säwligi.',
 'http-timed-out' => 'HTTP talabynyň wagty geçdi.',
 'http-curl-error' => 'URL äkelmek säwligi: $1',
-'http-host-unreachable' => 'URL-ä baryp bolmaýar',
 'http-bad-status' => 'HTTP talaby wagtynda problema döredi: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1786,10 +1776,6 @@ Goldanylýan protokollar: <code>$1</code>',
 'activeusers-hidesysops' => 'Administratorlary gizle',
 'activeusers-noresult' => 'Ulanyjy tapylmady.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Täze ulanyjy gündeligi',
-'newuserlogpagetext' => 'Ulanyjy döretme gündeligi.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Ulanyjy topary hukuklary',
 'listgrouprights-summary' => 'Aşakda şu wikide kesgitlenen ulanyjy toparlarynyň hem-de olaryň degişli ulanmak hukuklarynyň sanawy berilýär.
@@ -1809,7 +1795,7 @@ Goldanylýan protokollar: <code>$1</code>',
 'listgrouprights-addgroup-self-all' => 'Ähli toparlary öz hasabyňa goş',
 'listgrouprights-removegroup-self-all' => 'Ähli toparlary öz hasabyňdan aýyr',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Iberer ýaly adres ýok',
 'mailnologintext' => 'Başga ulanyjylara e-poçta ibermek üçin [[Special:UserLogin|sessiýaňyz açyk bolmaly]] hem-de [[Special:Preferences|ileri tutmalarda]] dogry bir e-poçta adresiňiz bolmalydyr.',
 'emailuser' => 'Bu ulanyja e-poçta iber',
@@ -1841,7 +1827,7 @@ Goldanylýan protokollar: <code>$1</code>',
 'usermessage-editor' => 'Ulgam habarçysy',
 
 # Watchlist
-'watchlist' => 'Gözegçilik sanawym',
+'watchlist' => 'Gözegçilik sanawy',
 'mywatchlist' => 'Gözegçilik sanawy',
 'watchlistfor2' => '$1 üçin  $2',
 'nowatchlist' => 'Gözegçilik sanawyňyzda hiçhili sahypa ýok.',
@@ -1862,8 +1848,8 @@ Aňsatlyk bilen saýlap almak üçin bolsa, [[Special:RecentChanges|soňky üýt
 'notvisiblerev' => 'Başga bir ulanyja degişli iň soňky wersiýa öçürilipdir',
 'watchnochange' => 'Gözegçilik edýän sahypalaryňyzyň hiç birisi görkezilen wagtyň dowamynda redaktirlenmändir.',
 'watchlist-details' => 'Çekişme sahypalaryny hasap etmäniňde, gözegçilik sanawyňyzda {{PLURAL:$1|$1 sahypa|$1 sahypa}} bar.',
-'wlheader-enotif' => '* E-poçta bilen habar beriş açyk.',
-'wlheader-showupdated' => "* Soňky gezek baryp görenizden soňra üýtgedilen sahypalar '''goýy şrift''' bilen görkezilýär.",
+'wlheader-enotif' => 'E-poçta bilen habar beriş açyk.',
+'wlheader-showupdated' => "Soňky gezek baryp görenizden soňra üýtgedilen sahypalar '''goýy şrift''' bilen görkezilýär.",
 'watchmethod-recent' => 'soňky özgerdişlerdäki gözegçilikde saklaýan sahypalaryňyz barlanylýar',
 'watchmethod-list' => 'gözegçilikde saklaýan sahypalaryňyzdaky soňky özgerdişler barlanylýar',
 'watchlistcontains' => 'Gözegçilik sanawyňyzda $1 sany {{PLURAL:$1|sahypa|sahypa}} bar.',
@@ -1878,11 +1864,7 @@ Aňsatlyk bilen saýlap almak üçin bolsa, [[Special:RecentChanges|soňky üýt
 
 'enotif_mailer' => '{{SITENAME}} Poçta Gullugy',
 'enotif_reset' => 'Ähli sahypalary barylyp görülen diýip belle',
-'enotif_newpagetext' => 'Bu täze sahypa.',
 'enotif_impersonal_salutation' => '{{SITENAME}} ulanyjysy',
-'changed' => 'üýtgedildi',
-'created' => 'döredildi',
-'enotif_subject' => '{{SITENAME}} sahypasy $PAGETITLE, $PAGEEDITOR tarapyndan $CHANGEDORCREATED',
 'enotif_lastvisited' => 'Iň soňky gezek baryp göreliňiz bäri bolan ähli üýtgeşmeleri görmek üçin serediň: $1',
 'enotif_lastdiff' => 'Bu üýtgeşmäni görmek üçin serediň: $1',
 'enotif_anon_editor' => 'anonim ulanyjy $1',
@@ -1912,6 +1894,8 @@ $UNWATCHURL
 
 Seslenme we goşmaça kömek:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'döredildi',
+'changed' => 'üýtgedildi',
 
 # Delete
 'deletepage' => 'Sahypany öçür',
@@ -2093,7 +2077,7 @@ $1',
 'blanknamespace' => '(Baş)',
 
 # Contributions
-'contributions' => 'Ulanyjynyň goşantlary',
+'contributions' => '{{GENDER:$1|Ulanyjy}} goşantlary',
 'contributions-title' => '$1 üçin ulanyjy goşantlary',
 'mycontris' => 'Goşantlar',
 'contribsub2' => '$1 ($2)',
@@ -2619,7 +2603,7 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'In',
 'exif-imagelength' => 'Beýiklik',
 'exif-bitspersample' => 'Komponent başyna bit',
@@ -2735,7 +2719,7 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'exif-languagecode' => 'Dil',
 'exif-iimcategory' => 'Kategoriýa',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Gysylmadyk',
 
 'exif-unknowndate' => 'Näbelli sene',
@@ -2888,7 +2872,7 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'monthsall' => 'ählisi',
 'limitall' => 'ählisi',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-poçta adresini tassykla',
 'confirmemail_noemail' => '[[Special:Preferences|Ulanyjy sazlamalaryňyzda]] bellenilen dogry bir e-poçta adresiňiz ýok.',
 'confirmemail_text' => '{{SITENAME}} saýtynyň e-poçta amallaryny ulanmak üçin, ilki bilen e-poçta adresiňiziň tassyklanmagy zerurdyr.
@@ -3054,15 +3038,6 @@ Bu programmanyň ýany bilen siz [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General P
 'version-software-product' => 'Önüm',
 'version-software-version' => 'Wersiýa',
 
-# Special:FilePath
-'filepath' => 'Faýla barýan ýol',
-'filepath-page' => 'Faýl:',
-'filepath-submit' => 'Git',
-'filepath-summary' => 'Bu ýörite sahypa faýla barýan doly ýoly gaýtaryp getirýär.
-Suratlar doly ölçegde görkezilýär, beýleki faýl görnüşleri degişli programmalary bilen gönümel başladylýar.
-
-Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Dublikat faýllaryň gözlegi',
 'fileduplicatesearch-summary' => 'Heş kodlary boýunça meňzeş faýllary gözle.',
@@ -3155,7 +3130,7 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 # New logging system
 'revdelete-restricted' => 'administratorlara goýlan çäklendirmeler',
 'revdelete-unrestricted' => 'administratorlardan aýyrylan çäklendirmeler',
-'newuserlog-byemail' => 'parol e-poçta bilen iberildi',
+'rightsnone' => '(hiç biri)',
 
 # Search suggestions
 'searchsuggest-search' => 'Gözleg',

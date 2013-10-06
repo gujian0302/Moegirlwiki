@@ -1058,6 +1058,30 @@ class Cite {
 	}
 
 	/**
+	 * Gets run when the parser is cloned.
+	 *
+	 * @param $parser Parser
+	 *
+	 * @return bool
+	 */
+	function cloneState( $parser ) {
+		if ( $parser->extCite !== $this ) {
+			return $parser->extCite->cloneState( $parser );
+		}
+
+		$parser->extCite = clone $this;
+		$parser->setHook( 'ref' , array( $parser->extCite, 'ref' ) );
+		$parser->setHook( 'references' , array( $parser->extCite, 'references' ) );
+
+		// Clear the state, making sure it will actually work.
+		$parser->extCite->mInCite = false;
+		$parser->extCite->mInReferences = false;
+		$parser->extCite->clearState( $parser );
+
+		return true;
+	}
+
+	/**
 	 * Called at the end of page processing to append an error if refs were
 	 * used without a references tag.
 	 *
@@ -1124,6 +1148,7 @@ class Cite {
 
 		if ( !Cite::$hooksInstalled ) {
 			$wgHooks['ParserClearState'][] = array( $parser->extCite, 'clearState' );
+			$wgHooks['ParserCloned'][] = array( $parser->extCite, 'cloneState' );
 			$wgHooks['ParserAfterParse'][] = array( $parser->extCite, 'checkRefsNoReferences', true );
 			$wgHooks['ParserBeforeTidy'][] = array( $parser->extCite, 'checkRefsNoReferences', false );
 			$wgHooks['InlineEditorPartialAfterParse'][] = array( $parser->extCite, 'checkAnyCalls' );

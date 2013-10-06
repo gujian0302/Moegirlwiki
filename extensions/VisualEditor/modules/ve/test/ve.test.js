@@ -9,116 +9,48 @@ QUnit.module( 've' );
 
 /* Tests */
 
-// ve.createObject: Tested upstream (K-js)
+// ve.createObject: Tested upstream (JavaScript)
 
-QUnit.test( 'inheritClass', 18, function ( assert ) {
-	var foo, bar;
+// ve.inheritClass: Tested upstream (OOJS)
 
-	function Foo() {
-		this.constructedFoo = true;
-	}
+// ve.mixinClass: Tested upstream (OOJS)
 
-	Foo.a = 'prop of Foo';
-	Foo.b = 'prop of Foo';
-	Foo.prototype.b = 'proto of Foo';
-	Foo.prototype.c = 'proto of Foo';
-	Foo.prototype.bFn = function () {
-		return 'proto of Foo';
-	};
-	Foo.prototype.cFn = function () {
-		return 'proto of Foo';
-	};
+QUnit.test( 'isMixedIn', 11, function ( assert ) {
+	function Foo () {}
+	function Bar () {}
+	function Quux () {}
 
-	foo = new Foo();
+	ve.inheritClass( Quux, Foo );
+	ve.mixinClass( Quux, Bar );
 
-	function Bar() {
-		this.constructedBar = true;
-	}
-	ve.inheritClass( Bar, Foo );
+	var b = new Bar(),
+		q = new Quux();
 
-	assert.deepEqual(
-		Foo.static,
-		{},
-		'A "static" property (empty object) is automatically created if absent'
-	);
+	assert.strictEqual( ve.isMixedIn( Foo, Function ), false, 'Direct native inheritance is not considered' );
+	assert.strictEqual( ve.isMixedIn( Foo, Object ), false, 'Indirect native inheritance is not considered' );
+	assert.strictEqual( ve.isMixedIn( Quux, Foo ), false, 've.inheritClass does not affect mixin status' );
+	assert.strictEqual( ve.isMixedIn( Foo, Foo ), false, 'Foo does not mixin Foo' );
+	assert.strictEqual( ve.isMixedIn( Bar, Foo ), false, 'Bar does not mixin Foo' );
+	assert.strictEqual( ve.isMixedIn( Quux, Bar ), true, 'Quux has Bar mixed in' );
+	assert.strictEqual( ve.isMixedIn( Bar, Quux ), false, 'Bar does not mixin Quux' );
 
-	Foo.static.a = 'static of Foo';
-	Foo.static.b = 'static of Foo';
+	assert.strictEqual( ve.isMixedIn( q, Foo ), false, 've.inheritClass does not affect mixin status' );
+	assert.strictEqual( ve.isMixedIn( b, Foo ), false, 'b does not mixin Foo' );
+	assert.strictEqual( ve.isMixedIn( q, Bar ), true, 'q has Bar mixed in' );
+	assert.strictEqual( ve.isMixedIn( b, Quux ), false, 'b does not mixin Quux' );
+} );
 
-	assert.notStrictEqual( Foo.static, Bar.static, 'Static property is not copied, but inheriting' );
-	assert.equal( Bar.static.a, 'static of Foo', 'Foo.static inherits from Bar.static' );
+// ve.cloneObject: Tested upstream (OOJS)
 
-	Bar.static.b = 'static of Bar';
+// ve.getObjectValues: Tested upstream (OOJS)
 
-	assert.equal( Foo.static.b, 'static of Foo', 'Change to Bar.static does not affect Foo.static' );
+// ve.getObjectKeys: Tested upstream (JavaScript)
 
-	Bar.a = 'prop of Bar';
-	Bar.prototype.b = 'proto of Bar';
-	Bar.prototype.bFn = function () {
-		return 'proto of Bar';
-	};
+// ve.compare: Tested upstream (OOJS)
 
-	assert.throws( function () {
-		ve.inheritClass( Bar, Foo );
-	}, 'Throw if target already inherits from source (from an earlier call)' );
+// ve.copyArray: Tested upstream (OOJS)
 
-	assert.throws( function () {
-		ve.inheritClass( Bar, Object );
-	}, 'Throw if target already inherits from source (naturally, Object)' );
-
-	bar = new Bar();
-
-	assert.strictEqual(
-		Bar.b,
-		undefined,
-		'Constructor properties are not inherited'
-	);
-
-	assert.strictEqual(
-		foo instanceof Foo,
-		true,
-		'foo instance of Foo'
-	);
-	assert.strictEqual(
-		foo instanceof Bar,
-		false,
-		'foo not instance of Bar'
-	);
-
-	assert.strictEqual(
-		bar instanceof Foo,
-		true,
-		'bar instance of Foo'
-	);
-	assert.strictEqual(
-		bar instanceof Bar,
-		true,
-		'bar instance of Bar'
-	);
-
-	assert.equal( bar.constructor, Bar, 'constructor property is restored' );
-	assert.equal( bar.b, 'proto of Bar', 'own methods go first' );
-	assert.equal( bar.bFn(), 'proto of Bar', 'own properties go first' );
-	assert.equal( bar.c, 'proto of Foo', 'prototype properties are inherited' );
-	assert.equal( bar.cFn(), 'proto of Foo', 'prototype methods are inherited' );
-
-	Bar.prototype.dFn = function () {
-		return 'proto of Bar';
-	};
-	Foo.prototype.dFn = function () {
-		return 'proto of Foo';
-	};
-	Foo.prototype.eFn = function () {
-		return 'proto of Foo';
-	};
-
-	assert.equal( bar.dFn(), 'proto of Bar', 'inheritance is live (overwriting an inherited method)' );
-	assert.equal( bar.eFn(), 'proto of Foo', 'inheritance is live (adding a new method deeper in the chain)' );
-});
-
-// ve.mixinClass: Tested upstream (K-js)
-
-// ve.cloneObject: Tested upstream (K-js)
+// ve.copyObject: Tested upstream (OOJS)
 
 // ve.isPlainObject: Tested upstream (jQuery)
 
@@ -204,7 +136,7 @@ QUnit.test( 'getHash: Basic usage', 7, function ( assert ) {
 			val.hash,
 			key + ': object has expected hash, regardless of "property order"'
 		);
-	});
+	} );
 
 	// .. and that something completely different is in face different
 	// (just incase getHash is broken and always returns the same)
@@ -286,162 +218,9 @@ QUnit.test( 'getHash: Complex usage', 3, function ( assert ) {
 	);
 } );
 
-QUnit.test( 'getObjectValues', 6, function ( assert ) {
-	var tmp;
-
-	assert.deepEqual(
-		ve.getObjectValues( { a: 1, b: 2, c: 3, foo: 'bar' } ),
-		[ 1, 2, 3, 'bar' ],
-		'Simple object with numbers and strings as values'
-	);
-	assert.deepEqual(
-		ve.getObjectValues( [ 1, 2, 3, 'bar' ] ),
-		[ 1, 2, 3, 'bar' ],
-		'Simple array with numbers and strings as values'
-	);
-
-	tmp = function () {
-		this.isTest = true;
-
-		return this;
-	};
-	tmp.a = 'foo';
-	tmp.b = 'bar';
-
-	assert.deepEqual(
-		ve.getObjectValues( tmp ),
-		['foo', 'bar'],
-		'Function with properties'
-	);
-
-	assert.throws(
-		function () {
-			ve.getObjectValues( 'hello' );
-		},
-		TypeError,
-		'Throw exception for non-object (string)'
-	);
-
-	assert.throws(
-		function () {
-			ve.getObjectValues( 123 );
-		},
-		TypeError,
-		'Throw exception for non-object (number)'
-	);
-
-	assert.throws(
-		function () {
-			ve.getObjectValues( null );
-		},
-		TypeError,
-		'Throw exception for non-object (null)'
-	);
-} );
-
-QUnit.test( 'copyArray', 7, function ( assert ) {
-	var simpleArray = [ 'foo', 3, true, false ],
-		withObj = [ { 'bar': 'baz', 'quux': 3 }, 5, null ],
-		nestedArray = [ [ 'a', 'b' ], [ 1, 3, 4 ] ],
-		sparseArray = [ 'a', undefined, undefined, 'b' ],
-		withSparseArray = [ [ 'a', undefined, undefined, 'b' ] ],
-		withFunction = [ function () { return true; } ],
-		Cloneable = function ( p ) {
-			this.p = p;
-		};
-
-	Cloneable.prototype.clone = function () {
-		return new Cloneable( this.p + '-clone' );
-	};
-
-	assert.deepEqual(
-		ve.copyArray( simpleArray ),
-		simpleArray,
-		'Simple array'
-	);
-	assert.deepEqual(
-		ve.copyArray( withObj ),
-		withObj,
-		'Array containing object'
-	);
-	assert.deepEqual(
-		ve.copyArray( [ new Cloneable( 'bar' ) ] ),
-		[ new Cloneable( 'bar-clone' ) ],
-		'Use the .clone() method if available'
-	);
-	assert.deepEqual(
-		ve.copyArray( nestedArray ),
-		nestedArray,
-		'Nested array'
-	);
-	assert.deepEqual(
-		ve.copyArray( sparseArray ),
-		sparseArray,
-		'Sparse array'
-	);
-	assert.deepEqual(
-		ve.copyArray( withSparseArray ),
-		withSparseArray,
-		'Nested sparse array'
-	);
-	assert.deepEqual(
-		ve.copyArray( withFunction ),
-		withFunction,
-		'Array containing function'
-	);
-} );
-
-QUnit.test( 'copyObject', 7, function ( assert ) {
-	var simpleObj = { 'foo': 'bar', 'baz': 3, 'quux': null, 'truth': true, 'falsehood': false },
-		nestedObj = { 'foo': { 'bar': 'baz', 'quux': 3 }, 'whee': 5 },
-		withArray = { 'foo': [ 'a', 'b' ], 'bar': [ 1, 3, 4 ] },
-		withSparseArray = { 'foo': [ 'a', undefined, undefined, 'b' ] },
-		withFunction = { 'func': function () { return true; } },
-		Cloneable = function ( p ) {
-			this.p = p;
-		};
-	Cloneable.prototype.clone = function () { return new Cloneable( this.p + '-clone' ); };
-
-	assert.deepEqual(
-		ve.copyObject( simpleObj ),
-		simpleObj,
-		'Simple object'
-	);
-	assert.deepEqual(
-		ve.copyObject( nestedObj ),
-		nestedObj,
-		'Nested object'
-	);
-	assert.deepEqual(
-		ve.copyObject( new Cloneable( 'foo' ) ),
-		new Cloneable( 'foo-clone' ),
-		'Cloneable object'
-	);
-	assert.deepEqual(
-		ve.copyObject( { 'foo': new Cloneable( 'bar' ) } ),
-		{ 'foo': new Cloneable( 'bar-clone' ) },
-		'Object containing object'
-	);
-	assert.deepEqual(
-		ve.copyObject( withArray ),
-		withArray,
-		'Object with array'
-	);
-	assert.deepEqual(
-		ve.copyObject( withSparseArray ),
-		withSparseArray,
-		'Object with sparse array'
-	);
-	assert.deepEqual(
-		ve.copyObject( withFunction ),
-		withFunction,
-		'Object with function'
-	);
-} );
-
 QUnit.test( 'getDomAttributes', 1, function ( assert ) {
 	assert.deepEqual(
-		ve.getDomAttributes( $( '<div foo="bar" baz quux=3></div>').get( 0 ) ),
+		ve.getDomAttributes( $( '<div foo="bar" baz quux=3></div>' ).get( 0 ) ),
 		{ 'foo': 'bar', 'baz': '', 'quux': '3' },
 		'getDomAttributes() returns object with correct attributes'
 	);
@@ -630,7 +409,7 @@ QUnit.test( 'batchSplice', 8, function ( assert ) {
 	assert.deepEqual( expected, actual, 'replacing 3 elements with 2100 elements (array)' );
 } );
 
-QUnit.test( 'createDocumentFromHTML', function ( assert ) {
+QUnit.test( 'createDocumentFromHtml', function ( assert ) {
 	var key, doc, expectedHead, expectedBody,
 		cases = [
 			{
@@ -660,7 +439,7 @@ QUnit.test( 'createDocumentFromHTML', function ( assert ) {
 		];
 	QUnit.expect( cases.length*2 );
 	for ( key in cases ) {
-		doc = ve.createDocumentFromHTML( cases[key].html );
+		doc = ve.createDocumentFromHtml( cases[key].html );
 		expectedHead = $( '<head>' ).html( cases[key].head ).get( 0 );
 		expectedBody = $( '<body>' ).html( cases[key].body ).get( 0 );
 		assert.equalDomElement( $( 'head', doc ).get( 0 ), expectedHead, cases[key].msg + ' (head)' );

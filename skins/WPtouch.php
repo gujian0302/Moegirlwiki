@@ -218,23 +218,6 @@ class wptouchTemplate extends QuickTemplate {
  	<a id="searchopen" class="top" href="#" onclick="bnc_jquery_search_toggle(); return false;">Search</a>
 </div>
 
-<?php if ($this->data['loggedin'] ): ?>
-<?php else: ?>
-<div class="ads-main"><div>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-1103773884433732";
-/* ÃÈ°ÙÒÆ¶¯°æ */
-google_ad_slot = "5084370860";
-google_ad_width = 320;
-google_ad_height = 50;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></div>
-</div>
-<?php endif ?>
-
 <div class="content">
 	<div class="post">
 		<h2><?php $this->data['displaytitle']!=""?$this->html('title'):$this->text('title') ?></h2>

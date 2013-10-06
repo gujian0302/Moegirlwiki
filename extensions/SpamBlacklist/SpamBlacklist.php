@@ -7,7 +7,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
-$wgExtensionCredits[version_compare($wgVersion, '1.17alpha', '>=') ? 'antispam' : 'other'][] = array(
+$wgExtensionCredits['antispam'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'SpamBlacklist',
 	'author'         => array( 'Tim Starling', 'John Du Hart' ),
@@ -15,17 +15,13 @@ $wgExtensionCredits[version_compare($wgVersion, '1.17alpha', '>=') ? 'antispam' 
 	'descriptionmsg' => 'spam-blacklist-desc',
 );
 
-$dir = dirname(__FILE__) . '/';
+$dir = __DIR__ . '/';
 $wgExtensionMessagesFiles['SpamBlackList'] = $dir . 'SpamBlacklist.i18n.php';
 
 /**
  * Array of settings for blacklist classes
  */
-$wgBlacklistSettings = array(
-	'spam' => array(
-		'files' => array(),
-	),
-);
+$wgBlacklistSettings = array();
 
 /**
  * @deprecated
@@ -49,6 +45,3 @@ $wgAutoloadClasses['EmailBlacklist'] = $dir . 'EmailBlacklist.php';
 $wgAutoloadClasses['SpamBlacklistHooks'] = $dir . 'SpamBlacklistHooks.php';
 $wgAutoloadClasses['SpamBlacklist'] = $dir . 'SpamBlacklist_body.php';
 $wgAutoloadClasses['SpamRegexBatch'] = $dir . 'SpamRegexBatch.php';
-
-
-

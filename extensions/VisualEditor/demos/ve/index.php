@@ -12,12 +12,13 @@ $path = __DIR__ . '/pages';
 $pages = glob( $path . '/*.html' );
 $page = current( $pages );
 if ( isset( $_GET['page'] ) && in_array( $path . '/' . $_GET['page'] . '.html', $pages ) ) {
-	$page =  $path . '/' . $_GET['page'] . '.html';
+	$page = $path . '/' . $_GET['page'] . '.html';
 }
 $html = file_get_contents( $page );
 
 ?>
 <!DOCTYPE html>
+
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -27,18 +28,26 @@ $html = file_get_contents( $page );
 		<!-- ext.visualEditor.base#standalone-init -->
 		<link rel=stylesheet href="../../modules/ve/init/sa/styles/ve.init.sa.css">
 		<script>
-			if ( window.devicePixelRatio > 1 ) {
-				document.write( '<link rel="stylesheet" href="../../modules/ve/ui/styles/ve.ui.Icons-vector.css">' );
+			if (
+				document.createElementNS &&
+				document.createElementNS( 'http://www.w3.org/2000/svg', 'svg' ).createSVGRect
+			) {
+				document.write(
+					'<link rel="stylesheet" ' +
+						'href="../../modules/ve/ui/styles/ve.ui.Icons-vector.css">'
+				);
 			} else {
-				document.write( '<link rel="stylesheet" href="../../modules/ve/ui/styles/ve.ui.Icons-raster.css">' );
+				document.write(
+					'<link rel="stylesheet" ' +
+						'href="../../modules/ve/ui/styles/ve.ui.Icons-raster.css">'
+				);
 			}
 		</script>
 		<!-- ext.visualEditor.core -->
-		<link rel=stylesheet href="../../modules/ve/styles/ve.Surface.css">
-		<link rel=stylesheet href="../../modules/ve/ce/styles/ve.ce.DocumentNode.css">
 		<link rel=stylesheet href="../../modules/ve/ce/styles/ve.ce.Node.css">
 		<link rel=stylesheet href="../../modules/ve/ce/styles/ve.ce.Surface.css">
 		<link rel=stylesheet href="../../modules/ve/ui/styles/ve.ui.css">
+		<link rel=stylesheet href="../../modules/ve/ui/styles/ve.ui.Surface.css">
 		<link rel=stylesheet href="../../modules/ve/ui/styles/ve.ui.Context.css">
 		<link rel=stylesheet href="../../modules/ve/ui/styles/ve.ui.Frame.css">
 		<link rel=stylesheet href="../../modules/ve/ui/styles/ve.ui.Window.css">
@@ -55,13 +64,15 @@ $html = file_get_contents( $page );
 	</head>
 	<body>
 		<ul class="ve-demo-docs">
-			<?php foreach( $pages as $page ): ?>
+			<?php
+				foreach ( $pages as $page ): ?>
 				<li>
 					<a href="./?page=<?php echo basename( $page, '.html' ); ?>">
 						<?php echo basename( $page, '.html' ); ?>
 					</a>
 				</li>
-			<?php endforeach; ?>
+			<?php
+				endforeach; ?>
 		</ul>
 		<div class="ve-demo-editor"></div>
 
@@ -69,11 +80,14 @@ $html = file_get_contents( $page );
 		<!-- Dependencies -->
 		<script src="../../modules/jquery/jquery.js"></script>
 		<script src="../../modules/jquery/jquery.client.js"></script>
-		<script src="../../modules/rangy/rangy-core.js"></script>
-		<script src="../../modules/rangy/rangy-position.js"></script>
+		<script src="../../modules/oojs/oo.js"></script>
+		<script src="../../modules/rangy/rangy-core-1.3.js"></script>
+		<script src="../../modules/rangy/rangy-position-1.3.js"></script>
 		<script src="../../modules/unicodejs/unicodejs.js"></script>
 		<script src="../../modules/unicodejs/unicodejs.textstring.js"></script>
-		<script src="../../modules/unicodejs/unicodejs.wordbreak.groups.js"></script>
+		<script src="../../modules/unicodejs/unicodejs.graphemebreakproperties.js"></script>
+		<script src="../../modules/unicodejs/unicodejs.graphemebreak.js"></script>
+		<script src="../../modules/unicodejs/unicodejs.wordbreakproperties.js"></script>
 		<script src="../../modules/unicodejs/unicodejs.wordbreak.js"></script>
 		<!-- ext.visualEditor.base#standalone-init -->
 		<script src="../../modules/ve/ve.js"></script>
@@ -87,33 +101,21 @@ $html = file_get_contents( $page );
 		<script src="../../modules/ve/ve.debug.js"></script>
 		<script>
 			<?php
-				require( '../../modules/../VisualEditor.i18n.php' );
-				echo 've.init.platform.addMessages( ' . json_encode( $messages['en'] ) . ');' . "\n";
+				require '../../modules/../VisualEditor.i18n.php';
+				echo 've.init.platform.addMessages( ' . json_encode( $messages['en'] ) . " );\n";
 			?>
 			ve.init.platform.setModulesUrl( '../../modules' );
 		</script>
 		<!-- ext.visualEditor.core -->
 		<script src="../../modules/ve/ve.Registry.js"></script>
 		<script src="../../modules/ve/ve.Factory.js"></script>
-		<script src="../../modules/ve/ve.Trigger.js"></script>
-		<script src="../../modules/ve/ve.CommandRegistry.js"></script>
-		<script src="../../modules/ve/ve.TriggerRegistry.js"></script>
 		<script src="../../modules/ve/ve.Range.js"></script>
 		<script src="../../modules/ve/ve.Node.js"></script>
 		<script src="../../modules/ve/ve.NamedClassFactory.js"></script>
 		<script src="../../modules/ve/ve.BranchNode.js"></script>
 		<script src="../../modules/ve/ve.LeafNode.js"></script>
-		<script src="../../modules/ve/ve.Surface.js"></script>
+		<script src="../../modules/ve/ve.Element.js"></script>
 		<script src="../../modules/ve/ve.Document.js"></script>
-		<script src="../../modules/ve/ve.Action.js"></script>
-		<script src="../../modules/ve/ve.ActionFactory.js"></script>
-		<script src="../../modules/ve/actions/ve.AnnotationAction.js"></script>
-		<script src="../../modules/ve/actions/ve.ContentAction.js"></script>
-		<script src="../../modules/ve/actions/ve.FormatAction.js"></script>
-		<script src="../../modules/ve/actions/ve.HistoryAction.js"></script>
-		<script src="../../modules/ve/actions/ve.IndentationAction.js"></script>
-		<script src="../../modules/ve/actions/ve.InspectorAction.js"></script>
-		<script src="../../modules/ve/actions/ve.ListAction.js"></script>
 		<script src="../../modules/ve/dm/ve.dm.js"></script>
 		<script src="../../modules/ve/dm/ve.dm.Model.js"></script>
 		<script src="../../modules/ve/dm/ve.dm.ModelRegistry.js"></script>
@@ -163,18 +165,9 @@ $html = file_get_contents( $page );
 		<script src="../../modules/ve/dm/nodes/ve.dm.TableRowNode.js"></script>
 		<script src="../../modules/ve/dm/nodes/ve.dm.TableSectionNode.js"></script>
 		<script src="../../modules/ve/dm/nodes/ve.dm.TextNode.js"></script>
-		<script src="../../modules/ve/dm/nodes/ve.dm.MWEntityNode.js"></script>
-		<script src="../../modules/ve/dm/nodes/ve.dm.MWHeadingNode.js"></script>
-		<script src="../../modules/ve/dm/nodes/ve.dm.MWPreformattedNode.js"></script>
 		<script src="../../modules/ve/dm/annotations/ve.dm.LinkAnnotation.js"></script>
-		<script src="../../modules/ve/dm/annotations/ve.dm.MWExternalLinkAnnotation.js"></script>
-		<script src="../../modules/ve/dm/annotations/ve.dm.MWInternalLinkAnnotation.js"></script>
 		<script src="../../modules/ve/dm/annotations/ve.dm.TextStyleAnnotation.js"></script>
 		<script src="../../modules/ve/dm/metaitems/ve.dm.AlienMetaItem.js"></script>
-		<script src="../../modules/ve/dm/metaitems/ve.dm.MWAlienMetaItem.js"></script>
-		<script src="../../modules/ve/dm/metaitems/ve.dm.MWCategoryMetaItem.js"></script>
-		<script src="../../modules/ve/dm/metaitems/ve.dm.MWDefaultSortMetaItem.js"></script>
-		<script src="../../modules/ve/dm/metaitems/ve.dm.MWLanguageMetaItem.js"></script>
 		<script src="../../modules/ve/ce/ve.ce.js"></script>
 		<script src="../../modules/ve/ce/ve.ce.DomRange.js"></script>
 		<script src="../../modules/ve/ce/ve.ce.AnnotationFactory.js"></script>
@@ -186,6 +179,7 @@ $html = file_get_contents( $page );
 		<script src="../../modules/ve/ce/ve.ce.BranchNode.js"></script>
 		<script src="../../modules/ve/ce/ve.ce.ContentBranchNode.js"></script>
 		<script src="../../modules/ve/ce/ve.ce.LeafNode.js"></script>
+		<script src="../../modules/ve/ce/ve.ce.ProtectedNode.js"></script>
 		<script src="../../modules/ve/ce/ve.ce.FocusableNode.js"></script>
 		<script src="../../modules/ve/ce/ve.ce.RelocatableNode.js"></script>
 		<script src="../../modules/ve/ce/ve.ce.ResizableNode.js"></script>
@@ -213,35 +207,42 @@ $html = file_get_contents( $page );
 		<script src="../../modules/ve/ce/nodes/ve.ce.TableRowNode.js"></script>
 		<script src="../../modules/ve/ce/nodes/ve.ce.TableSectionNode.js"></script>
 		<script src="../../modules/ve/ce/nodes/ve.ce.TextNode.js"></script>
-		<script src="../../modules/ve/ce/nodes/ve.ce.MWEntityNode.js"></script>
-		<script src="../../modules/ve/ce/nodes/ve.ce.MWHeadingNode.js"></script>
-		<script src="../../modules/ve/ce/nodes/ve.ce.MWPreformattedNode.js"></script>
 		<script src="../../modules/ve/ce/annotations/ve.ce.LinkAnnotation.js"></script>
-		<script src="../../modules/ve/ce/annotations/ve.ce.MWExternalLinkAnnotation.js"></script>
-		<script src="../../modules/ve/ce/annotations/ve.ce.MWInternalLinkAnnotation.js"></script>
 		<script src="../../modules/ve/ce/annotations/ve.ce.TextStyleAnnotation.js"></script>
 		<script src="../../modules/ve/ui/ve.ui.js"></script>
+		<script src="../../modules/ve/ui/ve.ui.Surface.js"></script>
 		<script src="../../modules/ve/ui/ve.ui.Context.js"></script>
 		<script src="../../modules/ve/ui/ve.ui.Frame.js"></script>
 		<script src="../../modules/ve/ui/ve.ui.Window.js"></script>
 		<script src="../../modules/ve/ui/ve.ui.WindowSet.js"></script>
-		<script src="../../modules/ve/ui/ve.ui.ViewRegistry.js"></script>
 		<script src="../../modules/ve/ui/ve.ui.Inspector.js"></script>
 		<script src="../../modules/ve/ui/ve.ui.InspectorFactory.js"></script>
 		<script src="../../modules/ve/ui/ve.ui.Dialog.js"></script>
 		<script src="../../modules/ve/ui/ve.ui.DialogFactory.js"></script>
-		<script src="../../modules/ve/ui/ve.ui.Element.js"></script>
 		<script src="../../modules/ve/ui/ve.ui.Layout.js"></script>
 		<script src="../../modules/ve/ui/ve.ui.Widget.js"></script>
 		<script src="../../modules/ve/ui/ve.ui.Tool.js"></script>
-		<script src="../../modules/ve/ui/ve.ui.Toolbar.js"></script>
 		<script src="../../modules/ve/ui/ve.ui.ToolFactory.js"></script>
+		<script src="../../modules/ve/ui/ve.ui.Toolbar.js"></script>
+		<script src="../../modules/ve/ui/ve.ui.CommandRegistry.js"></script>
+		<script src="../../modules/ve/ui/ve.ui.Trigger.js"></script>
+		<script src="../../modules/ve/ui/ve.ui.TriggerRegistry.js"></script>
+		<script src="../../modules/ve/ui/ve.ui.Action.js"></script>
+		<script src="../../modules/ve/ui/ve.ui.ActionFactory.js"></script>
+		<script src="../../modules/ve/ui/actions/ve.ui.AnnotationAction.js"></script>
+		<script src="../../modules/ve/ui/actions/ve.ui.ContentAction.js"></script>
+		<script src="../../modules/ve/ui/actions/ve.ui.FormatAction.js"></script>
+		<script src="../../modules/ve/ui/actions/ve.ui.HistoryAction.js"></script>
+		<script src="../../modules/ve/ui/actions/ve.ui.IndentationAction.js"></script>
+		<script src="../../modules/ve/ui/actions/ve.ui.InspectorAction.js"></script>
+		<script src="../../modules/ve/ui/actions/ve.ui.ListAction.js"></script>
 		<script src="../../modules/ve/ui/elements/ve.ui.LabeledElement.js"></script>
 		<script src="../../modules/ve/ui/elements/ve.ui.GroupElement.js"></script>
 		<script src="../../modules/ve/ui/elements/ve.ui.FlaggableElement.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.PopupWidget.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.SelectWidget.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.OptionWidget.js"></script>
+		<script src="../../modules/ve/ui/widgets/ve.ui.SearchWidget.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.ButtonWidget.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.IconButtonWidget.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.InputWidget.js"></script>
@@ -249,20 +250,17 @@ $html = file_get_contents( $page );
 		<script src="../../modules/ve/ui/widgets/ve.ui.TextInputWidget.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.OutlineItemWidget.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.OutlineWidget.js"></script>
+		<script src="../../modules/ve/ui/widgets/ve.ui.OutlineControlsWidget.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.MenuItemWidget.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.MenuSectionItemWidget.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.MenuWidget.js"></script>
-		<script src="../../modules/ve/ui/widgets/ve.ui.PendingInputWidget.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.LookupInputWidget.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.TextInputMenuWidget.js"></script>
 		<script src="../../modules/ve/ui/widgets/ve.ui.LinkTargetInputWidget.js"></script>
-		<script src="../../modules/ve/ui/widgets/ve.ui.MWLinkTargetInputWidget.js"></script>
+		<script src="../../modules/ve/ui/layouts/ve.ui.FieldsetLayout.js"></script>
 		<script src="../../modules/ve/ui/layouts/ve.ui.GridLayout.js"></script>
 		<script src="../../modules/ve/ui/layouts/ve.ui.PanelLayout.js"></script>
-		<script src="../../modules/ve/ui/layouts/panels/ve.ui.StackPanelLayout.js"></script>
-		<script src="../../modules/ve/ui/layouts/panels/ve.ui.PagePanelLayout.js"></script>
-		<script src="../../modules/ve/ui/dialogs/ve.ui.ContentDialog.js"></script>
-		<script src="../../modules/ve/ui/dialogs/ve.ui.MediaDialog.js"></script>
+		<script src="../../modules/ve/ui/layouts/ve.ui.StackPanelLayout.js"></script>
 		<script src="../../modules/ve/ui/dialogs/ve.ui.PagedDialog.js"></script>
 		<script src="../../modules/ve/ui/tools/ve.ui.ButtonTool.js"></script>
 		<script src="../../modules/ve/ui/tools/ve.ui.AnnotationButtonTool.js"></script>
@@ -274,9 +272,7 @@ $html = file_get_contents( $page );
 		<script src="../../modules/ve/ui/tools/buttons/ve.ui.BoldButtonTool.js"></script>
 		<script src="../../modules/ve/ui/tools/buttons/ve.ui.ItalicButtonTool.js"></script>
 		<script src="../../modules/ve/ui/tools/buttons/ve.ui.ClearButtonTool.js"></script>
-		<script src="../../modules/ve/ui/tools/buttons/ve.ui.MediaButtonTool.js"></script>
 		<script src="../../modules/ve/ui/tools/buttons/ve.ui.LinkButtonTool.js"></script>
-		<script src="../../modules/ve/ui/tools/buttons/ve.ui.MWLinkButtonTool.js"></script>
 		<script src="../../modules/ve/ui/tools/buttons/ve.ui.BulletButtonTool.js"></script>
 		<script src="../../modules/ve/ui/tools/buttons/ve.ui.NumberButtonTool.js"></script>
 		<script src="../../modules/ve/ui/tools/buttons/ve.ui.IndentButtonTool.js"></script>
@@ -284,32 +280,18 @@ $html = file_get_contents( $page );
 		<script src="../../modules/ve/ui/tools/buttons/ve.ui.RedoButtonTool.js"></script>
 		<script src="../../modules/ve/ui/tools/buttons/ve.ui.UndoButtonTool.js"></script>
 		<script src="../../modules/ve/ui/tools/dropdowns/ve.ui.FormatDropdownTool.js"></script>
-		<script src="../../modules/ve/ui/tools/dropdowns/ve.ui.MWFormatDropdownTool.js"></script>
+		<script src="../../modules/ve/ui/inspectors/ve.ui.AnnotationInspector.js"></script>
 		<script src="../../modules/ve/ui/inspectors/ve.ui.LinkInspector.js"></script>
-		<script src="../../modules/ve/ui/inspectors/ve.ui.MWLinkInspector.js"></script>
-		<!-- ext.visualEditor.experimental -->
-		<script src="../../modules/ve/dm/nodes/ve.dm.MWInlineImageNode.js"></script>
-		<script src="../../modules/ve/dm/nodes/ve.dm.MWBlockImageNode.js"></script>
-		<script src="../../modules/ve/dm/nodes/ve.dm.MWImageCaptionNode.js"></script>
-		<script src="../../modules/ve/dm/nodes/ve.dm.MWTemplateNode.js"></script>
-		<script src="../../modules/ve/dm/nodes/ve.dm.MWReferenceListNode.js"></script>
-		<script src="../../modules/ve/dm/nodes/ve.dm.MWReferenceNode.js"></script>
-		<script src="../../modules/ve/ce/nodes/ve.ce.MWInlineImageNode.js"></script>
-		<script src="../../modules/ve/ce/nodes/ve.ce.MWBlockImageNode.js"></script>
-		<script src="../../modules/ve/ce/nodes/ve.ce.MWImageCaptionNode.js"></script>
-		<script src="../../modules/ve/ce/nodes/ve.ce.MWTemplateNode.js"></script>
-		<script src="../../modules/ve/ce/nodes/ve.ce.MWReferenceListNode.js"></script>
-		<script src="../../modules/ve/ce/nodes/ve.ce.MWReferenceNode.js"></script>
 
 		<!-- demo -->
 		<script>
 			$( document ).ready( function () {
-				new ve.Surface(
-					new ve.init.sa.Target( $( '.ve-demo-editor' ) ),
-					ve.createDocumentFromHTML( <?php echo json_encode( $html ) ?> )
+				new ve.init.sa.Target(
+					$( '.ve-demo-editor' ),
+					ve.createDocumentFromHtml( <?php echo json_encode( $html ) ?> )
 				);
 				$( '.ve-ce-documentNode' ).focus();
-				//ve.instances[0].dialogs.open( 'meta' );
+				// ve.instances[0].getDialogs().open( 'mwMeta' );
 			} );
 		</script>
 
@@ -380,21 +362,18 @@ $html = file_get_contents( $page );
 			} );
 			dumpModelButton.on( 'click', function () {
 				// linear model dump
-				var $ol = $('<ol start="0"></ol>'),
-					$li,
-					element,
-					html,
-					annotations;
+				var i, $li, element, html, annotations,
+					$ol = $( '<ol start="0"></ol>' );
 
-				for ( var i = 0; i < ve.instances[0].documentModel.data.length; i++ ) {
-					$li = $('<li>');
+				for ( i = 0; i < ve.instances[0].model.documentModel.data.getLength(); i++ ) {
+					$li = $( '<li>' );
 					$label = $( '<span>' );
-					element = ve.instances[0].documentModel.data[i];
+					element = ve.instances[0].model.documentModel.data.getData( i );
 					if ( element.type ) {
 						$label.addClass( 've-demo-dump-element' );
 						text = element.type;
 						annotations = element.annotations;
-					} else if ( element.length > 1 ){
+					} else if ( ve.isArray( element ) ){
 						$label.addClass( 've-demo-dump-achar' );
 						text = element[0];
 						annotations = element[1];
@@ -407,9 +386,9 @@ $html = file_get_contents( $page );
 					if ( annotations ) {
 						$label.append(
 							$( '<span>' ).text(
-								'[' + annotations.get().map( function( ann ) {
+								'[' + ve.instances[0].model.documentModel.store.values( annotations ).map( function( ann ) {
 									return ann.name;
-								} ).join(', ') + ']'
+								} ).join( ', ' ) + ']'
 							)
 						);
 					}
@@ -417,14 +396,14 @@ $html = file_get_contents( $page );
 					$li.append( $label );
 					$ol.append( $li );
 				}
-				$('#ve-linear-model-dump').html($ol);
+				$( '#ve-linear-model-dump' ).html( $ol );
 
 				// tree dump
 				var getKids = function ( obj ) {
-					var $ol = $('<ol start="0"></ol>'),
+					var $ol = $( '<ol start="0"></ol>' ),
 						$li;
-					for( var i = 0; i < obj.children.length; i++ ) {
-						$li = $('<li>');
+					for ( var i = 0; i < obj.children.length; i++ ) {
+						$li = $( '<li>' );
 						$label = $( '<span>' ).addClass( 've-demo-dump-element' );
 						if ( obj.children[i].length !== undefined ) {
 							$li.append(
@@ -439,37 +418,42 @@ $html = file_get_contents( $page );
 						}
 
 						if ( obj.children[i].children ) {
-							$li.append(getKids(obj.children[i]));
+							$li.append( getKids( obj.children[i] ) );
 						}
 
 
-						$ol.append($li);
+						$ol.append( $li );
 					}
 					return $ol;
 				}
-				$('#ve-model-tree-dump').html(getKids(ve.instances[0].documentModel.documentNode));
-				$('#ve-view-tree-dump').html(getKids(ve.instances[0].view.documentView.documentNode));
-				$('#ve-dump').show();
+				$( '#ve-model-tree-dump' ).html(
+					getKids( ve.instances[0].model.documentModel.documentNode )
+				);
+				$( '#ve-view-tree-dump' ).html(
+					getKids( ve.instances[0].view.documentView.documentNode )
+				);
+				$( '#ve-dump' ).show();
 			} );
 			validateButton.on( 'click', function () {
 				var failed = false;
-				$('.ve-ce-branchNode').each( function ( index, element ) {
+				$( '.ve-ce-branchNode' ).each( function ( index, element ) {
 					var $element = $( element ),
 						view = $element.data( 'view' );
 					if ( view.canContainContent() ) {
 						var nodeRange = view.model.getRange();
-						var textModel = ve.instances[0].view.model.getDocument().getText( nodeRange );
+						var textModel = ve.instances[0]
+							.view.model.getDocument().getText( nodeRange );
 						var textDom = ve.ce.getDomText( view.$[0] );
 						if ( textModel !== textDom ) {
 							failed = true;
-							console.log('Inconsistent data', {
-								'textModel' : textModel,
-								'textDom' : textDom,
-								'element' : element
+							console.log( 'Inconsistent data', {
+								'textModel': textModel,
+								'textDom': textDom,
+								'element': element
 							} );
 						}
 					}
-				});
+				} );
 				if ( failed ) {
 					alert( 'Not valid - check JS console for details' );
 				} else {

@@ -86,7 +86,7 @@ QUnit.test( 'attach', 2, function ( assert ) {
 		node2 = new ve.dm.NodeStub();
 	node1.attach( node2 );
 	assert.strictEqual( node1.getParent(), node2 );
-	assert.strictEqual( node1.getRoot(), node2 );
+	assert.strictEqual( node1.getRoot(), null );
 } );
 
 QUnit.test( 'detach', 2, function ( assert ) {
@@ -95,7 +95,7 @@ QUnit.test( 'detach', 2, function ( assert ) {
 	node1.attach( node2 );
 	node1.detach();
 	assert.strictEqual( node1.getParent(), null );
-	assert.strictEqual( node1.getRoot(), node1 );
+	assert.strictEqual( node1.getRoot(), null );
 } );
 
 QUnit.test( 'canBeMergedWith', 4, function ( assert ) {
@@ -142,10 +142,17 @@ QUnit.test( 'getClonedElement', function ( assert ) {
 				'original': {
 					'type': 'foo',
 					'attributes': {
-						'bar': 'baz',
-						'html/0/typeof': 'Foo',
-						'html/0/href': 'Bar'
-					}
+						'bar': 'baz'
+					},
+					'htmlAttributes': [
+						{
+							'keys': [ 'typeof', 'href' ],
+							'values': {
+								'typeof': 'Foo',
+								'href': 'Bar'
+							}
+						}
+					]
 				},
 				'clone': {
 					'type': 'foo',
@@ -153,34 +160,7 @@ QUnit.test( 'getClonedElement', function ( assert ) {
 						'bar': 'baz'
 					}
 				},
-				'msg': 'html/* attributes are removed from clone'
-			},
-			{
-				'original': {
-					'type': 'foo',
-					'attributes': {
-						'html/0/typeof': 'Foo'
-					}
-				},
-				'clone': {
-					'type': 'foo'
-				},
-				'msg': 'attributes object containing only html/* attributes is removed from clone'
-			},
-			{
-				'original': {
-					'type': 'foo',
-					'attributes': {
-						'html': '<foo></foo>'
-					}
-				},
-				'clone': {
-					'type': 'foo',
-					'attributes': {
-						'html': '<foo></foo>'
-					}
-				},
-				'msg': 'html attribute (without slash) is not removed'
+				'msg': 'htmlAttributes is removed from clone'
 			},
 			{
 				'original': {
@@ -216,38 +196,51 @@ QUnit.test( 'getClonedElement', function ( assert ) {
 					'internal': {
 						'generated': 'wrapper'
 					},
-					'attributes': {
-						'html/0/typeof': 'Foo',
-						'html/1/href': 'Bar'
-					}
+					'htmlAttributes': [
+						{
+							'keys': [ 'typeof', 'href' ],
+							'values': {
+								'typeof': 'Foo',
+								'href': 'Bar'
+							}
+						}
+					]
 				},
 				'clone': {
 					'type': 'foo'
 				},
-				'msg': 'internal and attribute properties are both removed'
+				'msg': 'internal and htmlAttributes properties are both removed'
 			},
 			{
 				'original': {
 					'type': 'foo',
 					'internal': {
 						'generated': 'wrapper',
-						'whitespace': [ undefined, ' ' ],
+						'whitespace': [ undefined, ' ' ]
 					},
 					'attributes': {
-						'html/0/typeof': 'Foo',
 						'bar': 'baz'
-					}
+					},
+					'htmlAttributes': [
+						{
+							'keys': [ 'typeof', 'href' ],
+							'values': {
+								'typeof': 'Foo',
+								'href': 'Bar'
+							}
+						}
+					]
 				},
 				'clone': {
 					'type': 'foo',
 					'internal': {
-						'whitespace': [ undefined, ' ' ],
+						'whitespace': [ undefined, ' ' ]
 					},
 					'attributes': {
 						'bar': 'baz'
 					}
 				},
-				'msg': 'internal.generated and attributes.html/* are both removed'
+				'msg': 'internal.generated and htmlAttributes are both removed'
 			}
 		];
 	QUnit.expect( cases.length );

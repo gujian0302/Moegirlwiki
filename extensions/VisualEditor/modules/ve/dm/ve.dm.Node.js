@@ -21,6 +21,7 @@ ve.dm.Node = function VeDmNode( length, element ) {
 	ve.dm.Model.call( this, element );
 	// Mixin constructor
 	ve.Node.call( this );
+	ve.EventEmitter.call( this );
 
 	// Properties
 	this.length = length || 0;
@@ -42,6 +43,8 @@ ve.dm.Node = function VeDmNode( length, element ) {
 ve.inheritClass( ve.dm.Node, ve.dm.Model );
 
 ve.mixinClass( ve.dm.Node, ve.Node );
+
+ve.mixinClass( ve.dm.Node, ve.EventEmitter );
 
 /* Static Properties */
 
@@ -170,6 +173,36 @@ ve.dm.Node.static.suggestedParentNodeTypes = null;
 ve.dm.Node.static.defaultAttributes = {};
 
 /**
+ * Remap the store indexes stored in a linear model data element.
+ *
+ * The default implementation is empty. Nodes should override this if they store store indexes in
+.* attributes. To remap, do something like
+ * dataElement.attributes.foo = mapping[dataElement.attributes.foo];
+ *
+ * @static
+ * @inheritable
+ * @param {Object} dataElement Data element (opening) to remap. Will be modified.
+ * @param {Object} mapping Object mapping old store indexes to new store indexes
+ */
+ve.dm.Node.static.remapStoreIndexes = function ( /*dataElement, mapping*/ ) {
+};
+
+/**
+ * Remap the internal list indexes stored in a linear model data element.
+ *
+ * The default implementation is empty. Nodes should override this if they store internal list
+ * indexes in attributes. To remap, do something like
+ * dataElement.attributes.foo = mapping[dataElement.attributes.foo];
+ *
+ * @static
+ * @inheritable
+ * @param {Object} dataElement Data element (opening) to remap. Will be modified.
+ * @param {Object} mapping Object mapping old internal list indexes to new internal list indexes
+ */
+ve.dm.Node.static.remapInternalListIndexes = function ( /*dataElement, mapping*/ ) {
+};
+
+/**
  * Get hash object of a linear model data element
  *
  * @static
@@ -215,31 +248,34 @@ ve.dm.Node.static.isHybridInline = function ( domElements, converter ) {
 /* Methods */
 
 /**
+ * Check whether this node can be inspected by a tool.
+ *
+ * The default implementation always returns true. If your node type is uninspectable in certain
+ * cases, you should override this function.
+ *
+ * @returns {boolean} Whether this node is inspectable
+ */
+ve.dm.Node.prototype.isInspectable = function () {
+	return true;
+};
+
+/**
  * Get a clone of the node's document data element.
  *
- * The attributes object will be deep-copied, and the .internal.generated property will be removed,
- * if present. Any html/* attributes will be removed as well.
+ * The attributes object will be deep-copied, and the .htmlAttributes and .internal.generated
+ * properties will be removed if present.
  *
  * @returns {Object} Cloned element object
  */
 ve.dm.Node.prototype.getClonedElement = function () {
-	var attr, clone = ve.copyObject( this.element );
+	var clone = ve.copyObject( this.element );
 	if ( clone.internal ) {
 		delete clone.internal.generated;
 		if ( ve.isEmptyObject( clone.internal ) ) {
 			delete clone.internal;
 		}
 	}
-	if ( this.element.attributes ) {
-		for ( attr in this.element.attributes ) {
-			if ( attr.substr( 0, 5 ) === 'html/' ) {
-				 delete clone.attributes[attr];
-			}
-		}
-		if ( ve.isEmptyObject( clone.attributes ) ) {
-			delete clone.attributes;
-		}
-	}
+	delete clone.htmlAttributes;
 	return clone;
 };
 
@@ -460,9 +496,28 @@ ve.dm.Node.prototype.adjustLength = function ( adjustment ) {
  *
  * @method
  * @returns {number} Offset of node
+ * @throws {Error} Node not found in parent's children array
  */
 ve.dm.Node.prototype.getOffset = function () {
-	return this.root === this ? 0 : this.root.getOffsetFromNode( this );
+	var i, len, siblings, offset;
+
+	if ( !this.parent ) {
+		return 0;
+	}
+
+	// Find our index in the parent and add up lengths while we do so
+	siblings = this.parent.children;
+	offset = this.parent.getOffset() + ( this.parent === this.root ? 0 : 1 );
+	for ( i = 0, len = siblings.length; i < len; i++ ) {
+		if ( siblings[i] === this ) {
+			break;
+		}
+		offset += siblings[i].getOuterLength();
+	}
+	if ( i === len ) {
+		throw new Error( 'Node not found in parent\'s children array' );
+	}
+	return offset;
 };
 
 /**

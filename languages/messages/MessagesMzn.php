@@ -80,7 +80,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__بافهرست__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__فهرست__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__بی‌بخش__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', 'بی‌عنوان__', '__بی‌عنوان__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'ماه', 'ماه‌کنونی', 'ماه_کنونی', 'ماه‌کنونی۲', 'ماه_اسایی۲', 'ماه_کنونی۲', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'             => array( '1', 'ماه۱', 'ماه‌کنونی۱', 'ماه_کنونی۱', 'CURRENTMONTH1' ),
 	'currentmonthname'          => array( '1', 'نام‌ماه', 'نام_ماه', 'نام‌ماه‌کنونی', 'نام_ماه_کنونی', 'CURRENTMONTHNAME' ),
@@ -157,8 +156,6 @@ $messages = array(
 'tog-shownumberswatching' => 'دمبالکرونِ سِراق هدائن',
 'tog-oldsig' => 'پیش نیمایش ایمضای موجود:',
 'tog-fancysig' => 'ایمضا ره ویکی متن نظر بیرین (بدون لینک هایتن)',
-'tog-externaleditor' => 'به شیکل پیش فرض خارجی ویرایشگرون جه ایستیفاده بواشه',
-'tog-externaldiff' => 'ایستیفاده از تفاوت‌گیر جه (diff) خارجی به‌طور پیش‌فرض.',
 'tog-showjumplinks' => 'فعال هکردن بپرسنی پیوندون مندرجات فهرست دله',
 'tog-uselivepreview' => 'ایستیفاده از پیش نیمایش زنده (جاوا اسکریپ) (جدیده)',
 'tog-forceeditsummary' => 'زمونی که خولاصه دچی‌ین ره ننویشتمه مه ره بائو',
@@ -199,25 +196,25 @@ $messages = array(
 'thu' => 'پنجشنبه',
 'fri' => 'جـومه',
 'sat' => 'شمبه',
-'january' => 'جـانـویـه',
+'january' => 'ژانویه',
 'february' => 'فوریه',
-'march' => 'مـارچ',
+'march' => 'مارس',
 'april' => 'آوریل',
 'may_long' => 'مه',
 'june' => 'ژوئن',
-'july' => 'جـولای',
+'july' => 'ژوئیه',
 'august' => 'ئـوگـه‌سـت',
 'september' => 'سـه‌پـتـه‌مـبـر',
 'october' => 'اکتبر',
 'november' => 'نـووه‌مـبـر',
 'december' => 'دسامبر',
-'january-gen' => 'جـانـویـه',
+'january-gen' => 'ژانویه',
 'february-gen' => 'فوریه',
 'march-gen' => 'مـارس',
 'april-gen' => 'آوریـل',
 'may-gen' => 'مه',
 'june-gen' => 'جـون',
-'july-gen' => 'جـولای',
+'july-gen' => 'ژوئیه',
 'august-gen' => 'ئوگـه‌سـت',
 'september-gen' => 'سـه‌پـتـه‌مـبـر',
 'october-gen' => 'اکتبر',
@@ -271,7 +268,6 @@ $messages = array(
 'qbbrowse' => 'چأرخه‌سه‌ن',
 'qbedit' => 'دچی‌ین',
 'qbpageoptions' => 'این صفحه',
-'qbpageinfo' => 'بافت',
 'qbmyoptions' => 'مه صفحه‌ئون',
 'qbspecialpages' => 'شا صفحه‌ئون',
 'faq' => 'معمولی سوالا',
@@ -363,7 +359,6 @@ $2، $1',
 'disclaimers' => 'تکذیب‌نومه‌ئون',
 'disclaimerpage' => 'Project:تکذیب‌نومه',
 'edithelp' => 'دچی‌ین رانما',
-'edithelppage' => 'Help:دَچی‌ین',
 'helppage' => 'Help:راهنما',
 'mainpage' => 'گت صفحه',
 'mainpage-description' => 'گت صفحه',
@@ -506,9 +501,6 @@ $2، $1',
 'sqlhidden' => '(دستور اس‌کیوال دپوشنی‌یه بیّه)',
 
 # Login and logout pages
-'welcomecreation' => '==$1، خِش بمونی!==
-شِمه حساب بساته بیّه.
-فراموش نکانین که [[Special:Preferences|شه ترجیحات {{SITENAME}}]] ره تنظیم هاکنین.',
 'yourname' => 'شمه کاروری‌نوم:',
 'yourpassword' => 'شمه پسورد',
 'yourpasswordagain' => 'پسورد ره دِباره بنویس',
@@ -716,7 +708,6 @@ $2، $1',
 # User rights log
 'rightslog' => 'سیاهه اختیارای کاروری',
 'rightslogtext' => 'اینتا سیاهه تغییرای اختیارای کاروری هسته.',
-'rightsnone' => '(هچّی)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'این صفحه ره دچی‌ین',
@@ -840,7 +831,7 @@ $2، $1',
 # Special:ListGroupRights
 'listgrouprights-members' => '(کارورون لیست)',
 
-# E-mail user
+# Email user
 'mailnologintext' => 'برای برسنی‌ین پوست الکترونیکی به کارورون دیگه ونه [[Special:UserLogin|بورین سامانه دله]] و نشونی پوست الکترونیکی معتبری تو [[Special:Preferences|ترجیحات]] خادت ره داشته بایی.',
 'emailuser' => 'این کارور وسّه ایمیل بَرسِن',
 'emailpage' => 'ئـی-مه‌یـل ای کـارور وه‌سه',
@@ -866,12 +857,10 @@ $2، $1',
 'watching' => 'ده‌مـبـال هـه‌کـارده‌ن...',
 'unwatching' => 'ده‌مـبـال نـه‌کـارده‌ن...',
 
-'enotif_newpagetext' => 'این صفحه نوبساته هسته',
-'created' => 'بساته بیّه',
-'enotif_subject' => 'صفحه‌ی «$PAGETITLE» {{SITENAME}} به‌دست $PAGEEDITOR $CHANGEDORCREATED‌هسته.',
 'enotif_lastvisited' => 'بدی‌ین همه‌ی تغییرات از آخرین باری که سر بزونی وسّه $1 ره هارشین.',
 'enotif_lastdiff' => 'هارشائن این تغییر وسّه $1 ره بزنین.',
 'enotif_anon_editor' => 'نشناسی‌یه کارور $1',
+'created' => 'بساته بیّه',
 
 # Delete
 'deletepage' => 'صفحه پاک هاکردن',
@@ -1040,12 +1029,12 @@ $2، $1',
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims' => '$1, $2×$3',
 
-# EXIF tags
+# Exif tags
 'exif-gpsareainformation' => 'جی پی اس ناحیه نوم',
 'exif-gpsdatestamp' => 'جی پی اس روز',
 'exif-gpsdifferential' => 'جی پی اس په‌چه‌ک درس هأکه‌ردن',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'فه‌شورده نئی',
 
 'exif-unknowndate' => 'نه‌شناسی روز',
@@ -1062,7 +1051,7 @@ $2، $1',
 'namespacesall' => 'همه',
 'monthsall' => 'همه ماه‌ئون',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_body_changed' => 'ات نفر، احتمالاً خاد شمِا، از نشونی آی‌پی $1 نشونی پوست ایلکتورونیک حیساب «$2» {{SITENAME}} ره تغییر هدائه.
 
 برای تایید این که این حیساب واقعاً شمه شه و فعال هکردن دبارهٔ ویژگی پوست ایلکتورونیک {{SITENAME}}، پیوند زیر دله ره شه مرورگر دله وا هکنین:
@@ -1094,6 +1083,7 @@ $5
 'logentry-move-move_redir-noredirect' => '$1 ، $3 ره بدون اینکه مسیر تغییری درس بوه به $4 که مسیر تغییر بیه منتقل هاکرده',
 'logentry-newusers-newusers' => '$1  بساتن اتا حساب کاروری',
 'logentry-newusers-create' => '$1  بساتن اتا حساب کاروری',
+'rightsnone' => '(هچّی)',
 
 # Feedback
 'feedback-subject' => 'موضوع:',

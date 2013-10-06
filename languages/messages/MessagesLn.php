@@ -101,7 +101,6 @@ $messages = array(
 'qbbrowse' => 'Kolúka',
 'qbedit' => 'Kobɔngisa',
 'qbpageoptions' => 'Lonkásá óyo',
-'qbpageinfo' => 'Context',
 'qbmyoptions' => 'Lonkásá na ngáí',
 'qbspecialpages' => 'Nkásá gudi',
 'faq' => 'Mitúná Mizóngelaka (MM)',
@@ -238,6 +237,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'viewsource' => 'Komɔ́nisa mosólo',
 
 # Login and logout pages
+'welcomeuser' => 'Mbɔ́tɛ na Wikipedia, $1',
 'yourname' => 'Nkómbó ya mosáleli:',
 'yourpassword' => 'Banda nayó:',
 'yourpasswordagain' => 'Banda naíno:',
@@ -306,6 +306,10 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'template-protected' => '(na bobáteli)',
 'template-semiprotected' => '(na bobáteli ya ndámbo)',
 
+# Content models
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
+
 # History pages
 'viewpagelogs' => 'Komɔ́nisa zuluná ya lonkásá loye',
 'currentrev' => 'Lizóngeli na mosálá',
@@ -373,9 +377,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'powersearch-toggleall' => 'Nyɔ́nsɔ',
 'powersearch-togglenone' => 'Mɔ́kɔ́ tɛ́',
 
-# Quickbar
-'qbsettings-none' => 'Mɔ́kɔ́ tɛ́',
-
 # Preferences page
 'preferences' => 'Malúli',
 'mypreferences' => 'Malúli ma ngáí',
@@ -399,7 +400,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'timezoneregion-pacific' => 'Pasifíki (lombú monɛ́nɛ)',
 'allowemail' => 'Enable mokánda from other users',
 'youremail' => 'Mokandá (e-mail) *',
-'username' => 'Nkómbó ya mosáleli :',
+'username' => 'Nkómbó ya mosáleli:',
 'yourrealname' => 'nkómbó ya sɔ̂lɔ́',
 'yourlanguage' => 'Lokótá',
 'email' => 'Mokánda',
@@ -408,6 +409,9 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'group-sysop' => 'Bayángeli',
 
 'group-sysop-member' => 'Moyángeli',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Zuluná ya bokeli bwa konti ya mosáleli',
 
 # User rights log
 'rightslog' => 'Zuluná ya makokí ma basáleli',
@@ -519,10 +523,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Special:Categories
 'categories' => 'Ndéngé',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Zuluná ya bokeli bwa konti ya mosáleli',
-
-# E-mail user
+# Email user
 'emailuser' => 'Kotíndela yě mɛ́lɛ',
 'defemailsubject' => '{{SITENAME}} mokánda',
 'emailfrom' => 'útá',
@@ -699,7 +700,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Special:NewFiles
 'ilsubmit' => 'Boluki',
 
-# EXIF tags
+# Exif tags
 'exif-artist' => 'Mokeli',
 
 'exif-subjectdistancerange-2' => 'kokanga view',

@@ -204,11 +204,14 @@ class NewMessages {
 				NewMessages::recacheMessageCount( $row->wl_user );
 			}
 
-			$wantsTalkNotification = true;
+			global $wgHiddenPrefs;
+			if ( !in_array( 'lqtnotifytalk', $wgHiddenPrefs ) && isset( $row->up_value ) ) {
+				$wantsTalkNotification = (bool) $row->wl_user;
+			} else {
+				$wantsTalkNotification = User::getDefaultOption( 'lqtnotifytalk' );
+			}
 
-			$wantsTalkNotification = $wantsTalkNotification && User::getDefaultOption( 'lqtnotifytalk' );
-
-			if ( $wantsTalkNotification || $row->up_value ) {
+			if ( $wantsTalkNotification ) {
 				$notifyUsers[] = $row->wl_user;
 			}
 		}
@@ -442,7 +445,7 @@ class NewMessages {
 		return Threads::loadFromResult( $res, $dbr );
 	}
 
-	static function newMessageCount( $user ) {
+	static function newMessageCount( $user, $db = DB_SLAVE ) {
 		global $wgMemc;
 
 		$cval = $wgMemc->get( wfMemcKey( 'lqt-new-messages-count', $user->getId() ) );
@@ -451,7 +454,7 @@ class NewMessages {
 			return $cval;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( $db );
 
 		$cond = array( 'ums_user' => $user->getId(), 'ums_read_timestamp' => null );
 		$options = array( 'LIMIT' => 500 );

@@ -1,3 +1,4 @@
+/*global window:false */
 ( function( $ ) {
 
 var	options = {}, // options modifiable by the user
@@ -6,18 +7,35 @@ var	options = {}, // options modifiable by the user
 	currentSubtypeId = null, // id of the currently selected subtype (e.g. 'original' or 'special')
 	currentTypeOrSubtype = null, // content of the current (sub)type (i.e. an object with title, descr, text, etc.)
 	rememberData = null, // input data to remember when switching types or subtypes
-	emailable = false,
+	emailable = false, // whether or not the target user is emailable
+	redirect = true, // whether or not to redirect the user to the WikiLove message after it has been posted
+	targets = [], // the recipients of the WikiLove
+	maxRecipients = 10, // maximum number of simultaneous recipients
 	gallery = {};
 
 $.wikiLove = {
 	/**
 	 * Opens the dialog and builds it if necessary.
+	 * @param array recipients
 	 */
-	openDialog: function() {
-		if ( $dialog === null ) {
+	openDialog: function( recipients ) {
+		// If a list of recipients are specified, this will override the normal
+		// behavior of WikiLove, which is to post on the Talk page of the 
+		// current page. It will also disable redirecting the user after submitting.
+		if ( recipients ) {
+			if ( recipients.length > maxRecipients ) {
+				alert( mw.msg( 'wikilove-err-max-exceeded', maxRecipients ) );
+				return;
+			}
+			targets = recipients;
+			redirect = false;
+			// TODO: See if recipients are emailable
+		} else {
+			targets.push( mw.config.get( 'wgPageName' ) );
 			// Test to see if the 'E-mail this user' link exists
 			emailable = $( '#t-emailuser' ).length ? true : false;
-
+		}
+		if ( $dialog === null ) {
 			// Build a type list like this:
 			var	$typeList = $( '<ul id="mw-wikilove-types"></ul>' ),
 				type;
@@ -29,7 +47,7 @@ $.wikiLove = {
 				var	$button = $( '<a href="#"></a>' ),
 					$buttonInside = $( '<div class="mw-wikilove-inside"></div>' );
 
-				if ( typeof type.icon == 'string' ) {
+				if ( typeof type.icon === 'string' ) {
 					$buttonInside.append( '<div class="mw-wikilove-icon-box"><img src="'
 						+ mw.html.escape( type.icon ) + '"/></div>' );
 				} else {
@@ -131,6 +149,7 @@ $.wikiLove = {
 		<button class="submit" id="mw-wikilove-button-send" type="submit"></button>\
 		<div id="mw-wikilove-send-spinner" class="mw-wikilove-spinner"></div>\
 	</form>\
+	<div id="mw-wikilove-success"></div>\
 </div>\
 </div>' );
 			$dialog.localize();
@@ -144,7 +163,7 @@ $.wikiLove = {
 					resizable: false
 				});
 
-			if ( mw.config.get( 'skin' ) == 'vector' ) {
+			if ( mw.config.get( 'skin' ) === 'vector' ) {
 				$( '#mw-wikilove-button-preview' ).button( {
 					label: mw.msg( 'wikilove-button-preview' ),
 					icons: {
@@ -193,14 +212,14 @@ $.wikiLove = {
 		$( '#mw-wikilove-get-started' ).hide(); // always hide the get started section
 
 		var newTypeId = $( this ).data( 'typeId' );
-		if( currentTypeId != newTypeId ) { // only do stuff when a different type is selected
+		if( currentTypeId !== newTypeId ) { // only do stuff when a different type is selected
 			currentTypeId = newTypeId;
 			currentSubtypeId = null; // reset the subtype id
 
 			$( '#mw-wikilove-types' ).find( 'a' ).removeClass( 'selected' );
 			$( this ).addClass( 'selected' ); // highlight the new type in the menu
 
-			if( typeof options.types[currentTypeId].subtypes == 'object' ) {
+			if( typeof options.types[currentTypeId].subtypes === 'object' ) {
 				// we're dealing with subtypes here
 				currentTypeOrSubtype = null; // reset the (sub)type object until a subtype is selected
 				$( '#mw-wikilove-subtype' ).html( '' ); // clear the subtype menu
@@ -208,7 +227,7 @@ $.wikiLove = {
 				for( var subtypeId in options.types[currentTypeId].subtypes ) {
 					// add all the subtypes to the menu while setting their subtype ids in jQuery data
 					var subtype = options.types[currentTypeId].subtypes[subtypeId];
-					if ( typeof subtype.option != 'undefined' ) {
+					if ( typeof subtype.option !== 'undefined' ) {
 						$( '#mw-wikilove-subtype' ).append(
 							$( '<option></option>' ).text( subtype.option ).data( 'subtypeId', subtypeId )
 						);
@@ -243,11 +262,19 @@ $.wikiLove = {
 
 		// find out which subtype is selected
 		var newSubtypeId = $( '#mw-wikilove-subtype option:selected' ).first().data( 'subtypeId' );
-		if( currentSubtypeId != newSubtypeId ) { // only change stuff when a different subtype is selected
+		if( currentSubtypeId !== newSubtypeId ) { // only change stuff when a different subtype is selected
 			currentSubtypeId = newSubtypeId;
 			currentTypeOrSubtype = options.types[currentTypeId]
 				.subtypes[currentSubtypeId];
-			$( '#mw-wikilove-subtype-description' ).html( currentTypeOrSubtype.descr );
+
+			// Insert the item description
+			if( typeof currentTypeOrSubtype.descr === 'string' ) {
+				// Replace {{SITENAME}} in messages. Yes, we could have mediawiki.jqueryMsg
+				// handle this, but this is a much more lightweight solution.
+				var siteName = mw.config.get( 'wgSiteName' );
+				currentTypeOrSubtype.descr = currentTypeOrSubtype.descr.replace( /\{\{SITENAME\}\}/g, siteName );
+				$( '#mw-wikilove-subtype-description' ).text( currentTypeOrSubtype.descr );
+			}
 
 			if( currentTypeOrSubtype.gallery === undefined && currentTypeOrSubtype.image ) { // not a gallery
 				$.wikiLove.showImagePreview();
@@ -274,22 +301,22 @@ $.wikiLove = {
 		}
 		if ( currentTypeOrSubtype !== null ) {
 			if ( $.inArray( 'header', currentTypeOrSubtype.fields ) >= 0 &&
-				( !currentTypeOrSubtype.header || $( '#mw-wikilove-header' ).val() != currentTypeOrSubtype.header ) )
+				( !currentTypeOrSubtype.header || $( '#mw-wikilove-header' ).val() !== currentTypeOrSubtype.header ) )
 			{
 				rememberData.header = $( '#mw-wikilove-header' ).val();
 			}
 			if ( $.inArray( 'title', currentTypeOrSubtype.fields ) >= 0 &&
-				( !currentTypeOrSubtype.title || $( '#mw-wikilove-title' ).val() != currentTypeOrSubtype.title ) )
+				( !currentTypeOrSubtype.title || $( '#mw-wikilove-title' ).val() !== currentTypeOrSubtype.title ) )
 			{
 				rememberData.title = $( '#mw-wikilove-title' ).val();
 			}
 			if ( $.inArray( 'message', currentTypeOrSubtype.fields ) >= 0 &&
-				( !currentTypeOrSubtype.message || $( '#mw-wikilove-message' ).val() != currentTypeOrSubtype.message ) )
+				( !currentTypeOrSubtype.message || $( '#mw-wikilove-message' ).val() !== currentTypeOrSubtype.message ) )
 			{
 				rememberData.message = $( '#mw-wikilove-message' ).val();
 			}
 			if ( currentTypeOrSubtype.gallery === undefined && $.inArray( 'image', currentTypeOrSubtype.fields ) >= 0  &&
-				( !currentTypeOrSubtype.image || $( '#mw-wikilove-image' ).val() != currentTypeOrSubtype.image ) )
+				( !currentTypeOrSubtype.image || $( '#mw-wikilove-image' ).val() !== currentTypeOrSubtype.image ) )
 			{
 				rememberData.image = $( '#mw-wikilove-image' ).val();
 			}
@@ -323,7 +350,7 @@ $.wikiLove = {
 					$( '#mw-wikilove-image-preview-spinner' ).fadeOut( 200 );
 					return;
 				}
-				if ( loadingType != currentTypeOrSubtype ) {
+				if ( loadingType !== currentTypeOrSubtype ) {
 					return;
 				}
 				$.each( data.query.pages, function( id, page ) {
@@ -361,7 +388,7 @@ $.wikiLove = {
 		};
 
 		// only show the description if it exists for this type or subtype
-		if( typeof currentTypeOrSubtype.descr == 'string' ) {
+		if( typeof currentTypeOrSubtype.descr === 'string' ) {
 			$( '#mw-wikilove-subtype-description').show();
 		} else {
 			$( '#mw-wikilove-subtype-description').hide();
@@ -388,7 +415,7 @@ $.wikiLove = {
 		// set the new text for the image textbox
 		$( '#mw-wikilove-image' ).val( currentRememberData.image || currentTypeOrSubtype.image || '' );
 
-		if( typeof currentTypeOrSubtype.gallery == 'object'
+		if( typeof currentTypeOrSubtype.gallery === 'object'
 			&& $.isArray( currentTypeOrSubtype.gallery.imageList )
 		) {
 			$( '#mw-wikilove-gallery, #mw-wikilove-gallery-label' ).show();
@@ -418,8 +445,9 @@ $.wikiLove = {
 	 */
 	validatePreviewForm: function( e ) {
 		e.preventDefault();
-		$( '#mw-wikilove-preview' ).hide();
+		$( '#mw-wikilove-success' ).hide();
 		$( '#mw-wikilove-dialog' ).find( '.mw-wikilove-error' ).remove();
+		$( '#mw-wikilove-preview' ).hide();
 
 		// Check for a header if it is required
 		if( $.inArray( 'header', currentTypeOrSubtype.fields ) >= 0 && $( '#mw-wikilove-header' ).val().length === 0 ) {
@@ -443,7 +471,7 @@ $.wikiLove = {
 		}
 
 		// Split image validation depending on whether or not it is a gallery
-		if ( typeof currentTypeOrSubtype.gallery == 'undefined' ) { // not a gallery
+		if ( typeof currentTypeOrSubtype.gallery === 'undefined' ) { // not a gallery
 			if ( $.inArray( 'image', currentTypeOrSubtype.fields ) >= 0 ) { // asks for an image
 				if ( $( '#mw-wikilove-image' ).val().length === 0 ) { // no image entered
 					// Give them the default image and continue with preview.
@@ -510,6 +538,11 @@ $.wikiLove = {
 	showPreviewError: function( errmsg ) {
 		$( '#mw-wikilove-preview' ).append( $( '<div class="mw-wikilove-error"></div>' ).text( mw.msg( errmsg ) ) );
 	},
+	
+	showSuccessMsg: function( msg ) {
+		$( '#mw-wikilove-success' ).text( msg );
+		$( '#mw-wikilove-success' ).show();
+	},
 
 	/**
 	 * Prepares a message or e-mail body by replacing placeholders.
@@ -544,7 +577,9 @@ $.wikiLove = {
 		// If a URL is given, extract and decode the filename
 		var index = filename.lastIndexOf( "/" ) + 1;
 		filename = filename.substr( index );
-		if ( index > 0 ) filename = decodeURI( filename );
+		if ( index > 0 ) {
+			filename = decodeURI( filename );
+		}
 		// Can't use mw.Title in 1.17
 		var	prefixSplit = filename.split( ':' ),
 			// Make sure the we don't fail in case input is like "File.jpg"
@@ -616,6 +651,7 @@ $.wikiLove = {
 	 */
 	submitSend: function( e ) {
 		e.preventDefault();
+		$( '#mw-wikilove-success' ).hide();
 		$( '#mw-wikilove-dialog' ).find( '.mw-wikilove-error' ).remove();
 
 		// Check for a header if it is required
@@ -657,73 +693,111 @@ $.wikiLove = {
 	 */
 	doSend: function( subject, wikitext, message, type, email ) {
 		$( '#mw-wikilove-send-spinner' ).fadeIn( 200 );
+		
+		var editToken = mw.user.tokens.get( 'editToken' );
 
-		var sendData = {
-			action: 'wikilove',
-			format: 'json',
-			title: mw.config.get( 'wgPageName' ),
-			type: type,
-			text: wikitext,
-			message: message,
-			subject: subject,
-			token: mw.config.get( 'wikilove-edittoken' ) // after 1.17 this can become mw.user.tokens.get( 'editToken' )
-		};
-
-		if ( email ) {
-			sendData.email = email;
-		}
-
-		$.ajax( {
-			url: mw.config.get( 'wgScriptPath' ) + '/api.php',
-			data: sendData,
-			dataType: 'json',
-			type: 'POST',
-			success: function( data ) {
-				$( '#mw-wikilove-send-spinner' ).fadeOut( 200 );
-
-				if ( data.error !== undefined ) {
-					$.wikiLove.showPreviewError( data.error.info );
-					return;
-				}
-
-				if ( data.redirect !== undefined ) {
-					var	targetBaseUrl = mw.util.wikiGetlink( data.redirect.pageName ),
-						// currentBaseUrl is the current URL minus the hash fragment
-						currentBaseUrl = window.location.href.split("#")[0];
-
-					// Set window location to user talk page URL + WikiLove anchor hash.
-					// Unfortunately, in the most common scenario (starting from the user talk
-					// page) this won't reload the page since the browser will simply try to jump
-					// to the anchor within the existing page (which doesn't exist). This does,
-					// however, prepare us for the subsequent reload, making sure that the user is
-					// directed to the WikiLove message instead of just being left at the top of
-					// the page. In the case that we are starting from a different page, this sends
-					// the user immediately to the new WikiLove message on the user talk page.
-					window.location = targetBaseUrl + '#' + data.redirect.fragment; // data.redirect.fragment is already encoded
-
-					// If we were already on the user talk page, then reload the page so that the
-					// new WikiLove message is displayed.
-					// @todo: an expandUrl() would be very nice indeed!
-					if (
-						mw.config.get( 'wgServer' ) + targetBaseUrl === currentBaseUrl
-						// Compatibility with 1.17 (mw.util.wikiGetlink prepends wgServer in 1.17)
-						|| targetBaseUrl === currentBaseUrl
-						// Compatibility with protocol-relative URLs in 1.18+
-						|| window.location.protocol + mw.config.get( 'wgServer' ) + targetBaseUrl === currentBaseUrl
-						// Compatibility with protocol-relative URLs in 1.17
-						|| window.location.protocol + targetBaseUrl === currentBaseUrl
-					) {
-						window.location.reload();
-					}
-				} else {
-					$.wikiLove.showPreviewError( 'wikilove-err-send-api' );
-				}
-			},
-			error: function() {
-				$.wikiLove.showPreviewError( 'wikilove-err-send-api' );
-				$( '#mw-wikilove-send-spinner' ).fadeOut( 200 );
+		var wikiLoveNumberAttempted = 0;
+		var wikiLoveNumberPosted = 0;
+		$.each( targets, function( index, target ) {
+			var sendData = {
+				action: 'wikilove',
+				format: 'json',
+				title: 'User:' + target,
+				type: type,
+				text: wikitext,
+				message: message,
+				subject: subject,
+				token: editToken
+			};
+	
+			if ( email ) {
+				sendData.email = email;
 			}
+	
+			$.ajax( {
+				url: mw.config.get( 'wgScriptPath' ) + '/api.php',
+				data: sendData,
+				dataType: 'json',
+				type: 'POST',
+				success: function( data ) {
+					wikiLoveNumberAttempted++;
+					if ( wikiLoveNumberAttempted === targets.length ) {
+						$( '#mw-wikilove-send-spinner' ).fadeOut( 200 );
+					}
+	
+					if ( data.error !== undefined ) {
+						if ( data.error.info === 'Invalid token' ) {
+							$.wikiLove.showPreviewError( 'wikilove-err-invalid-token' );
+						} else {
+							$.wikiLove.showPreviewError( 'wikilove-err-send-api' );
+						}
+						return;
+					}
+	
+					if ( data.redirect !== undefined ) {
+						wikiLoveNumberPosted++;
+						if ( redirect ) {
+							var	targetBaseUrl = mw.util.wikiGetlink( data.redirect.pageName ),
+								// currentBaseUrl is the current URL minus the hash fragment
+								currentBaseUrl = window.location.href.split("#")[0];
+		
+							// Set window location to user talk page URL + WikiLove anchor hash.
+							// Unfortunately, in the most common scenario (starting from the user talk
+							// page) this won't reload the page since the browser will simply try to jump
+							// to the anchor within the existing page (which doesn't exist). This does,
+							// however, prepare us for the subsequent reload, making sure that the user is
+							// directed to the WikiLove message instead of just being left at the top of
+							// the page. In the case that we are starting from a different page, this sends
+							// the user immediately to the new WikiLove message on the user talk page.
+							window.location = targetBaseUrl + '#' + data.redirect.fragment; // data.redirect.fragment is already encoded
+		
+							// If we were already on the user talk page, then reload the page so that the
+							// new WikiLove message is displayed.
+							// @todo: an expandUrl() would be very nice indeed!
+							if (
+								mw.config.get( 'wgServer' ) + targetBaseUrl === currentBaseUrl
+								// Compatibility with protocol-relative URLs in MediaWiki 1.18+
+								|| window.location.protocol + mw.config.get( 'wgServer' ) + targetBaseUrl === currentBaseUrl
+							) {
+								window.location.reload();
+							}
+						} else {
+							$.wikiLove.showSuccessMsg( mw.msg( 'wikilove-success-number', wikiLoveNumberPosted ) );
+							// If there were no errors, close the dialog and reset WikiLove
+							if ( wikiLoveNumberPosted === targets.length ) {
+								setTimeout ( function() {
+									$dialog.dialog( 'close' );
+									$.wikiLove.reset();
+								}, 1000 );
+							}
+						}
+					} else { // API did not return appropriate information
+						$.wikiLove.showPreviewError( 'wikilove-err-send-api' );
+					}
+				},
+				error: function() {
+					$.wikiLove.showPreviewError( 'wikilove-err-send-api' );
+					wikiLoveNumberAttempted++;
+					if ( wikiLoveNumberAttempted === targets.length ) {
+						$( '#mw-wikilove-send-spinner' ).fadeOut( 200 );
+					}
+				}
+			});
 		});
+	},
+	
+	/**
+	 * Resets WikiLove to its itialized state – removes the dialog box from the 
+	 * DOM and resets the pseudo-global variables.
+	 */
+	reset: function() {
+		$dialog.dialog( 'destroy' );
+		$( '#mw-wikilove-dialog' ).remove();
+		$dialog = null;
+		currentTypeId = null;
+		currentSubtypeId = null;
+		currentTypeOrSubtype = null;
+		rememberData = null;
 	},
 
 	/**
@@ -776,7 +850,7 @@ $.wikiLove = {
 					return;
 				}
 
-				if ( loadingType != currentTypeOrSubtype ) {
+				if ( loadingType !== currentTypeOrSubtype ) {
 					return;
 				}
 				var galleryNumber = currentTypeOrSubtype.gallery.number;

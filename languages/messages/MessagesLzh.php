@@ -177,8 +177,6 @@ $messages = array(
 'tog-shownumberswatching' => '放哨有',
 'tog-oldsig' => '覽原署名：',
 'tog-fancysig' => '署以本碼待之（免自連）',
-'tog-externaleditor' => '它器修文（高人用，需設之。[//www.mediawiki.org/wiki/Manual:External_editors 閱。]）',
-'tog-externaldiff' => '它器修異（高人用，需設之。[//www.mediawiki.org/wiki/Manual:External_editors 閱。]）',
 'tog-showjumplinks' => '鏈往字',
 'tog-uselivepreview' => '即覽嚐鮮（JavaScript）',
 'tog-forceeditsummary' => '漏概醒之',
@@ -213,13 +211,13 @@ $messages = array(
 'thursday' => '週四',
 'friday' => '週五',
 'saturday' => '週六',
-'sun' => '週日',
-'mon' => '周一',
-'tue' => '周二',
-'wed' => '周三',
-'thu' => '周四',
-'fri' => '周五',
-'sat' => '周六',
+'sun' => '日',
+'mon' => '一',
+'tue' => '二',
+'wed' => '三',
+'thu' => '四',
+'fri' => '五',
+'sat' => '六',
 'january' => '一月',
 'february' => '二月',
 'march' => '三月',
@@ -292,7 +290,6 @@ $messages = array(
 'qbbrowse' => '覽',
 'qbedit' => '纂',
 'qbpageoptions' => '此頁',
-'qbpageinfo' => '內文',
 'qbmyoptions' => '吾好',
 'qbspecialpages' => '非凡',
 'faq' => '頻答問',
@@ -389,7 +386,6 @@ $1',
 'disclaimers' => '免責宣',
 'disclaimerpage' => 'Project:免責宣',
 'edithelp' => '助纂塾',
-'edithelppage' => 'Help:纂',
 'helppage' => 'Help:目錄',
 'mainpage' => '卷首',
 'mainpage-description' => '卷首',
@@ -408,7 +404,7 @@ $1',
 
 'ok' => '可',
 'retrievedfrom' => '取自"$1"',
-'youhavenewmessages' => '子有$1（$2）',
+'youhavenewmessages' => '有$1書至子書房也。（$2）',
 'newmessageslink' => '新訊',
 'newmessagesdifflink' => '變更',
 'youhavenewmessagesfromusers' => '子有 $1 自 {{PLURAL:$3|another user|$3 簿戶也}} ($2)。',
@@ -491,6 +487,9 @@ $1',
 'formerror' => '有誤：表不可呈',
 'badarticleerror' => '此頁莫為之',
 'cannotdelete' => '頁或檔"$1"刪矣，不復為之。',
+'cannotdelete-title' => '刪「$1」不能也。',
+'delete-hook-aborted' => '鈎纂消矣。
+無解也。',
 'badtitle' => '無此題',
 'badtitletext' => '或別、或缺、或違、或他山謬鏈，此題不存也。',
 'perfcached' => '下為謄本，恐不新也。 A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
@@ -499,6 +498,7 @@ $1',
 函式： $1<br />
 問語： $2',
 'viewsource' => '覽源',
+'viewsource-title' => '查$1之案',
 'actionthrottled' => '無為',
 'actionthrottledtext' => '基反垃圾之量，於短時中限欲，爾之上限已過。數分後再試之。',
 'protectedpagetext' => '該頁被錮無纂也。',
@@ -522,15 +522,27 @@ $2',
 # Login and logout pages
 'logouttext' => "'''子去簿矣'''
 
-子可匿名還覽{{SITENAME}}，或[[Special:UserLogin|復登]]同簿、異簿。
+子可匿名還覽{{SITENAME}}，或<span class='plainlinks'>[$1 復登]</span>同簿、異簿。
 未清謄本，覽器文舊，且慎之。",
-'welcomecreation' => '== $1大駕光臨! ==
-子簿增矣，敬更[[Special:Preferences|簿註]]。',
+'welcomeuser' => '$1居，惠迎！',
+'welcomecreation-msg' => '子簿建矣。
+
+請更簿註乎[[Special:Preferences|此]]。',
 'yourname' => '名',
+'userlogin-yourname' => '簿名',
+'userlogin-yourname-ph' => '輸簿名',
 'yourpassword' => '符節',
+'userlogin-yourpassword' => '符節',
+'userlogin-yourpassword-ph' => '輸子符節',
+'createacct-yourpassword-ph' => '輸一符節',
 'yourpasswordagain' => '復核節',
+'createacct-yourpasswordagain' => '訂子符節',
+'createacct-yourpasswordagain-ph' => '復輸符節',
 'remembermypassword' => '吾之簿通越（達至$1日）',
+'userlogin-remembermypassword' => '記吾',
+'userlogin-signwithsecure' => '以安全伺服登簿',
 'securelogin-stick-https' => '登後仍以HTTPS通接',
+'password-change-forbidden' => '符節不能改乎此維基也。',
 'externaldberror' => '認庫之錯或禁更爾之外簿。',
 'login' => '登簿',
 'nav-login-createaccount' => '登簿、增簿',
@@ -540,17 +552,22 @@ $2',
 'logout' => '去簿',
 'userlogout' => '去簿',
 'notloggedin' => '尚未登簿',
+'userlogin-noaccount' => '無簿乎？',
+'userlogin-joinproject' => '入{{SITENAME}}',
 'nologin' => '無簿乎？往$1。',
 'nologinlink' => '增簿',
 'createaccount' => '增簿',
 'gotaccount' => '有簿矣哉？往$1。',
 'gotaccountlink' => '登簿',
 'userlogin-resetlink' => '君忘登簿所需爾？',
+'helplogin-url' => 'Help:登簿',
 'createaccountmail' => '同郵',
 'createaccountreason' => '因：',
+'createacct-benefit-body3' => '是月纂者',
 'badretype' => '符節不合也。',
-'userexists' => '簿名存矣，惠更之',
+'userexists' => '簿名存矣，惠更之。',
 'loginerror' => '登簿誤然',
+'createacct-error' => '建簿未成',
 'createaccounterror' => '無增簿：$1',
 'nocookiesnew' => '{{SITENAME}}簿增而未登，惠准cookies後再登之。',
 'nocookieslogin' => '登簿{{SITENAME}}須cookies，惠准之後登。',
@@ -559,7 +576,7 @@ $2',
 'noname' => '缺簿名，或不格也。',
 'loginsuccesstitle' => '登簿成矣',
 'loginsuccess' => "'''$1'''登{{SITENAME}}矣",
-'nosuchuser' => '查無此人。',
+'nosuchuser' => '查無此人。惠請更名，或查大小寫。',
 'nosuchusershort' => '查無"$1"，惠核之。',
 'nouserspecified' => '簿名須也',
 'login-userblocked' => '此簿已被封。登無簿也。',
@@ -588,6 +605,7 @@ $2',
 'emailconfirmlink' => '惠考郵驛',
 'invalidemailaddress' => '驛址不格，惠正略之。',
 'cannotchangeemail' => '電郵地址不可改于此wiki',
+'emaildisabled' => '是站不可遣函也。',
 'accountcreated' => '簿增矣',
 'accountcreatedtext' => '$1簿增矣',
 'createaccount-title' => '於{{SITENAME}}增簿',
@@ -597,11 +615,13 @@ $2',
 'usernamehasherror' => '簿名無含切細符也',
 'login-throttled' => '爾多試於此簿登中。
 請候再試之。',
+'login-abort-generic' => '登簿未成——棄',
 'loginlanguagelabel' => '語：$1',
 'suspicious-userlogout' => '爾欲無離也，可由壞瀏覽器或快枝代理呈送之。',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => '於 PHP mail() 參數現錯',
+'user-mail-no-addy' => '遣函豈能無址？',
 
 # Change password dialog
 'resetpass' => '變符',
@@ -755,7 +775,6 @@ $2',
 'template-protected' => '（錮）',
 'template-semiprotected' => '（半錮）',
 'hiddencategories' => '此頁屬隱類之員有$1：',
-'nocreatetitle' => '新題謝焉',
 'nocreatetext' => '舊題可修，新題謝焉。[[Special:UserLogin|登簿、增簿]]以逮權也。',
 'nocreate-loggedin' => '子權未逮，新頁謝焉。',
 'sectioneditnotsupported-title' => '不纂持節',
@@ -817,8 +836,8 @@ $2',
 'last' => '前',
 'page_first' => '首',
 'page_last' => '末',
-'histlegend' => "辨異：擇二孔後，按Enter、或點下鈕以辨之。<br />
-釋義：'''（{{int:cur}}）'''與今審辨；'''（{{int:last}}）'''與前審辨；'''{{int:minoreditletter}}'''，校文",
+'histlegend' => "辨異：既擇二孔，按Enter、或點下鈕以辨之。<br />
+釋義：'''（{{int:cur}}）'''與今審辨；'''（{{int:last}}）'''與前審辨；'''{{int:minoreditletter}}'''，令校",
 'history-fieldset-title' => '誌覽',
 'history-show-deleted' => '只刪',
 'histfirst' => '初',
@@ -980,7 +999,6 @@ $1",
 'searchmenu-legend' => '尋選',
 'searchmenu-exists' => "'''在此wiki中有頁為\"[[:\$1]]\"。'''",
 'searchmenu-new' => "'''在此wiki上建頁\"[[:\$1]]\"！'''",
-'searchhelp-url' => 'Help:目錄',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|查此首之頁]]',
 'searchprofile-articles' => '容',
 'searchprofile-project' => '助題',
@@ -1021,9 +1039,6 @@ $1",
 'powersearch-togglenone' => '無',
 'search-external' => '外尋',
 'searchdisabled' => '{{SITENAME}}因性能而停用之。可Gooogle查之，乃之過時也。',
-
-# Quickbar
-'qbsettings-none' => '無',
 
 # Preferences page
 'preferences' => '簿註',
@@ -1133,7 +1148,7 @@ $1",
 'prefs-displaywatchlist' => '示項',
 'prefs-diffs' => '異',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => '電郵有效之',
 'email-address-validity-invalid' => '貢一效之電郵',
 
@@ -1157,7 +1172,7 @@ $1",
 'userrights-no-interwiki' => '爾無權改他山wiki之簿權也。',
 'userrights-nodatabase' => '資料庫$1無存或非本地也。',
 'userrights-nologin' => '爾以有秩乲簿[[Special:UserLogin|登]]後以定簿之權也。',
-'userrights-notallowed' => '爾之簿無權定簿之權也。',
+'userrights-notallowed' => '子之簿無權定簿之權也。',
 'userrights-changeable-col' => '爾所管轄',
 'userrights-unchangeable-col' => '非爾所轄',
 'userrights-irreversible-marker' => '$1＊',
@@ -1246,9 +1261,12 @@ $1",
 'right-override-export-depth' => '出有五層深之頁',
 'right-sendemail' => '擬書傳予他簿',
 
+# Special:Log/newusers
+'newuserlogpage' => '誌簿',
+'newuserlogpagetext' => '此為誌簿之記也',
+
 # User rights log
 'rightslog' => '職權志',
-'rightsnone' => '（凡）',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => '閱此頁',
@@ -1294,7 +1312,7 @@ $1",
 'recentchanges-label-newpage' => '此纂開新頁',
 'recentchanges-label-minor' => '此乃細纂',
 'recentchanges-label-bot' => '此乃機纂',
-'recentchanges-label-unpatrolled' => '此乃未巡之纂',
+'recentchanges-label-unpatrolled' => '是纂未巡',
 'rcnote' => "下為自$4$5起，'''$2'''日內'''$1'''近易也。",
 'rcnotefrom' => "下為自'''$2'''至'''$1'''之易也。",
 'rclistfrom' => '自$1起之易也',
@@ -1458,7 +1476,6 @@ $1',
 'http-read-error' => 'HTTP讀錯。',
 'http-timed-out' => 'HTTP求之過時也。',
 'http-curl-error' => '取網址現錯之：$1',
-'http-host-unreachable' => '無達網址之。',
 'http-bad-status' => 'HTTP求時現問：$1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1601,6 +1618,7 @@ $1',
 'statistics-mostpopular' => '燴炙',
 
 'disambiguations' => '釋義',
+'disambiguationspage' => 'Template:弭誤解',
 'disambiguations-text' => '頁下引[[MediaWiki:Disambiguationspage]]模，求釋義，宜正題之。',
 
 'doubleredirects' => '窮渡',
@@ -1751,10 +1769,6 @@ $1',
 'activeusers-hidesysops' => '藏有秩',
 'activeusers-noresult' => '無簿矣。',
 
-# Special:Log/newusers
-'newuserlogpage' => '誌簿',
-'newuserlogpagetext' => '此為誌簿之記也',
-
 # Special:ListGroupRights
 'listgrouprights' => '權任一覽',
 'listgrouprights-summary' => '此所列述，諸職所司也，各有異同。欲知其詳，請閱[[{{MediaWiki:Listgrouprights-helppage}}|此文]]。',
@@ -1773,7 +1787,7 @@ $1',
 'listgrouprights-addgroup-self-all' => '加自之全組',
 'listgrouprights-removegroup-self-all' => '除自之全組',
 
-# E-mail user
+# Email user
 'mailnologin' => '無驛',
 'mailnologintext' => '[[Special:UserLogin|登簿]]置郵，方可捎書。',
 'emailuser' => '捎君',
@@ -1838,11 +1852,7 @@ $1',
 
 'enotif_mailer' => '{{SITENAME}}報',
 'enotif_reset' => '令為盡閱',
-'enotif_newpagetext' => '新灶',
 'enotif_impersonal_salutation' => '貴客',
-'changed' => '易',
-'created' => '撰',
-'enotif_subject' => '{{SITENAME}}簿{$PAGEEDITOR}{$CHANGEDORCREATED}{$PAGETITLE}',
 'enotif_lastvisited' => '自子出簿，有易見$1。',
 'enotif_lastdiff' => '欲閱此易，見$1。',
 'enotif_anon_editor' => '過客$1',
@@ -1865,6 +1875,8 @@ $NEWPAGE
 欲刪之頁，惠訪$UNWATCHURL
 
 饋助之，惠訪{{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => '撰',
+'changed' => '易',
 
 # Delete
 'deletepage' => '刪頁',
@@ -1878,7 +1890,7 @@ $NEWPAGE
 'historywarning' => '警示，此頁約有誌$1：',
 'confirmdeletetext' => '欲刪此物與誌，知後果、合[[{{MediaWiki:Policy-url}}]]後再為之。',
 'actioncomplete' => '成矣',
-'actionfailed' => '敗矣',
+'actionfailed' => '未竟',
 'deletedtext' => '"$1"刪矣，見誌刪於$2。',
 'dellogpage' => '誌刪',
 'dellogpagetext' => '近刪如下：',
@@ -2401,27 +2413,16 @@ $1',
 
 # Stylesheets
 'common.css' => '/* 此之 CSS 用於全面也 */',
-'standard.css' => '/* 此之 CSS 用於經典面之簿也 */',
-'nostalgia.css' => '/* 此之 CSS 用於懷古面之簿也 */',
 'cologneblue.css' => '/* 此之 CSS 用於馨藍面之簿也 */',
 'monobook.css' => '/* 此之 CSS 用於單書面之簿也 */',
-'myskin.css' => '/* 此之 CSS 用於吾風面之簿也 */',
-'chick.css' => '/* 此之 CSS 用於窈窕面之簿也 */',
-'simple.css' => '/* 此之 CSS 用於簡明面之簿也 */',
 'modern.css' => '/* 此之 CSS 用於時髦面之簿也 */',
 'vector.css' => '/* 此之 CSS 用於動力面之簿也 */',
 'print.css' => '/* 此之 CSS 用於印之出力也 */',
-'handheld.css' => '/* 此之 CSS 用於 $wgHandheldStyle 之手置面也 */',
 
 # Scripts
 'common.js' => '/* 此之JavaScript將載於全簿之頁。 */',
-'standard.js' => '/* 此之JavaScript將載於用經典面之簿 */',
-'nostalgia.js' => '/* 此之JavaScript將載於用懷古面之簿 */',
 'cologneblue.js' => '/* 此之JavaScript將載於用馨藍面之簿 */',
 'monobook.js' => '/* 此之JavaScript將載於用單書面之簿 */',
-'myskin.js' => '/* 此之JavaScript將載於用吾風面之簿 */',
-'chick.js' => '/* 此之JavaScript將載於用窈窕面之簿 */',
-'simple.js' => '/* 此之JavaScript將載於用簡明面之簿 */',
 'modern.js' => '/* 此之JavaScript將載於用時髦面之簿 */',
 'vector.js' => '/* 此之JavaScript將載於用動力面之簿 */',
 
@@ -2447,13 +2448,8 @@ $1',
 'spam_blanking' => '審皆鏈$1，遂令白頁。',
 
 # Skin names
-'skinname-standard' => '經典',
-'skinname-nostalgia' => '懷古',
 'skinname-cologneblue' => '馨藍',
 'skinname-monobook' => '單書',
-'skinname-myskin' => '吾風',
-'skinname-chick' => '窈窕',
-'skinname-simple' => '簡明',
 'skinname-modern' => '時髦',
 'skinname-vector' => '動力',
 
@@ -2545,7 +2541,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => '寬',
 'exif-imagelength' => '長',
 'exif-photometricinterpretation' => '像素構成',
@@ -2601,7 +2597,7 @@ $1',
 'monthsall' => '全',
 'limitall' => '全',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => '核郵驛',
 'confirmemail_noemail' => '[[Special:Preferences|簿註]]有驛。',
 'confirmemail_send' => '遣核符',
@@ -2757,12 +2753,6 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 'version-software-product' => '品',
 'version-software-version' => '版',
 
-# Special:FilePath
-'filepath' => '檔路',
-'filepath-page' => '檔名：',
-'filepath-submit' => '往',
-'filepath-summary' => '此奇頁取一檔之整路。圖以全解像示之，他檔會以有關之程式啟動也。',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => '擇重檔',
 'fileduplicatesearch-summary' => '以重檔之切去查重也。',
@@ -2837,6 +2827,6 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 # New logging system
 'revdelete-restricted' => '應限至有秩',
 'revdelete-unrestricted' => '除限自有秩',
-'newuserlog-byemail' => '號發自電郵',
+'rightsnone' => '（凡）',
 
 );

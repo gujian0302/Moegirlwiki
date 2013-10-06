@@ -360,7 +360,7 @@ QUnit.test( 'getAnnotatedRangeFromOffset', 1, function ( assert ) {
 				// 3
 				{
 					'type': 'image',
-					'attributes': { 'html/src': ve.dm.example.imgSrc },
+					'attributes': { 'src': ve.dm.example.imgSrc },
 					'annotations': [ { 'type': 'textStyle/bold' }]
 				},
 				// 4
@@ -1015,9 +1015,9 @@ QUnit.test( 'getRelativeStructuralOffset', function ( assert ) {
 		},
 		{
 			'msg': 'last structural offset is farthest right',
-			'offset': 58,
+			'offset': 62,
 			'distance': 2,
-			'expected': 61
+			'expected': 63
 		},
 		{
 			'msg': '1 right',
@@ -1335,7 +1335,7 @@ QUnit.test( 'getNearestWordRange', function ( assert ) {
 	];
 	QUnit.expect( cases.length );
 	for ( i = 0; i < cases.length; i++ ) {
-		data = new ve.dm.ElementLinearData( store, cases[i].phrase.split('') );
+		data = new ve.dm.ElementLinearData( store, cases[i].phrase.split( '' ) );
 		range = data.getNearestWordRange( cases[i].offset );
 		word = cases[i].phrase.substring( range.start, range.end );
 		assert.strictEqual( word, cases[i].expected,

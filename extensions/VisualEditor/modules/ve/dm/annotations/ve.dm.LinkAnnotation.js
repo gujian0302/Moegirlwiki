@@ -30,6 +30,8 @@ ve.dm.LinkAnnotation.static.name = 'link';
 
 ve.dm.LinkAnnotation.static.matchTagNames = ['a'];
 
+ve.dm.LinkAnnotation.static.applyToAppendedContent = false;
+
 ve.dm.LinkAnnotation.static.toDataElement = function ( domElements ) {
 	return {
 		'type': 'link',
@@ -43,6 +45,15 @@ ve.dm.LinkAnnotation.static.toDomElements = function ( dataElement, doc ) {
 	var domElement = doc.createElement( 'a' );
 	domElement.setAttribute( 'href', dataElement.attributes.href );
 	return [ domElement ];
+};
+
+/* Methods */
+
+ve.dm.LinkAnnotation.prototype.getComparableObject = function () {
+	return {
+		'type': this.getType(),
+		'href': this.getAttribute( 'href' )
+	};
 };
 
 /* Registration */

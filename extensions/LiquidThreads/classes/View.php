@@ -74,7 +74,7 @@ class LqtView {
 
 		$query = array_merge( $query, $uquery );
 
-		$queryString = wfArrayToCGI( $query );
+		$queryString = wfArrayToCgi( $query );
 
 		if ( $relative ) {
 			return $title->getLocalUrl( $queryString );
@@ -323,7 +323,7 @@ class LqtView {
 	function queryReplaceLink( $repls ) {
 		$query = $this->getReplacedQuery( $repls );
 
-		return $this->title->getLocalURL( wfArrayToCGI( $query ) );
+		return $this->title->getLocalURL( wfArrayToCgi( $query ) );
 	}
 
 	function getReplacedQuery( $replacements ) {
@@ -489,6 +489,10 @@ class LqtView {
 			}
 		}
 
+		$html = Xml::openElement( 'div',
+			array( 'class' => 'lqt-edit-form lqt-new-thread' ) );
+		$this->output->addHTML( $html );
+
 		$article = new Article( $t, 0 );
 
 		LqtHooks::$editTalkpage = $talkpage;
@@ -574,6 +578,8 @@ class LqtView {
 			   }
 			   $this->output->redirect( $this->title->getLocalURL() );
 		}
+
+		$this->output->addHTML( '</div>' );
 	}
 
 	/**
@@ -593,7 +599,7 @@ class LqtView {
 		}
 
 		$html = Xml::openElement( 'div',
-					array( 'class' => 'lqt-reply-form' ) );
+					array( 'class' => 'lqt-reply-form lqt-edit-form' ) );
 		$this->output->addHTML( $html );
 
 
@@ -697,6 +703,10 @@ class LqtView {
 		$nonce_key = wfMemcKey( 'lqt-nonce', $submitted_nonce, $this->user->getName() );
 		if ( ! $this->handleNonce( $submitted_nonce, $nonce_key ) ) return;
 
+		$html = Xml::openElement( 'div',
+			array( 'class' => 'lqt-edit-form' ) );
+		$this->output->addHTML( $html );
+
 		$subject = $this->request->getVal( 'lqt_subject_field', '' );
 
 		if ( !$subject ) {
@@ -792,6 +802,7 @@ class LqtView {
 			   $this->output->redirect( $this->title->getLocalURL() );
 		}
 
+		$this->output->addHTML( '</div>' );
 	}
 
 	/**
@@ -808,6 +819,10 @@ class LqtView {
 			$t = $this->newSummaryTitle( $thread );
 			$article = new Article( $t, 0 );
 		}
+
+		$html = Xml::openElement( 'div',
+			array( 'class' => 'lqt-edit-form lqt-summarize-form' ) );
+		$this->output->addHTML( $html );
 
 		$this->output->addWikiMsg( 'lqt-summarize-intro' );
 
@@ -861,6 +876,7 @@ class LqtView {
 			   $this->output->redirect( $this->title->getLocalURL() );
 		}
 
+		$this->output->addHTML( '</div>' );
 	}
 
 	public function handleNonce( $submitted_nonce, $nonce_key ) {
@@ -1192,7 +1208,7 @@ class LqtView {
 
 			unset( $mergeParams['title'] );
 
-			$mergeUrl = $this->title->getLocalURL( wfArrayToCGI( $mergeParams ) );
+			$mergeUrl = $this->title->getLocalURL( wfArrayToCgi( $mergeParams ) );
 			$label = wfMessage( 'lqt-thread-merge' )->parse();
 
 			$commands['merge'] = array(
@@ -1324,13 +1340,19 @@ class LqtView {
 		if ( !$this->user->isAnon() && !$thread->title()->userIsWatching() ) {
 			$commands['watch'] = array(
 				'label' => wfMessage( 'watch' )->parse(),
-				'href' => self::permalinkUrlWithQuery( $thread, 'action=watch' ),
+				'href' => self::permalinkUrlWithQuery(
+					$thread,
+					array( 'action' => 'watch', 'token' => WatchAction::getWatchToken( $thread->title(), $this->user, 'watch' ) )
+				),
 				'enabled' => true
 			);
 		} elseif ( !$this->user->isAnon() ) {
 			$commands['unwatch'] = array(
 				'label' => wfMessage( 'unwatch' )->parse(),
-				'href' => self::permalinkUrlWithQuery( $thread, 'action=unwatch' ),
+				'href' => self::permalinkUrlWithQuery(
+					$thread,
+					array( 'action' => 'unwatch', 'token' => WatchAction::getWatchToken( $thread->title(), $this->user, 'unwatch' ) )
+				),
 				'enabled' => true
 			);
 		}
@@ -1817,19 +1839,21 @@ class LqtView {
 	}
 
 	/**
+	 * When some replies are hidden because the are nested too deep,
+	 * this method creates a link that can be used to show the hidden
+	 * threats.
 	 * @param $thread Thread
-	 * @return string
+	 * @return string Html
 	 */
-	function getShowReplies( $thread ) {
-		global $wgLang;
-
-		$replyCount = $wgLang->formatNum( $thread->replyCount() );
-		$linkText = wfMessage( 'lqt-thread-show-replies' )->numParams( $replyCount )->parse();
+	function getShowReplies( Thread $thread ) {
+		$linkText = wfMessage( 'lqt-thread-show-replies' )
+			->numParams( $thread->replyCount() )
+			->parse();
 		$linkTitle = clone $thread->topmostThread()->title();
 		$linkTitle->setFragment( '#' . $thread->getAnchorName() );
 
 		$link = Linker::link( $linkTitle, $linkText,
-				array( 'class' => 'lqt-show-replies' ) );
+			array( 'class' => 'lqt-show-replies' ) );
 		$link = Xml::tags( 'div', array( 'class' => 'lqt-thread-replies' ), $link );
 
 		return $link;

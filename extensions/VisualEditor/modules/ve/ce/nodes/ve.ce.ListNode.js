@@ -12,10 +12,11 @@
  * @extends ve.ce.BranchNode
  * @constructor
  * @param {ve.dm.ListNode} model Model to observe
+ * @param {Object} [config] Config options
  */
-ve.ce.ListNode = function VeCeListNode( model ) {
+ve.ce.ListNode = function VeCeListNode( model, config ) {
 	// Parent constructor
-	ve.ce.BranchNode.call( this, model, ve.ce.BranchNode.getDomWrapper( model, 'style' ) );
+	ve.ce.BranchNode.call( this, model, config );
 
 	// Events
 	this.model.connect( this, { 'update': 'onUpdate' } );
@@ -29,18 +30,25 @@ ve.inheritClass( ve.ce.ListNode, ve.ce.BranchNode );
 
 ve.ce.ListNode.static.name = 'list';
 
-/**
- * Mapping of list style values and DOM wrapper element types.
- *
- * @static
- * @property
- */
-ve.ce.ListNode.domWrapperElementTypes = {
-	'bullet': 'ul',
-	'number': 'ol'
-};
-
 /* Methods */
+
+/**
+ * Get the HTML tag name.
+ *
+ * Tag name is selected based on the model's style attribute.
+ *
+ * @returns {string} HTML tag name
+ * @throws {Error} If style is invalid
+ */
+ve.ce.ListNode.prototype.getTagName = function () {
+	var style = this.model.getAttribute( 'style' ),
+		types = { 'bullet': 'ul', 'number': 'ol' };
+
+	if ( !( style in types ) ) {
+		throw new Error( 'Invalid style' );
+	}
+	return types[style];
+};
 
 /**
  * Handle model update events.
@@ -50,7 +58,7 @@ ve.ce.ListNode.domWrapperElementTypes = {
  * @method
  */
 ve.ce.ListNode.prototype.onUpdate = function () {
-	this.updateDomWrapper( 'style' );
+	this.updateTagName();
 };
 
 /**
@@ -62,8 +70,8 @@ ve.ce.ListNode.prototype.onUpdate = function () {
  * @method
  */
 ve.ce.ListNode.prototype.onSplice = function () {
-	// Call parent implementation
-	ve.ce.BranchNode.prototype.onSplice.apply( this, Array.prototype.slice.call( arguments, 0 ) );
+	// Parent method
+	ve.ce.BranchNode.prototype.onSplice.apply( this, arguments );
 
 	// There's a bug in Firefox where numbered lists aren't renumbered after in/outdenting
 	// list items. Force renumbering by requesting the height, which causes a reflow
@@ -81,7 +89,7 @@ ve.ce.ListNode.prototype.canHaveSlugAfter = function () {
 		// Nested lists should not have slugs after them
 		return false;
 	} else {
-		// Call the parent's implementation
+		// Parent method
 		return ve.ce.BranchNode.prototype.canHaveSlugAfter.call( this );
 	}
 };

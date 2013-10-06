@@ -22,7 +22,7 @@ QUnit.test( 'constructor', 8, function ( assert ) {
 	// Invalid range and autoSelect
 	fragment = new ve.dm.SurfaceFragment( surface, new ve.Range( -100, 100 ), 'truthy' );
 	assert.equal( fragment.getRange().from, 0, 'range is clamped between 0 and document length' );
-	assert.equal( fragment.getRange().to, 61, 'range is clamped between 0 and document length' );
+	assert.equal( fragment.getRange().to, doc.data.getLength(), 'range is clamped between 0 and document length' );
 	assert.strictEqual( fragment.willAutoSelect(), false, 'noAutoSelect values are boolean' );
 } );
 
@@ -130,7 +130,7 @@ QUnit.test( 'expandRange (word)', 1, function ( assert ) {
 	];
 	QUnit.expect( cases.length*2 );
 	for ( i = 0; i < cases.length; i++ ) {
-		doc = new ve.dm.Document( cases[i].phrase.split('') );
+		doc = new ve.dm.Document( cases[i].phrase.split( '' ) );
 		surface = new ve.dm.Surface( doc );
 		fragment = new ve.dm.SurfaceFragment( surface, cases[i].range );
 		newFragment = fragment.expandRange( 'word' );
@@ -221,6 +221,18 @@ QUnit.test( 'insertContent', 4, function ( assert ) {
 		fragment.getRange(),
 		new ve.Range( 4 ),
 		'range restored after undo'
+	);
+} );
+
+QUnit.test( 'changeAttributes', 1, function ( assert ) {
+	var doc = ve.dm.example.createExampleDocument(),
+		surface = new ve.dm.Surface( doc ),
+		fragment = new ve.dm.SurfaceFragment( surface, new ve.Range( 0, 5 ) );
+	fragment.changeAttributes( { 'level': 3 } );
+	assert.deepEqual(
+		doc.getData( new ve.Range( 0, 1 ) ),
+		[ { 'type': 'heading', 'attributes': { 'level': 3 } } ],
+		'changing attributes affects covered nodes'
 	);
 } );
 
@@ -417,7 +429,7 @@ QUnit.test( 'wrapAllNodes', 10, function ( assert ) {
 
 	fragment = new ve.dm.SurfaceFragment( surface, new ve.Range( 5, 37 ) );
 
-	assert.throws( function() {
+	assert.throws( function () {
 		fragment.unwrapNodes( 0, 20 );
 	}, /cannot unwrap by greater depth/, 'error thrown trying to unwrap more nodes that it is possible to contain' );
 
@@ -462,7 +474,7 @@ QUnit.test( 'rewrapAllNodes', 6, function ( assert ) {
 	fragment.rewrapAllNodes(
 		2,
 		[
-			{ 'type': 'table', },
+			{ 'type': 'table' },
 			{ 'type': 'tableSection', 'attributes': { 'style': 'body' } },
 			{ 'type': 'tableRow' },
 			{ 'type': 'tableCell', 'attributes': { 'style': 'data' } }
@@ -490,53 +502,10 @@ QUnit.test( 'rewrapAllNodes', 6, function ( assert ) {
 	assert.deepEqual( fragment.getRange(), new ve.Range( 0, 5 ), 'new range contains rewrapping elements' );
 } );
 
-function runIsolateTest( assert, type, range, expected, label ) {
-	var doc = ve.dm.example.createExampleDocument( 'isolationData' ),
-		surface = new ve.dm.Surface( doc ),
-		fragment = new ve.dm.SurfaceFragment( surface, range ),
-		data;
-
-	data = ve.copyArray( doc.getFullData() );
-	fragment.isolateAndUnwrap( type );
-	expected( data );
-
-	assert.deepEqual( doc.getFullData(), data, label );
-}
-
-QUnit.test( 'isolateAndUnwrap', 4, function ( assert ) {
-	runIsolateTest( assert, 'MWheading', new ve.Range( 12, 20 ), function( data ) {
-		data.splice( 11, 0, { 'type': '/list' } );
-		data.splice( 12, 1 );
-		data.splice( 20, 1, { 'type': 'list', 'attributes': { 'style': 'bullet' } });
-	}, 'isolating paragraph in list item "Item 2" for MWheading');
-
-	runIsolateTest( assert, 'heading', new ve.Range( 12, 20 ), function( data ) {
+QUnit.test( 'isolateAndUnwrap', 1, function ( assert ) {
+	ve.test.utils.runIsolateTest( assert, 'heading', new ve.Range( 12, 20 ), function ( data ) {
 		data.splice( 11, 0, { 'type': 'listItem' } );
 		data.splice( 12, 1 );
-		data.splice( 20, 1, { 'type': '/listItem' });
-	}, 'isolating paragraph in list item "Item 2" for heading');
-
-	runIsolateTest( assert, 'MWheading', new ve.Range( 89, 97 ), function( data ) {
-		data.splice( 88, 1,
-			{ 'type': '/tableRow' },
-			{ 'type': '/tableSection' },
-			{ 'type': '/table' }
-		);
-		data.splice( 99, 1,
-			{ 'type': 'table' },
-			{ 'type': 'tableSection', 'attributes': { 'style': 'body' } },
-			{ 'type': 'tableRow' }
-		);
-	}, 'isolating "Cell 2" for MWheading');
-
-	runIsolateTest( assert, 'MWheading', new ve.Range( 202, 212 ), function( data ) {
-		data.splice( 201, 1,
-			{ 'type': '/list' }, { 'type': '/listItem' }, { 'type': '/list' }
-		);
-		data.splice( 214, 1,
-			{ 'type': 'list', 'attributes': { 'style': 'bullet' } },
-			{ 'type': 'listItem' },
-			{ 'type': 'list', 'attributes': { 'style': 'number' } }
-		);
-	}, 'isolating paragraph in list item "Nested 2" for MWheading');
+		data.splice( 20, 1, { 'type': '/listItem' } );
+	}, 'isolating paragraph in list item "Item 2" for heading' );
 } );

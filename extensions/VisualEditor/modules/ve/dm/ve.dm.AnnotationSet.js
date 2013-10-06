@@ -52,6 +52,23 @@ ve.dm.AnnotationSet.prototype.getAnnotationsByName = function ( name ) {
 };
 
 /**
+ * Get an annotation set containing only annotations within the set which are comparable
+ * to a specific annotation.
+ *
+ * @method
+ * @param {ve.dm.Annotation} annotation Annotation to compare to
+ * @returns {ve.dm.AnnotationSet} Copy of annotation set
+ */
+ve.dm.AnnotationSet.prototype.getComparableAnnotations = function ( annotation ) {
+	return this.filter( function ( a ) {
+		return ve.compare(
+			annotation.getComparableObject(),
+			a.getComparableObject()
+		);
+	} );
+};
+
+/**
  * Check if any annotations in the set have a specific name.
  *
  * @method
@@ -65,12 +82,13 @@ ve.dm.AnnotationSet.prototype.hasAnnotationWithName = function ( name ) {
 /**
  * Get an annotation or all annotations from the set.
  *
- * set.get( 5 ) returns the annotation at index 5, set.get() returns an array with all annotations in
- * the entire set.
+ * set.get( 5 ) returns the annotation at index 5, set.get() returns an array with all annotations
+ * in the entire set.
  *
  * @method
  * @param {number} [index] If set, only get the annotation at the index
- * @returns {Array|ve.dm.Annotation|undefined} The annotation at index, or an array of all annotation in the set
+ * @returns {Array|ve.dm.Annotation|undefined} The annotation at index, or an array of all
+ *   annotation in the set
  */
 ve.dm.AnnotationSet.prototype.get = function ( index ) {
 	if ( index !== undefined ) {
@@ -111,7 +129,7 @@ ve.dm.AnnotationSet.prototype.getLength = function () {
  * Check if the set is empty.
  *
  * @method
- * @returns {boolean} True if the set is empty, false otherwise
+ * @returns {boolean} The set is empty
  */
 ve.dm.AnnotationSet.prototype.isEmpty = function () {
 	return this.getLength() === 0;
@@ -221,6 +239,43 @@ ve.dm.AnnotationSet.prototype.filter = function ( callback, returnBool ) {
 };
 
 /**
+ * Check if the set contains an annotation comparable to the specified one.
+ *
+ * getComparableObject is used to compare the annotations, and should return
+ * true if an annotation is found which is mergeable with the specified one.
+ *
+ * @param {ve.dm.Annotation} annotation Annotation to compare to
+ * @returns {boolean} At least one comprable annotation found
+ */
+ve.dm.AnnotationSet.prototype.containsComparable = function ( annotation ) {
+	return this.filter( function ( a ) {
+		return ve.compare(
+			annotation.getComparableObject(),
+			a.getComparableObject()
+		);
+	}, true );
+};
+
+/**
+ * HACK: Check if the set contains an annotation comparable to the specified one
+ * for the purposes of serialization.
+ *
+ * This method uses getComparableObjectForSerialization which also includes
+ * HTML attributes.
+ *
+ * @param {ve.dm.Annotation} annotation Annotation to compare to
+ * @returns {boolean} At least one comprable annotation found
+ */
+ve.dm.AnnotationSet.prototype.containsComparableForSerialization = function ( annotation ) {
+	return this.filter( function ( a ) {
+		return ve.compare(
+			annotation.getComparableObjectForSerialization(),
+			a.getComparableObjectForSerialization()
+		);
+	}, true );
+};
+
+/**
  * Check if the set contains at least one annotation where a given property matches a given filter.
  *
  * This is equivalent to (but more efficient than) `!this.filter( .. ).isEmpty()`.
@@ -229,10 +284,34 @@ ve.dm.AnnotationSet.prototype.filter = function ( callback, returnBool ) {
  *
  * @method
  * @param {Function} callback Function that takes an annotation and returns boolean true to include
- * @returns {boolean} True if at least one annotation matches, false otherwise
+ * @returns {boolean} At least one matching annotation found
  */
 ve.dm.AnnotationSet.prototype.containsMatching = function ( callback ) {
 	return this.filter( callback, true );
+};
+
+/**
+ * Check if the set contains the same annotations as another set.
+ *
+ * Compares annotations by their comparable object value.
+ *
+ * @method
+ * @param {ve.dm.AnnotationSet} annotationSet The annotationSet to compare this one to
+ * @returns {boolean} The annotations are the same
+ */
+ve.dm.AnnotationSet.prototype.compareTo = function ( annotationSet ) {
+	var i, indexes = this.getIndexes(), length = indexes.length;
+
+	if ( length === annotationSet.getLength() ) {
+		for ( i = 0; i < length; i++ ) {
+			if ( !annotationSet.containsComparable( this.get( i ) ) ) {
+				return false;
+			}
+		}
+	} else {
+		return false;
+	}
+	return true;
 };
 
 /**
@@ -280,16 +359,12 @@ ve.dm.AnnotationSet.prototype.addSet = function ( set ) {
 /**
  * Add an annotation at the end of the set.
  *
- * If the annotation is already present in the set, nothing happens.
- *
  * @method
  * @param {ve.dm.Annotation} annotation Annotation to add
  */
 ve.dm.AnnotationSet.prototype.push = function ( annotation ) {
 	var storeIndex = this.getStore().index( annotation );
-	if ( !this.containsIndex( storeIndex ) ) {
-		this.storeIndexes.push( storeIndex );
-	}
+	this.storeIndexes.push( storeIndex );
 };
 
 /**

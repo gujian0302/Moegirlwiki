@@ -2,6 +2,7 @@
  * Footer cleanup
  */
 
+/* General layout */
 #wpTextbox1 {
 	margin: 0;
 	display: block;
@@ -12,19 +13,26 @@
 	border: 1px solid silver;
 	border-top: none;
 	padding: 1em 1em 1.5em 1em;
-	margin-right: -2px;
 	margin-bottom: 2em;
 }
 
+/* Styles for collapsible lists of templates used and hidden categories */
 .collapsible-list {
 	display: inline;
 	cursor: pointer;
 	min-width: 400px;
 }
-.collapsible-list > span {
+
+.collapsible-list span {
 	float: left;
 	/* @embed */
-	background: url(./images/open.png);
+	background-image: url(./images/open.png);
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG) */
+	/* @embed */
+	background-image: -webkit-linear-gradient(transparent, transparent), url(./images/open.svg);
+	/* @embed */
+	background-image: linear-gradient(transparent, transparent), url(./images/open.svg);
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	display: block;
@@ -32,45 +40,45 @@
 	width: 16px;
 }
 
-.collapsible-list > span.collapsed {
+.collapsible-list span.collapsed {
 	/* @embed */
-	background: url(./images/closed-ltr.png);
-	background-repeat: no-repeat;
-	background-position: 50% 50%;
+	background-image: url(./images/closed-ltr.png);
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG) */
+	/* @embed */
+	background-image: -webkit-linear-gradient(transparent, transparent), url(./images/closed-ltr.svg);
+	/* @embed */
+	background-image: linear-gradient(transparent, transparent), url(./images/closed-ltr.svg);
 }
 
-.hiddencats > ul, .templatesUsed > ul {
-	margin: 1em 2.5em;
+.hiddencats ul, .templatesUsed ul {
+	margin-bottom: 1em;
+	margin-left: 2.5em;
 }
 
+/* Adjustments to edit form elements */
 .editCheckboxes {
 	margin-bottom: 1em;
 }
 
-.editCheckboxes input[type='checkbox']:first-child {
+.editCheckboxes input:first-child {
 	margin-left: 0;
 }
 
 .cancelLink {
-	margin: 0 0.5em;
-}
-
-.cancelLinkPipeSpace {
-	display: inline-block;
-	width: 0.5em;
-	height: 0.5em;
+	margin-left: 0.5em;
 }
 
 #editpage-copywarn {
 	font-size: 0.9em;
 }
 
-input#wpSummary {
+#wpSummary {
 	display: block;
 	margin-top: 0;
 	margin-bottom: 0.5em;
 }
 
-.editButtons > input[type='submit']:first-child {
+.editButtons input:first-child {
 	margin-left: .1em;
 }

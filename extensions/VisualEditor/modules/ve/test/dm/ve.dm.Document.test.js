@@ -30,7 +30,7 @@ QUnit.test( 'constructor', 8, function ( assert ) {
 		new ve.dm.DocumentNode( [ new ve.dm.TextNode( 4 ) ] ),
 		'plain text input is handled correctly'
 	);
-	assert.deepEqual( doc.getMetadata(), new Array( 5 ),
+	assert.deepEqualWithDomElements( doc.getMetadata(), new Array( 5 ),
 		'sparse metadata array is created'
 	);
 
@@ -42,16 +42,18 @@ QUnit.test( 'constructor', 8, function ( assert ) {
 	);
 
 	doc = ve.dm.example.createExampleDocument( 'withMeta' );
-	assert.deepEqual( doc.getData(), ve.dm.example.withMetaPlainData,
+	assert.deepEqualWithDomElements( doc.getData(), ve.dm.example.withMetaPlainData,
 		'metadata is stripped out of the linear model'
 	);
-	assert.deepEqual( doc.getMetadata(), ve.dm.example.withMetaMetaData,
+	assert.deepEqualWithDomElements( doc.getMetadata(), ve.dm.example.withMetaMetaData,
 		'metadata is put in the meta-linmod'
 	);
 	assert.equalNodeTree(
 		doc.getDocumentNode(),
-		new ve.dm.DocumentNode( [ new ve.dm.ParagraphNode(
-			[ new ve.dm.TextNode( 9 ) ], ve.dm.example.withMetaPlainData[0] ) ] ),
+		new ve.dm.DocumentNode( [
+			new ve.dm.ParagraphNode( [ new ve.dm.TextNode( 9 ) ], ve.dm.example.withMetaPlainData[0] ),
+			new ve.dm.InternalListNode( [], ve.dm.example.withMetaPlainData[11] )
+		] ),
 		'node tree does not contain metadata'
 	);
 } );
@@ -59,12 +61,55 @@ QUnit.test( 'constructor', 8, function ( assert ) {
 QUnit.test( 'getData', 1, function ( assert ) {
 	var doc = ve.dm.example.createExampleDocument(),
 		expectedData = ve.dm.example.preprocessAnnotations( ve.copyArray( ve.dm.example.data ) );
-	assert.deepEqual( doc.getData(), expectedData.getData() );
+	assert.deepEqualWithDomElements( doc.getData(), expectedData.getData() );
 } );
 
 QUnit.test( 'getFullData', 1, function ( assert ) {
 	var doc = ve.dm.example.createExampleDocument( 'withMeta' );
-	assert.deepEqual( doc.getFullData(), ve.dm.example.withMeta );
+	assert.deepEqualWithDomElements( doc.getFullData(), ve.dm.example.withMeta );
+} );
+
+QUnit.test( 'getDocumentSlice', function ( assert ) {
+	var i, doc2, doc = ve.dm.example.createExampleDocument( 'internalData' ),
+		cases = [
+			{
+				'msg': 'with range',
+				'doc': 'internalData',
+				'arg': new ve.Range( 7, 12 ),
+				'expectedData': doc.data.slice( 7, 12 ).concat( doc.data.slice( 5, 21 ) )
+			},
+			{
+				'msg': 'with node',
+				'doc': 'internalData',
+				'arg': doc.getInternalList().getItemNode( 1 ),
+				'expectedData': doc.data.slice( 14, 19 ).concat( doc.data.slice( 5, 21 ) )
+			},
+			{
+				'msg': 'paragraph at the start',
+				'doc': 'internalData',
+				'arg': new ve.Range( 0, 5 ),
+				'expectedData': doc.data.slice( 0, 21 )
+			},
+			{
+				'msg': 'paragraph at the end',
+				'doc': 'internalData',
+				'arg': new ve.Range( 21, 27 ),
+				'expectedData': doc.data.slice( 21, 27 ).concat( doc.data.slice( 5, 21 ) )
+			}
+		];
+	QUnit.expect( 4*cases.length );
+	for ( i = 0; i < cases.length; i++ ) {
+		doc = ve.dm.example.createExampleDocument( cases[i].doc );
+		doc2 = doc.getDocumentSlice( cases[i].arg );
+		assert.deepEqual( doc2.data.data, cases[i].expectedData,
+			cases[i].msg + ': sliced data' );
+		assert.notStrictEqual( doc2.data[0], cases[i].expectedData[0],
+			cases[i].msg + ': data is cloned, not the same' );
+		assert.deepEqual( doc2.store, doc.store,
+			cases[i].msg + ': store is copied' );
+		assert.notStrictEqual( doc2.store, doc.store,
+			cases[i].msg + ': store is a clone, not the same' );
+	}
 } );
 
 QUnit.test( 'getMetadataReplace', 3, function ( assert ) {
@@ -231,13 +276,26 @@ QUnit.test( 'rebuildNodes', 2, function ( assert ) {
 	);
 } );
 
-QUnit.test( 'selectNodes', 21, function ( assert ) {
-	var i,
-		doc = ve.dm.example.createExampleDocument(),
-		cases = ve.example.getSelectNodesCases( doc );
+QUnit.test( 'selectNodes', function ( assert ) {
+	var i, doc, expectedSelection,
+		mainDoc = ve.dm.example.createExampleDocument(),
+		cases = ve.dm.example.selectNodesCases;
 
+	function resolveNode( item ) {
+		var newItem = ve.extendObject( {}, item );
+		newItem.node = ve.dm.example.lookupNode.apply(
+			ve.dm.example, [ doc.getDocumentNode() ].concat( item.node )
+		);
+		return newItem;
+	}
+
+	QUnit.expect( cases.length );
 	for ( i = 0; i < cases.length; i++ ) {
-		assert.equalNodeSelection( cases[i].actual, cases[i].expected, cases[i].msg );
+		doc = cases[i].doc ? ve.dm.example.createExampleDocument( cases[i].doc ) : mainDoc;
+		expectedSelection = cases[i].expected.map( resolveNode );
+		assert.equalNodeSelection(
+			doc.selectNodes( cases[i].range, cases[i].mode ), expectedSelection, cases[i].msg
+		);
 	}
 } );
 

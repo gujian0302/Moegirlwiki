@@ -21,9 +21,9 @@ class SpamBlacklist extends BaseBlacklist {
 	 * @param Title $title
 	 * @param string $text Text of section, or entire text if $editPage!=false
 	 * @param string $section Section number or name
-	 * @param EditSummary $editSummary Edit summary if one exists, some people use urls there too
+	 * @param string $editsummary Edit summary if one exists, some people use urls there too
 	 * @param EditPage $editPage EditPage if EditFilterMerged was called, null otherwise
-	 * @return Matched text if the edit should not be allowed, false otherwise
+	 * @return Array Matched text(s) if the edit should not be allowed, false otherwise
 	 */
 	function filter( &$title, $text, $section, $editsummary = '', EditPage &$editPage = null ) {
 		/**
@@ -91,20 +91,23 @@ class SpamBlacklist extends BaseBlacklist {
 			foreach( $blacklists as $regex ) {
 				wfSuppressWarnings();
 				$matches = array();
-				$check = preg_match( $regex, $links, $matches );
+				$check = ( preg_match_all( $regex, $links, $matches ) > 0 );
 				wfRestoreWarnings();
 				if( $check ) {
 					wfDebugLog( 'SpamBlacklist', "Match!\n" );
-					$ip = wfGetIP();
-					wfDebugLog( 'SpamBlacklistHit', "$ip caught submitting spam: {$matches[0]}\n" );
-					$retVal = $matches[0];
-				break;
+					global $wgRequest;
+					$ip = $wgRequest->getIP();
+					$imploded = implode( ' ', $matches[0] );
+					wfDebugLog( 'SpamBlacklistHit', "$ip caught submitting spam: $imploded\n" );
+					if( $retVal === false ){
+						$retVal = array();
+					}
+					$retVal = array_merge( $retVal, $matches[0] );
 				}
 			}
 		} else {
 			$retVal = false;
 		}
-
 		wfProfileOut( $fname );
 		return $retVal;
 	}
@@ -119,7 +122,7 @@ class SpamBlacklist extends BaseBlacklist {
 	 */
 	function getCurrentLinks( $title ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		$id = $title->getArticleId(); // should be zero queries
+		$id = $title->getArticleID(); // should be zero queries
 		$res = $dbr->select( 'externallinks', array( 'el_to' ),
 			array( 'el_from' => $id ), __METHOD__ );
 		$links = array();
@@ -135,7 +138,7 @@ class SpamBlacklist extends BaseBlacklist {
 	 * @return string
 	 */
 	public function getRegexStart() {
-		return '/(?:https?:)\/\/+[a-z0-9_\-.]*(';
+		return '/(?:https?:)?\/\/+[a-z0-9_\-.]*(';
 	}
 
 	/**

@@ -10,11 +10,6 @@
 	background-image: url(images/icons/menu.png);
 }
 
-.ve-ui-icon-reference {
-	/* @embed */
-	background-image: url(images/icons/reference.png);
-}
-
 .ve-ui-icon-picture {
 	/* @embed */
 	background-image: url(images/icons/picture.png);
@@ -23,21 +18,6 @@
 .ve-ui-icon-close {
 	/* @embed */
 	background-image: url(images/icons/close.png);
-}
-
-.ve-ui-icon-language-big {
-	/* @embed */
-	background-image: url(images/icons/language-big.png);
-}
-
-.ve-ui-icon-language {
-	/* @embed */
-	background-image: url(images/icons/language.png);
-}
-
-.ve-ui-icon-tag-big {
-	/* @embed */
-	background-image: url(images/icons/tag-big.png);
 }
 
 .ve-ui-icon-tag {
@@ -70,6 +50,11 @@
 	background-image: url(images/icons/window.png);
 }
 
+.ve-ui-icon-help {
+	/* @embed */
+	background-image: url(images/icons/help.png);
+}
+
 .ve-ui-icon-alert {
 	/* @embed */
 	background-image: url(images/icons/alert.png);
@@ -83,41 +68,6 @@
 .ve-ui-icon-comment {
 	/* @embed */
 	background-image: url(images/icons/comment.png);
-}
-
-.ve-ui-icon-template {
-	/* @embed */
-	background-image: url(images/icons/template.png);
-}
-
-.ve-ui-icon-template-big {
-	/* @embed */
-	background-image: url(images/icons/template-big.png);
-}
-
-.ve-ui-icon-parameter {
-	/* @embed */
-	background-image: url(images/icons/parameter.png);
-}
-
-.ve-ui-icon-parameter-big {
-	/* @embed */
-	background-image: url(images/icons/parameter-big.png);
-}
-
-.ve-ui-icon-parameter-set {
-	/* @embed */
-	background-image: url(images/icons/parameter-set.png);
-}
-
-.ve-ui-icon-source {
-	/* @embed */
-	background-image: url(images/icons/source.png);
-}
-
-.ve-ui-icon-source-big {
-	/* @embed */
-	background-image: url(images/icons/source-big.png);
 }
 
 .ve-ui-icon-up {
@@ -198,4 +148,54 @@
 .ve-ui-icon-outdent-list {
 	/* @embed */
 	background-image: url(images/icons/outdent-list-ltr.png);
+}
+
+.ve-ui-icon-strikethrough-s {
+	/* @embed */
+	background-image: url(images/icons/strikethrough-s.png);
+}
+
+.ve-ui-icon-strikethrough-a {
+	/* @embed */
+	background-image: url(images/icons/strikethrough-a.png);
+}
+
+.ve-ui-icon-underline-u {
+	/* @embed */
+	background-image: url(images/icons/underline-u.png);
+}
+
+.ve-ui-icon-underline-a {
+	/* @embed */
+	background-image: url(images/icons/underline-a.png);
+}
+
+.ve-ui-icon-subscript {
+	/* @embed */
+	background-image: url(images/icons/subscript.png);
+}
+
+.ve-ui-icon-superscript {
+	/* @embed */
+	background-image: url(images/icons/superscript.png);
+}
+
+.ve-ui-icon-search {
+	/* @embed */
+	background-image: url(images/icons/search.png);
+}
+
+.ve-ui-icon-expand {
+	/* @embed */
+	background-image: url(images/icons/expand.png);
+}
+
+.ve-ui-icon-collapse {
+	/* @embed */
+	background-image: url(images/icons/collapse.png);
+}
+
+.ve-ui-icon-add-item {
+	/* @embed */
+	background-image: url(images/icons/add-item.png);
 }

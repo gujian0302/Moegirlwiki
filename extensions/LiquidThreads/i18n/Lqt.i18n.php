@@ -129,7 +129,7 @@ This operation is undoable.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|message|messages}} marked as read.',
 	'lqt-email-undo' => 'Undo',
 	'lqt-no-new-messages' => 'There are no new messages for you.',
-	'lqt-new-messages' => '✒ There are new messages for you.',
+	'lqt-new-messages' => 'There are new messages for you.',
 	'lqt-email-info-undo' => 'Bring back the thread you just dismissed.',
 	'lqt-date-info' => 'This link is disabled because you are viewing threads from all dates.',
 	'lqt-newmessages-context' => 'Full thread',
@@ -164,6 +164,8 @@ To avoid this, split them from this thread before deleting it.',
 	'lqt-newmessages-from' => 'From $1',
 	'lqt-hot-topics' => 'Hot topics',
 	'lqt-add-reply' => 'Add a reply',
+	// Thread sort button
+	'lqt-changesortorder' => 'Sort',
 
 	// Recent changes display
 	'lqt_rc_new_discussion' => "posted a new thread, \"$1\"",
@@ -192,16 +194,17 @@ To avoid this, split them from this thread before deleting it.',
 	'lqt-log-action-merge-down' => 'merged [[$1]] to underneath [[$3]]',
 	'lqt-log-action-subjectedit' => 'changed the subject of [[$1]] from "$2" to "$3"',
 	'lqt-log-action-resort' => 'modified the sort order of [[$1]]. Changed sort key from $2 to $3',
+	'lqt-log-action-signatureedit' => 'changed the signature of [[$1]] from "$2" to "$3"',
 
 	// Preferences
-	'lqt-preference-notify-talk' => 'E-mail me on replies to a thread I am watching',
+	'lqt-preference-notify-talk' => 'Email me on replies to a thread I am watching',
 	'lqt-preference-watch-threads' => 'Watch threads that I create or reply to',
 	'prefs-lqt' => 'Threaded discussion',
 	'lqt-preference-display-depth' => 'Maximum reply depth to show:',
 	'lqt-preference-display-count' => 'Maximum number of replies to show:',
 	'lqt-preference-custom-signatures' => 'Show custom user signatures',
 
-	// E-mail notification
+	// Email notification
 	'lqt-enotif-subject-reply' => '{{SITENAME}} discussion - Reply: $1',
 	'lqt-enotif-subject-newthread' => '{{SITENAME}} discussion - New thread: $1',
 	'lqt-enotif-newthread' => "Hi $1,
@@ -222,10 +225,6 @@ You can see it at <$6>
 
 The text of the reply is:
 $7",
-
-	// Quoting functionality
-	'lqt-quote-intro' => 'On $2 at $3, [[User:$1|$1]] wrote:',
-	'lqt-quote' => 'Quote',
 
 	// Search
 	'lqt-search-legend' => 'Search discussions on this page',
@@ -278,8 +277,8 @@ The signature is shown automatically.',
 
 	// Personal tool links
 	'tooltip-pt-newmessages' => 'Shows new posts to threads or on threaded talk pages you are watching',
-	'lqt-newmessages-n' => 'My new messages ($1)',
-	'lqt_newmessages' => 'My new messages (none)',
+	'lqt-newmessages-n' => 'New messages ($1)',
+	'lqt_newmessages' => 'New messages (none)',
 	'lqt_newmessages-title' => 'New messages',
 
 	// Automatic summaries
@@ -309,6 +308,14 @@ The signature is shown automatically.',
 	// Tabs in skins
 	'nstab-thread' => 'Thread',
 	'nstab-summary' => 'Summary',
+
+	// Echo preferences
+	'echo-pref-email-lqt-new-topic' => 'Creates a new threaded discussion',
+	'echo-pref-email-lqt-reply' => 'Replies to a threaded discussion',
+
+	// Page info
+	'pageinfo-usinglqt' => 'Threaded discussion enabled',
+	'pageinfo-usinglqt-yes' => 'Yes',
 );
 
 /** Message documentation (Message documentation)
@@ -346,23 +353,27 @@ The signature is shown automatically.',
  * @author Wikinaut
  */
 $messages['qqq'] = array(
-	'lqt-desc' => '{{desc}}',
-	'lqt_movethread' => 'Title and header at [[Special:MoveThread]].',
+	'lqt-desc' => '{{desc|name=Liquid Threads|url=http://www.mediawiki.org/wiki/Extension:LiquidThreads}}',
+	'lqt_movethread' => '{{doc-special|MoveThread|unlisted=1}}',
 	'lqt_contents_title' => 'The title of a list of threads at the top of the page.
-{{Identical|Contents}}',
+{{Identical|Content}}',
 	'lqt_toc_thread_title' => 'Column header on the list of threaded discussions at the top of a discussion page; [[Support|example]].',
 	'lqt_toc_thread_replycount' => 'Column header on the list of threaded discussions at the top of a discussion page; [[Support|example]].
 
 {{Identical|Reply}}',
-	'lqt_toc_thread_modified' => 'Column header on the list of threaded discussions at the top of a discussion page; [[Support|example]].',
-	'lqt_new_thread' => '{{Identical|Start a new discussion}}',
+	'lqt_toc_thread_modified' => 'Column header on the list of threaded discussions at the top of a discussion page; [[Support|example]].
+{{Identical|Last modified}}',
+	'lqt_new_thread' => '{{doc-actionlink}}
+{{Identical|Start a new discussion}}',
 	'lqt-empty-text' => 'Used in JavaScript alert.',
 	'lqt_reply' => 'is this noun or verb?
 
 :A verb; see also {{msg-mw|Lqt delete}} and {{msg-mw|Lqt undelete}}.
 
-This is the link in the bottom right-hand corner of a post, which you click to write a reply to that post - see [[Support|examples]].',
-	'lqt-parent' => 'Link to the parent reply.',
+This is the link in the bottom right-hand corner of a post, which you click to write a reply to that post - see [[Support|examples]].
+{{Identical|Reply}}',
+	'lqt-parent' => 'Link to the parent reply.
+{{Identical|Parent}}',
 	'lqt_delete' => '{{Identical|Delete}}',
 	'lqt_undelete' => '{{Identical|Undelete}}',
 	'lqt_permalink' => "{{doc-important|This message is not followed by a parameter. The English version is short for '''Link to this post'''. It could also be translated as \"Perma[nent ]link\".}} Text for a link to the specific object (e.g. thread summary or discussion fragment).",
@@ -375,18 +386,19 @@ This is the link in the bottom right-hand corner of a post, which you click to w
 {{Identical|Discussion}}',
 	'lqt_from_talk' => 'Used as page subtitle. Parameters:
 * $1 is a link to a talk page (for example "User talk:Foo")',
-	'lqt-history-title' => 'Title of thread history page, see [http://translatewiki.net/w/i.php?title=Thread:Support/Payflowpro_gateway-select-dollar-amount&lqt_method=thread_history example]',
+	'lqt-history-title' => 'Title of thread history page, see [{{canonicalurl:Thread:Support/Payflowpro_gateway-select-dollar-amount|lqt_method=thread_history}} example]',
 	'lqt_hist_comment_edited' => 'Parameters:
 * $2 is the URL to the comment',
-	'lqt_hist_summary_changed' => "Summary for 'activity' in thread history, see [http://translatewiki.net/w/i.php?title=Thread:Support/Payflowpro_gateway-select-dollar-amount&lqt_method=thread_history example]",
-	'lqt_hist_reply_created' => "Summary for 'activity' in thread history, see [http://translatewiki.net/w/i.php?title=Thread:Support/Payflowpro_gateway-select-dollar-amount&lqt_method=thread_history example]
+	'lqt_hist_summary_changed' => "Summary for 'activity' in thread history, see [{{canonicalurl:Thread:Support/Payflowpro_gateway-select-dollar-amount|lqt_method=thread_history}} example]",
+	'lqt_hist_reply_created' => "Summary for 'activity' in thread history, see [{{canonicalurl:Thread:Support/Payflowpro_gateway-select-dollar-amount|lqt_method=thread_history}} example]
 
 Parameters:
 * $1 is the text for a wiki link to the new reply",
-	'lqt_hist_thread_created' => "Summary for 'activity' in thread history, see [http://translatewiki.net/w/i.php?title=Thread:Support/Payflowpro_gateway-select-dollar-amount&lqt_method=thread_history example]",
+	'lqt_hist_thread_created' => "Summary for 'activity' in thread history, see [{{canonicalurl:Thread:Support/Payflowpro_gateway-select-dollar-amount|lqt_method=thread_history}} example]",
 	'lqt_hist_deleted' => '{{Identical|Deleted}}',
-	'lqt_hist_listing_subtitle' => "Subtitle for 'thread history' page, see [http://translatewiki.net/w/i.php?title=Thread:Support/Payflowpro_gateway-select-dollar-amount&lqt_method=thread_history example]",
-	'lqt_hist_view_whole_thread' => 'Link to history page for an entire thread, see [http://translatewiki.net/w/i.php?title=Thread:Support/Payflowpro_gateway-select-dollar-amount/reply&action=history example]',
+	'lqt_hist_moved_talkpage' => '{{Identical|Move}}',
+	'lqt_hist_listing_subtitle' => "Subtitle for 'thread history' page, see [{{canonicalurl:Thread:Support/Payflowpro_gateway-select-dollar-amount|lqt_method=thread_history}} example]",
+	'lqt_hist_view_whole_thread' => 'Link to history page for an entire thread, see [{{canonicalurl:Thread:Support/Payflowpro_gateway-select-dollar-amount/reply|action=history}} example]',
 	'lqt_hist_edited_subject' => 'Parameters:
 * $2 is the old subject text
 * $3 is the new subject text',
@@ -397,21 +409,50 @@ Parameters:
 	'lqt_revision_as_of' => '* $1 is a timestamp (for backward compatibility)
 * $2 is a date
 * $3 is a time',
+	'lqt_change_new_thread' => 'Used in revision page, if the revision is initial revision.
+{{Related|Lqt change}}',
+	'lqt_change_reply_created' => 'Used in revision page, if the revision is not initial revision.
+
+Parameters:
+* $1 - full URL of the post
+{{Related|Lqt change}}',
 	'lqt_change_edited_root' => 'Parameters:
-* $1 is a web link to the referenced comment. It must remain immediately after the opening bracket.',
-	'lqt_change_deleted' => 'Action results from button {{msg-mw|lqt_delete}}',
-	'lqt_change_undeleted' => 'Parameters:
-* $1 is a web link to the referenced post. It must remain immediately after the opening bracket.
-Action results from button {{msg-mw|lqt_undelete}}',
+* $1 - a web link to the referenced comment. It must remain immediately after the opening bracket.
+{{Related|Lqt change}}',
+	'lqt_change_edited_summary' => '{{Related|Lqt change}}',
+	'lqt_change_deleted' => 'Action results from button {{msg-mw|lqt_delete}}.
+
+Parameters:
+* $1 - full URL of the post
+{{Related|Lqt change}}',
+	'lqt_change_undeleted' => 'Action results from button {{msg-mw|lqt_undelete}}.
+
+Parameters:
+* $1 - full URL of the post
+{{Related|Lqt change}}',
 	'lqt_change_moved' => 'Thread contents when a thread was moved. Parameters:
-* $1 is a link to the new thread location.',
+* $1 - a link to the new thread location.
+{{Related|Lqt change}}',
+	'lqt_change_split' => 'Parameters:
+* $1 - full URL of the post
+{{Related|Lqt change}}',
 	'lqt_change_edited_subject' => 'Parameters:
-* $2 is the old subject
-* $3 is the new subject',
+* $1 - (Unused) full URL of the post
+* $2 - the old subject
+* $3 - the new subject
+{{Related|Lqt change}}',
 	'lqt_change_merged_from' => 'Parameters:
-* $1 is a web link to the referenced reply. It must remain immediately after the opening bracket.',
+* $1 - a web link to the referenced reply. It must remain immediately after the opening bracket.
+{{Related|Lqt change}}',
+	'lqt_change_merged_to' => 'Parameters:
+* $1 - full URL of the post
+{{Related|Lqt change}}',
+	'lqt_change_split_from' => 'Parameters:
+* $1 - full URL of the post
+{{Related|Lqt change}}',
 	'lqt_change_root_blanked' => 'Parameters:
-* $1 is a web link to the referenced comment. It must remain immediately after the opening bracket.',
+* $1 - a web link to the referenced comment. It must remain immediately after the opening bracket.
+{{Related|Lqt change}}',
 	'lqt_youhavenewmessages' => '* $1 is a link to the new message or messages.
 
 {{doc-important|No PLURAL here! (The number of new messages is unknown.)}}',
@@ -433,13 +474,17 @@ Action results from button {{msg-mw|lqt_undelete}}',
 	'lqt_summary_notice_link' => 'This fragment is situated in the following context: [[MediaWiki:Lqt summary notice]]',
 	'lqt_summary_subtitle' => 'Used as a page subtitle. Parameters:
 * $1 is the thread that is being summarised',
-	'lqt_move_movingthread' => 'Used on Special:MoveThread when moving a thread. Parameters:
+	'lqt_nosuchthread' => "Used as error message when the specified thread doesn't exist.",
+	'lqt_nosuchthread_title' => "Used as page heading when the specified thread doesn't exist.",
+	'lqt_move_movingthread' => 'Used on [[Special:MoveThread]] when moving a thread. Parameters:
 * $1 is the name of the thread that is being moved.
 * $2 is the page the thread is currently on.',
 	'lqt_move_torename' => '$1 is replaced with {{msg-mw|Lqt move torename edit}}',
 	'lqt_move_torename_edit' => 'This message is used inside {{msg-mw|Lqt move torename}}.
 {{Identical|Edit}}',
+	'lqt_move_destinationtitle' => 'Used as label for input field',
 	'lqt_move_move' => '{{Identical|Move}}',
+	'lqt_move_nodestination' => 'Used as error message when specified destination is empty',
 	'lqt_move_noreason' => '{{Identical|No reason given}}',
 	'lqt_move_success' => 'Thread move confirmation. Parameters:
 * $1 is the page where the thread was moved.',
@@ -452,43 +497,74 @@ Action results from button {{msg-mw|lqt_undelete}}',
 	'lqt_sorting_order' => 'Legend for drop-down box, at the top of a page using liquid threads, for example [[Support]].
 
 The drop-down box contains the following messages:
-*[[MediaWiki:Lqt_sort_newest_changes/{{SUBPAGENAME}}]]
-*[[MediaWiki:Lqt_sort_newest_threads/{{SUBPAGENAME}}]]
-*[[MediaWiki:Lqt_sort_oldest_threads/{{SUBPAGENAME}}]]',
-	'lqt_sort_newest_changes' => 'Option in drop-down box, at the top of a page using liquid threads, for example [[Support]]. The legend for the drop-down box is [[MediaWiki:Lqt_sorting_order/{{SUBPAGENAME}}]].',
-	'lqt_sort_newest_threads' => 'Option in drop-down box, at the top of a page using liquid threads, for example [[Support]]. The legend for the drop-down box is [[MediaWiki:Lqt_sorting_order/{{SUBPAGENAME}}]].',
-	'lqt_sort_oldest_threads' => 'Option in drop-down box, at the top of a page using liquid threads, for example [[Support]]. The legend for the drop-down box is [[MediaWiki:Lqt_sorting_order/{{SUBPAGENAME}}]].',
+*{{msg-mw|Lqt_sort_newest_changes}}
+*{{msg-mw|Lqt_sort_newest_threads}}
+*{{msg-mw|Lqt_sort_oldest_threads}}',
+	'lqt_sort_newest_changes' => 'Option in drop-down box, at the top of a page using liquid threads, for example [[Support]].
+
+The legend for the drop-down box is {{msg-mw|Lqt_sorting_order}}.',
+	'lqt_sort_newest_threads' => 'Option in drop-down box, at the top of a page using liquid threads, for example [[Support]].
+
+The legend for the drop-down box is {{msg-mw|Lqt_sorting_order}}.',
+	'lqt_sort_oldest_threads' => 'Option in drop-down box, at the top of a page using liquid threads, for example [[Support]].
+
+The legend for the drop-down box is {{msg-mw|Lqt_sorting_order}}.',
 	'lqt-title' => '{{Identical|Title}}',
 	'lqt-summary' => '{{Identical|Summary}}',
 	'lqt-read-message' => '"Read" is past tense.',
+	'lqt-read-message-tooltip' => 'Used as tooltip for {{msg-mw|Lqt-read-message}} button.',
+	'lqt-read-all' => 'Used as button text.
+{{Identical|Mark all as read}}',
+	'lqt-read-all-tooltip' => 'Used as tooltip for {{msg-mw|Lqt-read-all}} button.',
+	'lqt-marked-read' => 'Parameters:
+* $1 - subject of thread (message)
+See also:
+* {{msg-mw|Lqt-count-marked-read}}',
+	'lqt-count-marked-read' => 'Parameters:
+* $1 - number of messages (threads)
+See also:
+* {{msg-mw|Lqt-marked-read}}',
 	'lqt-email-undo' => '{{Identical|Undo}}',
+	'lqt-no-new-messages' => 'Used as notification text, when you have no new messages.',
+	'lqt-new-messages' => 'Used as notification text, when you have new messages.',
+	'lqt-newmessages-context' => 'Used as link text.',
+	'lqt-thread-created' => '{{Identical|Created}}',
 	'lqt-history-time' => 'Column header on thread history
 
 {{Identical|Time}}',
-	'lqt-history-user' => 'Column header for table of thread history, see [http://translatewiki.net/w/i.php?title=Thread:Support/Payflowpro_gateway-select-dollar-amount&lqt_method=thread_history example]
-
-{{identical|User}}',
-	'lqt-history-action' => 'Column header for table of thread history, see [http://translatewiki.net/w/i.php?title=Thread:Support/Payflowpro_gateway-select-dollar-amount&lqt_method=thread_history example]
+	'lqt-history-user' => 'Column header for table of thread history, see [{{canonicalurl:Thread:Support/Payflowpro_gateway-select-dollar-amount|lqt_method=thread_history}} example]
+{{Identical|User}}',
+	'lqt-history-action' => 'Column header for table of thread history, see [{{canonicalurl:Thread:Support/Payflowpro_gateway-select-dollar-amount|lqt_method=thread_history}} example]
 {{Identical|Activity}}',
-	'lqt-history-comment' => 'Column header for table of thread history, see [http://translatewiki.net/w/i.php?title=Thread:Support/Payflowpro_gateway-select-dollar-amount&lqt_method=thread_history example]
-
+	'lqt-history-comment' => 'Column header for table of thread history, see [{{canonicalurl:Thread:Support/Payflowpro_gateway-select-dollar-amount|lqt_method=thread_history}} example]
 {{Identical|Comment}}',
 	'lqt-history-thread' => '{{Identical|Thread}}',
-	'lqt-thread-edited-author' => '* $1: date/time of the last edit
-* $2: Unused (Number of users who edited the thread but not useful in this context. Used by [[MediaWiki:Lqt-thread-edited-others]])
-* $3: time of the last edit (optional, instead of using $1)
-* $4: date of the last edit (optional, instead of using $1)
+	'lqt-thread-edited-author' => 'This is a note which appears alongside an edited post - see [[Thread:Support/Payflowpro gateway-month/reply (4)|example]].
 
-This is a note which appears alongside an edited post - see [[Thread:Support/Payflowpro gateway-month/reply (4)|example]].',
-	'lqt-thread-edited-others' => '* $1: date/time of the last edit
-* $2: number of users who edited the thread message, including the original poster
-* $3: time of the last edit (optional, instead of using $1)
-* $4: date of the last edit (optional, instead of using $1)
+Parameters:
+* $1 - date/time of the last edit
+* $2 - Unused (Number of users who edited the thread but not useful in this context. Used by [[MediaWiki:Lqt-thread-edited-others]])
+* $3 - time of the last edit (optional, instead of using $1)
+* $4 - date of the last edit (optional, instead of using $1)',
+	'lqt-thread-edited-others' => 'This is a note which appears alongside an edited post - see [[Thread:Translating talk:Wikia/Typo in MediaWiki:Feed-title-leaderboard|example]].
 
-This is a note which appears alongside an edited post - see [[Thread:Translating talk:Wikia/Typo in MediaWiki:Feed-title-leaderboard|example]].',
+Parameters:
+* $1 - date/time of the last edit
+* $2 - number of users who edited the thread message, including the original poster
+* $3 - time of the last edit (optional, instead of using $1)
+* $4 - date of the last edit (optional, instead of using $1)',
 	'lqt-header-actions' => '{{Identical|Action}}',
+	'lqt_summarize_link' => 'Used as link title.',
+	'lqt-summarize-intro' => 'Used as introduction text in summarize page.',
+	'lqt-thread-split' => '{{doc-actionlink}}
+
+The opposite of {{msg-mw|lqt-thread-merge}}: "split" is imperative, not a participle.',
+	'lqt-split-success' => 'Used as success message. Parameters:
+* $1 - thread title with link',
+	'lqt_split_thread' => '{{doc-special|SplitThread|unlisted=1}}',
 	'lqt-thread-split-thread' => '{{Identical|Thread}}',
-	'lqt-no-threads' => '[http://translatewiki.net/wiki/Project_talk:MediaWiki_localisation_in_the_50_most_spoken_languages Example]',
+	'lqt-split-submit' => '{{Identical|Split}}',
+	'lqt-no-threads' => '[{{canonicalurl:Project_talk:Autoconfirmed_users}} Example]',
 	'lqt-delete-parent-deleted' => '$1 is the reason for deletion of the parent.',
 	'lqt-movethread' => '{{Identical|Move}}',
 	'lqt-menu-trigger' => '{{Identical|More}}',
@@ -496,21 +572,37 @@ This is a note which appears alongside an edited post - see [[Thread:Translating
 * $1 is a link to a talk page (for example "User talk:Foo")',
 	'lqt-hot-topics' => 'A page title, used for a special page with "hot" (most-commented-on)
 threads on a wiki',
+	'lqt-changesortorder' => 'The text of the sort button for threads. {{msg-mw|go}} used to be used for this.
+{{Identical|Sort}}',
 	'lqt_rc_new_discussion' => 'Parameters:
 * $1 is a link to a thread with the thread subject as link description',
 	'lqt_rc_new_reply' => 'Parameters:
 * $1 is a link to a thread with the thread subject as link description',
 	'right-lqt-split' => '{{doc-right|lqt-split}}',
-	'right-lqt-merge' => '{{doc-right|lqt-merge}}',
+	'right-lqt-merge' => '{{doc-right|lqt-merge}}
+{{Identical|Merge thread}}',
 	'right-lqt-react' => '{{doc-right|lqt-react}}',
+	'lqt_merge_thread' => '{{doc-special|MergeThread|unlisted=1}}
+{{Identical|Merge thread}}',
+	'lqt-merge-success' => 'Used as success message. Parameters:
+* $1 - the source thread title, with link
+* $2 - the destination thread title, with link',
 	'lqt-log-name' => '{{doc-logpage}}',
-	'lqt-log-action-move' => 'Parameteres:
+	'lqt-log-action-move' => 'Parameters:
 * $1 is the link text to the topic
 * $2 is the link text to the source page the topic was moved from
 * $3 is the link text to the target page the topic was moved to',
+	'lqt-log-action-merge-across' => 'Parameters:
+* $1 is the link text to the topic
+* $2 is the link text to the source page the topic was moved from
+* $3 is the link text to the target page the topic was moved to',
+	'lqt-log-action-signatureedit' => 'Parameters:
+* $1 is the link text to the topic
+* $2 is the old signature text
+* $3 is the new signature text',
 	'lqt-preference-notify-talk' => 'This appears in [[Special:Preferences]]. The wording should be similar to {{msg-mw|tog-enotifwatchlistpages}}.',
 	'lqt-preference-watch-threads' => 'The wording of this message should be similar to {{msg-mw|tog-watchdefault}}.',
-	'lqt-preference-display-depth' => "Used in Special:Preferences, tab Threaded Discussion (where Liquid Thread extension is installed).
+	'lqt-preference-display-depth' => "Used in [[Special:Preferences]], tab Threaded Discussion (where Liquid Thread extension is installed).
 Depth refers to the nesting of replies that were given to replies to replies, etc. which is shown on-screen as indents in the discussion threads.
 
 In other words, 'depth' is the number of idents that will be displayed for a thread (''reply (5) to reply (4) to reply (3) to reply (2) of original post (1)'').
@@ -520,7 +612,7 @@ In other words, 'depth' is the number of idents that will be displayed for a thr
    |-- reply 2 (reply to reply 1) (depth 3)
  |-- reply 3 (reply to reply 1) (depth 2)
 </pre>",
-	'lqt-preference-display-count' => 'Used in [[Special:Preferences]], tab “{{int:prefs-lqt}}” (where Liquid Thread extension is installed).',
+	'lqt-preference-display-count' => 'Used in [[Special:Preferences]], tab {{msg-mw|prefs-lqt}} (where Liquid Thread extension is installed).',
 	'lqt-preference-custom-signatures' => "Checkbox in [[Special:Preferences]], tab ''{{int:prefs-lqt}}''",
 	'lqt-enotif-subject-reply' => 'This is the subject header of an e-mail notification.
 Parameters are:
@@ -545,22 +637,27 @@ Parameters are:
 * $6 is a permalink URL
 * $7 is a reply text
 * $8 is the reply author's user name",
-	'lqt-quote-intro' => 'Used as a header in thread entries.
-* $1 is a user name
-* $2 is a date
-* $3 is a time',
-	'lqt-quote' => ' Verb or a noun?
-
-{{Identical|Quote}}', # Fuzzy
+	'lqt-search-label' => 'Used as label for input field.',
 	'lqt-search-button' => '{{Identical|Search}}',
 	'searchprofile-threads' => '{{Identical|Discussion}}',
+	'lqt-ajax-updated' => 'Used as notification, when new posts are detected.',
 	'lqt-ajax-update-link' => '{{Identical|Update}}',
-	'lqt-thread-show-replies' => 'Parameters:
-* $1 is the number of replies. This can be used for PLURAL:$1',
+	'lqt-thread-show-replies' => '{{doc-actionlink}}
+Parameters:
+* $1 - the number of replies. This can be used for PLURAL:$1',
 	'lqt-thread-link-url' => 'A form label, for the URL to a thread',
 	'lqt-thread-link-title' => 'A form label, for the wikitext link to a thread',
+	'lqt-marked-as-read-placeholder' => "This message indicates the thread '''has been''' marked as read.
+
+Parameters:
+* $1 - thread subject, with link",
+	'lqt-change-subject' => 'Used as link text',
 	'lqt-save-subject' => '{{Identical|Save}}',
+	'lqt-save-subject-failed' => 'Unused at this time. Parameters:
+* $1 - thread title, with link',
 	'lqt-cancel-subject-edit' => '{{Identical|Cancel}}',
+	'lqt-drag-activate' => 'Used as link text in drop-down menu',
+	'lqt-drag-drop-zone' => 'Used as label for drop target',
 	'lqt-drag-reparent' => 'Description of the action of moving a message underneath another, existing parent thread, to merge the two (sib)threads into one. Eqivalent to cutting a part of a discussion section and pasting it into another discussion section in the normal talk system.
 Displayed in a list of actions to confirm in a confirmation dialog.',
 	'lqt-drag-save' => '{{Identical|Confirm}}',
@@ -573,6 +670,7 @@ Displayed in a list of actions to confirm in a confirmation dialog.',
 	'lqt-feed-title-new-threads-from' => 'Parameters:
 * $1 is comma separated list of all pages with new threads mentioned in the feed
 * $2 is the number of referenced pages in the feed (optional - can be used for PLURAL)',
+	'lqt-feed-title-replies' => '{{Identical|Reply}}',
 	'lqt-feed-title-replies-from' => 'Parameters:
 * $1 is comma separated list of all pages mentioned in the feed
 * $2 is the number of referenced pages in the feed (optional, can be used for PLURAL)',
@@ -586,15 +684,22 @@ Displayed in a list of actions to confirm in a confirmation dialog.',
 * $2 is a link to the user posting in the thread
 * $3 is a link to the super thread,
 * $4 is the posting user in plain text, used for GENDER.',
-	'lqt-newmessages-n' => '{{Identical|New messages}}
-
-Link at the top of the page for logged-in users. $1 is the number of new messages.',
+	'lqt-newmessages-n' => 'Link at the top of the page for logged-in users. Parameters:
+* $1 - the number of new messages
+{{Identical|New messages}}',
 	'lqt_newmessages' => '{{Identical|New messages}}',
-	'lqt_newmessages-title' => '{{Identical|New messages}}',
+	'lqt_newmessages-title' => '{{doc-special|NewMessages}}
+{{Identical|New messages}}',
+	'lqt-newpost-summary' => 'Used as the edit summary, if the specified reason is empty.
+
+Parameters:
+* $1 - thread subject',
 	'lqt-reply-summary' => 'Used on history page of message and thread. $2 is the message to which this message is a reply. $1 is the title of the thread.',
 	'lqt-talkpage-history-subtitle' => 'Parameters:
-* $1 is a link to a talk page, with the talk page title as link label',
-	'lqt-talkpage-history-tab' => 'The text for the tab pointing to a discussion page header',
+* $1 is a link to a talk page, with the talk page title as link label
+{{Identical|For $1}}',
+	'lqt-talkpage-history-tab' => 'The text for the tab pointing to a discussion page header.
+{{Identical|Header}}',
 	'lqt-edit-bump' => 'See {{msg-mw|Lqt-edit-bump-tooltip}} for the explanation of this feature.',
 	'lqt-reply-subpage' => 'Part of the page title when a LiquidThread answer is given. Should probably be translated as a noun and not as a verb.
 
@@ -603,6 +708,11 @@ Link at the top of the page for logged-in users. $1 is the number of new message
 {{Identical|Thread}}',
 	'nstab-summary' => 'Used as tab title for the Summary namespace.
 {{Identical|Summary}}',
+	'echo-pref-email-lqt-new-topic' => 'Used by the Echo extension in the Preferences -> Notifications tab as a label to enable email notification for the lqt-new-topic event.',
+	'echo-pref-email-lqt-reply' => 'Used by the Echo extension in the Preferences -> Notifications tab as a label to enable email notification for the lqt-reply event.',
+	'pageinfo-usinglqt' => 'Entry for whether the page uses LiquidThreads or not',
+	'pageinfo-usinglqt-yes' => 'Yes, this page uses LiquidThreads.
+{{Identical|Yes}}',
 );
 
 /** Abkhazian (Аҧсшәа)
@@ -723,7 +833,7 @@ Hierdie operasie herstel word gemaak.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|boodskap|boodskappe}} is as gelees gemerk.',
 	'lqt-email-undo' => 'Maak ongedaan',
 	'lqt-no-new-messages' => 'U het geen nuwe boodskappe nie.',
-	'lqt-new-messages' => '✒ U het nuwe boodskappe.',
+	'lqt-new-messages' => 'U het nuwe boodskappe.',
 	'lqt-email-info-undo' => 'Terug na die onderwerp dat u sopas verlaat het.',
 	'lqt-date-info' => 'Hierdie skakel is nie aktief nie omdat u onderwerpe van alle datums bekyk.',
 	'lqt-newmessages-context' => 'Volledige onderwerp',
@@ -797,8 +907,6 @@ U kan dit sien by <$6>.
 
 Die teks van die antwoord is:
 $7",
-	'lqt-quote-intro' => 'Op $2 om $3 skryf [[User:$1|$1]]:',
-	'lqt-quote' => 'Aanhaal',
 	'lqt-search-legend' => 'Deursoek besprekings op hierdie bladsy',
 	'lqt-search-label' => 'Soekterme:',
 	'lqt-search-button' => 'Soek',
@@ -837,8 +945,8 @@ $7",
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Antwoorde van $1',
 	'lqt-feed-new-thread-intro' => 'Nuwe onderwerp deur $2 op $1', # Fuzzy
 	'lqt-feed-reply-intro' => 'Antwoord op $3 (op $1) deur $2', # Fuzzy
-	'lqt-newmessages-n' => 'Nuwe boodskappe ($1)',
-	'lqt_newmessages' => 'My nuwe boodskappe (Geen)',
+	'lqt-newmessages-n' => 'Nuwe boodskappe ($1)', # Fuzzy
+	'lqt_newmessages' => 'My nuwe boodskappe (Geen)', # Fuzzy
 	'lqt_newmessages-title' => 'Nuwe boodskappe',
 	'lqt-newpost-summary' => 'Nuwe onderwerp: $1',
 	'lqt-reply-summary' => 'Reaksie op [[$2|$1]]',
@@ -1075,7 +1183,7 @@ $messages['ar'] = array(
 	'lqt-count-marked-read' => 'تم تعليم {{PLURAL:$1||رسالة واحدة مقروءة|رسالتين مقروأتين|$1 رسائل مقروءة|$1 رسالة مقروءة}}.',
 	'lqt-email-undo' => 'رجوع',
 	'lqt-no-new-messages' => 'لا توجد رسائل جديدة لك.',
-	'lqt-new-messages' => '✒ توجد رسائل جديدة لك.',
+	'lqt-new-messages' => 'توجد رسائل جديدة لك.',
 	'lqt-email-info-undo' => 'أعد النقاش التي صرفته منذ قليل.',
 	'lqt-date-info' => 'هذه الوصلة معطلة لأنك ترى مجموعات الرسائل من كل التواريخ.',
 	'lqt-newmessages-context' => 'موضوع كامل',
@@ -1097,7 +1205,7 @@ $messages['ar'] = array(
 	'lqt-split-success' => 'لقد فصلت بنجاح الموضوع $1.',
 	'lqt_split_thread' => 'فصل موضوع',
 	'lqt-thread-split-subject' => 'عنوان الموضوع الجديد:',
-	'lqt-thread-split-thread' => 'الخيط:',
+	'lqt-thread-split-thread' => 'الموضوع:',
 	'lqt-split-submit' => 'افصل',
 	'lqt_split_badsubject' => 'العنوان الذي أدخلته غير صحيح.',
 	'lqt-no-threads' => 'لا توجد أي مواضيع في هذه الصفحة إلى الآن.',
@@ -1157,8 +1265,6 @@ $7",
 
 نص الرد هو:
 $7",
-	'lqt-quote-intro' => 'في $2 عند $3، كتب [[User:$1|$1]]:',
-	'lqt-quote' => 'اقتبس',
 	'lqt-search-legend' => 'ابحث في نقاشات هذه الصفحة',
 	'lqt-search-label' => 'عبارة البحث:',
 	'lqt-search-button' => 'بحث',
@@ -1203,8 +1309,8 @@ $7",
 	'lqt-feed-new-thread-intro' => 'موضوع جديد في $1 من إرسال $2', # Fuzzy
 	'lqt-feed-reply-intro' => 'الرد على $3 (في $1) من إرسال $2', # Fuzzy
 	'tooltip-pt-newmessages' => 'يظهر جديد ما نشر في المواضيع أو صفحات النقاش التي تراقبها',
-	'lqt-newmessages-n' => 'رسائلي الجديدة ($1)',
-	'lqt_newmessages' => 'رسائلي الجديدة (لا يوجد)',
+	'lqt-newmessages-n' => 'رسائلي الجديدة ($1)', # Fuzzy
+	'lqt_newmessages' => 'رسائلي الجديدة (لا يوجد)', # Fuzzy
 	'lqt_newmessages-title' => 'رسائل جديدة',
 	'lqt-newpost-summary' => 'نقاش جديد: $1',
 	'lqt-reply-summary' => 'رد على [[$2|$1]]',
@@ -1229,7 +1335,15 @@ $7",
  * @author Basharh
  */
 $messages['arc'] = array(
+	'lqt_reply' => 'ܦܢܝ',
+	'lqt-parent' => 'ܐܒܐ',
+	'lqt_delete' => 'ܫܘܦ',
+	'lqt_undelete' => 'ܠܐ ܫܘܦ',
+	'lqt_permalink' => 'ܐܣܘܪ ܠܗ',
+	'lqt_fragment' => 'ܡܢܬܐ ܡܢ $1 ܡܢ $2',
+	'lqt_discussion_link' => 'ܕܘܪܫܐ',
 	'lqt_from_talk' => 'ܡܢ $1',
+	'lqt-history-title' => 'ܬܫܥܝܬܐ ܕܕܘܪܫܐ',
 	'lqt_hist_deleted' => 'ܫܝܦܬ',
 	'lqt_hist_undeleted' => 'ܠܐ ܫܝܦܬ',
 	'lqt_hist_moved_talkpage' => 'ܫܢܝܬ',
@@ -1242,10 +1356,14 @@ $messages['arc'] = array(
 	'lqt-summary' => 'ܦܣܝܩܬ̈ܐ',
 	'lqt-email-undo' => 'ܠܐ ܬܥܒܕ',
 	'lqt-no-new-messages' => 'ܠܝܬ ܠܟ ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ',
-	'lqt-new-messages' => '✒ ܐܝܬ ܠܟ ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ.',
+	'lqt-new-messages' => 'ܐܝܬ ܠܟ ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ.',
+	'lqt-newmessages-context' => 'ܓܕܕܐ ܓܡܝܪܐ',
 	'lqt-history-time' => 'ܙܒܢܐ',
 	'lqt-history-user' => 'ܡܦܠܚܢܐ',
+	'lqt-history-thread' => 'ܓܕܕܐ',
 	'lqt-header-actions' => 'ܥܒܕ̈ܐ',
+	'lqt_summarize_link' => 'ܦܣܝܩܬ̈ܐ',
+	'lqt-thread-split-thread' => 'ܓܕܕܐ',
 	'lqt-movethread' => 'ܫܢܝ',
 	'lqt-menu-trigger' => 'ܝܬܝܪ',
 	'lqt-newmessages-from' => 'ܡܢ $1',
@@ -1261,7 +1379,7 @@ $messages['arc'] = array(
 	'lqt-edit-signature' => '(ܫܚܠܦ ܪܡܝ ܐܝܕܐ)',
 	'lqt-preview-signature' => '(ܚܝܪܐ ܩܕܡܝܐ)',
 	'lqt-newmessages-n' => 'ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ ($1)',
-	'lqt_newmessages' => 'ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ ܕܝܠܝ (ܠܝܬ)',
+	'lqt_newmessages' => 'ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ (ܠܝܬ)',
 	'lqt_newmessages-title' => 'ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ',
 	'lqt-talkpage-history-subtitle' => 'ܠ $1',
 	'nstab-summary' => 'ܦܣܝܩܬ̈ܐ',
@@ -1383,7 +1501,7 @@ $messages['arz'] = array(
 	'lqt-count-marked-read' => 'تم تعليم {{PLURAL:$1||رساله واحده مقروءة|رسالتين مقروأتين|$1 رسائل مقروءة|$1 رساله مقروءة}}.',
 	'lqt-email-undo' => 'تراجَع',
 	'lqt-no-new-messages' => 'لا توجد رسائل جديده لك.',
-	'lqt-new-messages' => '✒ توجد رسائل جديده لك.',
+	'lqt-new-messages' => 'توجد رسائل جديده لك.',
 	'lqt-email-info-undo' => 'أعد النقاش التى صرفته منذ قليل.',
 	'lqt-date-info' => 'هذه الوصله معطله لأنك ترى مجموعات الرسائل من كل التواريخ.',
 	'lqt-newmessages-context' => 'موضوع كامل',
@@ -1451,8 +1569,6 @@ $messages['arz'] = array(
 قد وُضع فى يوم $3 عند $4.
 
 بإمكانك مراجعته عبر <$6>", # Fuzzy
-	'lqt-quote-intro' => 'فى $2 عند $3، كتب [[User:$1|$1]]:',
-	'lqt-quote' => 'اقتبس',
 	'lqt-search-legend' => 'ابحث فى نقاشات هذه الصفحة',
 	'lqt-search-label' => 'عباره البحث:',
 	'lqt-search-button' => 'ابحث',
@@ -1493,7 +1609,7 @@ $messages['arz'] = array(
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — {{PLURAL:$2||نقاش جديد|نقاشان جديدان|نقاشات جديدة}} من $1',
 	'lqt-feed-title-replies' => '{{SITENAME}} — ردود',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — ردود من $1',
-	'lqt-newmessages-n' => 'الرسائل الجديده ($1)',
+	'lqt-newmessages-n' => 'الرسائل الجديده ($1)', # Fuzzy
 	'lqt_newmessages' => 'رسائل جديدة', # Fuzzy
 	'lqt_newmessages-title' => 'رسائل جديدة',
 	'lqt-newpost-summary' => 'نقاش جديد: $1',
@@ -1512,13 +1628,13 @@ $messages['arz'] = array(
 	'lqt-reply-subpage' => 'رد',
 );
 
-/** Assamese (অসমীয়া)
+/** Assamese (অসমীয়া)
  * @author Bishnu Saikia
  */
 $messages['as'] = array(
 	'lqt-title' => 'শিৰোনামা',
 	'lqt-summary' => 'সাৰাংশ',
-	'lqt-new-messages' => '✒ তাত আপোনৰ বাবে নতুন বাৰ্তা আছে ।',
+	'lqt-new-messages' => 'তাত আপোনৰ বাবে নতুন বাৰ্তা আছে ।',
 	'lqt-history-time' => 'সময়',
 	'lqt-history-user' => 'সদস্য',
 	'lqt-movethread' => 'স্থানান্তৰ কৰক',
@@ -1538,11 +1654,12 @@ $messages['ast'] = array(
 );
 
 /** Azerbaijani (azərbaycanca)
+ * @author AZISS
  * @author Cekli829
  * @author PPerviz
  */
 $messages['az'] = array(
-	'lqt_reply' => 'Yenidən',
+	'lqt_reply' => 'Geri göndər',
 	'lqt_delete' => 'Sil',
 	'lqt_hist_deleted' => 'Silinib',
 	'lqt_subject' => 'Mövzu:',
@@ -1563,18 +1680,29 @@ $messages['az'] = array(
 	'lqt-drag-save' => 'Təsdiq et',
 	'lqt-drag-reason' => 'Səbəb:',
 	'lqt-feed-title-all' => '{{SITENAME}} — Yeni ismarıclar',
-	'lqt-newmessages-n' => 'Yeni mesajlarım ($1)',
-	'lqt_newmessages' => 'Yeni mesajlarım (Yoxdur)',
+	'lqt-newmessages-n' => 'Yeni mesajlarım ($1)', # Fuzzy
+	'lqt_newmessages' => 'Yeni mesajlarım (Yoxdur)', # Fuzzy
 	'lqt_newmessages-title' => 'Yeni mesajlar',
 	'lqt-talkpage-history-subtitle' => '$1 üçün',
 	'lqt-reply-subpage' => 'yenidən',
 	'nstab-summary' => 'Xülasə',
 );
 
+/** South Azerbaijani (تورکجه)
+ * @author E THP
+ */
+$messages['azb'] = array(
+	'searchprofile-threads' => 'دانیشیقلار',
+	'lqt-newmessages-n' => 'یئنی مئساژلاریم ($1)',
+	'lqt_newmessages' => 'یئنی مئساژلاریم (یوخ‌دور)',
+	'lqt_newmessages-title' => 'یئنی مئساژلار',
+);
+
 /** Bashkir (башҡортса)
  * @author Assele
  * @author Haqmar
  * @author Roustammr
+ * @author Рустам Нурыев
  */
 $messages['ba'] = array(
 	'lqt-desc' => 'Фекер алышыу биттәренә фекер алышыу тармаҡтарын өҫтәй',
@@ -1643,7 +1771,7 @@ $messages['ba'] = array(
 	'lqt_noreason' => 'Сәбәп белдерелмәгән.',
 	'lqt_move_placeholder' => '$1 тармағы был биттән $5 битенә күсерелгән.
 $3 $4 уны $2 күсергән.',
-	'lqt_thread_deleted_for_sysops' => "Был тармаҡ '''юйылған''' һәм хәкимдәргә генә күренә.",
+	'lqt_thread_deleted_for_sysops' => "Был тармаҡ '''юйылған''' һәм хакимдәргә генә күренә.",
 	'lqt_thread_deleted' => 'Был тармаҡ юйылған.',
 	'lqt_summary_notice' => 'Был фекер алышыу кәмендә $2 {{PLURAL:$2|көн}} үҙгәртелмәгән.
 Әгәр ул тамамланһа, һеҙгә $1 мөмкин.',
@@ -1689,7 +1817,7 @@ $3 $4 уны $2 күсергән.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|хәбәр}} уҡылған тип билдәләнде.',
 	'lqt-email-undo' => 'Кире алырға',
 	'lqt-no-new-messages' => 'Һеҙҙең өсөн яңы хәбәрҙәр юҡ.',
-	'lqt-new-messages' => '✒ Һеҙҙең өсөн яңы хәбәрҙәр бар.',
+	'lqt-new-messages' => 'Һеҙҙең өсөн яңы хәбәрҙәр бар.',
 	'lqt-email-info-undo' => 'Әле алып ташланған тармаҡты кире ҡайтарырға.',
 	'lqt-date-info' => 'Был һылтанма һүндерелгән, сөнки һеҙ бөтә көндәр өсөн тармаҡтарҙы ҡарайһығыҙ.',
 	'lqt-newmessages-context' => 'Тулы тармаҡ',
@@ -1769,8 +1897,6 @@ $7',
 
 Яуап:
 $7',
-	'lqt-quote-intro' => '$2 $3 [[User:$1|$1]] яҙған:',
-	'lqt-quote' => 'Цитата итеп алырға',
 	'lqt-search-legend' => 'Был биттәге фекер алышыуҙарҙы эҙләү',
 	'lqt-search-label' => 'Эҙләү шарттары:',
 	'lqt-search-button' => 'Табырға',
@@ -1815,8 +1941,8 @@ $7',
 	'lqt-feed-new-thread-intro' => '$1 битендә яңы тармаҡ, $2 тарафынан өҫтәлгән', # Fuzzy
 	'lqt-feed-reply-intro' => '$1 битендә $3 тармағына яңы яуап, $2 тарафынан өҫтәлгән', # Fuzzy
 	'tooltip-pt-newmessages' => 'Һеҙ күҙәткән тармаҡтарҙың яңы хәбәрҙәрен күрһәтә',
-	'lqt-newmessages-n' => 'Яңы хәбәрҙәр ($1)',
-	'lqt_newmessages' => 'Яңы хәбәрҙәр (Юҡ)',
+	'lqt-newmessages-n' => 'Яңы хәбәрҙәр ($1)', # Fuzzy
+	'lqt_newmessages' => 'Яңы хәбәрҙәр (Юҡ)', # Fuzzy
 	'lqt_newmessages-title' => 'Яңы хәбәрҙәр',
 	'lqt-newpost-summary' => 'Яңы тармаҡ: $1',
 	'lqt-reply-summary' => '[[$2|$1]] хәбәренә яуап',
@@ -1931,8 +2057,8 @@ Létzde Beorweidung: $4, $3 Uar',
 	'searchprofile-threads' => 'Diskussiónen',
 	'searchprofile-threads-tooltip' => 'Thémen und Dischkrierseiten durchéschaung',
 	'tooltip-pt-newmessages' => "Zoagt neiche Noochrichten zua d' voh dir beówochterden Thémen óder d' zuaghering Dischkrirseiten",
-	'lqt-newmessages-n' => 'Neiche Noochrichten ($1)',
-	'lqt_newmessages' => 'Neiche Noochrichten',
+	'lqt-newmessages-n' => 'Neiche Noochrichten ($1)', # Fuzzy
+	'lqt_newmessages' => 'Neiche Noochrichten', # Fuzzy
 	'lqt_newmessages-title' => 'Neiche Noochrichten',
 	'lqt-newpost-summary' => 'Neicher Diskussionsstrång: $1',
 	'nstab-summary' => 'Thémazaummfossung',
@@ -2074,7 +2200,7 @@ $messages['be-tarask'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|паведамленьне пазначанае як прачытанае|паведамленьні пазначаныя як прачынаныя|паведамленьняў пазначаныя як прачынаныя}}.',
 	'lqt-email-undo' => 'Скасаваць',
 	'lqt-no-new-messages' => 'Для Вас няма новых паведамленьняў.',
-	'lqt-new-messages' => '✒ Для Вас ёсьць новыя паведамленьні.',
+	'lqt-new-messages' => 'Для Вас ёсьць новыя паведамленьні.',
 	'lqt-email-info-undo' => 'Вярнуць галіну якую Вы толькі што прапусьцілі.',
 	'lqt-date-info' => 'Спасылка была адключана, таму што Вы праглядаеце галіны з любымі датамі.',
 	'lqt-newmessages-context' => 'Поўная галіна',
@@ -2110,6 +2236,7 @@ $messages['be-tarask'] = array(
 	'lqt-newmessages-from' => 'Ад $1',
 	'lqt-hot-topics' => 'Папулярныя тэмы',
 	'lqt-add-reply' => 'Дадаць адказ',
+	'lqt-changesortorder' => 'Сартыраваць',
 	'lqt_rc_new_discussion' => 'створаная новая галіна «$1»',
 	'lqt_rc_new_reply' => 'напісаны адказ на «$1»',
 	'right-lqt-split' => 'падзел галінаў',
@@ -2130,6 +2257,7 @@ $messages['be-tarask'] = array(
 	'lqt-log-action-merge-down' => "аб'яднаная [[$1]] у [[$3]]",
 	'lqt-log-action-subjectedit' => 'зьмененая тэма [[$1]] з «$2» на «$3»',
 	'lqt-log-action-resort' => 'зьмененая сартаваньне [[$1]]. Зьменены ключа сартаваньня з $2 на $3.',
+	'lqt-log-action-signatureedit' => 'подпіс [[$1]] зьменены з «$2» на «$3»',
 	'lqt-preference-notify-talk' => 'Дасылаць мне электронныя лісты ў выпадках адказаў у галіне, за якой я назіраю',
 	'lqt-preference-watch-threads' => 'Дадаваць у мой сьпіс назіраньня галіны, якія я буду ствараць альбо на якія я буду адказваць',
 	'prefs-lqt' => 'Галіны абмеркаваньняў',
@@ -2156,8 +2284,6 @@ $7",
 
 Тэкст адказу:
 $7",
-	'lqt-quote-intro' => '$2 $3 [[User:$1|$1]] {{GENDER:$1|напісаў|напісала}}:',
-	'lqt-quote' => 'Цытаваць',
 	'lqt-search-legend' => 'Пошук абмеркаваньняў на гэтай старонцы',
 	'lqt-search-label' => 'Умовы пошуку:',
 	'lqt-search-button' => 'Знайсьці',
@@ -2203,7 +2329,7 @@ $7",
 	'lqt-feed-reply-intro' => 'Адказ на $3 (на $1) {{GENDER:$4|разьмясьціў|разьмясьціла}} $2',
 	'tooltip-pt-newmessages' => 'Паказвае новыя паведамленьні ў галінах альбо на старонках абмеркаваньня, за якімі Вы назіраеце',
 	'lqt-newmessages-n' => 'Новыя паведамленьні ($1)',
-	'lqt_newmessages' => 'Мае новыя паведамленьні (Няма)',
+	'lqt_newmessages' => 'Новыя паведамленьні (няма)',
 	'lqt_newmessages-title' => 'Новыя паведамленьні',
 	'lqt-newpost-summary' => 'Новая галіна: $1',
 	'lqt-reply-summary' => 'Адказаць на [[$2|$1]]',
@@ -2221,6 +2347,10 @@ $7",
 	'lqt-reply-subpage' => 'адказаць',
 	'nstab-thread' => 'Галіна',
 	'nstab-summary' => 'Апісаньне',
+	'echo-pref-email-lqt-new-topic' => 'Стварае новую галіну абмеркаваньняў',
+	'echo-pref-email-lqt-reply' => 'Адказвае на галіну абмеркаваньняў',
+	'pageinfo-usinglqt' => 'Разгалінаваныя гутаркі ўключаныя',
+	'pageinfo-usinglqt-yes' => 'Так',
 );
 
 /** Bulgarian (български)
@@ -2329,7 +2459,7 @@ $messages['bg'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|съобщение, отбелязано като прочетено|съобщения, отбелязани като прочетени}}.',
 	'lqt-email-undo' => 'Отмяна',
 	'lqt-no-new-messages' => 'Нямате нови съобщения.',
-	'lqt-new-messages' => '✒ Имате нови съобщения.',
+	'lqt-new-messages' => 'Имате нови съобщения.',
 	'lqt-date-info' => 'Тази връзка е деактивирана, тъй като преглеждате нишките от всички дати.',
 	'lqt-newmessages-context' => 'Цяла нишка',
 	'lqt-thread-created' => 'Създадено',
@@ -2377,8 +2507,6 @@ $messages['bg'] = array(
 	'lqt-preference-custom-signatures' => 'Показване на настройваемите потребителски подписи',
 	'lqt-enotif-subject-reply' => '{{SITENAME}} обсъждане - Отговор: $1',
 	'lqt-enotif-subject-newthread' => '{{SITENAME}} обсъждане - Нова нишка: $1',
-	'lqt-quote-intro' => 'На $2 в $3 [[User:$1|$1]] написа:',
-	'lqt-quote' => 'Цитат',
 	'lqt-search-legend' => 'Търсене на обсъжданията в тази страница',
 	'lqt-search-label' => 'Условия на търсенето:',
 	'lqt-search-button' => 'Търсене',
@@ -2416,8 +2544,8 @@ $messages['bg'] = array(
 	'lqt-feed-title-replies' => '{{SITENAME}} — Отговори',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Отговори от $1',
 	'lqt-feed-new-thread-intro' => 'Нова нишка в $1, публикувана от $2', # Fuzzy
-	'lqt-newmessages-n' => 'Нови съобщения ($1)',
-	'lqt_newmessages' => 'Моите нови съобщения (няма)',
+	'lqt-newmessages-n' => 'Нови съобщения ($1)', # Fuzzy
+	'lqt_newmessages' => 'Моите нови съобщения (няма)', # Fuzzy
 	'lqt_newmessages-title' => 'Нови съобщения',
 	'lqt-newpost-summary' => 'Нова нишка: $1',
 	'lqt-reply-summary' => 'Отговор на [[$2|$1]]',
@@ -2502,7 +2630,7 @@ $messages['bn'] = array(
 	'lqt-marked-read' => "থ্রেড '''$1''' পঠিত বলে চিহ্নিত হয়েছে।",
 	'lqt-email-undo' => 'পূর্বাবস্থায় ফেরাও',
 	'lqt-no-new-messages' => 'আপনার জন্য নতুন কোনো বার্তা নেই।',
-	'lqt-new-messages' => '✒ আপনার জন্য নতুন বার্তা রয়েছে।',
+	'lqt-new-messages' => 'আপনার জন্য নতুন বার্তা রয়েছে।',
 	'lqt-newmessages-context' => 'সম্পূর্ণ থ্রেড',
 	'lqt-thread-created' => 'তৈরি হয়েছে',
 	'lqt-history-time' => 'সময়',
@@ -2541,7 +2669,6 @@ $messages['bn'] = array(
 	'lqt-preference-custom-signatures' => 'ব্যবহারকারী নির্ধারিত স্বাক্ষর দেখাও',
 	'lqt-enotif-subject-reply' => '{{SITENAME}} আলোচনা - উত্তর: $1',
 	'lqt-enotif-subject-newthread' => '{{SITENAME}} আলোচনা - নতুন থ্রেড: $1',
-	'lqt-quote' => 'উক্তি',
 	'lqt-search-legend' => 'এই পাতার আলোচনায় অনুসন্ধান করো',
 	'lqt-search-label' => 'অনুসন্ধানকৃত শব্দসমূহ:',
 	'lqt-search-button' => 'অনুসন্ধান',
@@ -2565,8 +2692,8 @@ $messages['bn'] = array(
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — $1 হতে নতুন থ্রেড',
 	'lqt-feed-title-replies' => '{{SITENAME}} — উত্তর',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — $1 হতে উত্তর',
-	'lqt-newmessages-n' => 'নতুন বার্তা ($1)',
-	'lqt_newmessages' => 'আমার নতুন বার্তা (নাই)',
+	'lqt-newmessages-n' => 'নতুন বার্তা ($1)', # Fuzzy
+	'lqt_newmessages' => 'আমার নতুন বার্তা (নাই)', # Fuzzy
 	'lqt_newmessages-title' => 'নতুন বার্তা',
 	'lqt-newpost-summary' => 'নতুন থ্রেড: $1',
 	'lqt-reply-summary' => '[[$2|$1]] এর উত্তর',
@@ -2701,7 +2828,7 @@ N'haller ket dizober an oberiadenn-mañ ur wezh kaset da bet.",
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|gemennadenn}} merket evel lennet.',
 	'lqt-email-undo' => 'Dizober',
 	'lqt-no-new-messages' => "N'hoc'h eus kemennadenn nevez ebet.",
-	'lqt-new-messages' => "✒ Kemennadennoù nevez zo evidoc'h.",
+	'lqt-new-messages' => "Kemennadennoù nevez zo evidoc'h.",
 	'lqt-email-info-undo' => "Addegas ar gaoz emaoc'h o paouez lemel kuit",
 	'lqt-date-info' => "Diweredekaet eo al liamm-mañ peogwir emaoc'h o sellet ouzh ar c'haozeadennoù evit an holl zeiziadoù",
 	'lqt-newmessages-context' => 'Kaozeadenn glok',
@@ -2737,6 +2864,7 @@ Kuit na c'hoarvezfe, rannit an neudenndaoù kaozioù a-raok diverkañ homañ.",
 	'lqt-newmessages-from' => 'Diwar $1',
 	'lqt-hot-topics' => "Kaozeadennoù eus ar c'hiz",
 	'lqt-add-reply' => 'Ouzhpennañ ur respont',
+	'lqt-changesortorder' => 'Urzhiañ',
 	'lqt_rc_new_discussion' => 'en deus embannet un neudennad nevez, "$1"',
 	'lqt_rc_new_reply' => 'en deus embannet ur respont da "$1"',
 	'right-lqt-split' => 'Rannañ an neudennadoù',
@@ -2757,6 +2885,7 @@ Kuit na c'hoarvezfe, rannit an neudenndaoù kaozioù a-raok diverkañ homañ.",
 	'lqt-log-action-merge-down' => 'en deus kendeuzet [[$1]] a-us da [[$3]]',
 	'lqt-log-action-subjectedit' => 'en deus kemmet sujed [[$1]] eus "$2" da "$3"',
 	'lqt-log-action-resort' => "en deus kemmet urzh rummañ [[$1]]. Kemmet eo bet an alc'hwez rummañ eus $2 da $3",
+	'lqt-log-action-signatureedit' => 'en deus kemmet sinadur [[$1]] eus "$2" da "$3"',
 	'lqt-preference-notify-talk' => 'Kas ur postel din pa vez maget ur gaoz evezhiet ganin',
 	'lqt-preference-watch-threads' => 'Evezhiañ an neudennadoù a grouan pe a respontant dezho',
 	'prefs-lqt' => 'Kaozeadennoù dre neudennadoù',
@@ -2780,8 +2909,6 @@ E lenn a c'hallit ober war <$6>
 
 Setu testenn ar respont :
 $7",
-	'lqt-quote-intro' => "D'an $2 da $3, eo bet skrivet gant [[User:$1|$1]] :",
-	'lqt-quote' => 'Menegiñ',
 	'lqt-search-legend' => 'Klask kaozeadennoù war ar bajenn-mañ',
 	'lqt-search-label' => 'Termenoù enklask',
 	'lqt-search-button' => 'Klask',
@@ -2823,11 +2950,11 @@ Dont a raio ar sinadur war wel e-unan",
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — Neudennadoù kaoz nevez a-berzh $1',
 	'lqt-feed-title-replies' => '{{SITENAME}} — Respontoù',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Respontoù digant $1',
-	'lqt-feed-new-thread-intro' => 'Neudennadoù nevez war $1 postet gant $2', # Fuzzy
-	'lqt-feed-reply-intro' => 'Respontoù da $3 (war $1) postet gant $2', # Fuzzy
+	'lqt-feed-new-thread-intro' => 'Neudennad nevez war $1 postet gant {{GENDER:$4|$2}}',
+	'lqt-feed-reply-intro' => 'Respontoù da $3 (war $1) postet gant {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => "Diskouez a ra ar c'hemennadennoù nevez diwar-benn an danvezioù pa ar pajennoù kaozeal evezhiet ganeoc'h",
 	'lqt-newmessages-n' => 'Kemennadennoù nevez ($1)',
-	'lqt_newmessages' => "Ma c'hemennadennoù nevez (hini ebet)",
+	'lqt_newmessages' => 'Kemennadennoù nevez (hini ebet)',
 	'lqt_newmessages-title' => 'Kemennadennoù nevez',
 	'lqt-newpost-summary' => 'Neudennad nevez : $1',
 	'lqt-reply-summary' => 'Respont da [[$2|$1]]',
@@ -2836,7 +2963,7 @@ Dont a raio ar sinadur war wel e-unan",
 	'lqt-talkpage-history-tab' => 'Talbenn',
 	'restriction-reply' => 'Postañ respontoù',
 	'restriction-newthread' => 'Ouzhpennañ neudennadoù kaozeal nevez',
-	'lqt-protected-reply-thread' => "Ne c'helloc'h ket postañ en neudennad-mañ dre ma 'z eo bet gwarezet a-enep ar gemennadennoù nevez.",
+	'lqt-protected-reply-thread' => "N'hallit ket postañ en neudennad-mañ, gwarezet eo bet a-enep d'ar c'hemennadennoù nevez.",
 	'lqt-protected-reply-talkpage' => "Ne c'helloc'h ket postañ en neudennad-mañ dre ma 'z eo bet gwarezet an neudennad a-enep ar respontoù.",
 	'lqt-protected-newthread' => "Ne c'hellit ket postañ neudennadoù nevez er bajenn kaozeal-mañ dre ma 'z eo bet gwarezet a-enep an neudennadoù nevez.",
 	'lqt-edit-bump' => 'Adgweredekaat an neudennad-mañ',
@@ -2845,6 +2972,9 @@ Dont a raio ar sinadur war wel e-unan",
 	'lqt-reply-subpage' => 'respont',
 	'nstab-thread' => 'Neudennad',
 	'nstab-summary' => 'Diverradur',
+	'echo-pref-email-lqt-new-topic' => 'A grou un neudennad nevez',
+	'echo-pref-email-lqt-reply' => "A respont d'un neudennad",
+	'pageinfo-usinglqt-yes' => 'Ya',
 );
 
 /** Bosnian (bosanski)
@@ -2964,7 +3094,7 @@ Ova operacija se ne može vratiti.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|poruka|poruke|poruka}} je označeno kao pročitano.',
 	'lqt-email-undo' => 'Povrati',
 	'lqt-no-new-messages' => 'Nemate novih poruka.',
-	'lqt-new-messages' => '✒ Imate nove poruke.',
+	'lqt-new-messages' => 'Imate nove poruke.',
 	'lqt-email-info-undo' => 'Vrati natrag niz koji ste upravo propustili.',
 	'lqt-date-info' => 'Ovaj link je onemogućen jer pregledate nizove od svih datuma.',
 	'lqt-newmessages-context' => 'Puni niz',
@@ -3042,8 +3172,6 @@ Možete ga vidjeti na <$6>
 
 Tekst odgovora je:
 $7",
-	'lqt-quote-intro' => 'Dana $2 u $3, [[User:$1|korisnik $1]] je napisao:',
-	'lqt-quote' => 'Citat',
 	'lqt-search-legend' => 'Pretraži razgovore na ovoj stranici',
 	'lqt-search-label' => 'Traženi pojmovi:',
 	'lqt-search-button' => 'Traži',
@@ -3088,8 +3216,8 @@ Potpis će se prikazati automatski.',
 	'lqt-feed-new-thread-intro' => 'Novi niz na $1 poslano od strane $2', # Fuzzy
 	'lqt-feed-reply-intro' => 'Odgovor na $3 (na $1) poslan od strane $2', # Fuzzy
 	'tooltip-pt-newmessages' => 'Pokaži nove vijesti na niz ili na nizane stranice za razgovor koje vi pratite',
-	'lqt-newmessages-n' => 'Nove poruke ($1)',
-	'lqt_newmessages' => 'Moje nove poruke (nema)',
+	'lqt-newmessages-n' => 'Nove poruke ($1)', # Fuzzy
+	'lqt_newmessages' => 'Moje nove poruke (nema)', # Fuzzy
 	'lqt_newmessages-title' => 'Nove poruke',
 	'lqt-newpost-summary' => 'Novi niz: $1',
 	'lqt-reply-summary' => 'Odgovor na [[$2|$1]]',
@@ -3113,7 +3241,7 @@ Potpis će se prikazati automatski.',
  * @author Bjargal
  */
 $messages['bxr'] = array(
-	'lqt_newmessages' => 'Минии шэнэ бэшэг (нэгэшье үгы)',
+	'lqt_newmessages' => 'Минии шэнэ бэшэг (нэгэшье үгы)', # Fuzzy
 );
 
 /** Catalan (català)
@@ -3126,6 +3254,7 @@ $messages['bxr'] = array(
  * @author Solde
  * @author Ssola
  * @author Toniher
+ * @author Vriullop
  */
 $messages['ca'] = array(
 	'lqt-desc' => 'Afegeix fils de discussió a les pàgines de discussió',
@@ -3239,7 +3368,7 @@ Aquesta operació no es pot desfer.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|missatge marcat com a llegit.|missatges marcats com a llegits.}}',
 	'lqt-email-undo' => 'Desfés',
 	'lqt-no-new-messages' => 'No teniu missatges nous.',
-	'lqt-new-messages' => '✒ Teniu missatges nous.',
+	'lqt-new-messages' => 'Teniu missatges nous.',
 	'lqt-email-info-undo' => 'Retorna el fil que acabeu de treure.',
 	'lqt-date-info' => 'Aquest enllaç està desactivat perquè esteu veient els fils de totes les dates.',
 	'lqt-newmessages-context' => 'Fil complet',
@@ -3275,6 +3404,7 @@ Si ho voleu evitar, cal que les separeu d'aquest fil abans d'eliminar-lo.",
 	'lqt-newmessages-from' => 'De $1',
 	'lqt-hot-topics' => 'Temes populars',
 	'lqt-add-reply' => 'Respon',
+	'lqt-changesortorder' => 'Reordena',
 	'lqt_rc_new_discussion' => 'publicat un nou fil, "$1"',
 	'lqt_rc_new_reply' => 'publicada una resposta a "$1"',
 	'right-lqt-split' => 'Separar fils',
@@ -3295,6 +3425,7 @@ Si ho voleu evitar, cal que les separeu d'aquest fil abans d'eliminar-lo.",
 	'lqt-log-action-merge-down' => "s'ha fusionat [[$1]] a sota de [[$3]]",
 	'lqt-log-action-subjectedit' => "s'ha canviat el tema de [[$1]] de «$2» a «$3»",
 	'lqt-log-action-resort' => "s'ha modificat el criteri d'ordenació de [[$1]]. S'ha canviat la clau d'ordenació de $2 a $3",
+	'lqt-log-action-signatureedit' => 'ha canviat la signatura a [[$1]] de "$2" a "$3"',
 	'lqt-preference-notify-talk' => "Envia'm un missatge de correu electrònic per les respostes dels temes que vigilo",
 	'lqt-preference-watch-threads' => 'Vigila les discussions on hagi participat',
 	'prefs-lqt' => 'Discussió en fils',
@@ -3320,8 +3451,6 @@ El podeu veure a <$6>
 
 El text de la resposta és:
 $7",
-	'lqt-quote-intro' => 'El dia $2 a les $3, [[User:$1|$1]] va escriure:',
-	'lqt-quote' => 'Cita-ho',
 	'lqt-search-legend' => 'Cerca discussions en aquesta pàgina',
 	'lqt-search-label' => 'Termes de cerca:',
 	'lqt-search-button' => 'Cerca',
@@ -3334,7 +3463,7 @@ $7",
 	'lqt-thread-link-url' => "URL de l'enllaç:",
 	'lqt-thread-link-title' => 'Enllaç del text wiki:',
 	'lqt-thread-link-copy' => 'Copia-ho al portaretalls',
-	'lqt-sign-not-necessary' => 'Es necessari que signeu el vostre apunt amb quatre titlles.
+	'lqt-sign-not-necessary' => 'No és necessari que signeu el vostre apunt amb quatre titlles.
 La signatura es mostrarà automàticament.',
 	'lqt-marked-as-read-placeholder' => "S'ha marcat el fil $1 com a llegit",
 	'lqt-change-subject' => 'Canvia el tema',
@@ -3363,11 +3492,11 @@ La signatura es mostrarà automàticament.',
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — Nous fils de $1',
 	'lqt-feed-title-replies' => '{{SITENAME}} — Respostes',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Respostes de $1',
-	'lqt-feed-new-thread-intro' => 'Nou fil a $1 publicat per $2', # Fuzzy
-	'lqt-feed-reply-intro' => 'Resposta al fil $3 (dins $1) publicada per $2', # Fuzzy
+	'lqt-feed-new-thread-intro' => 'Nou fil a $1 publicat per {{GENDER:$4|$2}}',
+	'lqt-feed-reply-intro' => 'Resposta a $3 (de $1) publicada per {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Mostra els nous missatges dels fils o pàgines de discussió que esteu vigilant',
-	'lqt-newmessages-n' => 'Missatges nous ($1)',
-	'lqt_newmessages' => 'Els meus missatges nous (Cap)',
+	'lqt-newmessages-n' => 'Missatges nous ($1)', # Fuzzy
+	'lqt_newmessages' => 'Missatges nous (cap)',
 	'lqt_newmessages-title' => 'Missatges nous',
 	'lqt-newpost-summary' => 'Nou fil: $1',
 	'lqt-reply-summary' => 'Respon a [[$2|$1]]',
@@ -3385,20 +3514,25 @@ La signatura es mostrarà automàticament.',
 	'lqt-reply-subpage' => 'contesta',
 	'nstab-thread' => 'Fil',
 	'nstab-summary' => 'Resum',
+	'pageinfo-usinglqt' => 'Discussió per fils activada',
+	'pageinfo-usinglqt-yes' => 'Sí',
 );
 
 /** Chechen (нохчийн)
  * @author Sasan700
+ * @author Умар
  */
 $messages['ce'] = array(
 	'lqt_contents_title' => 'Чулацам',
 	'lqt_toc_thread_title' => 'Гаьний коьрте',
 	'lqt_toc_thread_replycount' => 'Жоьпаш',
 	'lqt_toc_thread_modified' => 'Тlаьххьара хийцамаш',
+	'lqt_add_header' => 'ТӀетоха «куй»',
 	'lqt_new_thread' => 'Керла дийцаре долор',
 	'lqt_reply' => 'Жоп ло',
 	'lqt-parent' => 'Кхоьлнарг',
-	'lqt_delete' => 'Дlадайá',
+	'lqt_delete' => 'ДӀаяккха',
+	'lqt_undelete' => 'МеттахӀоттае',
 	'lqt_permalink' => 'Хьажориг кхузе',
 	'lqt_hist_summary_changed' => 'Жамl хийцна',
 	'lqt_youhavenewmessages' => 'Хьуна кхаьчна [[$1|керла хаамаш]].',
@@ -3408,17 +3542,19 @@ $messages['ce'] = array(
 	'lqt_sorting_order' => 'Къепе листар:',
 	'lqt_sort_newest_changes' => 'хийцам бинарш хьалха',
 	'lqt_sort_newest_threads' => 'керла гаьннаш хьалха',
-	'lqt_sort_oldest_threads' => 'къена гаьннаш хьалха',
+	'lqt_sort_oldest_threads' => 'шира гаьннаш хьалха',
 	'lqt-title' => 'Корта',
+	'lqt-summary' => 'Цунах лаьцна',
 	'lqt-searching' => 'Гаьнашца лахар',
 	'lqt-email-undo' => 'Цаоьшу',
-	'lqt-new-messages' => '✒ Хьуна кхаьчна керла хаамаш.',
+	'lqt-new-messages' => 'Хьуна кхаьчна керла хаамаш.',
 	'lqt-history-user' => 'Декъашхо',
 	'lqt-thread-edited-others' => 'Нисдина {{PLURAL:$2|1 кхечу декъашхочо|$2 кхечу декъашхош|$2 кхечу декъашхош}}.<br />
 Тlяххьара нисдинарг: $1',
 	'lqt_summarize_link' => 'Жамl дан',
 	'lqt-movethread' => 'Кхечухьа йаккха',
 	'lqt-menu-trigger' => 'Кхин',
+	'lqt-log-action-signatureedit' => 'Хийца куьгтаӀор [[$1]] тӀера «$2» оцу «$3»',
 	'prefs-lqt' => 'Дийцарш оцу гéнашца',
 	'lqt-search-label' => 'Лахаран хьал:',
 	'lqt-search-button' => 'Лаха',
@@ -3433,13 +3569,15 @@ $messages['ce'] = array(
 	'lqt-cancel-subject-edit' => 'Цаоьшу',
 	'lqt-drag-activate' => 'Дехьа йаккха',
 	'lqt-drag-drop-zone' => 'Дехьа йаккха кхузе',
+	'lqt-drag-reason' => 'Бахьан:',
 	'lqt-preview-signature' => '(хьалха муха ю хьажар)',
 	'lqt-feed-title-all-from' => '{{SITENAME}} — Керла хаамаш $1',
-	'lqt-newmessages-n' => 'Керла хаамаш ($1)',
+	'lqt-newmessages-n' => 'Керла хаамаш ($1)', # Fuzzy
 	'lqt_newmessages' => 'Керла хаамаш', # Fuzzy
 	'lqt_newmessages-title' => 'Керла хаамаш',
 	'lqt-talkpage-history-tab' => 'Корта',
 	'lqt-reply-subpage' => 'жоп ло',
+	'nstab-summary' => 'Цунах лаьцна',
 );
 
 /** Chamorro (Chamoru)
@@ -3594,7 +3732,7 @@ Tuto operaci lze vrátit zpět.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|zpráva označena jako přečtená|zprávy označeny jako přečtené|zpráv označeno jako přečtené}}',
 	'lqt-email-undo' => 'Vrátit',
 	'lqt-no-new-messages' => 'Nemáte žádné nové zprávy.',
-	'lqt-new-messages' => '✒ Máte nové zprávy.',
+	'lqt-new-messages' => 'Máte nové zprávy.',
 	'lqt-email-info-undo' => 'Vrátí zpět vlákno, které jste právě {{GENDER:|odbyl|odbyla|odbyli}}.',
 	'lqt-date-info' => 'Tento odkaz je nedostupný, protože zobrazujete vlákna bez ohledu na datum.',
 	'lqt-newmessages-context' => 'Celé vlákno',
@@ -3630,6 +3768,7 @@ Pokud tomu chcete zabránit, tak je před smazáním nejprve oddělte z tohoto v
 	'lqt-newmessages-from' => 'Z $1',
 	'lqt-hot-topics' => 'Horká témata',
 	'lqt-add-reply' => 'Přidat odpověď',
+	'lqt-changesortorder' => 'Seřadit',
 	'lqt_rc_new_discussion' => 'založil nové vlákno „$1“',
 	'lqt_rc_new_reply' => 'přidal odpověď do „$1“',
 	'right-lqt-split' => 'Oddělování vláken',
@@ -3650,6 +3789,7 @@ Pokud tomu chcete zabránit, tak je před smazáním nejprve oddělte z tohoto v
 	'lqt-log-action-merge-down' => 'sloučil [[$1]] pod [[$3]]',
 	'lqt-log-action-subjectedit' => 'změnil předmět [[$1]] z „$2“ na „$3“',
 	'lqt-log-action-resort' => 'upravil pořadí [[$1]]. Klíč řazení byl změněn z $2 na $3',
+	'lqt-log-action-signatureedit' => 'změnil podpis v [[$1]] z „$2“ na „$3“',
 	'lqt-preference-notify-talk' => 'Poslat e-mail při reakcích ve sledovaných vláknech',
 	'lqt-preference-watch-threads' => 'Přidávat vlákna, která založím nebo do kterých odpovím, ke sledovaným',
 	'prefs-lqt' => 'Diskuse ve vláknech',
@@ -3676,8 +3816,6 @@ Můžete si ji prohlédnout na <$6>.
 
 Text odpovědi:
 $7',
-	'lqt-quote-intro' => '$2 v $3 {{GENDER:$1|napsal|napsala|napsal}} [[User:$1|$1]]:',
-	'lqt-quote' => 'Citovat',
 	'lqt-search-legend' => 'Hledat v diskusích na této stránce',
 	'lqt-search-label' => 'Hledané výrazy:',
 	'lqt-search-button' => 'Hledat',
@@ -3723,7 +3861,7 @@ Podpis se zobrazuje automaticky.',
 	'lqt-feed-reply-intro' => '$2 {{GENDER:$4|reagoval|reagovala|reagoval}} na $3 (v $1)',
 	'tooltip-pt-newmessages' => 'Zobrazí nové zprávy ve vláknech nebo na diskusních stránkách, které sledujete',
 	'lqt-newmessages-n' => 'Nové zprávy ($1)',
-	'lqt_newmessages' => 'Mé nové zprávy (žádné)',
+	'lqt_newmessages' => 'Nové zprávy (žádné)',
 	'lqt_newmessages-title' => 'Nové zprávy',
 	'lqt-newpost-summary' => 'Nové vlákno: $1',
 	'lqt-reply-summary' => 'Odpověď na [[$2|$1]]',
@@ -3741,13 +3879,17 @@ Podpis se zobrazuje automaticky.',
 	'lqt-reply-subpage' => 'odpověď',
 	'nstab-thread' => 'Vlákno',
 	'nstab-summary' => 'Shrnutí',
+	'echo-pref-email-lqt-new-topic' => '…založí novou diskusi ve vláknech',
+	'echo-pref-email-lqt-reply' => '…odpoví na diskusi ve vláknech',
+	'pageinfo-usinglqt' => 'Aktivována diskuse ve vláknech',
+	'pageinfo-usinglqt-yes' => 'Ano',
 );
 
 /** Kashubian (kaszëbsczi)
  * @author Kaszeba
  */
 $messages['csb'] = array(
-	'lqt-newmessages-n' => 'Nowé wiadła ($1)',
+	'lqt-newmessages-n' => 'Nowé wiadła ($1)', # Fuzzy
 	'lqt_newmessages' => 'Nowé wiadła', # Fuzzy
 	'lqt_newmessages-title' => 'Nowé wiadła',
 );
@@ -3822,7 +3964,7 @@ Efallai:
 	'lqt-summary' => 'Crynodeb',
 	'lqt-email-undo' => 'Dadwneud',
 	'lqt-no-new-messages' => 'Nid oes unrhyw negeseuon newydd i chi.',
-	'lqt-new-messages' => '✒ Mae negeseuon newydd ar gael i chi.',
+	'lqt-new-messages' => 'Mae negeseuon newydd ar gael i chi.',
 	'lqt-history-time' => 'Amser',
 	'lqt-history-user' => 'Defnyddiwr',
 	'lqt-history-action' => 'Gweithred',
@@ -3832,8 +3974,12 @@ Efallai:
 	'lqt-menu-trigger' => 'Mwy',
 	'lqt-preview-signature' => '(rhagolwg)',
 	'lqt-newmessages-n' => 'Negeseuon newydd ($1)',
-	'lqt_newmessages' => 'Negeseuon newydd (Dim)',
+	'lqt_newmessages' => 'Negeseuon newydd (dim)',
 	'lqt_newmessages-title' => 'Negeseuon newydd',
+	'lqt-newpost-summary' => 'Trywydd newydd: $1',
+	'lqt-talkpage-history-tab' => 'Pennawd',
+	'nstab-thread' => 'Trywydd',
+	'nstab-summary' => 'Crynodeb',
 );
 
 /** Danish (dansk)
@@ -3955,7 +4101,7 @@ Denne handling kan ikke fortrydes.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|besked er markeret som læst|beskeder er markeret som læste}}.',
 	'lqt-email-undo' => 'Fortryd',
 	'lqt-no-new-messages' => 'Du har ingen nye beskeder.',
-	'lqt-new-messages' => '✒ Du har nye beskeder.',
+	'lqt-new-messages' => 'Du har nye beskeder.',
 	'lqt-email-info-undo' => 'Bring den tråd, du netop har fjernet, tilbage.',
 	'lqt-date-info' => 'Dette link er slået fra, fordi du ser på tråde fra alle datoer.',
 	'lqt-newmessages-context' => 'Hele tråden',
@@ -4038,8 +4184,6 @@ Du kan se det på <$6>
 
 Svarets tekst lyder:
 $7",
-	'lqt-quote-intro' => 'Den $2 kl. $3, skrev [[User:$1|$1]]:',
-	'lqt-quote' => 'Citér',
 	'lqt-search-legend' => 'Søg i diskussioner på denne side',
 	'lqt-search-label' => 'Søgeord:',
 	'lqt-search-button' => 'Søg',
@@ -4084,8 +4228,8 @@ Signaturen vises automatisk.',
 	'lqt-feed-new-thread-intro' => 'Ny tråd på $1 oprettet af {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'Svar til $3 (på $1) skrevet af {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Viser nye indlæg i tråde eller på trådbaserede diskussionssider, du overvåger',
-	'lqt-newmessages-n' => 'Mine nye beskeder ($1)',
-	'lqt_newmessages' => 'Mine nye beskeder (ingen)',
+	'lqt-newmessages-n' => 'Nye beskeder ($1)',
+	'lqt_newmessages' => 'Nye beskeder (ingen)',
 	'lqt_newmessages-title' => 'Nye beskeder',
 	'lqt-newpost-summary' => 'Ny tråd: $1',
 	'lqt-reply-summary' => 'Svar på [[$2|$1]]',
@@ -4103,6 +4247,8 @@ Signaturen vises automatisk.',
 	'lqt-reply-subpage' => 'svar',
 	'nstab-thread' => 'Tråd',
 	'nstab-summary' => 'Sammenfatning',
+	'pageinfo-usinglqt' => 'Trådet diskussion slået til',
+	'pageinfo-usinglqt-yes' => 'Ja',
 );
 
 /** German (Deutsch)
@@ -4276,6 +4422,7 @@ Um dies zu vermeiden, teile sie von diesem Thema ab, bevor du es löscht.',
 	'lqt-newmessages-from' => 'Von $1',
 	'lqt-hot-topics' => 'Populäre Themen',
 	'lqt-add-reply' => 'Antwort hinzufügen',
+	'lqt-changesortorder' => 'Sortieren',
 	'lqt_rc_new_discussion' => 'Startete die neue Diskussion „$1“',
 	'lqt_rc_new_reply' => 'antwortete auf „$1“',
 	'right-lqt-split' => 'Thema aufteilen',
@@ -4296,6 +4443,7 @@ Um dies zu vermeiden, teile sie von diesem Thema ab, bevor du es löscht.',
 	'lqt-log-action-merge-down' => 'führte [[$1]] nach [[$3]] zusammen',
 	'lqt-log-action-subjectedit' => 'änderte den Betreff von [[$1]] von „$2“ zu „$3“',
 	'lqt-log-action-resort' => 'veränderte den Sortierschlüssel von [[$1]]. Sortierschlüssel geändert von $2 nach $3',
+	'lqt-log-action-signatureedit' => 'änderte die Signatur von [[$1]] von „$2“ in „$3“',
 	'lqt-preference-notify-talk' => 'Bei Antworten zu beobachteten Themen E-Mails senden',
 	'lqt-preference-watch-threads' => 'Selbst erstellte oder von mir bearbeitete Themen beobachten',
 	'prefs-lqt' => 'Thema',
@@ -4320,8 +4468,6 @@ Du kannst sie unter diesem Link einsehen: <$6>
 
 Die Nachricht lautet:
 $7',
-	'lqt-quote-intro' => 'Am $2 um $3 Uhr schrieb [[User:$1|$1]]:',
-	'lqt-quote' => 'Zitieren',
 	'lqt-search-legend' => 'Durchsuche die Themenbeiträge auf dieser Seite',
 	'lqt-search-label' => 'Suchbegriffe:',
 	'lqt-search-button' => 'Suchen',
@@ -4366,8 +4512,8 @@ Die Signatur wird automatisch ergänzt.',
 	'lqt-feed-new-thread-intro' => 'Neues Thema auf $1 von {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'Antwort auf $3 (auf $1) von {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Zeigt neue Nachrichten zu den von dir beobachteten Themen oder deren zugehörigen Diskussionsseiten',
-	'lqt-newmessages-n' => 'Neue Nachrichten ($1)',
-	'lqt_newmessages' => 'Neue Nachrichten (keine)',
+	'lqt-newmessages-n' => 'Nachrichten ($1)',
+	'lqt_newmessages' => 'Nachrichten (keine)',
 	'lqt_newmessages-title' => 'Neue Nachrichten',
 	'lqt-newpost-summary' => 'Neues Thema: $1',
 	'lqt-reply-summary' => 'Antwort auf [[$2|$1]]',
@@ -4385,6 +4531,10 @@ Die Signatur wird automatisch ergänzt.',
 	'lqt-reply-subpage' => 'Antwort',
 	'nstab-thread' => 'Thema',
 	'nstab-summary' => 'Themenzusammenfassung',
+	'echo-pref-email-lqt-new-topic' => 'ein neues Thema erstellt',
+	'echo-pref-email-lqt-reply' => 'auf ein Thema antwortet',
+	'pageinfo-usinglqt' => 'Themen aktiviert',
+	'pageinfo-usinglqt-yes' => 'Ja',
 );
 
 /** German (formal address) (Deutsch (Sie-Form)‎)
@@ -4471,7 +4621,7 @@ Sebebê ey:
 	'lqt_empty_subject' => 'gani şıma yew muhtewa bınusi',
 	'lqt_reply' => 'Cewab bıde',
 	'lqt-parent' => 'Piye',
-	'lqt_delete' => 'Besterne',
+	'lqt_delete' => 'Bestere',
 	'lqt_undelete' => 'tepiya bıger',
 	'lqt_permalink' => 'gıre bıde ıney',
 	'lqt_fragment' => 'pelê $2i ra yew parçeyê $1i',
@@ -4543,7 +4693,7 @@ no gıre parçeyê $2'i yo.",
 	'lqt_move_noreason' => 'sebeb nêvaciyayo nişan nêbiyo',
 	'lqt_move_success' => 'gıre kırışiya $1.',
 	'lqt_talkpage_autocreate_summary' => 'wexta gıreyo ewwil şawiya bı otomatik pelê werêamyişi zi vıraziya.',
-	'lqt_header_warning_big' => 'Şımayê kenê $1 bıvurne',
+	'lqt_header_warning_big' => 'Şımayê yew $1 vurnenê',
 	'lqt_header_warning_after_big' => 'Qey sername, ilan (pêhesnayiş) u vervateyano.
 Şıma eşkêni $2 bıwazi.',
 	'lqt_header_warning_bold' => 'sernameyê pelê werêameyişi',
@@ -4566,7 +4716,7 @@ no operasyon tepiya geriyeno.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|mesac|mesac}} waneyayo deye nışan bı',
 	'lqt-email-undo' => 'Peyser bıgi',
 	'lqt-no-new-messages' => 'Şıma rê mesaco newe çıniyo.',
-	'lqt-new-messages' => '✒  Mesacê şımayê newey estê.',
+	'lqt-new-messages' => 'Mesacê şımayê newey estê.',
 	'lqt-email-info-undo' => 'gıreyo ke şıma cıwa ver eşto tepiya biyar',
 	'lqt-date-info' => 'no gıre (link)  battal verdiya çunke şıma heme tarixan ra gıreyan mocneni ra.',
 	'lqt-newmessages-context' => 'gıreyo tam',
@@ -4644,8 +4794,6 @@ Kerem ke şırê ena adres <$6>'i vurnayışan bivinê.
 
 Metnê cıwabi:
 $7",
-	'lqt-quote-intro' => '$2 $3 tarix de, [[User:$1|$1]] nuşt:',
-	'lqt-quote' => 'Groteko',
 	'lqt-search-legend' => 'werêameyişê no peli bıgêr',
 	'lqt-search-label' => 'termê cıgêrayişi:',
 	'lqt-search-button' => 'Cı geyre',
@@ -4709,6 +4857,7 @@ $7",
 	'lqt-reply-subpage' => 'cewab bıde',
 	'nstab-thread' => 'Pine',
 	'nstab-summary' => 'Xulasa',
+	'pageinfo-usinglqt-yes' => 'Eya',
 );
 
 /** Lower Sorbian (dolnoserbski)
@@ -4827,7 +4976,7 @@ Toś ta operacija njedajo se anulěrowaś.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|powěsć|powěsći|powěsći|powěsćow}} ako {{PLURAL:$1|pśecytana markěrowana|pśecytanej markěrowanej|pśecytane markěrowane|pśecytane markěrowane}}.',
 	'lqt-email-undo' => 'Anulěrowaś',
 	'lqt-no-new-messages' => 'Njamaš nowe powěsći.',
-	'lqt-new-messages' => '✒ Maš nowe powěsći.',
+	'lqt-new-messages' => 'Maš nowe powěsći.',
 	'lqt-email-info-undo' => 'Spóraj nitku slědk, kótaruž sy rowno wótpósłał.',
 	'lqt-date-info' => 'Toś ten wótkaz jo znjemóžnjony, dokulaž woglědujoš se nitki wšych datumow.',
 	'lqt-newmessages-context' => 'Dopołna nitka',
@@ -4907,8 +5056,6 @@ Móžoš jo na <$6> wiźeś
 
 Tekst wótegrona jo:
 $7",
-	'lqt-quote-intro' => '$2 $3 jo [[User:$1|$1]] {{GENDER:$1|napisał|napisała|napisał}}:',
-	'lqt-quote' => 'Citěrowaś',
 	'lqt-search-legend' => 'Diskusije na toś tom boku pśepytaś',
 	'lqt-search-label' => 'Pytańske wuraze:',
 	'lqt-search-button' => 'Pytaś',
@@ -4953,8 +5100,8 @@ Pódpis pokazujo se awtomatiski.',
 	'lqt-feed-new-thread-intro' => 'Nowa nitka na $1 wót {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'Wótegrono na $3 (na $1) wót {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Pokazujo nowe powěsći k nitkam abo na diskusijnych bokach nitkow, kótarež wobglědujoš',
-	'lqt-newmessages-n' => 'nowe powěsći ($1)',
-	'lqt_newmessages' => 'nowe powěsći (žedne)',
+	'lqt-newmessages-n' => 'Nowe powěsći ($1)',
+	'lqt_newmessages' => 'Nowe powěsći (žedne)',
 	'lqt_newmessages-title' => 'Nowe powěsći',
 	'lqt-newpost-summary' => 'Nowa nitka: $1',
 	'lqt-reply-summary' => 'Wótegrono na [[$2|$1]]',
@@ -4972,6 +5119,10 @@ Pódpis pokazujo se awtomatiski.',
 	'lqt-reply-subpage' => 'Wótegroniś',
 	'nstab-thread' => 'Nitka',
 	'nstab-summary' => 'Zespominanje',
+	'echo-pref-email-lqt-new-topic' => 'Napórajo nitkowu diskusiju',
+	'echo-pref-email-lqt-reply' => 'Wótegranja na nitkowu diskusiju',
+	'pageinfo-usinglqt' => 'Nitkowa diskusija zmóžnjona',
+	'pageinfo-usinglqt-yes' => 'Jo',
 );
 
 /** Ewe (eʋegbe)
@@ -4983,7 +5134,7 @@ $messages['ee'] = array(
 	'lqt_move_move' => 'Ɖɔli eƒe nɔƒe',
 	'lqt-movethread' => 'Ɖɔli eƒe nɔƒe',
 	'lqt-search-button' => 'Dii',
-	'lqt_newmessages' => 'Du yeyewo', # Fuzzy
+	'lqt_newmessages' => 'Du yeyewo (ɖeke o)',
 );
 
 /** Greek (Ελληνικά)
@@ -5083,7 +5234,7 @@ $messages['el'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|μήνυμα έχει|μηνύματα έχουν}} σημανθεί ως διαβασμένα.',
 	'lqt-email-undo' => 'Ακύρωση',
 	'lqt-no-new-messages' => 'Δεν υπάρχουν νέα μηνύματα για σας.',
-	'lqt-new-messages' => '✒ Υπάρχουν νέα μηνύματα για σας.',
+	'lqt-new-messages' => 'Υπάρχουν νέα μηνύματα για σας.',
 	'lqt-newmessages-context' => 'Πλήρες θέμα',
 	'lqt-thread-created' => 'Δημιουργήθηκε',
 	'lqt-history-time' => 'Ώρα',
@@ -5125,8 +5276,6 @@ $messages['el'] = array(
 	'lqt-preference-display-count' => 'Μέγιστος αριθμός απαντήσεων προς εμφάνιση:',
 	'lqt-enotif-subject-reply' => '{{SITENAME}} συζήτηση - Απάντηση: $1',
 	'lqt-enotif-subject-newthread' => '{{SITENAME}} συζήτηση - Νέο θέμα: $1',
-	'lqt-quote-intro' => 'Την $2 στις $3, ο [[User:$1|$1]] έγραψε:',
-	'lqt-quote' => 'Απόσπασμα',
 	'lqt-search-legend' => 'Αναζήτηση συζητήσεων σε αυτή τη σελίδα',
 	'lqt-search-label' => 'Αναζήτηση όρων:',
 	'lqt-search-button' => 'Αναζήτηση',
@@ -5156,8 +5305,8 @@ $messages['el'] = array(
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — Νέα θέματα από $1',
 	'lqt-feed-title-replies' => '{{SITENAME}} — Απαντήσεις',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Απαντήσεις από $1',
-	'lqt-newmessages-n' => 'Νέα μηνύματα ($1)',
-	'lqt_newmessages' => 'Νέα Μηνύματα μου (Κανένα)',
+	'lqt-newmessages-n' => 'Νέα μηνύματα ($1)', # Fuzzy
+	'lqt_newmessages' => 'Νέα Μηνύματα μου (Κανένα)', # Fuzzy
 	'lqt_newmessages-title' => 'Νέα μηνύματα',
 	'lqt-newpost-summary' => 'Νέο θέμα: $1',
 	'lqt-reply-summary' => 'Απάντηση σε [[$2|$1]]',
@@ -5303,7 +5452,7 @@ Ili ankoraŭ estos videbla en ties originalaj diskuto-paĝoj.
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|mesaĝo|mesaĝoj}} estis markitaj kiel legitaj.',
 	'lqt-email-undo' => 'Malfari',
 	'lqt-no-new-messages' => 'Estas neniuj novaj mesaĝoj por vi.',
-	'lqt-new-messages' => '✒ Jen novaj mesaĝoj por vi.',
+	'lqt-new-messages' => 'Jen novaj mesaĝoj por vi.',
 	'lqt-email-info-undo' => 'Renovigi la fadenon kiun vi ĵus formetis.',
 	'lqt-date-info' => 'Ĉi tiu ligilo estas malŝaltita ĉar vi estas vidante fadenojn de ĉiuj datoj.',
 	'lqt-newmessages-context' => 'Plena fadeno',
@@ -5384,8 +5533,6 @@ Vi povas vidi ĝin ĉe <$6>
 
 La teksto de la respondo estas:
 $7",
-	'lqt-quote-intro' => 'Je $2, $3, [[User:$1|$1]] skribis:',
-	'lqt-quote' => 'Citi',
 	'lqt-search-legend' => 'Serĉi diskutojn en ĉi tiu paĝo',
 	'lqt-search-label' => 'Serĉaj parametroj:',
 	'lqt-search-button' => 'Serĉi',
@@ -5427,11 +5574,11 @@ La subskribo estas aŭtomate montrita.',
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — Novaj fadenoj de $1',
 	'lqt-feed-title-replies' => '{{SITENAME}} — Respndoj',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Respondoj de $1',
-	'lqt-feed-new-thread-intro' => 'Nova fadeno en $1 afiŝita de $2', # Fuzzy
-	'lqt-feed-reply-intro' => 'Respondo al $3 (en $1) afiŝita de $2', # Fuzzy
+	'lqt-feed-new-thread-intro' => 'Nova fadeno en $1 afiŝita de {{GENDER:$4|$2}}',
+	'lqt-feed-reply-intro' => 'Respondo al $3 (en $1) afiŝita de {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Montras novajn afiŝojn al fadenoj aŭ en fadenaj diskuto-paĝoj kiujn vi atentas',
-	'lqt-newmessages-n' => 'Novaj mesaĝoj ($1)',
-	'lqt_newmessages' => 'Neniuj novaj mesaĝoj por mi',
+	'lqt-newmessages-n' => 'Novaj mesaĝoj ($1)', # Fuzzy
+	'lqt_newmessages' => 'Neniuj novaj mesaĝoj por mi', # Fuzzy
 	'lqt_newmessages-title' => 'Novaj mesaĝoj',
 	'lqt-newpost-summary' => 'Nova fadeno: $1',
 	'lqt-reply-summary' => 'Respondi al [[$2|$1]]',
@@ -5453,14 +5600,17 @@ La subskribo estas aŭtomate montrita.',
 
 /** Spanish (español)
  * @author Armando-Martin
+ * @author Ciencia Al Poder
  * @author Crazymadlover
+ * @author Dalton2
  * @author Dferg
  * @author Fitoschido
  * @author Gustronico
- * @author Heldergeovane
+ * @author Helder.wiki
  * @author Imre
  * @author Locos epraix
  * @author Manuelt15
+ * @author MarcoAurelio
  * @author McDutchie
  * @author Pertile
  * @author Piolinfax
@@ -5473,7 +5623,7 @@ La subskribo estas aŭtomate montrita.',
  */
 $messages['es'] = array(
 	'lqt-desc' => 'Agregar discusiones en hilos a páginas de discusión',
-	'lqt_movethread' => 'Mover hilo a otra página',
+	'lqt_movethread' => 'Trasladar el hilo a otra página',
 	'lqt_deletethread' => 'Borrar o reestablecer hilo',
 	'lqt_contents_title' => 'Contenidos',
 	'lqt_toc_thread_title' => 'Título de hilo',
@@ -5520,19 +5670,19 @@ Puede:
 	'lqt_hist_adjusted_sortkey' => 'Posición de hilo ajustada',
 	'lqt_revision_as_of' => 'Revisión del $2 a las $3.',
 	'lqt_change_new_thread' => 'Esta es la revisión inicial del hilo.',
-	'lqt_change_reply_created' => 'El [comentario resaltado $1] fue creado en esta revisión.',
-	'lqt_change_edited_root' => 'El [comentario resaltado $1] fue editado en esta revisión.',
+	'lqt_change_reply_created' => 'El [$1 comentario resaltado] fue creado en esta revisión.',
+	'lqt_change_edited_root' => 'El [$1 comentario resaltado] fue editado en esta revisión.',
 	'lqt_change_edited_summary' => 'El resumen del hilo fue editado',
-	'lqt_change_deleted' => '[Este hilo $1] o su raíz fue borrada',
-	'lqt_change_undeleted' => 'El [mensaje remarcado $1] fue reestablecido',
-	'lqt_change_moved' => '[Este hilo $1] fue movido a otra página de discusión',
-	'lqt_change_split' => '[Este hilo $1] fue separado de otro hilo',
+	'lqt_change_deleted' => '[$1 Este hilo] o su padre ha sido borrado',
+	'lqt_change_undeleted' => 'El [$1 mensaje resaltado] ha sido restaurado',
+	'lqt_change_moved' => '[$1 Este hilo] fue movido a otra página de discusión',
+	'lqt_change_split' => '[$1 Este hilo] fue separado desde otro hilo',
 	'lqt_change_edited_subject' => 'El tema de este hilo fue cambiado de "$2" a "$3".',
-	'lqt_change_merged_from' => 'Una [respuesta $1] a este hilo fue movida a otro hilo',
-	'lqt_change_merged_to' => 'La [respuesta remarcada $1] fue movida de otro hilo',
-	'lqt_change_split_from' => 'Un [subhilo $1] de este hilo fue separada en su propio hilo',
+	'lqt_change_merged_from' => 'Una [$1 respuesta] a este hilo fue movida a otro hilo',
+	'lqt_change_merged_to' => 'La [$1 respuesta resaltada] fue movida desde otro hilo',
+	'lqt_change_split_from' => 'Un [$1 subhilo] de este hilo se ha separado en su propio hilo',
 	'lqt_change_root_blanked' => 'El texto de [$1 un comentario] ha sido borrado.',
-	'lqt_youhavenewmessages' => 'Tienes [[$1|nuevos mensajes]].',
+	'lqt_youhavenewmessages' => 'Tienes [[$1|mensajes nuevos]].',
 	'lqt_protectedfromreply' => 'Este hilo ha sido $1. No es posible responder en él.',
 	'lqt_protectedfromreply_link' => 'protegido',
 	'lqt_subject' => 'Tema:',
@@ -5551,7 +5701,7 @@ Si está concluída, talvez quieras $1.',
 	'lqt_nosuchthread' => 'El hilo que has especificado no existe.',
 	'lqt_nosuchthread_title' => 'No hay tal hilo',
 	'lqt_threadrequired' => 'Debes especificar un hilo en el URL.',
-	'lqt_move_movingthread' => 'Moviendo $1
+	'lqt_move_movingthread' => 'Trasladando $1.
 Este hilo es parte de $2.',
 	'lqt_move_torename' => 'Para renombrar este hilo, $1 y cambia el campo «Asunto».',
 	'lqt_move_torename_edit' => 'edítalo',
@@ -5585,12 +5735,12 @@ Esta operación no se puede deshacer',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|mensaje|mensajes}} marcados como leídos.',
 	'lqt-email-undo' => 'Deshacer',
 	'lqt-no-new-messages' => 'No hay nuevos mensajes para ti.',
-	'lqt-new-messages' => '✒ Hay nuevos mensajes para ti.',
+	'lqt-new-messages' => 'Hay nuevos mensajes para ti.',
 	'lqt-email-info-undo' => 'Restablece el hilo que acaba de descartar.',
 	'lqt-date-info' => 'Este enlace está deshabilitado porque estás viendo hilos de todas las fechas.',
 	'lqt-newmessages-context' => 'Hilo completo',
 	'lqt-thread-created' => 'Creado',
-	'lqt-history-time' => 'Tiempo',
+	'lqt-history-time' => 'Hora',
 	'lqt-history-user' => 'Usuario',
 	'lqt-history-action' => 'Actividad',
 	'lqt-history-comment' => 'Comentario',
@@ -5617,11 +5767,12 @@ Sus respuestas también serán automáticamente eliminadas.
 Para evitarlo, divídalas a partir de este hilo antes de eliminarlas.',
 	'lqt-delete-parent-deleted' => 'Hilo padre eliminado ($1)',
 	'lqt-delete-replies-done' => 'Todas las respuestas a este hilo han sido también borradas.',
-	'lqt-movethread' => 'Mover',
+	'lqt-movethread' => 'Trasladar',
 	'lqt-menu-trigger' => 'Más',
 	'lqt-newmessages-from' => 'De $1',
 	'lqt-hot-topics' => 'Temas populares',
 	'lqt-add-reply' => 'Agregar una respuesta',
+	'lqt-changesortorder' => 'Ordenar',
 	'lqt_rc_new_discussion' => 'publicó un hilo nuevo, «$1»',
 	'lqt_rc_new_reply' => 'publicó una respuesta para «$1»',
 	'right-lqt-split' => 'Separar hilos',
@@ -5668,8 +5819,6 @@ Puedes verla en <$6>
 
 El texto de la respuesta es:
 $7",
-	'lqt-quote-intro' => 'El día $2 a las $3, [[User:$1|$1]] escribió:',
-	'lqt-quote' => 'Citar',
 	'lqt-search-legend' => 'Discusiones de búsqueda en esta página',
 	'lqt-search-label' => 'Términos de búsqueda:',
 	'lqt-search-button' => 'Buscar',
@@ -5683,7 +5832,7 @@ $7",
 	'lqt-thread-link-title' => 'Enlace Wikitexto:',
 	'lqt-thread-link-copy' => 'Copiar al portapapeles',
 	'lqt-sign-not-necessary' => 'No es necesario firmar tu mensaje con cuatro tildes.
-La firma es mostrada automaticamente.',
+La firma se muestra automáticamente.',
 	'lqt-marked-as-read-placeholder' => 'El hilo $1 se ha marcado como leído.',
 	'lqt-change-subject' => 'Cambiar tema',
 	'lqt-save-subject' => 'Guardar',
@@ -5695,8 +5844,8 @@ La firma es mostrada automaticamente.',
 	'lqt-drag-activate' => 'Arrastrar a nueva ubicación',
 	'lqt-drag-drop-zone' => 'Soltar aquí',
 	'lqt-drag-confirm' => 'Para completar las siguientes acciones, introduce un motivo y haz clic en «Confirmar».',
-	'lqt-drag-reparent' => 'Mover el mensaje hasta debajo de un nuevo padre.',
-	'lqt-drag-split' => 'Mover este mensaje a su propio hilo',
+	'lqt-drag-reparent' => 'Colocar el mensaje bajo una nueva raíz.',
+	'lqt-drag-split' => 'Trasladar este mensaje a su propio hilo',
 	'lqt-drag-setsortkey' => 'Ajustar la posición del mensaje en la página',
 	'lqt-drag-bump' => 'Subir el mensaje al primer lugar de la página de discusión',
 	'lqt-drag-save' => 'Confirmar',
@@ -5714,8 +5863,8 @@ La firma es mostrada automaticamente.',
 	'lqt-feed-new-thread-intro' => 'Nuevo hilo de discusión en $1 enviado por {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'Respuesta a $3 (en $1) publicada por {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Muestra los mensajes nuevos publicados en hilos o en páginas de discusión que estás vigilando',
-	'lqt-newmessages-n' => 'Mensajes ($1)',
-	'lqt_newmessages' => 'Mensajes (–)',
+	'lqt-newmessages-n' => 'Nuevos mensajes ($1)',
+	'lqt_newmessages' => 'Mensajes nuevos (–)',
 	'lqt_newmessages-title' => 'Mensajes nuevos',
 	'lqt-newpost-summary' => 'Hilo nuevo: $1',
 	'lqt-reply-summary' => 'Respuesta a [[$2|$1]]',
@@ -5728,11 +5877,15 @@ La firma es mostrada automaticamente.',
 	'lqt-protected-reply-talkpage' => 'No puedes publicar en este hilo poruqe la página de discusión ha sido protegida de respuestas a sus hilos.',
 	'lqt-protected-newthread' => 'No puedes publicar nuevos hilos en esta página de discusión porque ha sido protegida de nuevos hilos.',
 	'lqt-edit-bump' => 'Obviar este hilo',
-	'lqt-edit-bump-tooltip' => 'Mover este hilo hasta la parte superior de su página de discusión',
+	'lqt-edit-bump-tooltip' => 'Trasladar este hilo a la parte superior de su página de discusión',
 	'lqt-historicalrevision-error' => 'La revisión seleccionada está dañada, y no puede visualizarse.',
 	'lqt-reply-subpage' => 'responder',
 	'nstab-thread' => 'Hilo',
 	'nstab-summary' => 'Resumen',
+	'echo-pref-email-lqt-new-topic' => 'Crea un nuevo hilo de discusión',
+	'echo-pref-email-lqt-reply' => 'Responde a un hilo de discusión',
+	'pageinfo-usinglqt' => 'Hilos de discusión activados',
+	'pageinfo-usinglqt-yes' => 'Sí',
 );
 
 /** Estonian (eesti)
@@ -5846,7 +5999,7 @@ Seda toimingut ei saa tagasi võtta.',
 	'lqt-count-marked-read' => '{{PLURAL:$1|Üks sõnum|$1 sõnumit}} on loetuks märgitud.',
 	'lqt-email-undo' => 'Võta tagasi',
 	'lqt-no-new-messages' => 'Sulle pole uusi sõnumeid.',
-	'lqt-new-messages' => '✒ Sulle on uusi sõnumeid.',
+	'lqt-new-messages' => 'Sulle on uusi sõnumeid.',
 	'lqt-email-info-undo' => 'Too eemaldatud lõim tagasi.',
 	'lqt-newmessages-context' => 'Kogu lõim',
 	'lqt-thread-created' => 'Loodud',
@@ -5919,8 +6072,6 @@ See on leitav asukohast <$6>.
 
 Vastus on järgmine:
 $7',
-	'lqt-quote-intro' => 'Kuupäeval $2, kell $3 kirjutas [[User:$1|$1]]:',
-	'lqt-quote' => 'Tsiteeri',
 	'lqt-search-label' => 'Otsitav:',
 	'lqt-search-button' => 'Otsi',
 	'searchprofile-threads' => 'Arutelud',
@@ -5971,6 +6122,7 @@ Allkiri kuvatakse iseenesest.',
 	'lqt-talkpage-history-title' => 'Arutelulehekülje ajalugu',
 	'lqt-talkpage-history-subtitle' => 'Leheküljele $1',
 	'lqt-talkpage-history-tab' => 'Päis',
+	'restriction-reply' => 'Postita vastused',
 	'lqt-protected-reply-thread' => 'Sellesse lõime ei saa postitada, sest see on uute postituste eest kaitstud.',
 	'lqt-protected-reply-talkpage' => 'Sellesse lõime ei saa postitada, sest selle arutelulehekülje lõimed on vastuste eest kaitstud.',
 	'lqt-protected-newthread' => 'Sellele aruteluleheküljele ei saa uusi lõimi postitada, sest see on uute lõimede eest kaitstud.',
@@ -5980,6 +6132,8 @@ Allkiri kuvatakse iseenesest.',
 	'lqt-reply-subpage' => 'vasta',
 	'nstab-thread' => 'Lõim',
 	'nstab-summary' => 'Kokkuvõte',
+	'pageinfo-usinglqt' => 'Lõimarutelu lubatud',
+	'pageinfo-usinglqt-yes' => 'Jah',
 );
 
 /** Basque (euskara)
@@ -6033,7 +6187,7 @@ Eztabaida hau $2-(e)ko zati da.',
 	'lqt-count-marked-read' => '{{PLURAL:$1|mezu bat|$1 mezu}} markatuak irakurrita gisa.',
 	'lqt-email-undo' => 'Desegin',
 	'lqt-no-new-messages' => 'Ez dago zuretzako mezu berririk.',
-	'lqt-new-messages' => '✒ Zuretzako mezu berriak daude.',
+	'lqt-new-messages' => 'Zuretzako mezu berriak daude.',
 	'lqt-newmessages-context' => 'Mintzagai osoa',
 	'lqt-thread-created' => 'Sortua',
 	'lqt-history-time' => 'Ordua',
@@ -6052,7 +6206,6 @@ Eztabaida hau $2-(e)ko zati da.',
 	'lqt-merge-submit' => 'Merge',
 	'lqt-enotif-subject-reply' => '{{SITENAME}} eztabaida - Erantzuna: $1',
 	'lqt-enotif-subject-newthread' => '{{SITENAME}} eztabaida - Mintzagai berria: $1',
-	'lqt-quote' => 'Aipu',
 	'lqt-search-button' => 'Bilatu',
 	'searchprofile-threads' => 'Eztabaidak',
 	'lqt-ajax-update-link' => 'Eguneratu',
@@ -6071,8 +6224,8 @@ Eztabaida hau $2-(e)ko zati da.',
 	'lqt-feed-title-new-threads' => '{{SITENAME}} — Eztabaida berriak',
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — Eztabaida berriak $1 - (r)engandik',
 	'lqt-feed-title-replies' => '{{SITENAME}} — Erantzunak',
-	'lqt-newmessages-n' => 'Mezu berriak ($1)',
-	'lqt_newmessages' => 'Mezu berriak',
+	'lqt-newmessages-n' => 'Mezu berriak ($1)', # Fuzzy
+	'lqt_newmessages' => 'Mezu berriak', # Fuzzy
 	'lqt_newmessages-title' => 'Mezu berriak',
 	'lqt-newpost-summary' => 'Mintzagai berria: $1',
 	'lqt-talkpage-history-tab' => 'Goiburua',
@@ -6205,7 +6358,7 @@ $messages['fa'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|message|messages}} به‌عنوان خوانده‌شده نشانه‌گذاری شده است.',
 	'lqt-email-undo' => 'خنثی‌سازی',
 	'lqt-no-new-messages' => 'هیچ پیام جدیدی برای شما وجود ندارد.',
-	'lqt-new-messages' => '✒ پیام‌های جدیدی برای شما وجود دارند.',
+	'lqt-new-messages' => 'پیام‌های جدیدی برای شما وجود دارند.',
 	'lqt-email-info-undo' => 'بازگرداندن مبحثی که هم‌اکنون مختومه کردید.',
 	'lqt-date-info' => 'این پیوند غیرفعال شده است، چرا که شما مبحث‌های همهٔ تاریخ‌ها را مشاهده می‌کنید.',
 	'lqt-newmessages-context' => 'موضوع کامل',
@@ -6285,8 +6438,6 @@ $7",
 
 متن پاسخ بدین شرح است:
 $7",
-	'lqt-quote-intro' => '[[User:$1|$1]] در تاریخ $2 در زمان $3 نوشت:',
-	'lqt-quote' => 'نقل قول',
 	'lqt-search-legend' => 'جستجوی بحث‌های این صفحه',
 	'lqt-search-label' => 'عبارات جستجو:',
 	'lqt-search-button' => 'جستجو',
@@ -6332,8 +6483,8 @@ $1',
 	'lqt-feed-new-thread-intro' => 'مبحث جدید در $1 فرستاده شده توسط {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'پاسخ به $3 (در $1) فرستاده شده توسط {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'نمایش ارسالی‌های جدید به موضوع‌ها و یا صفحه‌های بحث موضوع‌هایی که شما آن‌ها را پی‌گیری می‌کنید',
-	'lqt-newmessages-n' => 'پیام‌های جدید ($1)',
-	'lqt_newmessages' => 'پیام‌های جدید من (هیچ)',
+	'lqt-newmessages-n' => 'پیام‌های جدید ($1)', # Fuzzy
+	'lqt_newmessages' => 'پیام‌های جدید من (هیچ)', # Fuzzy
 	'lqt_newmessages-title' => 'پیام‌های جدید',
 	'lqt-newpost-summary' => 'مبحث جدید: $1',
 	'lqt-reply-summary' => 'پاسخ به [[$2|$1]]',
@@ -6477,7 +6628,7 @@ Tätä toimintoa ei voi perua.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|viesti|viestiä}} merkitty luetuksi.',
 	'lqt-email-undo' => 'Kumoa',
 	'lqt-no-new-messages' => 'Sinulle ei ole uusia viestejä.',
-	'lqt-new-messages' => '✒ Sinulle on uusia viestejä.',
+	'lqt-new-messages' => 'Sinulle on uusia viestejä.',
 	'lqt-email-info-undo' => 'Palauta juuri poistamasi ketju.',
 	'lqt-date-info' => 'Tämä linkki ei ole käytössä koska sinulla on näkyvissä ketjut kaikilta ajankohdilta.',
 	'lqt-newmessages-context' => 'Koko viestiketju',
@@ -6492,7 +6643,7 @@ Viimeisin muokkaus: $1',
 	'lqt-thread-edited-others' => '{{PLURAL:$2|Muun käyttäjän|$2 muun käyttäjän}} muokkaama.<br />
 Viimeisin muokkaus: $1',
 	'lqt-header-actions' => 'Toiminnot',
-	'lqt_summarize_link' => 'Tiivistä',
+	'lqt_summarize_link' => 'Tee yhteenveto',
 	'lqt-summarize-intro' => 'Tee yhteenveto alla olevasta ketjusta muokkauskenttään.
 Voit käyttää mitä tahansa wikitekstiä yhteenvedossa.
 Kun olet valmis, napsauta ”{{int:savearticle}}”.',
@@ -6514,6 +6665,7 @@ Välttääksesi tämän, jaa ne tästä ketjusta erilleen ennen sen poistamista.
 	'lqt-newmessages-from' => 'Sivulta $1',
 	'lqt-hot-topics' => 'Kuumat aiheet',
 	'lqt-add-reply' => 'Lisää vastaus',
+	'lqt-changesortorder' => 'Lajittele',
 	'lqt_rc_new_discussion' => 'aloitti uuden ketjun ”$1”',
 	'lqt_rc_new_reply' => 'vastasi ketjuun ”$1”',
 	'right-lqt-split' => 'Jakaa viestiketjuja',
@@ -6558,8 +6710,6 @@ Näet sen osoitteessa <$6>.
 
 Vastauksen teksti on:
 $7',
-	'lqt-quote-intro' => '[[User:$1|$1]] kirjoitti $2 kello $3:',
-	'lqt-quote' => 'Lainaa',
 	'lqt-search-legend' => 'Hae keskusteluja tältä sivulta',
 	'lqt-search-label' => 'Hae keskusteluista',
 	'lqt-search-button' => 'Etsi',
@@ -6623,6 +6773,7 @@ Allekirjoitus näytetään automaattisesti.',
 	'lqt-reply-subpage' => 'vastaus',
 	'nstab-thread' => 'Säie',
 	'nstab-summary' => 'Yhteenveto',
+	'pageinfo-usinglqt-yes' => 'Kyllä',
 );
 
 /** French (français)
@@ -6640,6 +6791,7 @@ Allekirjoitus näytetään automaattisesti.',
  * @author Sherbrooke
  * @author Urhixidur
  * @author Verdy p
+ * @author Wyz
  * @author Zetud
  */
 $messages['fr'] = array(
@@ -6752,9 +6904,9 @@ Ils seront encore visibles sur leur page de discussion originale.
 Cette opération est réversible.',
 	'lqt-marked-read' => "Fil de discussion '''$1''' marqué comme lu.",
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|message marqué comme lu|messages marqués comme lus}}',
-	'lqt-email-undo' => 'Défaire',
+	'lqt-email-undo' => 'Annuler',
 	'lqt-no-new-messages' => 'Il n’y a aucun message pour vous.',
-	'lqt-new-messages' => '✒ Vous avez de nouveaux messages.',
+	'lqt-new-messages' => 'Vous avez de nouveaux messages.',
 	'lqt-email-info-undo' => 'Rétablir le fil que vous venez juste d’enlever.',
 	'lqt-date-info' => 'Ce lien est désactivé parce que vous êtes en train de voir les fils à partir de toutes les dates.',
 	'lqt-newmessages-context' => 'Fil complet',
@@ -6790,6 +6942,7 @@ Pour éviter cela, séparez les de ce fil de discussion avant de supprimer celui
 	'lqt-newmessages-from' => 'Depuis $1',
 	'lqt-hot-topics' => 'Sujets brûlants',
 	'lqt-add-reply' => 'Ajouter une réponse',
+	'lqt-changesortorder' => 'Trier',
 	'lqt_rc_new_discussion' => 'a posté un nouveau fil « $1 »',
 	'lqt_rc_new_reply' => 'a posté une réponse à « $1 »',
 	'right-lqt-split' => 'Scinder les fils de discussion',
@@ -6810,6 +6963,7 @@ Pour éviter cela, séparez les de ce fil de discussion avant de supprimer celui
 	'lqt-log-action-merge-down' => 'a fusionné [[$1]] au dessous de [[$3]]',
 	'lqt-log-action-subjectedit' => 'a modifié le sujet de [[$1]] de « $2 » à « $3 »',
 	'lqt-log-action-resort' => "a modifié l'ordre de tri de [[$1]]. La clé de tri a été changée de « $2 » à « $3 ».",
+	'lqt-log-action-signatureedit' => 'a modifié la signature de [[$1]] de "$2" en "$3"',
 	'lqt-preference-notify-talk' => "M’avertir par couriel lors d'une réponse sur un sujet que je suis",
 	'lqt-preference-watch-threads' => 'Suivre les fils de discussion que je crée ou auxquels je participe',
 	'prefs-lqt' => 'Discussions en fil',
@@ -6834,8 +6988,6 @@ Vous pouvez la consulter sur « $6 »
 
 Le texte de la réponse est :
 $7",
-	'lqt-quote-intro' => 'Le $2 à $3, [[User:$1|$1]] a écrit :',
-	'lqt-quote' => 'Citer',
 	'lqt-search-legend' => 'Rechercher des discussions sur cette page',
 	'lqt-search-label' => 'Termes de recherche :',
 	'lqt-search-button' => 'Rechercher',
@@ -6899,6 +7051,10 @@ La signature est affichée automatiquement.',
 	'lqt-reply-subpage' => 'répondre',
 	'nstab-thread' => 'Fil de discussion',
 	'nstab-summary' => 'Résumé',
+	'echo-pref-email-lqt-new-topic' => 'Crée une nouvelle discussion thématique',
+	'echo-pref-email-lqt-reply' => 'Répond à une discussion thématique',
+	'pageinfo-usinglqt' => 'Discussion par fils activée',
+	'pageinfo-usinglqt-yes' => 'Oui',
 );
 
 /** Franco-Provençal (arpetan)
@@ -6915,11 +7071,12 @@ $messages['frp'] = array(
 	'lqt_toc_thread_replycount' => 'Rèponses',
 	'lqt_toc_thread_modified' => 'Dèrriér changement',
 	'lqt_add_header' => 'Apondre un en-téta',
-	'lqt_new_thread' => 'Lanciér una novèla discussion',
+	'lqt_new_thread' => 'Emmodar na novèla discussion',
 	'lqt_invalid_subject' => 'Lo sujèt que vos éd buchiê est envalido.
 Pôt :
 * étre trop long, ou ben
 * entrar en conflit avouéc un prèfixo entèrvouiqui ou ben un èspâço de noms.',
+	'lqt-empty-text' => 'Vos pouede pas mandar un mèssâjo vouedo',
 	'lqt_empty_subject' => 'Vos dête buchiér un sujèt.',
 	'lqt_reply' => 'Rèpondre',
 	'lqt-parent' => 'Parent',
@@ -6941,8 +7098,8 @@ Pôt :
 	'lqt_hist_view_whole_thread' => 'Vêre l’historico de tot lo fil',
 	'lqt_hist_no_revisions_error' => 'Ceti fil at gins d’historico de vèrsions.',
 	'lqt_hist_past_last_page_error' => 'Vos éd dèpassâ lo nombro de pâges de l’historico.',
-	'lqt_hist_tooltip_newer_disabled' => 'Ceti lim est inactif perce que vos éte sur la premiére pâge.',
-	'lqt_hist_tooltip_older_disabled' => 'Ceti lim est inactif perce que vos éte sur la dèrriére pâge.',
+	'lqt_hist_tooltip_newer_disabled' => 'Ceti lim est dèsactivâ perce que vos éte sur la premiére pâge.',
+	'lqt_hist_tooltip_older_disabled' => 'Ceti lim est dèsactivâ perce que vos éte sur la dèrriére pâge.',
 	'lqt_hist_split' => 'Rèponsa dèpondua dens un fil de discussion novél',
 	'lqt_hist_edited_subject' => 'Sujèt changiê de « $2 » a « $3 »',
 	'lqt_hist_edited_subject_corrupt' => 'Sujèt changiê',
@@ -6957,7 +7114,7 @@ Pôt :
 	'lqt_change_edited_root' => 'Lo [$1 comentèro en surbrilyence] at étâ changiê dens ceta vèrsion.',
 	'lqt_change_edited_summary' => 'Lo rèsumâ du fil de discussion at étâ changiê',
 	'lqt_change_deleted' => '[$1 Ceti fil de discussion] ou ben son parent at étâ suprimâ',
-	'lqt_change_undeleted' => 'Lo [$1 pôste en surbrilyence] at étâ refêt',
+	'lqt_change_undeleted' => 'Lo [$1 mèssâjo en surbrilyence] est étâ refêt',
 	'lqt_change_moved' => '[$1 Ceti fil de discussion] at étâ dèplaciê vers una ôtra pâge de discussion',
 	'lqt_change_split' => '[$1 Ceti fil de discussion] at étâ dèpondu d’un ôtro fil de discussion',
 	'lqt_change_edited_subject' => 'Lo sujèt de ceti fil de discussion at étâ changiê de « $2 » en « $3 »',
@@ -7018,7 +7175,7 @@ Ceta opèracion est revèrsibla.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|mèssâjo marcâ coment liesu|mèssâjos marcâs coment liesus}}.',
 	'lqt-email-undo' => 'Dèfâre',
 	'lqt-no-new-messages' => 'Y at gins de mèssâjo por vos.',
-	'lqt-new-messages' => '✒ Vos avéd de mèssâjos novéls.',
+	'lqt-new-messages' => 'Vos avéd de mèssâjos novéls.',
 	'lqt-email-info-undo' => 'Rètablir lo fil que vos vegnéd justo d’enlevar.',
 	'lqt-date-info' => 'Ceti lim est dèsactivâ perce que vos éte aprés vêre los fils dês totes les dâtes.',
 	'lqt-newmessages-context' => 'Fil complèt',
@@ -7101,8 +7258,6 @@ Vos la pouede vêre sur <$6>
 
 Lo tèxto de la rèponsa est :
 $7',
-	'lqt-quote-intro' => 'Lo $2 a $3, [[User:$1|$1]] at ècrit :',
-	'lqt-quote' => 'Citar',
 	'lqt-search-legend' => 'Rechèrchiér des discussions sur ceta pâge',
 	'lqt-search-label' => 'Tèrmos de rechèrche :',
 	'lqt-search-button' => 'Rechèrchiér',
@@ -7115,9 +7270,9 @@ $7',
 	'lqt-thread-link-url' => 'URL du lim :',
 	'lqt-thread-link-title' => 'Lim vouiquitèxto :',
 	'lqt-thread-link-copy' => 'Copiyér dens lo prèssa-papiérs',
-	'lqt-sign-not-necessary' => 'O est pas nècèssèro de signér voutron pôste avouéc quatro tildes.
+	'lqt-sign-not-necessary' => 'Y at pas fôta de signér voutron mèssâjo avouéc quatro tildes.
 La signatura est montrâ ôtomaticament.',
-	'lqt-marked-as-read-placeholder' => 'Lo fil $1 at étâ marcâ coment liesu.',
+	'lqt-marked-as-read-placeholder' => 'Lo fil $1 est étâ marcâ coment liesu.',
 	'lqt-change-subject' => 'Changiér lo sujèt',
 	'lqt-save-subject' => 'Sôvar',
 	'lqt-save-subject-failed' => 'Ceta èrror est arrevâ pendent la tentativa de changement de sujèt de ceti fil : $1',
@@ -7144,8 +7299,8 @@ La signatura est montrâ ôtomaticament.',
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — Fils de discussion novéls de $1',
 	'lqt-feed-title-replies' => '{{SITENAME}} — Rèponses',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Rèponses de $1',
-	'lqt-feed-new-thread-intro' => 'Fil de discussion novél dessus $1 postâ per $2', # Fuzzy
-	'lqt-feed-reply-intro' => 'Rèponsa a $3 (dessus $1) postâ per $2', # Fuzzy
+	'lqt-feed-new-thread-intro' => 'Fil de discussion novél dessus $1 mandâ per {{GENDER:$4|$2}}',
+	'lqt-feed-reply-intro' => 'Rèponsa a $3 (dessus $1) mandâ per {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Montre los mèssâjos novéls sur los sujèts ou ben sur les pâges de discussions que vos siude',
 	'lqt-newmessages-n' => 'Mèssâjos novéls ($1)',
 	'lqt_newmessages' => 'Mèssâjos novéls (nion)',
@@ -7166,6 +7321,8 @@ La signatura est montrâ ôtomaticament.',
 	'lqt-reply-subpage' => 'rèpondre',
 	'nstab-thread' => 'Fil de discussion',
 	'nstab-summary' => 'Rèsumâ',
+	'echo-pref-email-lqt-new-topic' => 'Fât na novèla discussion tèmatica',
+	'echo-pref-email-lqt-reply' => 'Rèpond a na discussion tèmatica',
 );
 
 /** Friulian (furlan)
@@ -7200,7 +7357,7 @@ $messages['fur'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|messaç segnât come let|messaçs segnâts come lets}}.',
 	'lqt-email-undo' => 'Anule',
 	'lqt-no-new-messages' => 'Nissun gnûf messaç par te.',
-	'lqt-new-messages' => '✒ Tu âs gnûfs messaçs.',
+	'lqt-new-messages' => 'Tu âs gnûfs messaçs.',
 	'lqt-thread-created' => 'Creât',
 	'lqt-history-time' => 'Date e ore',
 	'lqt-history-user' => 'Utent',
@@ -7232,8 +7389,8 @@ Ultin cambiament: $1',
 	'lqt-preview-signature' => '(anteprime)',
 	'lqt-feed-title-replies' => '{{SITENAME}} — Rispuestis',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Rispuestis di $1',
-	'lqt-newmessages-n' => 'Gnûfs messaçs ($1)',
-	'lqt_newmessages' => 'I miei messaçs gnûfs',
+	'lqt-newmessages-n' => 'Gnûfs messaçs ($1)', # Fuzzy
+	'lqt_newmessages' => 'I miei messaçs gnûfs', # Fuzzy
 	'lqt_newmessages-title' => 'Gnûfs messaçs',
 	'lqt-reply-summary' => 'Rispueste a [[$2|$1]]',
 	'lqt-talkpage-history-subtitle' => 'PAr $1',
@@ -7401,7 +7558,7 @@ Esta operación non se pode desfacer.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|mensaxe marcada|mensaxes marcadas}} como {{PLURAL:$1|lida|lidas}}.',
 	'lqt-email-undo' => 'Desfacer',
 	'lqt-no-new-messages' => 'Non ten ningunha mensaxe nova.',
-	'lqt-new-messages' => '✒ Hai mensaxes novas para vostede.',
+	'lqt-new-messages' => 'Hai mensaxes novas para vostede.',
 	'lqt-email-info-undo' => 'Traer de volta o fío que acaba de rexeitar.',
 	'lqt-date-info' => 'Esta ligazón está deshabilitada porque está a ver fíos de todas as datas.',
 	'lqt-newmessages-context' => 'Fío completo',
@@ -7437,6 +7594,7 @@ Para evitar isto, sepáreas deste fío antes de borralo.',
 	'lqt-newmessages-from' => 'De "$1"',
 	'lqt-hot-topics' => 'Temas máis vistos',
 	'lqt-add-reply' => 'Engadir unha resposta',
+	'lqt-changesortorder' => 'Ordenar',
 	'lqt_rc_new_discussion' => 'publicou un novo fío: "$1"',
 	'lqt_rc_new_reply' => 'publicou unha resposta a "$1"',
 	'right-lqt-split' => 'Separar fíos',
@@ -7457,6 +7615,7 @@ Para evitar isto, sepáreas deste fío antes de borralo.',
 	'lqt-log-action-merge-down' => 'fusionou "[[$1]]" co final de "[[$3]]"',
 	'lqt-log-action-subjectedit' => 'cambiou o asunto de "[[$1]]" de "$2" a "$3"',
 	'lqt-log-action-resort' => 'modificou o tipo de orde de "[[$1]]". Cambiou o tipo de clave de "$2" a "$3"',
+	'lqt-log-action-signatureedit' => 'cambiou a sinatura de "[[$1]]" de "$2" a "$3"',
 	'lqt-preference-notify-talk' => 'Enviádeme un correo electrónico cando haxa respostas nunha conversa que estea vixiando',
 	'lqt-preference-watch-threads' => 'Vixiar os fíos que creei ou aqueloutros nos que participei',
 	'prefs-lqt' => 'Fíos de conversa',
@@ -7481,8 +7640,6 @@ Pode vela en <$6>
 
 O texto da resposta é:
 $7',
-	'lqt-quote-intro' => 'O $2 ás $3, o [[User:$1|usuario $1]] escribiu:',
-	'lqt-quote' => 'Citar',
 	'lqt-search-legend' => 'Procurar conversas nesta páxina',
 	'lqt-search-label' => 'Termos de procura:',
 	'lqt-search-button' => 'Procurar',
@@ -7527,7 +7684,7 @@ $7',
 	'lqt-feed-reply-intro' => 'Resposta a "$3" (en "$1") publicada por {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Mostra as mensaxes novas nos fíos ou nas páxinas de conversa que está a vixiar',
 	'lqt-newmessages-n' => 'Mensaxes novas ($1)',
-	'lqt_newmessages' => 'As miñas mensaxes novas (ningunha)',
+	'lqt_newmessages' => 'Mensaxes novas (ningunha)',
 	'lqt_newmessages-title' => 'Mensaxes novas',
 	'lqt-newpost-summary' => 'Novo fío: $1',
 	'lqt-reply-summary' => 'Responder a [[$2|$1]]',
@@ -7545,6 +7702,10 @@ $7',
 	'lqt-reply-subpage' => 'resposta',
 	'nstab-thread' => 'Fío',
 	'nstab-summary' => 'Resumo',
+	'echo-pref-email-lqt-new-topic' => 'Crea unha nova conversa en forma de fío',
+	'echo-pref-email-lqt-reply' => 'Responde a unha conversa en forma de fío',
+	'pageinfo-usinglqt' => 'Conversa en fío activada',
+	'pageinfo-usinglqt-yes' => 'Si',
 );
 
 /** Goan Konkani (Latin script) (Konknni)
@@ -7552,7 +7713,7 @@ $7',
  * @author The Discoverer
  */
 $messages['gom-latn'] = array(
-	'lqt_newmessages' => 'Noveo sondes (Kai na)',
+	'lqt_newmessages' => 'Noveo sondes (Kai na)', # Fuzzy
 );
 
 /** Gothic (Gothic)
@@ -7587,7 +7748,8 @@ $messages['grc'] = array(
 	'lqt-search-button' => 'Ζητεῖν',
 	'lqt-ajax-update-link' => 'Ἐνημεροῦν',
 	'lqt-cancel-subject-edit' => 'Ἀκυροῦν',
-	'lqt_newmessages' => 'Τα νέα μηνύματά μου (οὐδέν)',
+	'lqt-newmessages-n' => 'Τα νέα μηνύματά μου ($1)',
+	'lqt_newmessages' => 'Τα νέα μηνύματά μου (οὐδέν)', # Fuzzy
 );
 
 /** Swiss German (Alemannisch)
@@ -7707,7 +7869,7 @@ Die Operation cha rugggängig gmacht wäre.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|Nochricht|Nochrichten}} as gläse markiert.',
 	'lqt-email-undo' => 'Rugggängig',
 	'lqt-no-new-messages' => 'Du hesch kei neji Nochrichte.',
-	'lqt-new-messages' => '✒ Du hesch neji Nochrichte.',
+	'lqt-new-messages' => 'Du hesch neji Nochrichte.',
 	'lqt-email-info-undo' => 'Hol dr Diskussionsstrang zrugg, wu Du grad furtgschickt hesch.',
 	'lqt-date-info' => 'De Link isch nit aktiv, wel du Diskussionssträng vu allene Date aaluegsch.',
 	'lqt-newmessages-context' => 'Ganze Strang',
@@ -7785,8 +7947,6 @@ Du chasch es über de Link aaluege: <$6>
 
 D Antwort isch:
 $7',
-	'lqt-quote-intro' => 'Am $2 am $3, het [[User:$1|$1]] gschribe:',
-	'lqt-quote' => 'Zitiere',
 	'lqt-search-legend' => 'Dursuech d Diskussionsbyytreg uf däre Syte',
 	'lqt-search-label' => 'Suechuusdruck:',
 	'lqt-search-button' => 'Sueche',
@@ -7831,8 +7991,8 @@ D Signatur wird automatisch aazeigt.',
 	'lqt-feed-new-thread-intro' => 'E neje Diskussionsstrang uf $1, aagleit vu $2', # Fuzzy
 	'lqt-feed-reply-intro' => 'Antworte uf $3 (uf $1) vu $2', # Fuzzy
 	'tooltip-pt-newmessages' => 'Zeig nöii Noochrichte für d Theme un Diskussione, wo du beobachte duesch',
-	'lqt-newmessages-n' => 'Neji Nochrichte ($1)',
-	'lqt_newmessages' => 'Neji Nochrichte (keini)',
+	'lqt-newmessages-n' => 'Neji Nochrichte ($1)', # Fuzzy
+	'lqt_newmessages' => 'Neji Nochrichte (keini)', # Fuzzy
 	'lqt_newmessages-title' => 'Neji Nochrichte',
 	'lqt-newpost-summary' => 'Neje Diskussionstrang: $1',
 	'lqt-reply-summary' => 'Anwort uf [[$2|$1]]',
@@ -7853,6 +8013,7 @@ D Signatur wird automatisch aazeigt.',
 );
 
 /** Gujarati (ગુજરાતી)
+ * @author Ashok modhvadia
  * @author Dineshjk
  * @author Dsvyas
  * @author KartikMistry
@@ -7865,10 +8026,10 @@ $messages['gu'] = array(
 	'lqt_delete' => 'રદ કરો',
 	'lqt_undelete' => 'રદ કરેલું પાછુ લાવો',
 	'lqt_permalink' => 'સ્થાયી કડી', # Fuzzy
-	'lqt_fragment' => '$2થી $1નો થોડો ભાગ', # Fuzzy
+	'lqt_fragment' => '$2થી $1નો થોડો ભાગ',
 	'lqt_discussion_link' => 'ચર્ચા',
-	'lqt_from_talk' => '$1 થી', # Fuzzy
-	'lqt_hist_comment_edited' => 'ટીપ્પણીમાં ફેરફાર કર્યો છે', # Fuzzy
+	'lqt_from_talk' => '$1 થી',
+	'lqt_hist_comment_edited' => 'ટીપ્પણી લખાણ [$2 સંપાદિત]',
 	'lqt_hist_summary_changed' => 'સારાંશ બદલ્યો છે',
 	'lqt_hist_deleted' => 'દૂર કરેલ',
 	'lqt_hist_undeleted' => 'રદ કરેલું પાછું વાળ્યું છે',
@@ -7878,19 +8039,19 @@ $messages['gu'] = array(
 	'lqt_hist_tooltip_newer_disabled' => 'આ લિંક કામ નહી કરે, કેમકે આપ પ્રથમ પાના પર છો',
 	'lqt_hist_tooltip_older_disabled' => 'આ લિંક કામ નહી કરે, કેમકે આપ અંતિમ પાના પર છો',
 	'lqt_revision_as_of' => '$2એ $3 વાગ્યા સુધીમાં થયેલાં પુનરાવર્તન.',
-	'lqt_change_reply_created' => 'હાઇલાઇટ કરેલી ટિપ્પણીની રચના વર્તમાન સુધારા દરમ્યાન કરવામાં આવી છે', # Fuzzy
-	'lqt_change_edited_root' => 'હાઇલાઇટ કરેલી ટિપ્પણીમાં ફેરફાર વર્તમાન સુધારા દરમ્યાન કરવામાં આવ્યો  છે', # Fuzzy
+	'lqt_change_reply_created' => '[$1 હાઇલાઇટ કરેલી ટિપ્પણી]ની રચના વર્તમાન સુધારા દરમ્યાન કરવામાં આવી છે',
+	'lqt_change_edited_root' => '[$1 હાઇલાઇટ કરેલી ટિપ્પણી]માં ફેરફાર વર્તમાન સુધારા દરમ્યાન કરવામાં આવ્યો  છે',
 	'lqt_protectedfromreply_link' => 'સુરક્ષિત',
 	'lqt_subject' => 'વિષય',
 	'lqt_noreason' => 'કોઇ કારણ દર્શાવવામાં આવ્યું નથી',
 	'lqt_summary_notice' => 'અહીં છેલ્લા {{PLURAL:$2|દિવસ|દિવસ}} દિવસથી કોઇ ફેરફાર થયા નથી. જો આ ચર્ચા પૂરી થઇ ગયેલી લાગે તો, તમે $1 શકો છો.',
 	'lqt_summary_notice_link' => 'સારાંશ લખો',
-	'lqt_summary_subtitle' => '$1નો સારાંશ', # Fuzzy
+	'lqt_summary_subtitle' => '$1નો સારાંશ',
 	'lqt_move_torename_edit' => 'ફેરફાર કરો',
 	'lqt_move_move' => 'ખસેડો',
 	'lqt_move_noreason' => 'કોઇ કારણ દર્શાવવામાં આવ્યું નથી',
-	'lqt-newmessages-n' => 'મારા નવા સંદેશા ($1)',
-	'lqt_newmessages' => 'મારા નવા સંદેશા (ખાલી)',
+	'lqt-newmessages-n' => 'નવા સંદેશા ($1)',
+	'lqt_newmessages' => 'નવા સંદેશા (ખાલી)',
 );
 
 /** Manx (Gaelg)
@@ -7902,7 +8063,7 @@ $messages['gv'] = array(
 	'lqt_hist_deleted' => 'Scryssit',
 	'lqt_summary_notice_link' => 'screeu giare-choontey',
 	'lqt-drag-reason' => 'Fa:',
-	'lqt_newmessages' => 'Çhaghteraghtyn noa (gyn)',
+	'lqt_newmessages' => 'Çhaghteraghtyn noa (gyn)', # Fuzzy
 );
 
 /** Hausa (Hausa)
@@ -8055,7 +8216,7 @@ $messages['he'] = array(
 	'lqt-count-marked-read' => "{{PLURAL:$1|הודעה אחת סומנה כ'נקראה'|$1 הודעות סומנו כ'נקראו'}}.",
 	'lqt-email-undo' => 'ביטול',
 	'lqt-no-new-messages' => 'אין הודעות חדשות עבורכם.',
-	'lqt-new-messages' => 'יש לכם הודעות חדשות ✒',
+	'lqt-new-messages' => 'יש לכם הודעות חדשות',
 	'lqt-email-info-undo' => 'החזרת השרשור שהתעלמתם ממנו זה עתה.',
 	'lqt-date-info' => 'קישור זה מבוטל כיוון שאתם צופים בשרשורים מכל התאריכים.',
 	'lqt-newmessages-context' => 'שרשור מלא',
@@ -8091,6 +8252,7 @@ $messages['he'] = array(
 	'lqt-newmessages-from' => 'מתוך $1',
 	'lqt-hot-topics' => 'נושאים חמים',
 	'lqt-add-reply' => 'הוספת תגובה',
+	'lqt-changesortorder' => 'מיון',
 	'lqt_rc_new_discussion' => 'שלח שרשור חדש, "$1"',
 	'lqt_rc_new_reply' => 'שלח תגובה ל"$1"',
 	'right-lqt-split' => 'פיצול שרשורים',
@@ -8111,6 +8273,7 @@ $messages['he'] = array(
 	'lqt-log-action-merge-down' => 'איחד את [[$1]] לתוך [[$3]]',
 	'lqt-log-action-subjectedit' => 'שינה את הנושא של [[$1]] מ"$2" ל"$3"',
 	'lqt-log-action-resort' => 'שינה את סדר המיון של [[$1]]. מפתח המיון שונה מ־$2 ל־$3',
+	'lqt-log-action-signatureedit' => 'החתימה של [[$1]] שונתה שונתה מ"$2" ל"$3"',
 	'lqt-preference-notify-talk' => 'שליחת דוא"ל אליך כאשר מתקבלות תגובות בשרשור ברשימת המעקב שלך',
 	'lqt-preference-watch-threads' => 'מעקב אחרי שרשורים שיצרתי או הגבתי להם',
 	'prefs-lqt' => 'שיחות בשרשורים',
@@ -8137,8 +8300,6 @@ $7",
 
 תוכן ההודעה:
 $7",
-	'lqt-quote-intro' => 'ב־$3, $2, נכתב על ידי [[User:$1|$1]]:',
-	'lqt-quote' => 'ציטוט',
 	'lqt-search-legend' => 'חיפוש דיונים בדף זה',
 	'lqt-search-label' => 'ביטויים לחיפוש:',
 	'lqt-search-button' => 'חיפוש',
@@ -8202,6 +8363,10 @@ $7",
 	'lqt-reply-subpage' => 'תגובה',
 	'nstab-thread' => 'שרשור',
 	'nstab-summary' => 'תקציר',
+	'echo-pref-email-lqt-new-topic' => 'יצירת דיון משורשר חדש',
+	'echo-pref-email-lqt-reply' => 'תשובות לדיון משורשר',
+	'pageinfo-usinglqt' => 'דיון משורשר מופעל',
+	'pageinfo-usinglqt-yes' => 'כן',
 );
 
 /** Hindi (हिन्दी)
@@ -8311,7 +8476,7 @@ $messages['hi'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|संदेश|संदेश}} पढ़ा गया चिन्हित किया गया ।',
 	'lqt-email-undo' => 'पूर्ववत करें',
 	'lqt-no-new-messages' => 'वहाँ आपके के लिए कोई संदेश नहीं है ।',
-	'lqt-new-messages' => '✒ वहाँ आपके के लिए नया संदेश है ।',
+	'lqt-new-messages' => 'वहाँ आपके के लिए नया संदेश है ।',
 	'lqt-newmessages-context' => 'पूरा सूत्र',
 	'lqt-thread-created' => 'बनाई हुई',
 	'lqt-history-time' => 'समय',
@@ -8357,7 +8522,6 @@ $messages['hi'] = array(
 	'lqt-preference-custom-signatures' => 'मानुयल सदस्य हस्ताक्षर दिखाएँ',
 	'lqt-enotif-subject-reply' => '{{SITENAME}} आलोचना - जवाब: $1',
 	'lqt-enotif-subject-newthread' => '{{SITENAME}} आलोचना - नया सूत्र: $1',
-	'lqt-quote' => 'उद्धरण',
 	'lqt-search-legend' => 'इस पृष्ठ पे आलोचना ढूँढे',
 	'lqt-search-label' => 'खोज आइटम:',
 	'lqt-search-button' => 'खोजें',
@@ -8391,8 +8555,8 @@ $messages['hi'] = array(
 	'lqt-feed-title-replies-from' => '{{SITENAME}} —  $1 से उत्तर',
 	'lqt-feed-new-thread-intro' => '$1 पे नया सूत्र $2 द्वारा', # Fuzzy
 	'lqt-feed-reply-intro' => 'जवाब $3 को ($1 पे) $2 द्वारा', # Fuzzy
-	'lqt-newmessages-n' => 'मेरे नये सन्देश ($1)',
-	'lqt_newmessages' => 'मेरे नये संदेश (कोई नहीं)',
+	'lqt-newmessages-n' => 'मेरे नये सन्देश ($1)', # Fuzzy
+	'lqt_newmessages' => 'मेरे नये संदेश (कोई नहीं)', # Fuzzy
 	'lqt_newmessages-title' => 'नए संदेश',
 	'lqt-newpost-summary' => 'नया सूत्र: $1',
 	'lqt-reply-summary' => 'जवाब दें [[$2|$1]]',
@@ -8535,7 +8699,7 @@ Ovu operaciju je moguće povratiti.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|poruka označena je pročitanom|poruke označene su pročitanima|poruka označene su pročitanima}}.',
 	'lqt-email-undo' => 'Vrati',
 	'lqt-no-new-messages' => 'Nemate novih poruka.',
-	'lqt-new-messages' => '✒ Imate novih poruka.',
+	'lqt-new-messages' => 'Imate novih poruka.',
 	'lqt-email-info-undo' => 'Vrati temu koju ste upravo odbacili.',
 	'lqt-date-info' => 'Poveznica je onemogućeno jer gledate teme za sve datume.',
 	'lqt-newmessages-context' => 'Cijela rasprava',
@@ -8616,8 +8780,6 @@ Odgovor možete vidjeti ovdje <$6>
 
 Odgovor glasi:
 $7",
-	'lqt-quote-intro' => '$2 u $3, [[User:$1|$1]] je napisao:',
-	'lqt-quote' => 'Citiraj',
 	'lqt-search-legend' => 'Pretraži raspravu na ovoj stranici',
 	'lqt-search-label' => 'Pojmovi pretrage:',
 	'lqt-search-button' => 'Traži',
@@ -8662,8 +8824,8 @@ Potpis se prikazuje automatski.',
 	'lqt-feed-new-thread-intro' => 'Suradnik $2 započeo je nova tema o $1', # Fuzzy
 	'lqt-feed-reply-intro' => 'Odgovor $3 (na $1) napisao je suradnik $2', # Fuzzy
 	'tooltip-pt-newmessages' => 'Pokazuje nove postove na teme ili na stranicama za razgovor koje pratite',
-	'lqt-newmessages-n' => 'Nove poruke ($1)',
-	'lqt_newmessages' => 'Moje nove poruke (nema)',
+	'lqt-newmessages-n' => 'Nove poruke ($1)', # Fuzzy
+	'lqt_newmessages' => 'Moje nove poruke (nema)', # Fuzzy
 	'lqt_newmessages-title' => 'Nove poruke',
 	'lqt-newpost-summary' => 'Nova dretva: $1',
 	'lqt-reply-summary' => 'Odgovori na [[$2|$1]]',
@@ -8795,7 +8957,7 @@ Tuta akcija da so cofnyć.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|powěsć jako přečitana markěrowana|powěsći jako přečitanej markěrowanej|powěsće jako přečitane markěrowane|powěsćow jako přečitane markěrowane}}',
 	'lqt-email-undo' => 'Cofnyć',
 	'lqt-no-new-messages' => 'Nimaš nowe powěsće.',
-	'lqt-new-messages' => '✒ Maš nowe powěsće.',
+	'lqt-new-messages' => 'Maš nowe powěsće.',
 	'lqt-email-info-undo' => 'Wróć nitku, kotruž sy runje zaćisnył.',
 	'lqt-date-info' => 'tutón wotkaz je znjemóžnjeny, dokelž sej nitki ze wšěch datumow wobhladuješ.',
 	'lqt-newmessages-context' => 'Dospołna nitka',
@@ -8831,6 +8993,7 @@ Zo by to wobešoł, wotdźěl je wot tuteje nitki, prjedy hač ju wušmóruješ.
 	'lqt-newmessages-from' => 'z $1',
 	'lqt-hot-topics' => 'Najčasćišo čitane temy',
 	'lqt-add-reply' => 'Wotmołwu přidać',
+	'lqt-changesortorder' => 'Sortěrować',
 	'lqt_rc_new_discussion' => 'pósła nowu nitku, "$1"',
 	'lqt_rc_new_reply' => 'pósła wotmołwu na "$1"',
 	'right-lqt-split' => 'Nitki rozdźělić',
@@ -8851,6 +9014,7 @@ Zo by to wobešoł, wotdźěl je wot tuteje nitki, prjedy hač ju wušmóruješ.
 	'lqt-log-action-merge-down' => 'zapřija [[$1]] pod [[$3]]',
 	'lqt-log-action-subjectedit' => 'změni temu wot [[$1]] z "$2" to "$3"',
 	'lqt-log-action-resort' => 'změni sortěrowanski porjad wot [[$1]]. Změni sortěrowanski kluč wot $2 do $3',
+	'lqt-log-action-signatureedit' => 'změni podpis wot [[$1]] z "$2" to "$3"',
 	'lqt-preference-notify-talk' => 'E-mejl wo wotmołwach k nitce, kotraž so wobkedźbuje, pósłać',
 	'lqt-preference-watch-threads' => 'Nitki wobkedźbować, kotrež tworju abo na kotrež wotmołwjam',
 	'prefs-lqt' => 'Diskusija w nitkach',
@@ -8875,8 +9039,6 @@ Móžeš ju na <$6> widźeć
 
 Tekst wotmołwy je:
 $7",
-	'lqt-quote-intro' => 'Dnja $2 $3 je [[User:$1|$1]] {{GENDER:$1|napisał|napisała|napisał}}:',
-	'lqt-quote' => 'Citować',
 	'lqt-search-legend' => 'Diskusije na tutej stronje přepytać',
 	'lqt-search-label' => 'Pytanske zapřijeća:',
 	'lqt-search-button' => 'Pytać',
@@ -8921,8 +9083,8 @@ Podpis pokazuje so awtomatisce.',
 	'lqt-feed-new-thread-intro' => 'Nowa nitka na $1 wot {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'Wotmołwa na $3 (na $1) wot {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Pokazuje nowe powěsće k nitkam abo na diskusijnych stronach nitkow, kotrež wobkedźbuješ',
-	'lqt-newmessages-n' => 'nowe powěsće ($1)',
-	'lqt_newmessages' => 'nowe powěsće (žane)',
+	'lqt-newmessages-n' => 'Nowe powěsće ($1)',
+	'lqt_newmessages' => 'Nowe powěsće (žane)',
 	'lqt_newmessages-title' => 'Nowe powěsće',
 	'lqt-newpost-summary' => 'Nowa nitka: $1',
 	'lqt-reply-summary' => 'Wotmołwa na [[$2|$1]]',
@@ -8940,6 +9102,10 @@ Podpis pokazuje so awtomatisce.',
 	'lqt-reply-subpage' => 'wotmołwić',
 	'nstab-thread' => 'Nitka',
 	'nstab-summary' => 'Zjeće',
+	'echo-pref-email-lqt-new-topic' => 'Wutworja nitkowu diskusiju',
+	'echo-pref-email-lqt-reply' => 'Wotmołwja na nitkowu diskusiju',
+	'pageinfo-usinglqt' => 'Nitkowa diskusija zmóžnjena',
+	'pageinfo-usinglqt-yes' => 'Haj',
 );
 
 /** Haitian (Kreyòl ayisyen)
@@ -9073,7 +9239,7 @@ A művelet nem vonható vissza.',
 	'lqt-count-marked-read' => '$1 üzenet olvasottnak lett jelölve.',
 	'lqt-email-undo' => 'Visszavonás',
 	'lqt-no-new-messages' => 'Nincsenek új üzeneteid.',
-	'lqt-new-messages' => '✒ Új üzeneteid vannak.',
+	'lqt-new-messages' => 'Új üzeneteid vannak.',
 	'lqt-email-info-undo' => 'A most eltüntetett téma visszaállítása.',
 	'lqt-date-info' => 'Ez a hivatkozás le van tiltva, mert az összes dátumhoz tartozó témákat nézed.',
 	'lqt-newmessages-context' => 'Az egész téma',
@@ -9153,8 +9319,6 @@ A következő címen tekintheted meg: <$6>
 
 A válasz szövege:
 $7',
-	'lqt-quote-intro' => '[[User:$1|$1]] írta, $2 $3-kor:',
-	'lqt-quote' => 'idéz',
 	'lqt-search-legend' => 'Beszélgetések keresése ezen a lapon',
 	'lqt-search-label' => 'Keresett kifejezés:',
 	'lqt-search-button' => 'Keresés',
@@ -9198,8 +9362,8 @@ Az aláírásod automatikusan meg fog jelenni.',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} – válaszok a(z) $1 {{PLURAL:$2|lapról|lapokról}}',
 	'lqt-feed-new-thread-intro' => '$2 új témát indított a(z) $1 lapon', # Fuzzy
 	'lqt-feed-reply-intro' => '$2 új hozzászólást írt a(z) $3 témához a(z) $1 lapon', # Fuzzy
-	'lqt-newmessages-n' => 'Új üzenetek ($1)',
-	'lqt_newmessages' => 'Új üzenetek (nincs)',
+	'lqt-newmessages-n' => 'Új üzenetek ($1)', # Fuzzy
+	'lqt_newmessages' => 'Új üzenetek (nincs)', # Fuzzy
 	'lqt_newmessages-title' => 'Új üzenetek',
 	'lqt-newpost-summary' => 'Új téma: $1',
 	'lqt-reply-summary' => 'Válasz a következő témára: [[$2|$1]]',
@@ -9217,6 +9381,23 @@ Az aláírásod automatikusan meg fog jelenni.',
 	'lqt-reply-subpage' => 'válasz',
 	'nstab-thread' => 'Téma',
 	'nstab-summary' => 'Összefoglaló',
+);
+
+/** Armenian (Հայերեն)
+ * @author Chaojoker
+ * @author Vadgt
+ * @author Xelgen
+ */
+$messages['hy'] = array(
+	'lqt_hist_moved_talkpage' => 'Տեղափոխված է',
+	'lqt_move_move' => 'Տեղափոխել',
+	'lqt-history-thread' => 'Դերձան',
+	'lqt-thread-split-thread' => 'Դերձան՝',
+	'lqt-movethread' => 'Տեղափոխել',
+	'lqt-newmessages-n' => 'Նոր հաղորդագրություններ ($1)',
+	'lqt_newmessages' => 'Նոր հաղորդագրություններ (չկան)',
+	'lqt_newmessages-title' => 'Նոր հաղորդագրություններ',
+	'nstab-thread' => 'Դերձան',
 );
 
 /** Interlingua (interlingua)
@@ -9335,7 +9516,7 @@ Iste operation es reversibile.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|message|messages}} marcate como legite.',
 	'lqt-email-undo' => 'Disfacer',
 	'lqt-no-new-messages' => 'Il non ha nove messages pro te.',
-	'lqt-new-messages' => '✒ Tu ha recipite nove messages.',
+	'lqt-new-messages' => 'Tu ha recipite nove messages.',
 	'lqt-email-info-undo' => 'Restabilir le filo que tu justo dimitteva.',
 	'lqt-date-info' => 'Iste ligamine es disactivate proque tu reguarda le filos de tote le datas.',
 	'lqt-newmessages-context' => 'Filo complete',
@@ -9417,8 +9598,6 @@ Tu pote vider lo a <$6>
 
 Le texto del responsa es:
 $7",
-	'lqt-quote-intro' => 'Le $2 a $3, [[User:$1|$1]] scribeva:',
-	'lqt-quote' => 'Citar',
 	'lqt-search-legend' => 'Cercar in discussiones in iste pagina',
 	'lqt-search-label' => 'Terminos de recerca:',
 	'lqt-search-button' => 'Cercar',
@@ -9463,8 +9642,8 @@ Le signatura es adjungite automaticamente.',
 	'lqt-feed-new-thread-intro' => 'Nove filo in $1 publicate per {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'Responsa a $3 (super $1) publicate per {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Monstra nove messages in filos o paginas de discussion arborescente que tu observa',
-	'lqt-newmessages-n' => 'Nove messages ($1)',
-	'lqt_newmessages' => 'Mi nove messages (nulle)',
+	'lqt-newmessages-n' => 'Nove messages ($1)', # Fuzzy
+	'lqt_newmessages' => 'Mi nove messages (nulle)', # Fuzzy
 	'lqt_newmessages-title' => 'Nove messages',
 	'lqt-newpost-summary' => 'Nove filo: $1',
 	'lqt-reply-summary' => 'Responder a [[$2|$1]]',
@@ -9489,6 +9668,8 @@ Le signatura es adjungite automaticamente.',
  * @author Farras
  * @author Irwangatot
  * @author IvanLanin
+ * @author Kenrick95
+ * @author Naval Scene
  * @author Rex
  */
 $messages['id'] = array(
@@ -9602,9 +9783,9 @@ Ini masih dapat dilihat pada halaman pembicaraan aslinya.
 Hal ini tidak dapat dibatalkan.',
 	'lqt-marked-read' => "Topik '''$1''' ditandai sudah dibaca.",
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|pesan|pesan}} ditandai sudah dibaca.',
-	'lqt-email-undo' => 'Batalkan',
+	'lqt-email-undo' => 'Balikkan',
 	'lqt-no-new-messages' => 'Tidak ada pesan baru untuk Anda.',
-	'lqt-new-messages' => '✒ Ada pesan baru untuk Anda.',
+	'lqt-new-messages' => 'Ada pesan baru untuk Anda.',
 	'lqt-email-info-undo' => 'Kembalikan topik yang baru Anda singkirkan.',
 	'lqt-date-info' => 'Pranala ini dimatikan karena Anda sedang melihat semua topik dari awal hingga sekarang.',
 	'lqt-newmessages-context' => 'Topik lengkap',
@@ -9683,8 +9864,6 @@ Anda dapat melihatnya di <$6>
 
 Teks balasan berisi:
 $7",
-	'lqt-quote-intro' => 'Pada $2 pukul $3, [[User:$1|$1]] menulis:',
-	'lqt-quote' => 'Kutip',
 	'lqt-search-legend' => 'Cari diskusi pada halaman ini',
 	'lqt-search-label' => 'Kata kunci pencarian:',
 	'lqt-search-button' => 'Cari',
@@ -9729,8 +9908,8 @@ Tanda tangan akan dimunculkan secara otomatis.',
 	'lqt-feed-new-thread-intro' => 'Utas baru pada $1 dikirim oleh $2', # Fuzzy
 	'lqt-feed-reply-intro' => 'Balasan untuk $3 (pada $1) dikirim oleh $2', # Fuzzy
 	'tooltip-pt-newmessages' => 'Menunjukkan kiriman baru pada utas atau halaman pembicaraan berutas yang Anda pantau',
-	'lqt-newmessages-n' => 'Pesan baru ($1)',
-	'lqt_newmessages' => 'Pesan baru saya (Tidak ada)',
+	'lqt-newmessages-n' => 'Pesan baru ($1)', # Fuzzy
+	'lqt_newmessages' => 'Pesan baru saya (tidak ada)',
 	'lqt_newmessages-title' => 'Pesan baru',
 	'lqt-newpost-summary' => 'Utas baru: $1',
 	'lqt-reply-summary' => 'Balas ke [[$2|$1]]',
@@ -9758,7 +9937,7 @@ $messages['ig'] = array(
 	'lqt_delete' => 'Kàcha',
 	'lqt_undelete' => 'Á gbàkashikwà',
 	'lqt_permalink' => 'Jikodo na',
-	'lqt_hist_deleted' => 'Gbakashịrị',
+	'lqt_hist_deleted' => 'Kàchàrà',
 	'lqt_hist_undeleted' => 'Ọ gbákashikwà',
 	'lqt_hist_moved_talkpage' => 'Páfụrụ',
 	'lqt_youhavenewmessages' => 'I nwere [[$1|ozi ohúrù]].',
@@ -9771,7 +9950,6 @@ Madu nwere I ki hü ya na ihü akíkó nke sinambu.',
 	'lqt-split-submit' => 'Wa',
 	'lqt-movethread' => 'Páfụ',
 	'lqt-menu-trigger' => 'Ọzȯ kwa',
-	'lqt-quote' => 'Kȯpùtà',
 	'lqt-search-button' => 'Chọwa',
 	'searchprofile-threads' => 'Akíkó',
 	'lqt-ajax-update-link' => 'Dịnwanye mmā',
@@ -9779,11 +9957,11 @@ Madu nwere I ki hü ya na ihü akíkó nke sinambu.',
 	'lqt-save-subject' => 'Domá',
 	'lqt-cancel-subject-edit' => 'Kàchá',
 	'lqt-drag-drop-zone' => 'Dòsé nga',
-	'lqt-drag-save' => 'Sị Í kwèrè',
+	'lqt-drag-save' => 'Kwèré',
 	'lqt-drag-reason' => 'Mgbághapụtà:',
 	'lqt-preview-signature' => '(lètú)',
-	'lqt-newmessages-n' => 'Ozi ohúrù ($1)',
-	'lqt_newmessages' => 'Ozi ohúrù',
+	'lqt-newmessages-n' => 'Ozi ohúrù ($1)', # Fuzzy
+	'lqt_newmessages' => 'Ozi ohúrù', # Fuzzy
 	'lqt_newmessages-title' => 'Ozi ohúrù',
 	'lqt-talkpage-history-subtitle' => 'Màkà $1',
 );
@@ -9851,7 +10029,7 @@ Daytoy nga panait ket parte iti $2.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|mensahe|dagiti mensahe}} markaam nga nabasa.',
 	'lqt-email-undo' => 'Ibabawi',
 	'lqt-no-new-messages' => 'Awan ti baro nga mensahem.',
-	'lqt-new-messages' => '✒ Adda baro nga mensahem.',
+	'lqt-new-messages' => 'Adda baro nga mensahem.',
 	'lqt-thread-created' => 'Inaramid',
 	'lqt-history-time' => 'Oras',
 	'lqt-history-user' => 'Agar-aramat',
@@ -9887,7 +10065,6 @@ Naudi nga pinagbaliwan: $1',
 	'lqt-preference-custom-signatures' => 'Ipakitam dagiti naidumduma nga pirma ti agar-aramat',
 	'lqt-enotif-subject-reply' => '{{SITENAME}} pagtungtungan - Sungbat: $1',
 	'lqt-enotif-subject-newthread' => '{{SITENAME}} pagtungtungan - Baro nga sungbat: $1',
-	'lqt-quote-intro' => 'Idi $2 ti oras nga $3,  nagisurat ni [[User:$1|$1]] :',
 	'lqt-search-legend' => 'Birokem ti pagtutungtongan ditoy nga panid',
 	'lqt-search-button' => 'Biroken',
 	'searchprofile-threads' => 'Pagtutungtongan',
@@ -9911,8 +10088,8 @@ Naudi nga pinagbaliwan: $1',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Dagiti sungbat ni $1',
 	'lqt-feed-new-thread-intro' => 'Baro nga panait idi $1 inkabil ni $2', # Fuzzy
 	'lqt-feed-reply-intro' => 'Sungbat kenni $3 (on $1) inkabil ni $2', # Fuzzy
-	'lqt-newmessages-n' => 'Dagiti baro nga  mensahek ($1)',
-	'lqt_newmessages' => 'Dagiti baro nga  mensahek (awan)',
+	'lqt-newmessages-n' => 'Dagiti baro nga  mensahek ($1)', # Fuzzy
+	'lqt_newmessages' => 'Dagiti baro nga  mensahek (awan)', # Fuzzy
 	'lqt_newmessages-title' => 'Dagiti baro nga mensahe',
 	'lqt-newpost-summary' => 'Baro nga panait: $1',
 	'lqt-reply-summary' => 'Sungbat kenni [[$2|$1]]',
@@ -9938,7 +10115,7 @@ $messages['io'] = array(
 	'lqt-summary' => 'Rezumo',
 	'lqt-email-undo' => 'Desfacar',
 	'lqt-no-new-messages' => 'Ne existas nova messaji por vu.',
-	'lqt-new-messages' => '✒ Existas nova mesaji por vu',
+	'lqt-new-messages' => 'Existas nova mesaji por vu',
 	'lqt-history-time' => 'Tempo',
 	'lqt-history-user' => 'Uzanto',
 	'lqt-history-comment' => 'Komento',
@@ -9946,7 +10123,7 @@ $messages['io'] = array(
 	'lqt-save-subject' => 'Registragar',
 	'lqt-drag-save' => 'Konfirmar',
 	'lqt-drag-reason' => 'Motivo:',
-	'lqt-newmessages-n' => 'Nova mesaji ($1)',
+	'lqt-newmessages-n' => 'Nova mesaji ($1)', # Fuzzy
 	'lqt_newmessages' => 'Nova mesaji', # Fuzzy
 	'lqt_newmessages-title' => 'Nova mesaji',
 	'lqt-talkpage-history-subtitle' => 'Por $1',
@@ -10028,8 +10205,8 @@ Síðast breytt: $1',
 	'lqt-drag-drop-zone' => 'Færðu innleggið hingað',
 	'lqt-edit-signature' => '(breyta undirskrift)',
 	'lqt-preview-signature' => '(forskoða)',
-	'lqt-newmessages-n' => 'Ný skilaboð ($1)',
-	'lqt_newmessages' => 'Engin ný skilaboð',
+	'lqt-newmessages-n' => 'Ný skilaboð ($1)', # Fuzzy
+	'lqt_newmessages' => 'Engin ný skilaboð', # Fuzzy
 	'lqt_newmessages-title' => 'Ný skilaboð',
 	'lqt-edit-bump' => 'Stjaka þessum þræði',
 );
@@ -10089,7 +10266,7 @@ Potrebbe:
 	'lqt_hist_tooltip_newer_disabled' => 'Questo collegamento è disattivato perché si è sulla prima pagina.',
 	'lqt_hist_tooltip_older_disabled' => "Questo collegamento è disattivato perché si è sull'ultima pagina.",
 	'lqt_hist_split' => 'Risposta suddivisa in un nuovo thread',
-	'lqt_hist_edited_subject' => 'Oggetto modificato da "$2" in "$3"',
+	'lqt_hist_edited_subject' => 'Oggetto modificato da "$2" a "$3"',
 	'lqt_hist_edited_subject_corrupt' => 'Oggetto cambiato',
 	'lqt_hist_merged_from' => "[[$1|Risposta]] trasferita in un'altra discussione",
 	'lqt_hist_merged_to' => "[[$1|Risposta]] trasferita da un'altra discussione",
@@ -10162,7 +10339,7 @@ Questa operazione non è annullabile.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|messaggio è stato segnato come letto|messaggi sono stati segnati come letti}}.',
 	'lqt-email-undo' => 'Annulla',
 	'lqt-no-new-messages' => 'Non ci sono nuovi messaggi per te.',
-	'lqt-new-messages' => '✒ Ci sono nuovi messaggi per te.',
+	'lqt-new-messages' => 'Ci sono nuovi messaggi per te.',
 	'lqt-email-info-undo' => 'Riapri il thread che hai appena chiuso.',
 	'lqt-date-info' => 'Questo link è disabilitato perché stai vedendo i thread di tutte le date.',
 	'lqt-newmessages-context' => 'Thread intero',
@@ -10197,12 +10374,13 @@ Per evitarlo, dividi le risposte dal thread prima di cancellarlo.',
 	'lqt-newmessages-from' => 'Da $1',
 	'lqt-hot-topics' => 'Discussioni calde',
 	'lqt-add-reply' => 'Aggiungi una risposta',
+	'lqt-changesortorder' => 'Ordina',
 	'lqt_rc_new_discussion' => 'ha iniziato una nuova discussione, "$1"',
 	'lqt_rc_new_reply' => 'ha inviato una risposta a "$1"',
 	'right-lqt-split' => 'Divide discussioni',
 	'right-lqt-merge' => 'Unisce discussioni',
 	'right-lqt-react' => 'Risponde ai thread',
-	'lqt-thread-merge' => "Unisci ad un'altra discussione",
+	'lqt-thread-merge' => "Unisci a un'altra discussione",
 	'lqt-thread-merge-to' => 'Unisci a questa discussione',
 	'lqt_merge_thread' => 'Unisci discussione',
 	'lqt-thread-merge-source' => 'Discussione originaria:',
@@ -10217,6 +10395,7 @@ Per evitarlo, dividi le risposte dal thread prima di cancellarlo.',
 	'lqt-log-action-merge-down' => 'unito [[$1]] a [[$3]]',
 	'lqt-log-action-subjectedit' => 'modificato l\'oggetto di [[$1]] da "$2" a "$3"',
 	'lqt-log-action-resort' => "modificato l'ordinamento di [[$1]]. Cambiato criterio di ordinamento da $2 a $3",
+	'lqt-log-action-signatureedit' => 'modificato la firma di [[$1]] da "$2" a "$3"',
 	'lqt-preference-notify-talk' => 'Segnalami via e-mail le risposte a un thread che sto seguendo',
 	'lqt-preference-watch-threads' => 'Aggiungi le discussioni che ho creato o a cui ho risposto',
 	'prefs-lqt' => 'Discussioni in stile thread',
@@ -10241,8 +10420,6 @@ Puoi leggerlo a <$6>
 
 Il testo è:
 $7",
-	'lqt-quote-intro' => 'Il $2 alle $3, [[User:$1|$1]] ha scritto:',
-	'lqt-quote' => 'Cita',
 	'lqt-search-legend' => 'Cerca discussioni in questa pagina',
 	'lqt-search-label' => 'Termini di ricerca:',
 	'lqt-search-button' => 'Ricerca',
@@ -10294,7 +10471,7 @@ La firma è mostrata automaticamente.',
 	'lqt-reply-summary' => 'Risposta a [[$2|$1]]',
 	'lqt-talkpage-history-title' => 'Cronologia della pagina di discussione',
 	'lqt-talkpage-history-subtitle' => 'Per $1',
-	'lqt-talkpage-history-tab' => 'Introduzione',
+	'lqt-talkpage-history-tab' => 'Intestazione',
 	'restriction-reply' => 'Invia risposte',
 	'restriction-newthread' => 'Invia nuove discussioni',
 	'lqt-protected-reply-thread' => 'Non puoi scrivere in questo thread perché è stato protetto dai nuovi inserimenti',
@@ -10306,6 +10483,10 @@ La firma è mostrata automaticamente.',
 	'lqt-reply-subpage' => 'rispondi',
 	'nstab-thread' => 'Thread',
 	'nstab-summary' => 'Sommario',
+	'echo-pref-email-lqt-new-topic' => 'Creazione di una nuova discussione con thread',
+	'echo-pref-email-lqt-reply' => 'Risposta ad una discussione con thread',
+	'pageinfo-usinglqt' => 'Discussioni in stile thread attivate',
+	'pageinfo-usinglqt-yes' => 'Sì',
 );
 
 /** Japanese (日本語)
@@ -10326,14 +10507,14 @@ $messages['ja'] = array(
 	'lqt_contents_title' => '目次',
 	'lqt_toc_thread_title' => 'スレッド表題',
 	'lqt_toc_thread_author' => '開始者',
-	'lqt_toc_thread_replycount' => '返信',
+	'lqt_toc_thread_replycount' => '返信数',
 	'lqt_toc_thread_modified' => '最終更新',
 	'lqt_add_header' => 'ヘッダーを追加',
 	'lqt_new_thread' => '新しい議論を始める',
 	'lqt_invalid_subject' => '入力した表題は無効です。
-以下の可能性があります：
+以下に該当する可能性があります:
 * 長すぎる
-* インターウィキ用接頭辞や名前空間名と衝突している',
+* インターウィキ接頭辞や名前空間名と衝突している',
 	'lqt-empty-text' => '空のメッセージは投稿できません',
 	'lqt_empty_subject' => '表題を入力する必要があります。',
 	'lqt_reply' => '返信',
@@ -10414,7 +10595,7 @@ $messages['ja'] = array(
 	'lqt_header_warning_after_big' => '見出しは、告知や序文のためにあります。代わりに$2するべきでしょう。',
 	'lqt_header_warning_bold' => '議論ページの見出し',
 	'lqt_header_warning_new_discussion' => '新しい議論を開始',
-	'lqt_sorting_order' => '並び順：',
+	'lqt_sorting_order' => '並び順:',
 	'lqt_sort_newest_changes' => '最終更新を上に',
 	'lqt_sort_newest_threads' => '新しいスレッドを上に',
 	'lqt_sort_oldest_threads' => '古いスレッドを上に',
@@ -10432,7 +10613,7 @@ $messages['ja'] = array(
 	'lqt-count-marked-read' => '$1件の{{PLURAL:$1|メッセージ}}を既読にしました。',
 	'lqt-email-undo' => '取り消し',
 	'lqt-no-new-messages' => '新しいメッセージは届いていません。',
-	'lqt-new-messages' => '✒ 新しいメッセージが届いています。',
+	'lqt-new-messages' => '新しいメッセージが届いています。',
 	'lqt-email-info-undo' => 'あなたが片付けたばかりのスレッドを復元する。',
 	'lqt-date-info' => 'すべての日付のスレッドを閲覧しているため、このリンクは無効になっています。',
 	'lqt-newmessages-context' => 'スレッド全体',
@@ -10454,7 +10635,7 @@ $messages['ja'] = array(
 	'lqt-thread-split' => '新規スレッドに分割',
 	'lqt-split-success' => 'スレッド「$1」を分割しました。',
 	'lqt_split_thread' => 'スレッドを分割',
-	'lqt-thread-split-subject' => '新規スレッドの表題：',
+	'lqt-thread-split-subject' => '新規スレッドの表題:',
 	'lqt-thread-split-thread' => 'スレッド:',
 	'lqt-split-submit' => '分割',
 	'lqt_split_badsubject' => '入力した表題は無効です。',
@@ -10469,7 +10650,8 @@ $messages['ja'] = array(
 	'lqt-newmessages-from' => '$1 より',
 	'lqt-hot-topics' => 'ホットな話題',
 	'lqt-add-reply' => '返信',
-	'lqt_rc_new_discussion' => '新規スレッドが投稿されました。"$1"',
+	'lqt-changesortorder' => '並べ替え',
+	'lqt_rc_new_discussion' => '新規スレッド「$1」が投稿されました',
 	'lqt_rc_new_reply' => '「$1」への返信を投稿',
 	'right-lqt-split' => 'スレッドを分割',
 	'right-lqt-merge' => 'スレッドを統合',
@@ -10484,16 +10666,17 @@ $messages['ja'] = array(
 	'lqt-log-name' => 'スレッド形式議論の記録',
 	'lqt-log-header' => 'これは議論スレッドで行われた操作の詳細を記録しています。',
 	'lqt-log-action-move' => '[[$1]]を[[$2]]から[[$3]]へ移動しました。',
-	'lqt-log-action-split' => '[[$1]]を[[$3]]から分割し、新しい表題 "$2" を付ける',
+	'lqt-log-action-split' => '[[$1]]を[[$3]]から分割し、新しい表題「$2」を付ける',
 	'lqt-log-action-merge-across' => '[[$1]]を[[$2]]から[[$3]]へ移動',
 	'lqt-log-action-merge-down' => '[[$1]]を[[$3]]の下位に統合',
-	'lqt-log-action-subjectedit' => '[[$1]]の表題を"$2"から"$3"へ変更',
+	'lqt-log-action-subjectedit' => '[[$1]]の表題を「$2」から「$3」に変更',
 	'lqt-log-action-resort' => '[[$1]]の並び順を変更。ソートキーを$2から$3へ変更',
+	'lqt-log-action-signatureedit' => '[[$1]] の署名を「$2」から「$3」に変更しました',
 	'lqt-preference-notify-talk' => 'ウォッチリストにあるスレッドに返信があったらメールを受け取る',
 	'lqt-preference-watch-threads' => '自分が作成または返信したスレッドをウォッチリストに追加',
 	'prefs-lqt' => 'スレッド型議論',
-	'lqt-preference-display-depth' => '表示する返信の最大の深さ：',
-	'lqt-preference-display-count' => '表示する返信の最大数：',
+	'lqt-preference-display-depth' => '表示する返信の最大の深さ:',
+	'lqt-preference-display-count' => '表示する返信の最大数:',
 	'lqt-preference-custom-signatures' => 'カスタムの利用者署名を表示',
 	'lqt-enotif-subject-reply' => '{{SITENAME}} の討論 - 返信: $1',
 	'lqt-enotif-subject-newthread' => '{{SITENAME}} の討論 - 新スレッド: $1',
@@ -10503,7 +10686,7 @@ $8 によって $3 $4 に作成されたことのお知らせです。
 
 <$6> で確認できます。
 
-内容は以下の通りです：
+内容は以下の通りです:
 $7',
 	'lqt-enotif-reply' => '$1 さん、
 
@@ -10512,10 +10695,8 @@ $3 $4 に $8 さんから新しい返信があったことをお知らせしま�
 
 <$6> でご覧いただけます。
 
-返信内容は以下の通りです：
+返信内容は以下の通りです:
 $7',
-	'lqt-quote-intro' => '$2 $3に[[User:$1|$1]]が書きました:',
-	'lqt-quote' => '引用',
 	'lqt-search-legend' => 'このページ上の議論を検索',
 	'lqt-search-label' => '検索語句:',
 	'lqt-search-button' => '検索',
@@ -10530,7 +10711,7 @@ $7',
 	'lqt-thread-link-copy' => 'クリップボードにコピー',
 	'lqt-sign-not-necessary' => '投稿に4つのチルダを付けて署名する必要はありません。署名は自動的に表示されます。',
 	'lqt-marked-as-read-placeholder' => 'スレッド $1 を既読にしました。',
-	'lqt-change-subject' => '表題の変更',
+	'lqt-change-subject' => '表題を変更',
 	'lqt-save-subject' => '保存',
 	'lqt-save-subject-failed' => 'このスレッドの表題を変更しようとした際に次のエラーが発生しました: $1',
 	'lqt-ajax-invalid-subject' => '指定された表題は無効です。おそらく長すぎるのが理由です。',
@@ -10578,13 +10759,17 @@ $7',
 	'lqt-reply-subpage' => '返信',
 	'nstab-thread' => 'スレッド',
 	'nstab-summary' => '要約',
+	'echo-pref-email-lqt-new-topic' => 'スレッド形式の新しい議論が作成されたとき',
+	'echo-pref-email-lqt-reply' => 'スレッド形式の議論に返信されたとき',
+	'pageinfo-usinglqt' => 'スレッド形式議論が有効',
+	'pageinfo-usinglqt-yes' => 'はい',
 );
 
 /** Jamaican Creole English (Patois)
  * @author Hazard-SJ
  */
 $messages['jam'] = array(
-	'lqt_newmessages' => 'Mi new message dem',
+	'lqt_newmessages' => 'Mi new message dem', # Fuzzy
 );
 
 /** Lojban (Lojban)
@@ -10709,7 +10894,7 @@ Operasi iki bisa dibatalaké.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|layang|layang}} ditandhai minangka kawaca.',
 	'lqt-email-undo' => 'Batalaké',
 	'lqt-no-new-messages' => 'Ora ana layang anyar kanggo Sampéyan.',
-	'lqt-new-messages' => '✒ Ana layang anyar kanggo Sampéyan.',
+	'lqt-new-messages' => 'Ana layang anyar kanggo Sampéyan.',
 	'lqt-email-info-undo' => 'Gawa mréné topik sing Sampéyan wis singkiraké.',
 	'lqt-date-info' => 'Pranala iki dipatèni amarga Sampéyan lagi ndelok topik saka kabèh tanggal.',
 	'lqt-newmessages-context' => 'Topik jangkep',
@@ -10738,8 +10923,6 @@ Yèn Sampéyan rampung, klik "{{int:savearticle}}".',
 	'lqt-no-threads' => 'Durung ana topik nèng kaca iki.',
 	'lqt-delete-parent-deleted' => 'Topik biyung dibusak ($1)',
 	'lqt-delete-replies-done' => 'Kabèh walesan topik iki uga wis dibusak.',
-	'lqt-quote-intro' => 'Tanggal $2 wanci $3, [[User:$1|$1]] nulis:',
-	'lqt-quote' => 'Kutip',
 	'lqt-search-legend' => 'Golèk parembugan nèng kaca iki',
 	'lqt-search-label' => 'Golèk istilah:',
 	'lqt-search-button' => 'Golèk',
@@ -10784,8 +10967,8 @@ Tapak asta katuduhaké otomatis.',
 	'lqt-feed-new-thread-intro' => 'Topik anyar nèng $1 dikirim déning {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'Walesan kanggo $3 (nèng $1) dikirim déning {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Tuduhaké kiriman anyar topik utawa kaca guneman sing dadi topik saka sng Sampéyan awasi',
-	'lqt-newmessages-n' => 'Layang anyar kula ($1)',
-	'lqt_newmessages' => 'Layang anyar kula (ora ana)',
+	'lqt-newmessages-n' => 'Layang anyar kula ($1)', # Fuzzy
+	'lqt_newmessages' => 'Layang anyar kula (ora ana)', # Fuzzy
 	'lqt_newmessages-title' => 'Layang anyar',
 	'lqt-newpost-summary' => 'Topik anyar: $1',
 	'lqt-reply-summary' => 'Ngawales [[$2|$1]]',
@@ -10827,6 +11010,7 @@ $messages['ka'] = array(
 შეიძლება:
 * ის ძალიან დიდია, ან
 * შეცდომაა საერთაშორისუ ბმულების ინდექსებში ან სახელთა სივრცის სახელებში.',
+	'lqt-empty-text' => 'თქვენ არ შეგიძლიათ ცარიელი შეტყობინების გაზავნა',
 	'lqt_empty_subject' => 'თქვენ უნდა მიუთითოთ თემა.',
 	'lqt_reply' => 'პასუხი',
 	'lqt-parent' => 'მშობელი',
@@ -10966,7 +11150,6 @@ $messages['ka'] = array(
 	'lqt-preference-custom-signatures' => 'აჩვენეთ მომხმარებლების კონფიგურირებადი ხელმოწერები',
 	'lqt-enotif-subject-reply' => '{{SITENAME}} განხილვა - პასუხი: $1',
 	'lqt-enotif-subject-newthread' => '{{SITENAME}} განხილვა - ახალი თემა: $1',
-	'lqt-quote' => 'ციტირება',
 	'lqt-search-legend' => 'განხილვის ძიება ამ გვერდზე',
 	'lqt-search-label' => 'ტერმინების ძიება:',
 	'lqt-search-button' => 'ძიება',
@@ -11006,8 +11189,8 @@ $messages['ka'] = array(
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — პასუხები $1-დან',
 	'lqt-feed-new-thread-intro' => 'ახალი თემა $1-ზე, დადებული {{GENDER:$4|$2}}-ის მიერ',
 	'lqt-feed-reply-intro' => 'პასუხი $3-ს ($1-ზე), დადებული {{GENDER:$4|$2}}-ის მიერ',
-	'lqt-newmessages-n' => 'ახალი შეტყობინებები ($1)',
-	'lqt_newmessages' => 'ჩემი ახალი შეტყობინებები (არა)',
+	'lqt-newmessages-n' => 'ახალი შეტყობინება ($1)',
+	'lqt_newmessages' => 'ახალი შეტყობინება (არა)',
 	'lqt_newmessages-title' => 'ახალი შეტყობინებები',
 	'lqt-newpost-summary' => 'ახალი თემა: $1',
 	'lqt-reply-summary' => 'პასუხი [[$2|$1]]-ზე',
@@ -11024,6 +11207,7 @@ $messages['ka'] = array(
 	'lqt-reply-subpage' => 'პასუხი',
 	'nstab-thread' => 'დისკუსიის თემა',
 	'nstab-summary' => 'დისკუსიის რეზიუმე',
+	'pageinfo-usinglqt-yes' => 'დიახ',
 );
 
 /** Kazakh (Cyrillic script) (қазақша (кирил)‎)
@@ -11049,12 +11233,21 @@ $messages['kl'] = array(
  * @author វ័ណថារិទ្ធ
  */
 $messages['km'] = array(
+	'lqt-desc' => 'បន្ថែមខ្សែសន្ទនាទៅលើទំព័រពិភាក្សា',
+	'lqt_movethread' => 'ប្ដូរទីតាំងខ្សែសន្ទនាទៅទំព័រមួយទៀត',
+	'lqt_deletethread' => 'លុបចោលឬឈប់លប់ចោលខ្សែសន្ទនា',
 	'lqt_contents_title' => 'មាតិកា',
+	'lqt_toc_thread_title' => 'ចំណងជើងខ្សែសន្ទនា',
 	'lqt_toc_thread_author' => 'ចាប់ផ្ដើមដោយ',
 	'lqt_toc_thread_replycount' => 'ចំលើយតប',
 	'lqt_toc_thread_modified' => 'ត្រូវបានកែប្រែលើកចុងក្រោយ',
 	'lqt_add_header' => 'បន្ថែមក្បាលទំព័រ',
 	'lqt_new_thread' => 'បើកការពិភាក្សាថ្មីមួយ',
+	'lqt_invalid_subject' => 'ប្រធានបទដែលអ្នកបានវាយបញ្ចូលមិនអាចទទួលយកបានទេ។
+នេះប្រហែលមកពី
+* វាវែងពេក ឬក៏
+* វាមានបញ្ហាជាមួយបុព្វបទអន្តរវិគីឬឈ្មោះលំហឈ្មោះ។',
+	'lqt-empty-text' => 'អ្នកមិនអាចបិទផ្សាយសារគ្មានសរសេរអ្វីទេ',
 	'lqt_empty_subject' => 'អ្នកត្រូវតែដាក់ប្រធានបទ។',
 	'lqt_reply' => 'ឆ្លើយតប',
 	'lqt-parent' => 'មេ',
@@ -11064,26 +11257,41 @@ $messages['km'] = array(
 	'lqt_fragment' => 'បំណែកមួយរបស់ $1 ពី $2',
 	'lqt_discussion_link' => 'ការពិភាក្សា',
 	'lqt_from_talk' => 'ពី $1',
-	'lqt_hist_comment_edited' => 'ចារ[$2 ត្រូវបានកែប្រែ]',
+	'lqt-history-title' => 'ប្រវត្តិខ្សែសន្ទនា',
+	'lqt_hist_comment_edited' => 'អត្ថបទមតិយោបល់[$2 ត្រូវបានកែប្រែ]',
 	'lqt_hist_summary_changed' => 'ចំណារពន្យល់ត្រូវបានផ្លាស់ប្តូរ',
 	'lqt_hist_reply_created' => '[[$1|ការឆ្លើយតបថ្មី ]] ត្រូវបានបង្កើត',
+	'lqt_hist_thread_created' => 'ខ្សែសន្ទនាថ្មីត្រូវបានបង្កើត',
 	'lqt_hist_deleted' => 'ត្រូវបានលុបចោល',
 	'lqt_hist_undeleted' => 'លែងបានត្រូវលុបចេញ',
 	'lqt_hist_moved_talkpage' => 'បានប្តូរទីតាំង',
 	'lqt_hist_listing_subtitle' => 'មើលបញ្ជីប្រវត្តិ',
+	'lqt_hist_view_whole_thread' => 'មើលប្រវត្តិរបស់ខ្សែសន្ទនាទាំងមូល',
+	'lqt_hist_no_revisions_error' => 'ខ្សែសន្ទនានេះគ្មានកំណែក្នុងប្រវត្តិវាទេ។',
 	'lqt_hist_past_last_page_error' => 'អ្នកបានហួស ចំនួនទំព័រ នៃប្រវត្តិ ដែលមាន',
 	'lqt_hist_tooltip_newer_disabled' => 'តំណភ្ជាប់នេះ អសកម្ម ព្រោះ អ្នកស្ថិតលើ ទំព័រដំបូង ។',
 	'lqt_hist_tooltip_older_disabled' => 'តំណភ្ជាប់នេះ អសកម្ម ព្រោះ អ្នកស្ថិតលើ ទំព័រចុងក្រោយ ។',
+	'lqt_hist_split' => 'ការឆ្លើយតបដែលបានបំបែកខ្លួនទៅកាន់ខ្សែសន្ទនាថ្មី',
+	'lqt_hist_edited_subject' => 'បានប្ដូរប្រធានបទពី "$2" ទៅជា "$3"',
+	'lqt_hist_edited_subject_corrupt' => 'បានប្ដូរប្រធានបទ',
+	'lqt_hist_merged_from' => '[[$1|ការឆ្លើយតប]] ត្រូវបានប្ដូរទីតាំងទៅកាន់ខ្សែសន្ទនាមួយផ្សេងទៀត',
+	'lqt_hist_merged_to' => '[[$1|ការឆ្លើយតប]] ត្រូវបានប្ដូរទីតាំងមកពីខ្សែសន្ទនាមួយផ្សេងទៀត',
+	'lqt_hist_split_from' => 'បានបំបែកខ្លួនទៅកាន់ខ្សែសន្ទនាថ្មី',
+	'lqt_hist_root_blanked' => 'បានលុបអត្ថបទមតិយោបល់',
+	'lqt_hist_adjusted_sortkey' => 'បានកែតំរូវទីកន្លែងខ្សែសន្ទនា',
 	'lqt_youhavenewmessages' => 'អ្នកមាន [[$1|សារថ្មីៗ]]​។',
+	'lqt_protectedfromreply' => 'ខ្សែសន្ទនានេះត្រូវ $1 មិនអោយឆ្លើយតបទៅទេ។',
 	'lqt_protectedfromreply_link' => 'បានការពារ',
 	'lqt_subject' => 'ប្រធានបទ ៖',
 	'lqt_noreason' => 'គ្មានហេតុផល ត្រូវបានផ្តល់ឱ្យ ។',
 	'lqt_thread_deleted' => 'ខ្សែស្រឡាយ​នេះ​ត្រូវ​បាន​លុប​។',
-	'lqt_summary_notice' => 'គ្មានបំលាស់ប្តូរ​ក្នុងការពិភាក្សានេះ តាំងពី​យ៉ាងតិច $2 ថ្ងៃ​។ បើចង់ផ្លាស់ប្តូរវា, អ្នកអាចនឹង​ត្រូវការ $1 ។', # Fuzzy
-	'lqt_summary_notice_link' => 'សរសេរ​មួយ​សេចក្តីសង្ខេប',
-	'lqt_summary_subtitle' => "សេចក្ដីសង្ខេបរបស់ ''$1''",
-	'lqt_nosuchrevision' => 'គ្មាន​ការពិនិត្យឡើងវិញ​នៃ​ខ្សែស្រឡាយ​នេះ​ទេ​។',
-	'lqt_nosuchthread' => 'មិនមាន​ខ្សែស្រឡាយ​ណាមួយ​ទេ។', # Fuzzy
+	'lqt_summary_notice' => 'គ្មានបំលាស់ប្តូរ​ក្នុងការពិភាក្សានេះពី​យ៉ាងតិច $2 ថ្ងៃហើយ​។ បើសិនជាវាបានចប់រួចរាល់ហើយ អ្នកប្រហែលជាចង់ $1 ។',
+	'lqt_summary_notice_link' => 'សរសេរ​ចំណារពន្យល់មួយ',
+	'lqt_summary_label' => 'ចំណារពន្យល់ខ្សែសន្ទនា៖',
+	'lqt_summary_subtitle' => "ចំណារពន្យល់របស់ ''$1''",
+	'lqt_nosuchrevision' => 'គ្មាន​កំណែបែបនេះនៅក្នុងខ្សែសន្ទនានេះ​ទេ​។',
+	'lqt_nosuchthread' => 'គ្មាន​ខ្សែសន្ទនាដូចដែលអ្នកបញ្ចាក់ប្រាប់ទេ។',
+	'lqt_nosuchthread_title' => 'គ្មានខ្សែសន្ទនាបែបនេះទេ',
 	'lqt_threadrequired' => 'អ្នក​ត្រូវតែ​បញ្ជាក់​ខ្សែស្រឡាយ​មួយ​នីក្នុង URL ។',
 	'lqt_move_movingthread' => 'ប្ដូរទីតាំង $1​។
 ខ្សែស្រឡាយ​នេះ​ជា​ផ្នែក​នៃ $2​។',
@@ -11106,12 +11314,13 @@ $messages['km'] = array(
 	'lqt-read-all' => 'ដាក់សម្គាល់​ទាំងអស់​ថា​បាន​អាន',
 	'lqt-email-undo' => 'មិនធ្វើវិញ',
 	'lqt-no-new-messages' => 'មិនមាន​សារ​សម្រាប់​អ្នក​ទេ​។',
-	'lqt-new-messages' => '✒ មានសារថ្មីៗសម្រាប់អ្នក។',
+	'lqt-new-messages' => 'មានសារថ្មីៗសម្រាប់អ្នក។',
 	'lqt-thread-created' => 'បាន​បង្កើត​',
 	'lqt-history-time' => 'ពេល​វេលា​',
 	'lqt-history-user' => 'អ្នកប្រើប្រាស់​',
 	'lqt-history-action' => 'សកម្មភាព​',
 	'lqt-history-comment' => 'យោបល់',
+	'lqt-history-thread' => 'ខ្សែសន្ទនា',
 	'lqt-thread-edited-author' => 'កែប្រែ​ដោយ​អ្នក​និពន្ធ​<br />
 កែប្រែចុងក្រោយនៅ៖ $1',
 	'lqt-thread-edited-others' => 'កែប្រែ​ដោយ​អ្នក​ប្រើប្រាស់​ដទៃ​ទៀត​<br />
@@ -11120,8 +11329,8 @@ $messages['km'] = array(
 	'lqt_summarize_link' => 'សង្ខេប​',
 	'lqt-search-button' => 'ស្វែង​រក​',
 	'lqt-save-subject' => 'រក្សាទុក',
-	'lqt-newmessages-n' => 'សារថ្មីៗ ($1)',
-	'lqt_newmessages' => 'សារថ្មីៗ (គ្មាន)',
+	'lqt-newmessages-n' => 'សារថ្មីៗ ($1)', # Fuzzy
+	'lqt_newmessages' => 'សារថ្មីៗ (គ្មាន)', # Fuzzy
 	'lqt_newmessages-title' => 'សារថ្មីៗ',
 );
 
@@ -11177,7 +11386,7 @@ $messages['ko'] = array(
 	'lqt_hist_summary_changed' => '요약문을 바꿈',
 	'lqt_hist_reply_created' => '[[$1|답글]]을 남김',
 	'lqt_hist_thread_created' => '새 스레드 만듦',
-	'lqt_hist_deleted' => '삭제함',
+	'lqt_hist_deleted' => '삭제됨',
 	'lqt_hist_undeleted' => '복구됨',
 	'lqt_hist_moved_talkpage' => '이동함',
 	'lqt_hist_listing_subtitle' => '스레드 역사 보기',
@@ -11224,9 +11433,9 @@ $messages['ko'] = array(
 	'lqt_summary_label' => '스레드 요약:',
 	'lqt_summary_subtitle' => '"$1" 요약',
 	'lqt_nosuchrevision' => '이 스레드에 해당하는 판이 없습니다.',
-	'lqt_nosuchthread' => '당신이 제시한 스레드가 존재하지 않습니다.',
+	'lqt_nosuchthread' => '지정한 스레드가 존재하지 않습니다.',
 	'lqt_nosuchthread_title' => '해당되는 스레드가 없습니다.',
-	'lqt_threadrequired' => '당신은 스레드를 URL로 제시하여야 합니다.',
+	'lqt_threadrequired' => '스레드를 URL로 지정해야 합니다.',
 	'lqt_move_movingthread' => '$1을(를) 옮깁니다.
 이 스레드는 $2 문서에 속해 있습니다.',
 	'lqt_move_torename' => '이 스레드의 이름을 바꾸려면, $1하여 주제를 바꾸십시오.',
@@ -11239,7 +11448,7 @@ $messages['ko'] = array(
 	'lqt_move_noreason' => '이유를 입력하지 않았습니다.',
 	'lqt_move_success' => '스레드가 $1(으)로 옮겨졌습니다.',
 	'lqt_talkpage_autocreate_summary' => '스레드가 처음 게시되었을 때 토론 문서를 자동으로 만듦',
-	'lqt_header_warning_big' => '당신은 $1을 편집하고 있습니다.',
+	'lqt_header_warning_big' => '$1(을)를 편집하고 있습니다.',
 	'lqt_header_warning_after_big' => '머리말은 안내 사항을 알리는 용도로 사용됩니다.
 $2를 누르면 새 토론을 시작할 수 있습니다.',
 	'lqt_header_warning_bold' => '토론 문서의 머리말',
@@ -11250,7 +11459,7 @@ $2를 누르면 새 토론을 시작할 수 있습니다.',
 	'lqt_sort_oldest_threads' => '오래 된 스레드를 먼저 배치하기',
 	'lqt-title' => '제목',
 	'lqt-summary' => '요약',
-	'lqt-searching' => '스레드 검색',
+	'lqt-searching' => '스레드 찾기',
 	'lqt-read-message' => '읽은 것으로 표시',
 	'lqt-read-message-tooltip' => '새 메시지 목록에서 이 스레드를 지웁니다.
 하지만 토론 문서에서는 계속 보여질 것입니다.',
@@ -11260,9 +11469,9 @@ $2를 누르면 새 토론을 시작할 수 있습니다.',
 이 동작은 되돌릴 수 없습니다.',
 	'lqt-marked-read' => "'''$1''' 스레드를 읽은 것으로 표시했습니다.",
 	'lqt-count-marked-read' => '메시지 $1개를 읽은 것으로 표시했습니다.',
-	'lqt-email-undo' => '취소',
+	'lqt-email-undo' => '되돌리기',
 	'lqt-no-new-messages' => '새로운 메시지가 없습니다.',
-	'lqt-new-messages' => '✒ 새 메시지가 있습니다.',
+	'lqt-new-messages' => '새 메시지가 있습니다.',
 	'lqt-email-info-undo' => '방금 없앤 스레드를 되돌립니다.',
 	'lqt-date-info' => '모든 날짜의 스레드를 보고 있기 때문에 이 링크는 비활성화되어있습니다.',
 	'lqt-newmessages-context' => '전체 스레드',
@@ -11274,7 +11483,7 @@ $2를 누르면 새 토론을 시작할 수 있습니다.',
 	'lqt-history-thread' => '스레드',
 	'lqt-thread-edited-author' => '작성자가 수정함<br />
 마지막 편집: $1',
-	'lqt-thread-edited-others' => '사용자 $2명이 편집함.<br />
+	'lqt-thread-edited-others' => '{{PLURAL:$2|다른 사용자가|사용자 $2명이}} 편집했습니다.<br />
 마지막 편집: $1',
 	'lqt-header-actions' => '동작',
 	'lqt_summarize_link' => '요약',
@@ -11287,7 +11496,7 @@ $2를 누르면 새 토론을 시작할 수 있습니다.',
 	'lqt-thread-split-subject' => '새 스레드의 제목:',
 	'lqt-thread-split-thread' => '스레드:',
 	'lqt-split-submit' => '분할',
-	'lqt_split_badsubject' => '당신이 입력한 제목이 잘못되었습니다.',
+	'lqt_split_badsubject' => '입력한 제목이 잘못되었습니다.',
 	'lqt-no-threads' => '이 문서에는 스레드가 없습니다.',
 	'lqt-delete-parent-warning' => '이 스레드는 답글이 있는 최상위 스레드입니다.
 답글 역시 자동적으로 삭제될 것입니다.
@@ -11295,10 +11504,11 @@ $2를 누르면 새 토론을 시작할 수 있습니다.',
 	'lqt-delete-parent-deleted' => '상위 스레드를 삭제하였습니다 ($1)',
 	'lqt-delete-replies-done' => '이 스레드에 달린 모든 답글도 함께 삭제되었습니다.',
 	'lqt-movethread' => '이동',
-	'lqt-menu-trigger' => '메뉴',
+	'lqt-menu-trigger' => '더 보기',
 	'lqt-newmessages-from' => '$1 문서에서의 토론',
 	'lqt-hot-topics' => '인기 주제',
 	'lqt-add-reply' => '답변하기',
+	'lqt-changesortorder' => '정렬',
 	'lqt_rc_new_discussion' => '새 스레드 "$1"을 게시함',
 	'lqt_rc_new_reply' => '"$1"에 대한 답글을 남겼습니다.',
 	'right-lqt-split' => '스레드 분할하기',
@@ -11313,12 +11523,13 @@ $2를 누르면 새 토론을 시작할 수 있습니다.',
 	'lqt-merge-success' => '스레드 $1을 $2에 성공적으로 병합했습니다.',
 	'lqt-log-name' => '스레드식 토론 기록',
 	'lqt-log-header' => '이 기록은 스레드 토론에 관한 동작에 대한 기록입니다.',
-	'lqt-log-action-move' => '사용자가 [[$1]] 스레드를 [[$2]]에서 [[$3]]으로 옮김',
-	'lqt-log-action-split' => '사용자가 [[$3]] 스레드에서 [[$1]]을 분리하여 "$2"라는 새 제목을 붙임',
-	'lqt-log-action-merge-across' => '사용자가 [[$1]] 스레드를 [[$2]]에서 [[$3]]으로 옮김',
-	'lqt-log-action-merge-down' => '사용자가 [[$1]] 스레드를 [[$3]]에 합침',
-	'lqt-log-action-subjectedit' => '사용자가 [[$1]]의 주제를 "$2"에서 "$3"으로 바꿈',
-	'lqt-log-action-resort' => '사용자가 [[$1]]의 정렬 순서를 바꿈. 정렬 키를 $2에서 $3으로 바꿈',
+	'lqt-log-action-move' => '사용자가 [[$1]] 스레드를 [[$2]]에서 [[$3]]으로 옮겼습니다',
+	'lqt-log-action-split' => '사용자가 [[$3]] 스레드에서 [[$1]]을 분리하여 "$2"라는 새 제목을 붙였습니다',
+	'lqt-log-action-merge-across' => '사용자가 [[$1]] 스레드를 [[$2]]에서 [[$3]]으로 옮겼습니다',
+	'lqt-log-action-merge-down' => '사용자가 [[$1]] 스레드를 [[$3]]에 합쳤습니다',
+	'lqt-log-action-subjectedit' => '사용자가 [[$1]]의 주제를 "$2"에서 "$3"으로 바꿨습니다',
+	'lqt-log-action-resort' => '사용자가 [[$1]]의 정렬 순서를 바꿨습니다. 정렬 키를 $2에서 $3으로 바꿨습니다',
+	'lqt-log-action-signatureedit' => '사용자가 [[$1]]의 서명을 "$2"에서 "$3"으로 바꿨습니다',
 	'lqt-preference-notify-talk' => '내가 주시하고 있는 스레드에 답글이 올라오면 이메일 보내기',
 	'lqt-preference-watch-threads' => '내가 만들거나 답변한 스레드를 주시하기',
 	'prefs-lqt' => '스레드식 토론',
@@ -11343,8 +11554,6 @@ $7",
 
 답변의 내용은 다음과 같습니다:
 $7",
-	'lqt-quote-intro' => '[[User:$1|$1]] 사용자가 $2 $3에 남긴 글:',
-	'lqt-quote' => '인용',
 	'lqt-search-legend' => '이 문서에 있는 토론 검색하기',
 	'lqt-search-label' => '찾기:',
 	'lqt-search-button' => '찾기',
@@ -11363,7 +11572,7 @@ $7",
 	'lqt-change-subject' => '제목 바꾸기',
 	'lqt-save-subject' => '저장',
 	'lqt-save-subject-failed' => '이 스레드의 제목을 바꾸는 중 다음 오류가 발생했습니다: $1',
-	'lqt-ajax-invalid-subject' => '당신이 입력한 제목이 잘못되었습니다. 제목이 너무 길기 때문일 수 있습니다.',
+	'lqt-ajax-invalid-subject' => '입력한 제목이 잘못되었습니다. 제목이 너무 길기 때문일 수 있습니다.',
 	'lqt-ajax-no-subject' => '새 스레드의 제목을 반드시 입력해야 합니다.',
 	'lqt-save-subject-error-unknown' => '이 스레드의 제목을 정하는 중 알 수 없는 오류가 발생했습니다. 맨 윗글의 "편집" 버튼을 눌러 시도해 보십시오.',
 	'lqt-cancel-subject-edit' => '취소',
@@ -11404,17 +11613,21 @@ $7",
 	'lqt-protected-newthread' => '이 토론 문서가 새 스레드를 만들지 못하게 잠겨 있기 때문에 이 토론 문서에 새 스레드를 올릴 수 없습니다.',
 	'lqt-edit-bump' => '이 스레드를 맨 위로 옮기기',
 	'lqt-edit-bump-tooltip' => '이 스레드를 토론 문서의 맨 위로 옮깁니다.',
-	'lqt-historicalrevision-error' => '당신이 선택한 판에 문제가 있어서 볼 수 없습니다.',
+	'lqt-historicalrevision-error' => '선택한 판에 문제가 있어서 볼 수 없습니다.',
 	'lqt-reply-subpage' => '답글',
 	'nstab-thread' => '스레드',
 	'nstab-summary' => '요약',
+	'echo-pref-email-lqt-new-topic' => '새 스레드 토론을 만듭니다',
+	'echo-pref-email-lqt-reply' => '스레드 토론에 대해 답변합니다',
+	'pageinfo-usinglqt' => '스레드식 토론을 활성화',
+	'pageinfo-usinglqt-yes' => '예',
 );
 
 /** Karachay-Balkar (къарачай-малкъар)
  * @author Iltever
  */
 $messages['krc'] = array(
-	'lqt_newmessages' => 'Джангы билдириуле (Джокъду)',
+	'lqt_newmessages' => 'Джангы билдириуле (Джокъду)', # Fuzzy
 );
 
 /** Krio (Krio)
@@ -11446,7 +11659,7 @@ $messages['krl'] = array(
  * @author Purodha
  */
 $messages['ksh'] = array(
-	'lqt-desc' => 'Määt {{int:lqt-history-thread}}e en Klaaf-Sigge müjjelesch.',
+	'lqt-desc' => 'Määt {{int:lqt-history-thread}}e en Klaaf-Sigge möjjelesch.',
 	'lqt_movethread' => 'Donn dä {{int:lqt-history-thread}} op en ander Sigg ömträke',
 	'lqt_deletethread' => 'Ene {{int:lqt-history-thread}} fottschmiiße odder zeröckholle',
 	'lqt_contents_title' => 'Enhallt',
@@ -11454,7 +11667,7 @@ $messages['ksh'] = array(
 	'lqt_toc_thread_author' => 'Aanjevange vum',
 	'lqt_toc_thread_replycount' => 'Beidrähsch',
 	'lqt_toc_thread_modified' => 'Zoläz&nbsp;jeändert',
-	'lqt_add_header' => 'En Övvershreff dobei donn',
+	'lqt_add_header' => 'Donn en Övverschreff derbei',
 	'lqt_new_thread' => 'Fang ene neue {{int:lqt-history-thread}} aan',
 	'lqt_invalid_subject' => 'Dat Teema, wat De enjejovve häs, jeiht esu nit.
 * Et künnt ze lang sinn.
@@ -11553,7 +11766,7 @@ Künnt sin, De wells en $2 han.',
 	'lqt-count-marked-read' => '{{PLURAL:$1|Ei Nohreesch|$1 Nohreeschte|kei Nohreesch}} als jelesse makeet.',
 	'lqt-email-undo' => 'Zeröcknämme',
 	'lqt-no-new-messages' => 'Mer hann kei neu Nohreschte för Desch.',
-	'lqt-new-messages' => '✒ Mer hann neu Nohreschte för Desch.',
+	'lqt-new-messages' => 'Mer hann neu Nohreschte för Desch.',
 	'lqt-email-info-undo' => 'Donn dä {{int:lqt-history-thread}} zeröckholle, dä De jraad fottjeschemeße häs.',
 	'lqt-date-info' => 'Dä Lengk es afjeschaldt. De bes ene {{int:lqt-history-thread}} vun alle Daate am beloore.',
 	'lqt-newmessages-context' => 'Dä janze {{int:lqt-history-thread}}',
@@ -11586,6 +11799,7 @@ et läz aam $4 öm $3',
 	'lqt-newmessages-from' => 'Vun dä Klaafsigg „$1“',
 	'lqt-hot-topics' => '{{int:lqt-history-thread}}e met de miehtßte Beidrääsch',
 	'lqt-add-reply' => 'Donn en Antwoot derbei',
+	'lqt-changesortorder' => 'Zotteere!',
 	'lqt_rc_new_discussion' => 'hät ene neue {{int:lqt-history-thread}} över „$1“ aanjefange.',
 	'lqt_rc_new_reply' => 'als Antwoot op „$1“ jeschrevve.',
 	'right-lqt-split' => '{{int:lqt-history-thread}}e  opdeile',
@@ -11606,6 +11820,7 @@ et läz aam $4 öm $3',
 	'lqt-log-action-merge-down' => 'hät [[$1]] noh onger de Övverschreff [[$3]] ömjetrocke un dobei di {{int:lqt-history-thread}}e zosamme jelaat.',
 	'lqt-log-action-subjectedit' => 'hät de Övverschreff fun [[$1]] fun „$2“ op „$3“ omjenannt.',
 	'lqt-log-action-resort' => 'hät de Reijefolsch vum Zotteere för [[$1]] fun „$2“ op „$3“ ömjeschtallt.',
+	'lqt-log-action-signatureedit' => 'hät de Ongerschreff onger [[$1]] fun „$2“ op „$3“ verändert.',
 	'lqt-preference-notify-talk' => 'Donn mer en <i lang="en">e-mail</i> schecke, wann ene {{int:lqt-history-thread}} op minge Oppaßleß jeändert weet',
 	'lqt-preference-watch-threads' => 'Donn de {{int:lqt-history-thread}}e för op ming Oppassles ze donn vörschlonn, woh esch drop antwooden udder di esch aanfangen',
 	'prefs-lqt' => 'Klaaf met {{int:lqt-history-thread}}e',
@@ -11643,8 +11858,6 @@ Dä Beidraach es:
 $7
 
 Ene schööne Jrohß!',
-	'lqt-quote-intro' => 'Aam $2 hät {{GENDER:$1|dä|dat|dä Metmaacher|dat|de}} [[User:$1|$1]] öm $3 Uhr jeschrevve:',
-	'lqt-quote' => 'Donn dat zitteere',
 	'lqt-search-legend' => 'En dä {{int:lqt-history-thread}}e op heh dä Sigg söhke',
 	'lqt-search-label' => 'Söhk noh:',
 	'lqt-search-button' => 'Söhke',
@@ -11689,8 +11902,8 @@ De „Ongerschreff“ weed automattesch jezeijsch.',
 	'lqt-feed-new-thread-intro' => 'Ene neue Jeschprääschfäddem op $1 {{GENDER:$4|vum|vum|vumm Metmaacher|vun dä|vum}} $2',
 	'lqt-feed-reply-intro' => 'Antwoot op $3 en dä Sigg $1 {{GENDER:$4|vum|vum|vumm Metmaacher|vun dä|vum}} $2',
 	'tooltip-pt-newmessages' => 'Donn de neue Nohreeschte aanzeije, di en {{int:lqt-history-thread}}e enjedraare woodte, wo De draan bedeilesch bes udder drop aam oppaßße bes.',
-	'lqt-newmessages-n' => 'ming {{PLURAL:$1|Nohreesch (ein neu)|Nohreeschte ($1 neu)|Nohreeschte (kein neue)}}',
-	'lqt_newmessages' => 'ming Nohreeschte (keine)',
+	'lqt-newmessages-n' => 'Nohreeschte ({{PLURAL:$1|1 neue|$1 neu|kei neue}})',
+	'lqt_newmessages' => 'Nohreeschte (kei neue)',
 	'lqt_newmessages-title' => 'Neu Nohreeschte',
 	'lqt-newpost-summary' => 'Ene neue {{int:lqt-history-thread}}:$1',
 	'lqt-reply-summary' => 'Antwoot op [[$2|$1]]',
@@ -11708,6 +11921,10 @@ De „Ongerschreff“ weed automattesch jezeijsch.',
 	'lqt-reply-subpage' => 'Antwoot',
 	'nstab-thread' => '{{int:lqt-history-thread}}',
 	'nstab-summary' => 'Zosammefaßong',
+	'echo-pref-email-lqt-new-topic' => 'Wann ene neue Klaaf met Jeschprääschsfäddemme aanjefange woode es',
+	'echo-pref-email-lqt-reply' => 'Wann ene neue Antwoot en enem Klaaf met Jeschprääschsfäddemme jejovve woode es',
+	'pageinfo-usinglqt' => 'Klaafe met Jeschprääschsfäddemme es ennjescahlldt.',
+	'pageinfo-usinglqt-yes' => 'Joh',
 );
 
 /** Kurdish (Latin script) (Kurdî (latînî)‎)
@@ -11722,7 +11939,7 @@ $messages['ku-latn'] = array(
 	'lqt-title' => 'Sernav',
 	'lqt-summary' => 'Kurte',
 	'lqt-no-new-messages' => 'Peyamên te yên nû tune ne.',
-	'lqt-new-messages' => '✒ Peyamên nû ji bo te hene.',
+	'lqt-new-messages' => 'Peyamên nû ji bo te hene.',
 	'lqt-thread-created' => 'Hate afirandin',
 	'lqt-history-time' => 'Dem',
 	'lqt-history-user' => 'Bikarhêner',
@@ -11733,8 +11950,8 @@ $messages['ku-latn'] = array(
 	'lqt-cancel-subject-edit' => 'Betal bike',
 	'lqt-drag-reason' => 'Sedem:',
 	'lqt-feed-title-replies' => '{{SITENAME}} - Bersiv',
-	'lqt-newmessages-n' => 'Peyamên nû ($1)',
-	'lqt_newmessages' => 'Peyamên nû (tune)',
+	'lqt-newmessages-n' => 'Peyamên nû ($1)', # Fuzzy
+	'lqt_newmessages' => 'Peyamên nû (tune)', # Fuzzy
 	'lqt_newmessages-title' => 'Peyamên nû',
 	'lqt-talkpage-history-subtitle' => 'Bo $1',
 	'nstab-summary' => 'Kurte',
@@ -11746,7 +11963,17 @@ $messages['ku-latn'] = array(
  * @author Nrowe
  */
 $messages['kw'] = array(
-	'lqt_newmessages' => 'Ow messajys nowyth (nagonen)',
+	'lqt_newmessages' => 'Messajys nowyth (nagonan)',
+);
+
+/** Kirghiz (Кыргызча)
+ * @author Growingup
+ */
+$messages['ky'] = array(
+	'lqt_youhavenewmessages' => 'Сиз [[$1|жаңы билдирүү]] алдыңыз.',
+	'lqt-newmessages-n' => 'Жаңы билдирүүлөр ($1)',
+	'lqt_newmessages' => 'Жаңы билдирүүлөр (Жок)',
+	'lqt_newmessages-title' => 'Жаңы билдирүүлөр',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -11868,7 +12095,7 @@ Dës Operatioun kann net réckgängeg gemaach ginn.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|Message|Messagen}} als geliest markéieren.',
 	'lqt-email-undo' => 'Zréck setzen',
 	'lqt-no-new-messages' => 'Et gëtt keng nei Message fir Iech.',
-	'lqt-new-messages' => '✒ Dir hutt nei Messagen.',
+	'lqt-new-messages' => 'Dir hutt nei Messagen.',
 	'lqt-email-info-undo' => 'Déi Rubrik nees weisen déi Dir elo grad ewechgeholl hutt.',
 	'lqt-date-info' => 'Dëse Link ass ausgeschalt wëll Dir Rubriken vun allen Datume kuckt.',
 	'lqt-newmessages-context' => 'Ganz Rubrik',
@@ -11904,6 +12131,7 @@ Fir dëst ze verhënneren, trennt se vun dëser Rubrik ier Dir se läscht.',
 	'lqt-newmessages-from' => 'Vu(n) $1',
 	'lqt-hot-topics' => 'Waarm Sujeten',
 	'lqt-add-reply' => 'Eng Äntwert derbäisetzen',
+	'lqt-changesortorder' => 'Zortéieren',
 	'lqt_rc_new_discussion' => 'huet eng nei Diskussioun, "$1" geschriwwen',
 	'lqt_rc_new_reply' => 'huet eng Äntwert op "$1" geschriwwen',
 	'right-lqt-split' => 'Rubriken opdeelen',
@@ -11924,6 +12152,7 @@ Fir dëst ze verhënneren, trennt se vun dëser Rubrik ier Dir se läscht.',
 	'lqt-log-action-merge-down' => 'huet [[$1]] zesummelgeluecht op [[$3]]',
 	'lqt-log-action-subjectedit' => 'huet de Sujet vu(n) [[$1]] vun "$2" op "$3" geännert',
 	'lqt-log-action-resort' => 'huet de Reiefolleg vum Zortéiere vu(n) [[$1]] gännert. De Zortéierschlësel giuf vun $2 op $3 geännert.',
+	'lqt-log-action-signatureedit' => 'huet de Ënnerschrëft vu(n) [[$1]] vun "$2" op "$3" geännert',
 	'lqt-preference-notify-talk' => 'Mir eng E-Mail schécke wann op eng Rubrik geäntwert gëtt déi ech iwwerwaachen',
 	'lqt-preference-watch-threads' => 'Rubriken déi ech uleeën oder an deenen ech äntwerten iwwerwaachen',
 	'prefs-lqt' => 'Diskussioun mat Rubriken',
@@ -11948,8 +12177,6 @@ Dir kënnt se op <$6> gesinn.
 
 Den Text vun der Äntwert ass:
 $7",
-	'lqt-quote-intro' => 'De(n) $2 ëm $3 Auer, huet de(n) [[User:$1|$1]] geschriwwen:',
-	'lqt-quote' => 'Zitéieren',
 	'lqt-search-legend' => 'Diskussiounen zu dëser Säit sichen',
 	'lqt-search-label' => 'Sichbegrëffer:',
 	'lqt-search-button' => 'Sichen',
@@ -11995,7 +12222,7 @@ $7",
 	'lqt-feed-reply-intro' => 'Äntwert vum {{GENDER:$4|$2}} op $3 (op $1)',
 	'tooltip-pt-newmessages' => 'Weist nei Noriichten a Rubriken oder op Diskussiounssäiten déi Dir iwwerwaacht',
 	'lqt-newmessages-n' => 'Nei Messagen ($1)',
-	'lqt_newmessages' => 'Meng nei Messagen (Keen)',
+	'lqt_newmessages' => 'Nei Messagen (keen)',
 	'lqt_newmessages-title' => 'Nei Messagen',
 	'lqt-newpost-summary' => 'Nei Rubrik: $1',
 	'lqt-reply-summary' => 'Äntwert op [[$2|$1]]',
@@ -12013,6 +12240,7 @@ $7",
 	'lqt-reply-subpage' => 'äntwerten',
 	'nstab-thread' => 'Rubrik',
 	'nstab-summary' => 'Resumé',
+	'pageinfo-usinglqt-yes' => 'Jo',
 );
 
 /** Ganda (Luganda)
@@ -12022,10 +12250,10 @@ $messages['lg'] = array(
 	'lqt_youhavenewmessages' => 'Ofunyeyo [[$1|obubaka bupya]]',
 	'lqt_move_move' => 'Simbuliza',
 	'lqt-no-new-messages' => 'Tewali bubaka bupya',
-	'lqt-new-messages' => '✒ Ofunyeyo obubaka bupya.',
+	'lqt-new-messages' => 'Ofunyeyo obubaka bupya.',
 	'lqt-movethread' => 'Simbuliza',
-	'lqt-newmessages-n' => 'Obubaka ($1)',
-	'lqt_newmessages' => 'Obubaka (Tewali bupya)',
+	'lqt-newmessages-n' => 'Obubaka ($1)', # Fuzzy
+	'lqt_newmessages' => 'Obubaka (Tewali bupya)', # Fuzzy
 	'lqt_newmessages-title' => 'Obubaka',
 );
 
@@ -12143,7 +12371,7 @@ Dees hanjeling kins se neet trökdreie.",
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|berich steit|berichter staont}} es gelaeze.',
 	'lqt-email-undo' => 'Maak óngedaon',
 	'lqt-no-new-messages' => 'Doe haes gein nuuj berichter.',
-	'lqt-new-messages' => '✒ Doe haes nuuj berichter.',
+	'lqt-new-messages' => 'Doe haes nuuj berichter.',
 	'lqt-email-info-undo' => "Trök nao 't óngerwerp det se zezjuus verlaoten haes.",
 	'lqt-date-info' => 'Dees verwiezing is neet actief ómdet se óngerwèrpe van alle datums bekieks.',
 	'lqt-newmessages-context' => 'Gans óngerwèrp',
@@ -12220,8 +12448,6 @@ Doe kins \'t bekieke: <$6>.
 
 Hieónger steit \'t:
 $7', # Fuzzy
-	'lqt-quote-intro' => '[[User:$1|$1]] sjreef óm $3 óp $2:',
-	'lqt-quote' => 'Citeer',
 	'lqt-search-legend' => 'Zeuk óp euverlègk óp dees paasj',
 	'lqt-search-label' => 'Zeukterme:',
 	'lqt-search-button' => 'Zeuk',
@@ -12266,8 +12492,8 @@ Wiezig 't ongerwerp door op \"Bewirk\" te klikke in t baoveste berich.",
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Reacties van $1',
 	'lqt-feed-new-thread-intro' => 'Nuuj ongerwerp op $1 door $2', # Fuzzy
 	'lqt-feed-reply-intro' => 'Reactie op $3 (op $1) door $2', # Fuzzy
-	'lqt-newmessages-n' => 'Nuuj berichter ($1)',
-	'lqt_newmessages' => 'Mien nuuj berichte (gein)',
+	'lqt-newmessages-n' => 'Nuuj berichter ($1)', # Fuzzy
+	'lqt_newmessages' => 'Mien nuuj berichte (gein)', # Fuzzy
 	'lqt_newmessages-title' => 'nuuj berichte',
 	'lqt-newpost-summary' => 'Nuuj ongerwerp: $1',
 	'lqt-reply-summary' => 'Reactie op [[$2|$1]]',
@@ -12305,6 +12531,7 @@ $messages['loz'] = array(
 
 /** Lithuanian (lietuvių)
  * @author Eitvys200
+ * @author Mantak111
  * @author Pėstininkas
  * @author Tomasdd
  * @author Vpovilaitis
@@ -12410,7 +12637,7 @@ Ji liks matoma atitinkamame aptarimų puslapyje.
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|pranešimas pažymėtas kaip skaitytas|pranešimai pažymėti kaip skaityti|pranešimų pažymėta staitytais}}.',
 	'lqt-email-undo' => 'Anuliuoti',
 	'lqt-no-new-messages' => 'Jūs negavote naujų žinučių.',
-	'lqt-new-messages' => '✒ Yra Jums skirtų naujų pranešimų.',
+	'lqt-new-messages' => 'Yra Jums skirtų naujų pranešimų.',
 	'lqt-newmessages-context' => 'Pilna tema',
 	'lqt-thread-created' => 'Sukurta',
 	'lqt-history-time' => 'Laikas',
@@ -12491,8 +12718,6 @@ Jūs šį atsakymą galite peržiūrėti: <$6>
 
 Atsakymo tekstas:
 $7",
-	'lqt-quote-intro' => '$2 d. $3 val. [[User:$1|$1]] rašė:',
-	'lqt-quote' => 'Citata',
 	'lqt-search-legend' => 'Ieškoti šio puslapio aptarimuose',
 	'lqt-search-label' => 'Ieškoti terminų:',
 	'lqt-search-button' => 'Paieška',
@@ -12525,8 +12750,8 @@ $7",
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Nauji atsakymai nuo $1',
 	'lqt-feed-new-thread-intro' => 'Nauja tema pasbelbta $1  $2', # Fuzzy
 	'lqt-feed-reply-intro' => 'Atsakymą į $3 (puslapyje $1) parašė $2', # Fuzzy
-	'lqt-newmessages-n' => 'Žinutės ($1)',
-	'lqt_newmessages' => 'Žinutės (Nėra)',
+	'lqt-newmessages-n' => 'Žinutės ($1)', # Fuzzy
+	'lqt_newmessages' => 'Žinutės (Nėra)', # Fuzzy
 	'lqt_newmessages-title' => 'Nauji pranešimai',
 	'lqt-newpost-summary' => 'Nauja tema: $1',
 	'lqt-reply-summary' => 'Atsakyti į [[$2|$1]]',
@@ -12542,6 +12767,7 @@ $7",
 	'lqt-reply-subpage' => 'atsakyti',
 	'nstab-thread' => 'Tema',
 	'nstab-summary' => 'Apibendrinimas',
+	'pageinfo-usinglqt-yes' => 'Taip',
 );
 
 /** Latgalian (latgaļu)
@@ -12562,9 +12788,9 @@ $messages['lus'] = array(
 	'lqt_noreason' => 'Chhan pêk loh.',
 	'lqt-email-undo' => 'Sûtna',
 	'lqt-no-new-messages' => 'Thudawn thar i nei lo.',
-	'lqt-new-messages' => '✒ Thudawn thar i nei.',
-	'lqt-newmessages-n' => 'Thudawn thar ({{PLURAL:$1|$1|$1 lái}} ka nei!)',
-	'lqt_newmessages' => 'Thudawn thar (ka nei lo)',
+	'lqt-new-messages' => 'Thudawn thar i nei.',
+	'lqt-newmessages-n' => 'Thudawn thar ({{PLURAL:$1|$1|$1 lái}} ka nei!)', # Fuzzy
+	'lqt_newmessages' => 'Thudawn thar (ka nei lo)', # Fuzzy
 	'lqt_newmessages-title' => 'Thudawn thar',
 	'lqt-newpost-summary' => 'Ṭhuang thar: $1',
 	'lqt-reply-summary' => '[[$2|$1]] chhànna',
@@ -12591,8 +12817,8 @@ $messages['lv'] = array(
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — Jaunie pavedieni no $1',
 	'lqt-feed-title-replies' => '{{SITENAME}} — Atbildes',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Atbildes no $1',
-	'lqt-newmessages-n' => 'Mani jaunie ziņojumi ($1)',
-	'lqt_newmessages' => 'Mani jaunie ziņojumi (nav)',
+	'lqt-newmessages-n' => 'Mani jaunie ziņojumi ($1)', # Fuzzy
+	'lqt_newmessages' => 'Mani jaunie ziņojumi (nav)', # Fuzzy
 	'lqt_newmessages-title' => 'Jauni ziņojumi',
 	'lqt-newpost-summary' => 'Jauns pavediens: $1',
 	'lqt-reply-summary' => 'Rakstīt atbildi [[$2|$1]]',
@@ -12606,9 +12832,10 @@ $messages['mg'] = array(
 	'lqt_youhavenewmessages' => 'Manana [[$1|hafatra vaovao]]',
 	'lqt_move_move' => 'Hanolo anarana',
 	'lqt-no-new-messages' => 'Tsy misy hafatra vaovao ho anao.',
-	'lqt-new-messages' => '✒ Manana hafatra vaovao',
+	'lqt-new-messages' => 'Manana hafatra vaovao',
 	'lqt-movethread' => 'Hanolo anarana',
 	'right-lqt-split' => 'Mizara ny resaka',
+	'lqt_newmessages' => 'Hafatra vaovao (tsy misy)', # Fuzzy
 );
 
 /** Eastern Mari (олык марий)
@@ -12618,6 +12845,16 @@ $messages['mhr'] = array(
 	'lqt_contents_title' => 'Вуйлымаш',
 	'lqt_delete' => 'Шӧраш',
 	'lqt_protectedfromreply_link' => 'тӧрлаташ чарыме',
+);
+
+/** Minangkabau (Baso Minangkabau)
+ * @author Naval Scene
+ */
+$messages['min'] = array(
+	'lqt_youhavenewmessages' => 'Sanak mamiliaki [[$1|pasan baru]].',
+	'lqt-no-new-messages' => 'Indak ado pasan baru untuak Sanak.',
+	'lqt-change-subject' => 'Ganti judua',
+	'lqt_newmessages' => 'Pasan baru denai (indak ado)',
 );
 
 /** Macedonian (македонски)
@@ -12637,7 +12874,7 @@ $messages['mk'] = array(
 	'lqt_invalid_subject' => 'Насловот кој го внесовте е неважечки.
 Можни причини:
 * Предолга е, или
-* Се коси со меѓувики-префикси или називи на именски простори.',
+* Се коси со меѓувики-претставки или називи на именски простори.',
 	'lqt-empty-text' => 'Не можете да објавите празна порака',
 	'lqt_empty_subject' => 'Мора да внесете наслов.',
 	'lqt_reply' => 'Одговори',
@@ -12737,7 +12974,7 @@ $messages['mk'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|порака означена како прочитана|пораки означени како прочитани}}.',
 	'lqt-email-undo' => 'Врати',
 	'lqt-no-new-messages' => 'Немате нови пораки.',
-	'lqt-new-messages' => '✒ Имате нови пораки.',
+	'lqt-new-messages' => 'Имате нови пораки.',
 	'lqt-email-info-undo' => 'Врати ја штотуку отфрлената нишка.',
 	'lqt-date-info' => 'Оваа врска е оневозможена бидејќи прегледувате нишки од сите датуми.',
 	'lqt-newmessages-context' => 'Цела нишка',
@@ -12773,6 +13010,7 @@ $messages['mk'] = array(
 	'lqt-newmessages-from' => 'Од $1',
 	'lqt-hot-topics' => 'Актуелни теми',
 	'lqt-add-reply' => 'Додај одговор',
+	'lqt-changesortorder' => 'Подреди',
 	'lqt_rc_new_discussion' => 'објави нова нишка, „$1“',
 	'lqt_rc_new_reply' => 'одговори на „$1“',
 	'right-lqt-split' => 'Раздели нишки',
@@ -12793,6 +13031,7 @@ $messages['mk'] = array(
 	'lqt-log-action-merge-down' => '[[$1]] ставена (споена) под [[$3]]',
 	'lqt-log-action-subjectedit' => 'изменет насловот на [[$1]] од „$2“ на „$3“',
 	'lqt-log-action-resort' => 'изменет редоследот на подредување на [[$1]]. Клучот за подредување изменет од $2 на $3.',
+	'lqt-log-action-signatureedit' => 'изменет потписот на [[$1]] од „$2“ на „$3“',
 	'lqt-preference-notify-talk' => 'Испрати ми е-пошта кога некој ќе одговори на нишка што ја набљудувам',
 	'lqt-preference-watch-threads' => 'Набљудувај ги нишките кои ги создавам или на кои одговарам',
 	'prefs-lqt' => 'Нанижан разговор',
@@ -12819,8 +13058,6 @@ $7',
 Можете да го погледате на <$6>
 Текстот на одговорот гласи:
 $7',
-	'lqt-quote-intro' => 'На $2 во $3, [[User:$1|$1]] напиша:',
-	'lqt-quote' => 'Цитирај',
 	'lqt-search-legend' => 'Пребарување разговори на страницава',
 	'lqt-search-label' => 'Услови за пребарување:',
 	'lqt-search-button' => 'Пребарај',
@@ -12866,7 +13103,7 @@ $7',
 	'lqt-feed-reply-intro' => 'Одговор на $3 (за $1), поставен од {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Ги прикажува новообјавените пораки во нишки или нанижани страници за разговор што ги набљудувате',
 	'lqt-newmessages-n' => 'Нови пораки ($1)',
-	'lqt_newmessages' => 'нови пораки (нема)',
+	'lqt_newmessages' => 'Нови пораки (нема)',
 	'lqt_newmessages-title' => 'Нови пораки.',
 	'lqt-newpost-summary' => 'Нова нишка: $1',
 	'lqt-reply-summary' => 'Одговор за [[$2|$1]]',
@@ -12884,6 +13121,10 @@ $7',
 	'lqt-reply-subpage' => 'одговори',
 	'nstab-thread' => 'Нишка',
 	'nstab-summary' => 'Опис',
+	'echo-pref-email-lqt-new-topic' => 'Создава нов нанижан разговор',
+	'echo-pref-email-lqt-reply' => 'Одговара на нанижан разговор',
+	'pageinfo-usinglqt' => 'Нанижаните разговори се овозможени',
+	'pageinfo-usinglqt-yes' => 'Да',
 );
 
 /** Malayalam (മലയാളം)
@@ -13005,7 +13246,7 @@ $messages['ml'] = array(
 	'lqt-count-marked-read' => '{{PLURAL:$1|ഒരു സന്ദേശം|$1 സന്ദേശങ്ങൾ}} വായിച്ചതായി അടയാളപ്പെടുത്തി.',
 	'lqt-email-undo' => 'പ്രവൃത്തി തിരസ്കരിക്കുക',
 	'lqt-no-new-messages' => 'താങ്കൾക്ക് പുതിയ സന്ദേശങ്ങളൊന്നുമില്ല.',
-	'lqt-new-messages' => '✒ താങ്കൾക്ക് പുതിയ സന്ദേശങ്ങൾ ഉണ്ട്',
+	'lqt-new-messages' => 'താങ്കൾക്ക് പുതിയ സന്ദേശങ്ങൾ ഉണ്ട്',
 	'lqt-email-info-undo' => 'താങ്കൾ പുറംതള്ളിയ ചരട് തിരിച്ചു കൊണ്ടുവരിക.',
 	'lqt-date-info' => 'എല്ലാ തീയതികളിലുമുള്ള ചരടുകൾ താങ്കൾ കാണുന്നതിനാൽ ഈ കണ്ണി നിർജ്ജീവമാക്കിയിരിക്കുന്നു.',
 	'lqt-newmessages-context' => 'പൂർണ്ണരൂപം',
@@ -13085,8 +13326,6 @@ $5 താളിലെ '$2' എന്നതിനു പുതിയൊരു മ
 താങ്കൾക്ക് അത് <$6> എന്ന കണ്ണിയിൽ കാണാം.
 
 മറുപടിയെഴുത്ത്: $7",
-	'lqt-quote-intro' => '$2 $3-ൽ [[User:$1|$1]] എഴുതി:',
-	'lqt-quote' => 'ഉദ്ധരണി',
 	'lqt-search-legend' => 'ഈ താളിലെ സംവാദങ്ങൾ തിരയുക',
 	'lqt-search-label' => 'പദങ്ങൾ തിരയുക:',
 	'lqt-search-button' => 'തിരയുക',
@@ -13129,10 +13368,10 @@ $5 താളിലെ '$2' എന്നതിനു പുതിയൊരു മ
 	'lqt-feed-title-replies' => '{{SITENAME}} — മറുപടികൾ',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — {{PLURAL:$2|$1 എന്ന താളിലുള്ള|$1 എന്ന താളുകളിലുള്ള}} മറുപടികൾ',
 	'lqt-feed-new-thread-intro' => '$1 താളിൽ $2 പ്രസിദ്ധപ്പെടുത്തിയ പുതിയ ചരട്', # Fuzzy
-	'lqt-feed-reply-intro' => '$2 ($1 താളിൽ) പ്രസിദ്ധപ്പെടുത്തിയ $3 ചരടിനു മറുപടി നൽകുക ($1 താളിൽ)', # Fuzzy
+	'lqt-feed-reply-intro' => '{{GENDER:$4|$2}} ($1 താളിൽ) പ്രസിദ്ധപ്പെടുത്തിയ $3 ചരടിനുള്ള മറുപടി',
 	'tooltip-pt-newmessages' => 'താങ്കൾ ശ്രദ്ധിക്കുന്ന ചരട് ചേർത്ത സംവാദം താളുകളിലെ പുതിയ ചേർക്കലുകൾ പ്രദർശിപ്പിക്കുക',
-	'lqt-newmessages-n' => 'പുതിയ സന്ദേശങ്ങൾ($1)',
-	'lqt_newmessages' => 'എനിക്കുള്ള പുതിയ സന്ദേശങ്ങൾ (ഒന്നുമില്ല)',
+	'lqt-newmessages-n' => 'പുതിയ സന്ദേശങ്ങൾ ($1)',
+	'lqt_newmessages' => 'പുതിയ സന്ദേശങ്ങൾ (ഒന്നുമില്ല)',
 	'lqt_newmessages-title' => 'പുതിയ സന്ദേശങ്ങൾ',
 	'lqt-newpost-summary' => 'പുതിയ ചരട്: $1',
 	'lqt-reply-summary' => '[[$2|$1]] എന്നതിനുള്ള മറുപടി',
@@ -13233,8 +13472,8 @@ $messages['mr'] = array(
 	'lqt_sort_newest_changes' => 'शेवटी बदललेले पहिल्यांदा',
 	'lqt_sort_newest_threads' => 'नवीन थ्रेड पहिल्यांदा',
 	'lqt_sort_oldest_threads' => 'जुने थ्रेड पहिल्यांदा',
-	'lqt-newmessages-n' => 'माझे नवीन संदेश ($1)',
-	'lqt_newmessages' => 'माझे नवीन संदेश',
+	'lqt-newmessages-n' => 'माझे नवीन संदेश ($1)', # Fuzzy
+	'lqt_newmessages' => 'माझे नवीन संदेश', # Fuzzy
 	'lqt_newmessages-title' => 'नवीन संदेश',
 );
 
@@ -13356,7 +13595,7 @@ Selepas ini dilakukan, tred-tred itu tidak boleh dikembalikan.',
 	'lqt-count-marked-read' => '$1 pesanan ditandai sebagai sudah dibaca.',
 	'lqt-email-undo' => 'Buat asal',
 	'lqt-no-new-messages' => 'Anda tiada pesanan baru.',
-	'lqt-new-messages' => '✒ Anda ada pesanan baru.',
+	'lqt-new-messages' => 'Anda ada pesanan baru.',
 	'lqt-email-info-undo' => 'Kembalikan tred yang baru anda singkirkan.',
 	'lqt-date-info' => 'Pautan ini mati kerana anda sedang melihat tred-tred dari semua tarikh.',
 	'lqt-newmessages-context' => 'Tred penuh',
@@ -13393,6 +13632,7 @@ Untuk mengelakkan ini daripada berlaku, pecahkannya dari tred ini sebelum mengha
 	'lqt-newmessages-from' => 'Dari $1',
 	'lqt-hot-topics' => 'Topik hangat',
 	'lqt-add-reply' => 'Balas',
+	'lqt-changesortorder' => 'Isih',
 	'lqt_rc_new_discussion' => 'tred baru, "$1" dikirim',
 	'lqt_rc_new_reply' => 'balasan dikirim kepada "$1"',
 	'right-lqt-split' => 'Memecahkan tred',
@@ -13413,6 +13653,7 @@ Untuk mengelakkan ini daripada berlaku, pecahkannya dari tred ini sebelum mengha
 	'lqt-log-action-merge-down' => '[[$1]] digabungkan ke bawah [[$3]]',
 	'lqt-log-action-subjectedit' => 'subjek [[$1]] ditukar dari "$2" menjadi "$3"',
 	'lqt-log-action-resort' => 'turutan [[$1]] diubah. Kunci turutan diubah dari $2 kepada $3',
+	'lqt-log-action-signatureedit' => 'menukar tandatangan [[$1]] dari "$2" menjadi "$3"',
 	'lqt-preference-notify-talk' => 'E-mel kepada saya tentang balasan pada tred yang saya pantau',
 	'lqt-preference-watch-threads' => 'Pantau tred-tred yang saya cipta atau balas',
 	'prefs-lqt' => 'Perbincangan bertred',
@@ -13437,8 +13678,6 @@ Anda boleh membacanya di <$6>
 
 Teksnya adalah seperti berikut:
 $7",
-	'lqt-quote-intro' => 'Pada $2, $3, [[User:$1|$1]] menulis:',
-	'lqt-quote' => 'Petikan',
 	'lqt-search-legend' => 'Cari perbincangan di laman ini',
 	'lqt-search-label' => 'Kata yang dicari:',
 	'lqt-search-button' => 'Cari',
@@ -13483,8 +13722,8 @@ Tandatangan diisikan secara automatik.',
 	'lqt-feed-new-thread-intro' => 'Tred baru di $1 dikirim oleh {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'Balasan kepada $3 (di $1) dikirim oleh {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Menunjukkan kiriman baru pada tred atau laman perbincangan bertred yang anda pantau',
-	'lqt-newmessages-n' => 'Pesanan baru saya ($1)',
-	'lqt_newmessages' => 'Pesanan baru saya (Tiada)',
+	'lqt-newmessages-n' => 'Pesanan baru ($1)',
+	'lqt_newmessages' => 'Pesanan baru (tiada)',
 	'lqt_newmessages-title' => 'Pesanan baru',
 	'lqt-newpost-summary' => 'Tred baru: $1',
 	'lqt-reply-summary' => 'Balas [[$2|$1]]',
@@ -13502,6 +13741,10 @@ Tandatangan diisikan secara automatik.',
 	'lqt-reply-subpage' => 'balas',
 	'nstab-thread' => 'Tred',
 	'nstab-summary' => 'Ringkasan',
+	'echo-pref-email-lqt-new-topic' => 'Mewujudkan perbincangan bertred yang baru',
+	'echo-pref-email-lqt-reply' => 'Membalas perbincangan bertred',
+	'pageinfo-usinglqt' => 'Perbincangan bertred dibolehkan',
+	'pageinfo-usinglqt-yes' => 'Ya',
 );
 
 /** Maltese (Malti)
@@ -13509,27 +13752,161 @@ Tandatangan diisikan secara automatik.',
  * @author Roderick Mallia
  */
 $messages['mt'] = array(
+	'lqt-desc' => "Iżżid diskussjoni fi stil ta' ''thread'' fil-paġni ta' diskussjoni",
+	'lqt_movethread' => "Mexxi diskussjoni f'paġna oħra",
+	'lqt_deletethread' => 'Ħassar jew irkupra diskussjoni',
+	'lqt_contents_title' => 'Werrej',
+	'lqt_toc_thread_title' => 'Titlu tad-diskussjoni',
+	'lqt_toc_thread_author' => 'Mibdija minn',
+	'lqt_toc_thread_replycount' => 'Risposti',
+	'lqt_toc_thread_modified' => 'L-aħħar modifika',
+	'lqt_add_header' => 'Żid intestatura',
+	'lqt_new_thread' => 'Ibda diskussjoni ġdida',
+	'lqt_invalid_subject' => "Is-suġġett li daħħalt mhuwiex validu.
+Jista' jkun li:
+* Huwa wisq twil, jew
+* Jinsab f'kunflitt ma' prefissi interwiki jew ismijiet ta' spazju tal-isem.",
+	'lqt-empty-text' => 'Ma tistax tibgħat messaġġ vojt',
+	'lqt_empty_subject' => 'Trid iddaħħal suġġett.',
+	'lqt_reply' => 'Irrispondi',
 	'lqt_delete' => 'Ħassar',
+	'lqt_undelete' => 'Irkupra',
+	'lqt_permalink' => 'Ħolqa permanenti',
+	'lqt_fragment' => "Framment ta' $1 minn $2",
 	'lqt_discussion_link' => 'diskussjoni',
+	'lqt_from_talk' => 'Minn $1',
+	'lqt-history-title' => 'Kronoloġija tad-diskussjoni',
+	'lqt_hist_comment_edited' => 'Kumment [$2 modifikat]',
+	'lqt_hist_summary_changed' => 'Taqsira mibdula',
+	'lqt_hist_reply_created' => '[[$1|Risposta ġdida]] maħluqa',
+	'lqt_hist_thread_created' => 'Diskussjoni ġdida maħluqa',
+	'lqt_hist_deleted' => 'Imħassra',
+	'lqt_hist_undeleted' => 'Irkuprata',
 	'lqt_hist_moved_talkpage' => 'Immexxi',
+	'lqt_hist_no_revisions_error' => "Din id-diskussjoni m'għandiex reviżjonijiet tal-kronoloġija.",
+	'lqt_hist_past_last_page_error' => "Qbiżt in-numru ta' paġni tal-kronoloġija.",
+	'lqt_hist_tooltip_newer_disabled' => 'Din il-ħolqa hija diżattivata minħabba li tinsab fl-ewwel paġna.',
+	'lqt_hist_tooltip_older_disabled' => 'Din il-ħolqa hija diżattivata minħabba li tinsab fl-aħħar paġna.',
+	'lqt_hist_split' => "Risposta maqsuma f'diskussjoni ġdida",
+	'lqt_hist_edited_subject' => 'Biddel is-suġġett minn "$2" għal "$3"',
 	'lqt_hist_edited_subject_corrupt' => 'Suġġett mibdul',
+	'lqt_hist_merged_from' => '[[$1|Risposta]] mmexxija fuq diskussjoni ġdida',
+	'lqt_hist_merged_to' => '[[$1|Risposta]] mmexxija minn diskussjoni oħra',
+	'lqt_hist_split_from' => "Aqsam f'diskussjoni ġdida",
+	'lqt_hist_root_blanked' => 'Kumment imneħħi',
+	'lqt_revision_as_of' => 'Reviżjoni tal-$2 fil-$3.',
+	'lqt_change_new_thread' => 'Din hija r-reviżjoni tal-bidu tad-diskussjoni.',
+	'lqt_change_reply_created' => "Il-[$1 kumment enfasizzat] ġie maħluq f'din ir-reviżjoni.",
+	'lqt_change_edited_root' => "Il-[$1 kumment enfasizzat] ġie modifikat f'din ir-reviżjoni.",
+	'lqt_change_edited_summary' => 'It-taqsira tad-diskussjoni ġiet modifikata',
+	'lqt_change_deleted' => '[$1 Din id-diskussjoni] jew il-livell superjuri tagħha ġiet imħassra',
+	'lqt_change_undeleted' => 'Il-[$1 messaġġ enfasizzat] ġie irkuprat',
+	'lqt_change_moved' => "[$1 Din id-diskussjoni] tmexxiet minn paġna ta' diskussjoni oħra",
+	'lqt_change_split' => '[$1 Din id-diskussjoni] ġiet maqsuma minn diskussjoni oħra',
+	'lqt_change_edited_subject' => 'Is-suġġett ta\' din id-diskussjoni ġie mibdul minn "$2" għal "$3"',
+	'lqt_change_merged_from' => '[$1 Risposta] lejn din id-diskussjoni tmexxiet lejn diskussjoni oħra',
+	'lqt_change_merged_to' => 'Ir-[$1 risposta enfasizzata] tmexxiet minn diskussjoni oħra',
+	'lqt_change_split_from' => "[$1 Sotto-diskussjoni] ta' din id-diskussjoni ġiet maqsuma bħala diskussjoni għaliha.",
+	'lqt_change_root_blanked' => "It-test ta' [$1 kumment] ġie mneħħi.",
 	'lqt_youhavenewmessages' => 'Għandek [[$1|messaġġi ġodda]].',
+	'lqt_protectedfromreply' => 'Din id-diskussjoni ġiet $1 mir-risposti.',
+	'lqt_protectedfromreply_link' => 'protetta',
 	'lqt_subject' => 'Suġġett:',
 	'lqt_noreason' => 'Ma ngħatat ebda raġuni.',
+	'lqt_move_placeholder' => 'Diskussjoni, $1, tmexxiet minn hawnhekk lejn $5.
+Din it-tmexxija saret minn $2 nhar il-$3 fil-$4.',
+	'lqt_thread_deleted_for_sysops' => "Id-diskusssjoni ġiet '''imħassra''' u hija viżibbli biss lill-amministraturi.",
+	'lqt_thread_deleted' => 'Id-diskussjoni ġiet imħassra.',
+	'lqt_summary_notice' => "Ma kien hemm l-ebda bidla f'din id-diskussjoni minn tal-inqas {{PLURAL:$2|ġurnata|$2 ġranet}}.
+Jekk intemmet, $1.",
+	'lqt_summary_notice_link' => 'ikteb taqsira',
+	'lqt_summary_label' => 'Taqsira tad-diskussjoni:',
+	'lqt_summary_subtitle' => 'Taqsira ta\' "$1"',
+	'lqt_nosuchthread_title' => 'Id-diskussjoni ma teżistix',
+	'lqt_threadrequired' => 'Trid tispeċifika diskussjoni fil-URL.',
+	'lqt_move_torename' => "Biex tbiddel isem id-diskussjoni, $1 u biddel il-kamp 'Suġġett'.",
 	'lqt_move_torename_edit' => 'immodifikaha',
+	'lqt_move_destinationtitle' => "Titlu tal-paġna ta' diskussjoni ta' destinazzjoni:",
 	'lqt_move_move' => 'Mexxi',
+	'lqt_move_nodestination' => 'Trid tispeċifika destinazzjoni.',
+	'lqt_move_thread_bad_destination' => "Il-paġna ta' destinazzjoni mhijiex paġna ta' diskussjoni.",
+	'lqt_move_samedestination' => 'Id-diskussjoni diġà tinsab fuq din il-paġna!',
+	'lqt_move_noreason' => 'Ma ngħatat ebda raġuni.',
+	'lqt_move_success' => 'Id-diskussjoni tmexxiet lejn $1.',
+	'lqt_header_warning_big' => 'Qiegħed timmodifika $1.',
+	'lqt_header_warning_after_big' => 'L-intestaturi huma għal tħabbir u introduzzjonijiet.
+Min-naħa l-oħra forsi tixtieq $2.',
+	'lqt_header_warning_bold' => "intestatura tal-paġna ta' diskussjoni",
+	'lqt_header_warning_new_discussion' => 'ibda diskussjoni ġdida',
+	'lqt_sorting_order' => 'Ordni tad-diskussjonijiet:',
+	'lqt_sort_newest_changes' => 'dawk modifikati l-aħħar l-ewwel',
+	'lqt_sort_newest_threads' => 'diskussjonijiet l-iktar riċenti l-ewwel',
+	'lqt_sort_oldest_threads' => 'diskussjonijiet l-inqas riċenti l-ewwel',
 	'lqt-title' => 'Titlu',
 	'lqt-summary' => 'Taqsira',
+	'lqt-searching' => 'Fittex fid-diskussjonijiet',
+	'lqt-read-message' => 'Immarkah bħala moqri',
+	'lqt-read-message-tooltip' => "Neħħi din id-diskussjoni mill-messaġġi l-ġodda.
+Din xorta waħda se tibqa' tidher fil-paġna ta' diskussjoni oriġinali.",
 	'lqt-read-all' => 'Immarkahom kollha bħala moqrija',
+	'lqt-marked-read' => "Id-diskussjoni '''$1''' immarkata bħala moqrija.",
+	'lqt-count-marked-read' => '{{PLURAL:$1|Messaġġ wieħed immarkat bħala moqri|$1 messaġġi mmarkati bħala moqrija}}.',
+	'lqt-email-undo' => "Reġġa' lura",
 	'lqt-no-new-messages' => "M'hemm l-ebda messaġġ ġdid għalik.",
-	'lqt-new-messages' => "✒ M'hemm l-ebda messaġġ ġdid għalik.",
+	'lqt-new-messages' => "M'hemm l-ebda messaġġ ġdid għalik.",
+	'lqt-email-info-undo' => 'Ġib lura d-diskussjoni li għadek kif għalaqt.',
+	'lqt-newmessages-context' => 'Diskussjoni sħiħa',
+	'lqt-thread-created' => 'Maħluqa',
 	'lqt-history-time' => 'Ħin',
 	'lqt-history-user' => 'Utent',
 	'lqt-history-action' => 'Attività',
 	'lqt-history-comment' => 'Kumment',
+	'lqt-history-thread' => 'Diskussjoni',
+	'lqt-thread-edited-author' => 'Modifikata mill-awtur.<br />
+L-aħħar modifika: $1',
+	'lqt-thread-edited-others' => 'Modifikata minn {{PLURAL:$2|utent ieħor|$2 utenti}}.<br />
+L-aħħar modifika: $1',
+	'lqt-header-actions' => 'Azzjonijiet',
+	'lqt_summarize_link' => 'Qassar',
+	'lqt-summarize-intro' => 'Jekk jogħġbok qassar id-diskussjoni fil-kaxxa tal-immodifikar. Jista\' jiġi wżat kwalunkwe test tal-wiki. Meta tispiċċa, agħfas fuq "{{int:savearticle}}".',
+	'lqt-thread-split' => "Maqsum f'diskussjoni ġdida",
+	'lqt-split-success' => "Irnexxielek taqsam b'suċċess id-diskussjoni $1.",
+	'lqt_split_thread' => 'Aqsam diskussjoni',
+	'lqt-thread-split-subject' => 'Suġġett ġdid tad-diskussjoni:',
+	'lqt-thread-split-thread' => 'Diskussjoni:',
+	'lqt-split-submit' => 'Aqsam',
+	'lqt_split_badsubject' => 'Is-suġġett li daħħalt mhuwiex validu.',
+	'lqt-no-threads' => "S'issa m'hemm l-ebda diskussjoni fuq din il-paġna.",
+	'lqt-delete-replies-done' => 'Ir-risposti kollha fuq din id-diskussjoni ġew imħassra wkoll.',
 	'lqt-movethread' => 'Mexxi',
 	'lqt-menu-trigger' => 'Iktar',
+	'lqt-newmessages-from' => 'Minn $1',
+	'lqt-hot-topics' => 'Diskussjonijiet sħan',
+	'lqt-add-reply' => 'Żid risposta',
+	'lqt_rc_new_discussion' => 'beda diskussjoni ġdida, "$1"',
+	'lqt_rc_new_reply' => 'bagħat ripostsa lil "$1"',
+	'right-lqt-split' => 'Jaqsam diskussjonijiet',
+	'right-lqt-merge' => 'Iwaħħad diskussjonijiet',
+	'right-lqt-react' => 'Jirrispondi lil diskussjonijiet',
+	'lqt-thread-merge' => "Waħħad ma' diskussjoni oħra",
+	'lqt-thread-merge-to' => "Waħħad ma' din id-diskussjoni",
+	'lqt_merge_thread' => 'Waħħad diskussjoni',
+	'lqt-thread-merge-source' => 'Diskussjoni oriġinali:',
+	'lqt-thread-merge-dest' => "Diskussjoni ta' destinazzjoni:",
+	'lqt-merge-submit' => 'Waħħad',
+	'lqt-merge-success' => "Irnexxielek twaħħad id-diskussjoni $1 ma' $2.",
+	'lqt-log-name' => "Diskussjoni fi stil ''thread''",
+	'lqt-log-header' => 'Dan ir-reġistru jinkludi l-azzjonijiet meħuda fid-diskussjonijiet.',
+	'lqt-log-action-move' => 'mexxxa lil [[$1]] minn [[$2]] lejn [[$3]]',
+	'lqt-log-action-split' => 'qasam lil [[$1]] minn taħt [[$3]], bis-suġġett il-ġdid "$2"',
+	'lqt-log-action-merge-across' => 'mexxa lil [[$1]] minn taħt [[$2]] lejn [[$3]]',
+	'lqt-log-action-merge-down' => "waħħad lil [[$1]] ma' [[$3]]",
+	'lqt-log-action-subjectedit' => 'biddel is-suġġett ta\' [[$1]] minn "$2" ma\' "$3"',
 	'lqt-preference-notify-talk' => "Ibgħatli b'permezz tal-ittra-e risposti fuq suġġetti li qiegħed insegwi",
+	'lqt-preference-display-count' => "Numru massimu ta' riposti x'jintwerew:",
+	'lqt-preference-custom-signatures' => 'Uri l-firem personali tal-utenti',
+	'lqt-enotif-subject-reply' => 'Diskussjoni fuq {{SITENAME}} - Risposta: $1',
+	'lqt-enotif-subject-newthread' => 'Diskussjoni fuq {{SITENAME}} - Diskussjoni ġdida: $1',
 	'lqt-search-button' => 'Fittex',
 	'searchprofile-threads' => 'Diskussjonijiet',
 	'lqt-ajax-update-link' => 'Aġġorna',
@@ -13539,10 +13916,30 @@ $messages['mt'] = array(
 	'lqt-cancel-subject-edit' => 'Annulla',
 	'lqt-drag-save' => 'Ikkonferma',
 	'lqt-drag-reason' => 'Raġuni:',
+	'lqt-feed-title-all' => '{{SITENAME}} — Messaġġi ġodda',
+	'lqt-feed-title-all-from' => '{{SITENAME}} — Messaġġi ġodda minn $1',
+	'lqt-feed-title-new-threads' => '{{SITENAME}} — Diskussjonijiet ġodda',
+	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — Diskussjonijiet ġodda minn $1',
+	'lqt-feed-title-replies' => '{{SITENAME}} — Risposti',
+	'lqt-feed-title-replies-from' => '{{SITENAME}} — Risposti minn $1',
+	'lqt-feed-new-thread-intro' => 'Diskussjoni ġdida fuq $1 imdaħħla minn {{GENDER:$4|$2}}',
+	'lqt-feed-reply-intro' => 'Risposta lil $3 (fuq $1) imdaħħla minn {{GENDER:$4|$2}}',
 	'lqt-newmessages-n' => 'Messaġġi ġodda ($1)',
-	'lqt_newmessages' => 'messaġġi ġodda (xejn)',
+	'lqt_newmessages' => 'Messaġġi ġodda (xejn)',
 	'lqt_newmessages-title' => 'Messaġġi ġodda',
+	'lqt-newpost-summary' => 'Diskussjoni ġdida: $1',
+	'lqt-reply-summary' => 'Risposta lil [[$2|$1]]',
 	'lqt-talkpage-history-title' => "Kronoloġija tal-paġna ta' diskussjoni",
+	'lqt-talkpage-history-subtitle' => 'Għal $1',
+	'lqt-talkpage-history-tab' => 'Intestatura',
+	'restriction-reply' => 'Ibgħat risposti',
+	'restriction-newthread' => 'Ibgħat diskussjonijiet ġodda',
+	'lqt-protected-reply-thread' => "Ma tistax tikteb f'din id-diskussjoni minħabba li din ġiet protetta minn messaġġi ġodda.",
+	'lqt-edit-bump-tooltip' => "Mexx din id-diskussjoni fil-bidu tal-paġna tagħha ta' diskussjoni",
+	'lqt-historicalrevision-error' => 'Ir-reviżjoni li għażilt hija korrotta, u ma tistax tintwera.',
+	'lqt-reply-subpage' => 'irrispondi',
+	'nstab-thread' => 'Diskussjoni',
+	'nstab-summary' => 'Taqsira',
 );
 
 /** Erzya (эрзянь)
@@ -13580,10 +13977,10 @@ $messages['nah'] = array(
 	'lqt_move_noreason' => 'Ahmo cah īxtlamatiliztli.',
 	'lqt-title' => 'Tōcāitl',
 	'lqt-read-message' => 'Quimachiyōtīz iuh tāmapōuh',
-	'lqt_newmessages' => 'Yancuīc notētītlaniliz (ayāc)',
+	'lqt_newmessages' => 'Yancuīc notētītlaniliz (ahtlein)',
 );
 
-/** Norwegian Bokmål (norsk (bokmål)‎)
+/** Norwegian Bokmål (norsk bokmål)
  * @author Event
  * @author Harald Khan
  * @author Laaknor
@@ -13702,7 +14099,7 @@ Denne handlingen kan ikke gjøres om.',
 	'lqt-count-marked-read' => '{{PLURAL:$1|Én beskjed|$1 beskjeder}} markert lest.',
 	'lqt-email-undo' => 'Angre',
 	'lqt-no-new-messages' => 'Du har ingen nye meldinger.',
-	'lqt-new-messages' => '✒ Du har nye beskjeder.',
+	'lqt-new-messages' => 'Du har nye beskjeder.',
 	'lqt-email-info-undo' => 'Hent igjen tråden du nettopp fjernet.',
 	'lqt-date-info' => 'Denne lenken er slått av fordi du ser tråder fra alle datoer.',
 	'lqt-newmessages-context' => 'Hele tråden',
@@ -13785,8 +14182,6 @@ Du kan se den på <$6>
 
 Teksten i svaret er:
 $7",
-	'lqt-quote-intro' => 'Den $2 klokka $3 skrev [[User:$1|$1]]:',
-	'lqt-quote' => 'Siter',
 	'lqt-search-legend' => 'Søk i diskusjoner på denne siden',
 	'lqt-search-label' => 'Søkeord:',
 	'lqt-search-button' => 'Søk',
@@ -13831,8 +14226,8 @@ Signaturen vises automatisk.',
 	'lqt-feed-new-thread-intro' => 'Ny tråd på $1 postet av $2', # Fuzzy
 	'lqt-feed-reply-intro' => 'Svar til $3 (på $1) postet av $2', # Fuzzy
 	'tooltip-pt-newmessages' => 'Viser nye innlegg i tråder eller i trådete diskusjonssider som du overvåker',
-	'lqt-newmessages-n' => 'Nye meldinger ($1)',
-	'lqt_newmessages' => 'Nye meldinger (Ingen)',
+	'lqt-newmessages-n' => 'Nye meldinger ($1)', # Fuzzy
+	'lqt_newmessages' => 'Nye meldinger (Ingen)', # Fuzzy
 	'lqt_newmessages-title' => 'Nye meldinger',
 	'lqt-newpost-summary' => 'Ny tråd: $1',
 	'lqt-reply-summary' => 'Svar på [[$2|$1]]',
@@ -13852,7 +14247,30 @@ Signaturen vises automatisk.',
 	'nstab-summary' => 'Sammendrag',
 );
 
-/** Nedersaksisch (Nedersaksisch)
+/** Low German (Plattdüütsch)
+ * @author Joachim Mos
+ */
+$messages['nds'] = array(
+	'lqt-parent' => 'Öllern',
+	'lqt_delete' => 'Wegdoon',
+	'lqt_undelete' => 'Wedderhalen',
+	'lqt_discussion_link' => 'Diskuschoon',
+	'lqt_hist_deleted' => 'Wegdaan',
+	'lqt_hist_undeleted' => 'Wedderhalen',
+	'lqt_hist_moved_talkpage' => 'Schuven',
+	'lqt-thread-created' => 'Opstellt',
+	'lqt-history-time' => 'Tied',
+	'lqt-history-user' => 'Bruker',
+	'lqt-history-comment' => 'Kommentar',
+	'lqt-header-actions' => 'Akschonen',
+	'lqt-movethread' => 'Schuven',
+	'searchprofile-threads' => 'Diskuschoon',
+	'lqt-save-subject' => 'Spiekern',
+	'lqt-cancel-subject-edit' => 'Afbreken',
+	'pageinfo-usinglqt-yes' => 'Jo',
+);
+
+/** Low Saxon (Netherlands) (Nedersaksies)
  * @author Servien
  */
 $messages['nds-nl'] = array(
@@ -13932,7 +14350,7 @@ $messages['ne'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|सन्देश|सन्देशहरु}}लाई पढिएकोमा चिह्नित गर्ने',
 	'lqt-email-undo' => 'रद्द गर्ने',
 	'lqt-no-new-messages' => 'तपाईंलाई नयाँ सन्देशहरु छैनन्।',
-	'lqt-new-messages' => '✒ तपाईकोनिम्ति नयाँ सन्देशहरु छन्।',
+	'lqt-new-messages' => 'तपाईकोनिम्ति नयाँ सन्देशहरु छन्।',
 	'lqt-newmessages-context' => 'पूरा धागो(thread)',
 	'lqt-thread-created' => 'सिर्जना गरियो',
 	'lqt-history-time' => 'समय',
@@ -14007,8 +14425,8 @@ $7",
 	'lqt-edit-signature' => '(हस्ताक्षर सम्पादन गर्ने)',
 	'lqt-preview-signature' => '(पूर्व रुप)',
 	'lqt-feed-title-all' => '{{SITENAME}} — नयाँ पोस्ट',
-	'lqt-newmessages-n' => 'नयाँ सन्देशहरु ($1)',
-	'lqt_newmessages' => 'मेरा नयाँ सन्देशहरु (छैनन्)',
+	'lqt-newmessages-n' => 'नयाँ सन्देशहरु ($1)', # Fuzzy
+	'lqt_newmessages' => 'मेरा नयाँ सन्देशहरु (छैनन्)', # Fuzzy
 	'lqt_newmessages-title' => 'नयाँ सन्देशहरू',
 );
 
@@ -14043,12 +14461,12 @@ $messages['nl'] = array(
 * te lang zijn, of
 * conflicteren met interwikivoorvoegsels of naamruimtenamen.',
 	'lqt-empty-text' => 'Lege berichten plaatsen is niet mogelijk',
-	'lqt_empty_subject' => 'U moet een onderwerp ingeven.',
+	'lqt_empty_subject' => 'U moet een onderwerp opgeven.',
 	'lqt_reply' => 'Antwoorden',
 	'lqt-parent' => 'Bovenliggend bericht',
 	'lqt_delete' => 'Verwijderen',
 	'lqt_undelete' => 'Terugplaatsen',
-	'lqt_permalink' => 'Permanente verwijzing',
+	'lqt_permalink' => 'Permanente koppeling',
 	'lqt_fragment' => 'Fragment van een $1 van $2',
 	'lqt_discussion_link' => 'overleg',
 	'lqt_from_talk' => 'Van $1',
@@ -14064,15 +14482,15 @@ $messages['nl'] = array(
 	'lqt_hist_view_whole_thread' => 'Geschiedenis voor het hele onderwerp bekijken',
 	'lqt_hist_no_revisions_error' => 'Dit onderwerp heeft geen oudere versies.',
 	'lqt_hist_past_last_page_error' => 'U hebt een hoger paginanummer gekozen dan bestaat in de geschiedenis.',
-	'lqt_hist_tooltip_newer_disabled' => 'Deze verwijzing is niet actief omdat u op de eerste pagina bent.',
-	'lqt_hist_tooltip_older_disabled' => 'Deze verwijzing is niet actief omdat u op de laatste pagina bent.',
+	'lqt_hist_tooltip_newer_disabled' => 'Deze koppeling is niet actief omdat u op de eerste pagina bent.',
+	'lqt_hist_tooltip_older_disabled' => 'Deze koppeling is niet actief omdat u op de laatste pagina bent.',
 	'lqt_hist_split' => 'Antwoord naar een nieuw onderwerp afsplitsen',
 	'lqt_hist_edited_subject' => 'Onderwerp gewijzigd van "$2" naar "$3"',
 	'lqt_hist_edited_subject_corrupt' => 'Onderwerp gewijzigd',
 	'lqt_hist_merged_from' => 'Het [[$1|antwoord]] is verplaatst naar een ander onderwerp',
 	'lqt_hist_merged_to' => 'Het [[$1|antwoord]] is verplaatst vanuit een ander onderwerp',
 	'lqt_hist_split_from' => 'Naar een nieuw onderwerp afsplitsen',
-	'lqt_hist_root_blanked' => 'Tekst van opmerking verwijderd',
+	'lqt_hist_root_blanked' => 'Reactietekst verwijderd',
 	'lqt_hist_adjusted_sortkey' => 'Plaats van het onderwerp aanpassen',
 	'lqt_revision_as_of' => 'Versie op $2 om $3.',
 	'lqt_change_new_thread' => 'Dit is de eerste versie van het onderwerp.',
@@ -14103,9 +14521,9 @@ Als het overleg is afgerond, wordt u aangemoedigd om $1.',
 	'lqt_summary_label' => 'Samenvatting onderwerp:',
 	'lqt_summary_subtitle' => 'Samenvatting van "$1"',
 	'lqt_nosuchrevision' => 'Deze versie van dit onderwerp bestaat niet.',
-	'lqt_nosuchthread' => 'Het aangegeven onderwerp bestaat niet.',
+	'lqt_nosuchthread' => 'Het opgegeven onderwerp bestaat niet.',
 	'lqt_nosuchthread_title' => 'Dit onderwerp bestaat niet',
-	'lqt_threadrequired' => 'U moet een onderwerspagina opgeven in de URL.',
+	'lqt_threadrequired' => 'U moet een onderwerppagina opgeven in de URL.',
 	'lqt_move_movingthread' => 'Verplaatsen van $1.
 Dit onderwerp is onderdeel van $2.',
 	'lqt_move_torename' => "Om dit onderwerp te hernoemen, $1 en wijzig het veld 'Onderwerp'.",
@@ -14140,9 +14558,9 @@ Deze handeling is onomkeerbaar.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|bericht|berichten}} gemarkeerd als gelezen.',
 	'lqt-email-undo' => 'Ongedaan maken',
 	'lqt-no-new-messages' => 'U hebt geen nieuwe berichten.',
-	'lqt-new-messages' => '✒ U hebt nieuwe berichten.',
+	'lqt-new-messages' => 'U hebt nieuwe berichten.',
 	'lqt-email-info-undo' => 'Terug naar het onderwerp dat u zojuist hebt verlaten.',
-	'lqt-date-info' => 'Deze verwijzing is niet actief omdat u onderwerpen van alle datums bekijkt.',
+	'lqt-date-info' => 'Deze koppeling is niet actief omdat u onderwerpen van alle datums bekijkt.',
 	'lqt-newmessages-context' => 'Volledig onderwerp',
 	'lqt-thread-created' => 'Aangemaakt',
 	'lqt-history-time' => 'Tijd',
@@ -14177,6 +14595,7 @@ Splits dit overleg alvorens het te verwijderen om dit te voorkomen.',
 	'lqt-newmessages-from' => 'Van $1',
 	'lqt-hot-topics' => 'Populaire onderwerpen',
 	'lqt-add-reply' => 'Antwoorden',
+	'lqt-changesortorder' => 'Sorteren',
 	'lqt_rc_new_discussion' => 'heeft een nieuw onderwerp "$1" geplaatst',
 	'lqt_rc_new_reply' => 'heeft een antwoord op "$1" geplaatst',
 	'right-lqt-split' => 'Onderwerpen splitsen',
@@ -14195,8 +14614,9 @@ Splits dit overleg alvorens het te verwijderen om dit te voorkomen.',
 	'lqt-log-action-split' => 'heeft [[$1]] afgesplitst van [[$3]] met als nieuw onderwerp "$2".',
 	'lqt-log-action-merge-across' => 'heeft [[$1]] verplaatst uit [[$2]] naar [[$3]].',
 	'lqt-log-action-merge-down' => 'heeft [[$1]] samengevoegd naar [[$3]].',
-	'lqt-log-action-subjectedit' => 'heeft het onderwerp voor [[$1]] van "$2" naar "$3" gewijzigd',
+	'lqt-log-action-subjectedit' => 'heeft het onderwerp voor [[$1]] gewijzigd van "$2" naar "$3"',
 	'lqt-log-action-resort' => 'heeft de sorteervolgorde voor [[$1]] gewijzigd van $2 naar $3',
+	'lqt-log-action-signatureedit' => 'heeft de ondertekening voor [[$1]] gewijzigd van "$2" naar "$3"',
 	'lqt-preference-notify-talk' => 'Mij e-mailen bij antwoorden op een onderwerp dat ik volg',
 	'lqt-preference-watch-threads' => 'Onderwerpen volgen die ik aanmaak of waar ik op antwoord',
 	'prefs-lqt' => 'Gestructureerd overleg',
@@ -14221,8 +14641,6 @@ U kunt het bekijken op <$6>.
 
 De inhoud is:
 $7',
-	'lqt-quote-intro' => 'Op $2 om $3 schreef [[User:$1|$1]]:',
-	'lqt-quote' => 'Citeren',
 	'lqt-search-legend' => 'Overleg op deze pagina doorzoeken',
 	'lqt-search-label' => 'Zoektermen:',
 	'lqt-search-button' => 'Zoeken',
@@ -14232,8 +14650,8 @@ $7',
 	'lqt-ajax-update-link' => 'Bijwerken',
 	'lqt-thread-show-replies' => '$1 {{PLURAL:$1|reactie|reacties}} weergeven',
 	'lqt-thread-show-more' => 'Meer reacties weergeven',
-	'lqt-thread-link-url' => 'URL-verwijzing',
-	'lqt-thread-link-title' => 'Wikitekstverwijzing:',
+	'lqt-thread-link-url' => 'URL voor koppeling:',
+	'lqt-thread-link-title' => 'Wikitekstkoppeling:',
 	'lqt-thread-link-copy' => 'Naar klembord kopiëren',
 	'lqt-sign-not-necessary' => 'Het is niet nodig uw berichten te ondertekenen met vier tildes. De ondertekening wordt automatisch toegevoegd.',
 	'lqt-marked-as-read-placeholder' => 'Het onderwerp "$1" is gemarkeerd als gelezen.',
@@ -14267,8 +14685,8 @@ Wijzig het onderwerp door op "Bewerken" te klikken in de bovenste bijdrage.',
 	'lqt-feed-new-thread-intro' => 'Nieuw onderwerp op $1 door {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'Reactie op $3 (op $1) door {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => "Nieuwe berichten weergeven in onderwerpen en pagina's die u volgt",
-	'lqt-newmessages-n' => 'Nieuwe berichten ($1)',
-	'lqt_newmessages' => 'Nieuwe berichten (0)',
+	'lqt-newmessages-n' => 'Berichten ($1)',
+	'lqt_newmessages' => 'Geen berichten',
 	'lqt_newmessages-title' => 'Nieuwe berichten',
 	'lqt-newpost-summary' => 'Nieuw onderwerp: $1',
 	'lqt-reply-summary' => 'Reactie op [[$2|$1]]',
@@ -14286,9 +14704,42 @@ Wijzig het onderwerp door op "Bewerken" te klikken in de bovenste bijdrage.',
 	'lqt-reply-subpage' => 'antwoord',
 	'nstab-thread' => 'Onderwerp',
 	'nstab-summary' => 'Samenvatting',
+	'echo-pref-email-lqt-new-topic' => 'Een nieuw draadoverleg start',
+	'echo-pref-email-lqt-reply' => 'Antwoordt op een draadoverleg',
+	'pageinfo-usinglqt' => 'Getrapt overleg ingeschakeld',
+	'pageinfo-usinglqt-yes' => 'Ja',
 );
 
-/** Norwegian Nynorsk (norsk (nynorsk)‎)
+/** Nederlands (informeel)‎ (Nederlands (informeel)‎)
+ * @author Siebrand
+ */
+$messages['nl-informal'] = array(
+	'lqt_invalid_subject' => 'Het onderwerp dat je hebt opgegeven is ongeldig. Het kan:
+* te lang zijn, of
+* conflicteren met interwikivoorvoegsels of naamruimtenamen.',
+	'lqt_empty_subject' => 'Je moet een onderwerp opgeven.',
+	'lqt_hist_past_last_page_error' => 'Je hebt een hoger paginanummer gekozen dan bestaat in de geschiedenis.',
+	'lqt_hist_tooltip_newer_disabled' => 'Deze koppeling is niet actief omdat je op de eerste pagina bent.',
+	'lqt_hist_tooltip_older_disabled' => 'Deze koppeling is niet actief omdat je op de laatste pagina bent.',
+	'lqt_youhavenewmessages' => 'Je hebt [[$1|nieuwe berichten]].',
+	'lqt_summary_notice' => 'Er zijn geen wijzigingen geweest in de afgelopen {{PLURAL:$2|dag|$2 dagen}}.
+Als het overleg is afgerond, wordt je aangemoedigd om $1.',
+	'lqt_threadrequired' => 'Je moet een onderwerppagina opgeven in de URL.',
+	'lqt_move_nodestination' => 'Je moet een bestemming opgeven.',
+	'lqt_header_warning_big' => 'Je bent een $1 aan het bewerken.',
+	'lqt_header_warning_after_big' => 'Koppen zijn voor aankondigingen en inleidingen.
+Wellicht kan je beter gebruik maken van $2.',
+	'lqt-no-new-messages' => 'Je hebt geen nieuwe berichten.',
+	'lqt-new-messages' => 'Je hebt nieuwe berichten.',
+	'lqt-email-info-undo' => 'Terug naar het onderwerp dat je zojuist hebt verlaten.',
+	'lqt-date-info' => 'Deze koppeling is niet actief omdat je onderwerpen van alle datums bekijkt.',
+	'lqt-protected-reply-thread' => 'Je kunt niet deelnemen aan dit onderwerp omdat het gesloten is.',
+	'lqt-protected-reply-talkpage' => 'Je kunt niet deelnemen aan dit onderwerp omdat de onderwerpen op deze pagina gesloten zijn.',
+	'lqt-protected-newthread' => 'Je kunt geen nieuwe onderwerpen aanmaken op deze overlegpagina omdat deze pagina gesloten is voor nieuwe onderwerpen.',
+	'lqt-historicalrevision-error' => 'De door jou geselecteerde versie is beschadigd en kan niet bekeken worden.',
+);
+
+/** Norwegian Nynorsk (norsk nynorsk)
  * @author Dittaeva
  * @author Gunnernett
  * @author Harald Khan
@@ -14329,7 +14780,7 @@ Kan henda er det:
 	'lqt_hist_deleted' => 'Sletta',
 	'lqt_hist_undeleted' => 'Sletting gjort om',
 	'lqt_hist_moved_talkpage' => 'Flytta',
-	'lqt_hist_listing_subtitle' => 'Syner ei historikklista',
+	'lqt_hist_listing_subtitle' => 'Syner ei historikkliste',
 	'lqt_hist_view_whole_thread' => 'Syn historikken for heile tråden',
 	'lqt_hist_no_revisions_error' => 'Denne tråden har ingen versjonar.',
 	'lqt_hist_past_last_page_error' => 'Det finst ikkje fleire sider med historikk.',
@@ -14410,7 +14861,7 @@ Denne handlinga kan ikkje verta gjort om.',
 	'lqt-count-marked-read' => '{{PLURAL:$1|Éi melding|$1 meldingar}} er merkte som lesne.',
 	'lqt-email-undo' => 'Angra',
 	'lqt-no-new-messages' => 'Du har ingen nye meldingar.',
-	'lqt-new-messages' => '✒ Du har nye meldingar.',
+	'lqt-new-messages' => 'Du har nye meldingar.',
 	'lqt-email-info-undo' => 'Hent attende tråden du nett fjerna.',
 	'lqt-date-info' => 'Denne lenkja er deaktivert av di du ser trådar frå alle datoar.',
 	'lqt-newmessages-context' => 'Heile tråden',
@@ -14480,8 +14931,6 @@ Du kan lesa svaret på <$6>
 
 Innhaldet i svaret er:
 $7',
-	'lqt-quote-intro' => 'Den $2 kl. $3 skreiv [[User:$1|$1]]:',
-	'lqt-quote' => 'Siter',
 	'lqt-search-legend' => 'Søk i diskusjonar på denne sida',
 	'lqt-search-label' => 'Søkjeord:',
 	'lqt-search-button' => 'Søk',
@@ -14515,8 +14964,8 @@ $7',
 	'lqt-feed-title-replies' => '{{SITENAME}} — Svar',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Svar frå $1',
 	'lqt-feed-new-thread-intro' => 'Ny tråd på $1 oppretta av $2', # Fuzzy
-	'lqt-newmessages-n' => 'Nye meldingar ($1)',
-	'lqt_newmessages' => 'Nye meldingar (ingen)',
+	'lqt-newmessages-n' => 'Nye meldingar ($1)', # Fuzzy
+	'lqt_newmessages' => 'Nye meldingar (ingen)', # Fuzzy
 	'lqt_newmessages-title' => 'Nye meldingar',
 	'lqt-newpost-summary' => 'Ny tråd: $1',
 	'lqt-reply-summary' => 'Svar på [[$2|$1]]',
@@ -14648,7 +15097,7 @@ Aquesta operacion es irreversibla.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|messatge marcat coma legit|messatges marcats coma legits}}',
 	'lqt-email-undo' => 'Desfar',
 	'lqt-no-new-messages' => 'I a pas cap de messatge per vos.',
-	'lqt-new-messages' => '✒ Avètz de messatges novèls.',
+	'lqt-new-messages' => 'Avètz de messatges novèls.',
 	'lqt-email-info-undo' => 'Restablir lo fial que venètz de levar.',
 	'lqt-date-info' => 'Aqueste ligam es desactivat perque sètz a veire los fials a partir de totas las datas.',
 	'lqt-newmessages-context' => 'Fial complet',
@@ -14713,8 +15162,6 @@ Aquò es una notificacion de {{SITENAME}}, qu'una responsa novèla a « $2 » su
 es estada creada lo $3 a $4.
 
 O podètz veire a « $6 »", # Fuzzy
-	'lqt-quote-intro' => 'Lo $2 a $3, [[User:$1|$1]] a escrich :',
-	'lqt-quote' => 'Citar',
 	'lqt-search-legend' => 'Recercar de discussions sus aquesta pagina',
 	'lqt-search-label' => 'Tèrmes de recèrca :',
 	'lqt-search-button' => 'Recercar',
@@ -14735,7 +15182,7 @@ O podètz veire a « $6 »", # Fuzzy
 	'lqt-feed-title-replies-from' => '{{SITENAME}} - Responsas de $1',
 	'lqt-feed-new-thread-intro' => 'Fial de discussion novèl sus $1 postat per $2', # Fuzzy
 	'lqt-feed-reply-intro' => 'Responsa a $3 (sus $1) postada per $2', # Fuzzy
-	'lqt-newmessages-n' => 'Messatges novèls ($1)',
+	'lqt-newmessages-n' => 'Messatges novèls ($1)', # Fuzzy
 	'lqt_newmessages' => 'Messatges Novèls', # Fuzzy
 	'lqt-newpost-summary' => 'Fial novèl : $1',
 	'lqt-reply-summary' => 'Respondre a [[$2|$1]]',
@@ -14749,14 +15196,14 @@ O podètz veire a « $6 »", # Fuzzy
 	'lqt-protected-newthread' => 'Podètz pas postar de fials novèls dins aquesta pagina de discussion perque es estada protegida contra los fials novèls.',
 );
 
-/** Oriya (ଓଡ଼ିଆ)
+/** Oriya (ଓଡ଼ିଆ)
  * @author Ansumang
  * @author Jnanaranjan Sahu
  * @author Jose77
  * @author Psubhashish
  */
 $messages['or'] = array(
-	'lqt_contents_title' => 'ଭିତର ଚିଜ',
+	'lqt_contents_title' => 'ବିଷୟସୂଚୀ',
 	'lqt_toc_thread_author' => 'ଦ୍ଵାରା ଆରମ୍ଭ କରାଯାଇଛି',
 	'lqt_toc_thread_replycount' => 'ଉତ୍ତରଗୁଡିକ',
 	'lqt_toc_thread_modified' => 'ଗତଥର ବଦଳା ଯାଇଥିଲା',
@@ -14784,7 +15231,7 @@ $messages['or'] = array(
 	'lqt_header_warning_new_discussion' => 'ଗୋଟିଏ ନୂଆ ଆଲୋଚନା ଆରମ୍ଭ କରିବେ',
 	'lqt-title' => 'ଶିରୋନାମା',
 	'lqt-summary' => 'ସାରକଥା',
-	'lqt-new-messages' => '✒ ଆପଣଙ୍କ ପାଇଁ ନୂଆ ମେସେଜ ସବୁ ଆସିଛି ।',
+	'lqt-new-messages' => 'ଆପଣଙ୍କ ପାଇଁ ନୂଆ ମେସେଜ ସବୁ ଆସିଛି ।',
 	'lqt-history-time' => 'ସମୟ',
 	'lqt-history-user' => 'ବ୍ୟବହାରକାରୀ',
 	'lqt-movethread' => 'ଘୁଞ୍ଚାଇବେ',
@@ -14792,12 +15239,12 @@ $messages['or'] = array(
 	'lqt-add-reply' => 'ଉତ୍ତର ଯୋଡ଼ନ୍ତୁ',
 	'lqt-merge-submit' => 'ମିଶାଇବେ',
 	'lqt-search-button' => 'ଖୋଜିବେ',
-	'lqt-save-subject' => 'ସାଇତିବେ',
+	'lqt-save-subject' => 'ସାଇତିବେ [Save]',
 	'lqt-cancel-subject-edit' => 'ବାତିଲ',
 	'lqt-drag-save' => 'ନିଶ୍ଚିତ କରନ୍ତୁ',
 	'lqt-drag-reason' => 'କାରଣ:',
-	'lqt-newmessages-n' => 'ମୋ ନୂଆ ମେସେଜ ($1)',
-	'lqt_newmessages' => 'ମୋ ନୂଆ ମେସେଜ (କିଛି ନାହିଁ)',
+	'lqt-newmessages-n' => 'ମୋ ନୂଆ ମେସେଜ ($1)', # Fuzzy
+	'lqt_newmessages' => 'ମୋ ନୂଆ ମେସେଜ (କିଛି ନାହିଁ)', # Fuzzy
 	'lqt_newmessages-title' => 'ନୂଆ ସନ୍ଦେଶ',
 	'lqt-newpost-summary' => 'ନୂଆ ବିଭାଗ : $1',
 	'lqt-reply-summary' => '[[$2|$1]]କୁ ଉତ୍ତର ଦିଅନ୍ତୁ',
@@ -14810,12 +15257,17 @@ $messages['or'] = array(
 
 /** Ossetic (Ирон)
  * @author Amikeco
+ * @author Bouron
  */
 $messages['os'] = array(
-	'lqt_delete' => 'Аппар',
+	'lqt_delete' => 'Схафын',
 	'lqt_hist_deleted' => 'Аппæрст',
+	'lqt_youhavenewmessages' => 'Æрцыд дæм [[$1|ног фыстæджы]].',
 	'lqt_protectedfromreply_link' => 'æхгæд',
-	'lqt-title' => 'Сæргонд',
+	'lqt-title' => 'Сæр',
+	'lqt-newmessages-n' => 'Ног фыстæджытæ ($1)',
+	'lqt_newmessages' => 'Ног фыстæджытæ (нæй)',
+	'lqt_newmessages-title' => 'Ног фыстæджытæ',
 );
 
 /** Pampanga (Kapampangan)
@@ -14863,8 +15315,8 @@ $messages['pdc'] = array(
 	'lqt-save-subject' => 'Beilege',
 	'lqt-drag-reason' => 'Grund:',
 	'lqt-preview-signature' => '(Aagucke)',
-	'lqt-newmessages-n' => 'Neiichkeede ($1)',
-	'lqt_newmessages' => 'Neiichkeede (ken)',
+	'lqt-newmessages-n' => 'Neiichkeede ($1)', # Fuzzy
+	'lqt_newmessages' => 'Neiichkeede (ken)', # Fuzzy
 	'lqt-talkpage-history-subtitle' => 'Fer $1',
 	'lqt-talkpage-history-tab' => 'Iwwerschrift',
 );
@@ -14875,10 +15327,10 @@ $messages['pdc'] = array(
  */
 $messages['pfl'] = array(
 	'lqt_delete' => 'Lesche',
-	'lqt_move_move' => 'Verschiewe',
+	'lqt_move_move' => 'Vaschiewe',
 	'lqt-no-new-messages' => 'Du hoschd kä naie Nochrischde.',
 	'lqt-new-messages' => '→ Du hoschd naie Nochrischde.',
-	'lqt-movethread' => 'Verschiewe',
+	'lqt-movethread' => 'Vaschiewe',
 	'lqt-save-subject' => 'Schbaischere',
 	'lqt-cancel-subject-edit' => 'Uffhere',
 );
@@ -14886,11 +15338,13 @@ $messages['pfl'] = array(
 /** Polish (polski)
  * @author Airwolf
  * @author Ankry
+ * @author Chrumps
  * @author Grzechooo
  * @author Holek
  * @author Leinad
  * @author Maikking
  * @author Masti
+ * @author Matma Rex
  * @author McMonster
  * @author Odder
  * @author Sp5uhe
@@ -15009,7 +15463,7 @@ Ta operacja jest odwracalna.',
 	'lqt-count-marked-read' => 'Oznaczono jako {{PLURAL:$1|przeczytaną|przeczytane}} $1 {{PLURAL:$1|wiadomość|wiadomości}}.',
 	'lqt-email-undo' => 'Cofnij',
 	'lqt-no-new-messages' => 'Nie ma do Ciebie nowych wiadomości.',
-	'lqt-new-messages' => '✒ Nie ma do Ciebie nowych wiadomości.',
+	'lqt-new-messages' => 'Nie ma do Ciebie nowych wiadomości.',
 	'lqt-email-info-undo' => 'Przywróć wątek, który właśnie kazałem odrzucić.',
 	'lqt-date-info' => 'Ten link jest wyłączony, ponieważ przeglądasz wątki ze wszystkich terminów.',
 	'lqt-newmessages-context' => 'Wątek wyczerpany',
@@ -15089,8 +15543,6 @@ Możesz ją zobaczyć pod adresem <$6>
 
 Treść odpowiedzi to:
 $7',
-	'lqt-quote-intro' => 'Dnia $2 o $3 [[User:$1|$1]] napisał(a):',
-	'lqt-quote' => 'Cytuj',
 	'lqt-search-legend' => 'Szukaj dyskusji na tej stronie',
 	'lqt-search-label' => 'Szukaj frazy',
 	'lqt-search-button' => 'Szukaj',
@@ -15132,8 +15584,8 @@ Podpis jest wyświetlany automatycznie.',
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} – nowe wątki na {{PLURAL:$2|stronie|stronach:}} $1',
 	'lqt-feed-title-replies' => '{{SITENAME}} – odpowiedzi',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} – odpowiedzi na {{PLURAL:$2|stronie|stronach:}} $1',
-	'lqt-feed-new-thread-intro' => 'Nowy wątek na stronie $1 utworzony przez $2', # Fuzzy
-	'lqt-feed-reply-intro' => 'Odpowiedź w wątku $3 (na stronie $1) napisana przez $2', # Fuzzy
+	'lqt-feed-new-thread-intro' => 'Nowy wątek na stronie $1 utworzony przez {{GENDER:$4|użytkownika|użytkowniczkę}} $2',
+	'lqt-feed-reply-intro' => 'Odpowiedź w wątku $3 (na stronie $1) napisana przez {{GENDER:$4|użytkownika|użytkowniczkę}} $2',
 	'tooltip-pt-newmessages' => 'Pokazuje nowe wiadomości w obserwowanych wątkach lub na ich stronach dyskusji',
 	'lqt-newmessages-n' => 'Nowe wiadomości ($1)',
 	'lqt_newmessages' => 'Nowe wiadomości (brak)',
@@ -15154,6 +15606,9 @@ Podpis jest wyświetlany automatycznie.',
 	'lqt-reply-subpage' => 'odpowiedź',
 	'nstab-thread' => 'Wątek',
 	'nstab-summary' => 'Podsumowanie',
+	'echo-pref-email-lqt-new-topic' => 'Tworzy nowy wątek',
+	'echo-pref-email-lqt-reply' => 'Odpowiada w wątku',
+	'pageinfo-usinglqt-yes' => 'Tak',
 );
 
 /** Piedmontese (Piemontèis)
@@ -15275,7 +15730,7 @@ Costa operassion a l'é pa reversìbil.",
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|mëssagi|mëssagi}} marcà com lesù.',
 	'lqt-email-undo' => "buta 'me ch'a l'era",
 	'lqt-no-new-messages' => 'A-i é gnun mëssagi neuv për chiel.',
-	'lqt-new-messages' => '✒ A-i é ëd mëssagi neuv për ti.',
+	'lqt-new-messages' => 'A-i é ëd mëssagi neuv për ti.',
 	'lqt-email-info-undo' => "Ristabilì la discussion ch'a l'ha pen-a gavà.",
 	'lqt-date-info' => "Costa anliura a l'é disabilità përchè a l'é an camin ch'a vëd le discussion da tute le date.",
 	'lqt-newmessages-context' => 'Discussion antrega',
@@ -15357,8 +15812,6 @@ A peul vëddla su <$6>
 
 Ël test ëd l'arspòsta a l'é:
 $7",
-	'lqt-quote-intro' => "Ël $2 a $3, [[User:$1|$1]] a l'ha scrivù:",
-	'lqt-quote' => 'Sité',
 	'lqt-search-legend' => 'Sërché dle discussion dzora a sta pàgina-sì',
 	'lqt-search-label' => "Element d'arserca:",
 	'lqt-search-button' => 'Sërca',
@@ -15400,11 +15853,11 @@ La firma a l'é mostrà automaticament.",
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — Discussion neuva da $1',
 	'lqt-feed-title-replies' => '{{SITENAME}} — Arspòste',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Arspòste da $1',
-	'lqt-feed-new-thread-intro' => 'Discussion neuva ancaminà da $2', # Fuzzy
-	'lqt-feed-reply-intro' => 'Arspòsta a $3 (ël $1) mandà da $2', # Fuzzy
+	'lqt-feed-new-thread-intro' => 'Discussion neuva dzor $1 ancaminà da {{GENDER:$4|$2}}',
+	'lqt-feed-reply-intro' => 'Rispòsta a $3 (su $1) mandà da {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => "A mostra ij mëssagi neuv për soget o su pàgine ëd discussion an sël soget ch'a ten sot-euj",
 	'lqt-newmessages-n' => 'Mëssagi neuv ($1)',
-	'lqt_newmessages' => 'Mè mëssagi neuv (Gnun)',
+	'lqt_newmessages' => 'Mëssagi neuv (gnun)',
 	'lqt_newmessages-title' => 'Mëssagi neuv',
 	'lqt-newpost-summary' => 'Discussion neuva: $1',
 	'lqt-reply-summary' => 'Arspòsta a [[$2|$1]]',
@@ -15422,6 +15875,8 @@ La firma a l'é mostrà automaticament.",
 	'lqt-reply-subpage' => 'arspond',
 	'nstab-thread' => 'Discussion',
 	'nstab-summary' => 'Resumé',
+	'echo-pref-email-lqt-new-topic' => 'A crea na neuva discussion a caden-a',
+	'echo-pref-email-lqt-reply' => 'A rëspond a na discussion a caden-a',
 );
 
 /** Pashto (پښتو)
@@ -15449,7 +15904,7 @@ $messages['ps'] = array(
 	'lqt-title' => 'سرليک',
 	'lqt-summary' => 'لنډيز',
 	'lqt-email-undo' => 'ناکړل',
-	'lqt-new-messages' => '✒ تاسې نوي پيغامونه لرۍ.',
+	'lqt-new-messages' => 'تاسې نوي پيغامونه لرۍ.',
 	'lqt-thread-created' => 'جوړ شو',
 	'lqt-history-time' => 'وخت',
 	'lqt-history-user' => 'کارن',
@@ -15475,7 +15930,7 @@ $messages['ps'] = array(
 	'lqt-feed-title-replies' => '{{SITENAME}} — ځوابونه',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — د $1 لخوا ځوابونه',
 	'lqt-newmessages-n' => 'نوي پيغامونه ($1)',
-	'lqt_newmessages' => 'زما نوي پيغامونه (هېڅ)',
+	'lqt_newmessages' => 'نوي پيغامونه (هېڅ)',
 	'lqt_newmessages-title' => 'نوي پيغامونه',
 	'lqt-reply-summary' => '[[$2|$1]] ته ځواب وييل',
 	'lqt-talkpage-history-title' => 'د خبرو اترو د مخ پېښليک',
@@ -15488,8 +15943,8 @@ $messages['ps'] = array(
  * @author Giro720
  * @author Hamilton Abreu
  * @author Helder.wiki
- * @author Heldergeovane
  * @author Lijealso
+ * @author Luckas
  * @author Malafaya
  * @author SandroHc
  * @author 555
@@ -15608,21 +16063,21 @@ Esta operação é irreversível.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|mensagem marcada como lida|mensagens marcadas como lidas}}.',
 	'lqt-email-undo' => 'Desfazer',
 	'lqt-no-new-messages' => 'Não tem mensagens novas.',
-	'lqt-new-messages' => '✒ Tem mensagens novas.',
+	'lqt-new-messages' => 'Tem mensagens novas.',
 	'lqt-email-info-undo' => 'Recuperar o tópico que acabou de descartar.',
 	'lqt-date-info' => 'Este link está desactivado porque está a ver tópicos de todas as datas.',
 	'lqt-newmessages-context' => 'Tópico completo',
 	'lqt-thread-created' => 'Criado',
 	'lqt-history-time' => 'Data',
 	'lqt-history-user' => 'Utilizador',
-	'lqt-history-action' => 'Acção',
+	'lqt-history-action' => 'Atividade',
 	'lqt-history-comment' => 'Comentário',
 	'lqt-history-thread' => 'Tópico',
 	'lqt-thread-edited-author' => 'Editado pelo autor.<br />
 Última edição: $1',
 	'lqt-thread-edited-others' => 'Editado por {{PLURAL:$2|outro utilizador|$2 outros utilizadores}}.<br />
 Última edição: $1',
-	'lqt-header-actions' => 'Acções',
+	'lqt-header-actions' => 'Ações',
 	'lqt_summarize_link' => 'Resumir',
 	'lqt-summarize-intro' => 'Por favor, resuma o tópico na caixa de edição.
 Pode usar texto wiki no resumo. Quando terminar, clique "{{int:savearticle}}".',
@@ -15689,15 +16144,13 @@ Pode vê-la em <$6>
 
 O texto da resposta é:
 $7",
-	'lqt-quote-intro' => 'A $2 às $3, [[User:$1|$1]] escreveu:',
-	'lqt-quote' => 'Citar',
 	'lqt-search-legend' => 'Pesquise as discussões nesta página',
 	'lqt-search-label' => 'Termos a pesquisar:',
 	'lqt-search-button' => 'Pesquisar',
 	'searchprofile-threads' => 'Discussões',
 	'searchprofile-threads-tooltip' => 'Pesquisar discussões por tópicos e páginas de discussão',
 	'lqt-ajax-updated' => 'Este tópico tem respostas novas.',
-	'lqt-ajax-update-link' => 'Actualizar',
+	'lqt-ajax-update-link' => 'Atualizar',
 	'lqt-thread-show-replies' => 'Mostrar $1 {{PLURAL:$1|resposta|respostas}}',
 	'lqt-thread-show-more' => 'Mostrar mais respostas',
 	'lqt-thread-link-url' => 'URL do link:',
@@ -15735,8 +16188,8 @@ A assinatura é apresentada automaticamente.',
 	'lqt-feed-new-thread-intro' => 'Novo tópico em $1 colocado por {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'Resposta a $3 (em $1) colocada por {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Mostra as mensagens novas nos tópicos, ou nas páginas de discussão por tópicos, que está a vigiar',
-	'lqt-newmessages-n' => 'Mensagens novas ($1)',
-	'lqt_newmessages' => 'Mensagens (Nenhuma)',
+	'lqt-newmessages-n' => 'Mensagens novas ($1)', # Fuzzy
+	'lqt_newmessages' => 'Mensagens (Nenhuma)', # Fuzzy
 	'lqt_newmessages-title' => 'Mensagens',
 	'lqt-newpost-summary' => 'Tópico novo: $1',
 	'lqt-reply-summary' => 'Resposta a [[$2|$1]]',
@@ -15761,7 +16214,7 @@ A assinatura é apresentada automaticamente.',
  * @author Eduardo.mps
  * @author Giro720
  * @author Helder.wiki
- * @author Heldergeovane
+ * @author Luckas
  * @author Luckas Blade
  * @author MetalBrasil
  * @author 555
@@ -15880,7 +16333,7 @@ Esta operação é reversível.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|mensagem marcada como lida|mensagens marcadas como lidas}}.',
 	'lqt-email-undo' => 'Desfazer',
 	'lqt-no-new-messages' => 'Não há novas mensagens para você.',
-	'lqt-new-messages' => '✒ Há novas mensagens para você.',
+	'lqt-new-messages' => 'Há novas mensagens para você.',
 	'lqt-email-info-undo' => 'Trazer de volta o tópico que você acabou de descartar.',
 	'lqt-date-info' => 'Este link está inativo porque você está visualizando tópicos de todas as datas.',
 	'lqt-newmessages-context' => 'Tópico completo',
@@ -15959,8 +16412,6 @@ Você pode vê-la em <$6>
 
 O texto da resposta é:
 $7",
-	'lqt-quote-intro' => 'Em $2 às $3, [[User:$1|$1]] escreveu:',
-	'lqt-quote' => 'Citar',
 	'lqt-search-legend' => 'Pesquise as discussões nesta página',
 	'lqt-search-label' => 'Termos a pesquisar:',
 	'lqt-search-button' => 'Pesquisar',
@@ -16006,7 +16457,7 @@ A assinatura é apresentada automaticamente.',
 	'lqt-feed-reply-intro' => 'Resposta a $3 (em $1) enviada por $2', # Fuzzy
 	'tooltip-pt-newmessages' => 'Mostra, nas páginas que estiver vigiando, mensagens novas nos tópicos ou páginas de discussão por tópicos',
 	'lqt-newmessages-n' => 'Novas mensagens ($1)',
-	'lqt_newmessages' => 'Mensagens novas (0)',
+	'lqt_newmessages' => 'Mensagens novas (0)', # Fuzzy
 	'lqt_newmessages-title' => 'Novas mensagens',
 	'lqt-newpost-summary' => 'Tópico novo: $1',
 	'lqt-reply-summary' => 'Resposta a [[$2|$1]]',
@@ -16024,6 +16475,26 @@ A assinatura é apresentada automaticamente.',
 	'lqt-reply-subpage' => 'responder',
 	'nstab-thread' => 'Tópico',
 	'nstab-summary' => 'Sumário',
+	'pageinfo-usinglqt-yes' => 'Sim',
+);
+
+/** Quechua (Runa Simi)
+ * @author AlimanRuna
+ */
+$messages['qu'] = array(
+	'lqt_hist_view_whole_thread' => "Tukuy q'aytup wiñay kawsayninta qhaway",
+	'lqt-read-message' => 'Ñawirisqa nispa unanchay',
+	'lqt-read-all' => 'Tukuykunata ñawirisqa nispa unanchay',
+	'lqt-no-new-messages' => 'Qampaq musuq willaykuna manam kachkanchu.',
+	'lqt-new-messages' => 'Qampaq musuq willaykunam kachkan.',
+	'lqt-newmessages-context' => "Tukuy q'aytu",
+	'lqt-preference-notify-talk' => "E-chaskita kutichispa watiqasqay q'aytuman kachamuway",
+	'lqt-ajax-updated' => "Q'aytupi musuq willaykunam kachkan.",
+	'lqt-feed-title-all' => '{{SITENAME}} — Musuq willaykuna',
+	'lqt-feed-title-all-from' => '{{SITENAME}} — $1-manta musuq willaykuna',
+	'tooltip-pt-newmessages' => "Watiqasqayki q'aytukunapi rimanakuy p'anqakunapipas musuq willaykunatam rikuchisunki",
+	'lqt-newmessages-n' => 'Musuq willaykuna ($1)',
+	'lqt_newmessages-title' => 'Musuq willaykuna',
 );
 
 /** Tarifit (Tarifit)
@@ -16155,7 +16626,7 @@ Aceasta va fi încă vizibilă pe pagina sa de discuţie originală.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|mesaj marcat ca citit|mesaje marcate ca citite}}.',
 	'lqt-email-undo' => 'Anulare',
 	'lqt-no-new-messages' => 'Nu sunt mesaje noi pentru dumneavoastră.',
-	'lqt-new-messages' => '✒ Sunt mesaje noi pentru dumneavoastră.',
+	'lqt-new-messages' => 'Sunt mesaje noi pentru dumneavoastră.',
 	'lqt-date-info' => 'Această legătură este dezactivată deoarece vizualizaţi fire de la toate datele.',
 	'lqt-newmessages-context' => 'Discuțiile complete',
 	'lqt-thread-created' => 'Creat',
@@ -16217,8 +16688,6 @@ a fost creat pe $3 la $4 de către $8
 
 Textul este:
 $7",
-	'lqt-quote-intro' => 'Pe $2 la $3, [[User:$1|$1]] a scris:',
-	'lqt-quote' => 'Citare',
 	'lqt-search-legend' => 'Caută discuţii pe această pagină',
 	'lqt-search-label' => 'Termeni de căutat:',
 	'lqt-search-button' => 'Căutare',
@@ -16263,7 +16732,7 @@ Semnătura este afișată automat.',
 	'lqt-feed-reply-intro' => 'Răspunde la $3 (la $1) postat de {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Afișează comentarii noi la discuții existente sau comentarii pe paginile de discuții urmărite',
 	'lqt-newmessages-n' => 'Mesaje noi ($1)',
-	'lqt_newmessages' => 'Mesajele mele noi (niciunul)',
+	'lqt_newmessages' => 'Mesaje noi (niciunul)',
 	'lqt_newmessages-title' => 'Mesaje noi',
 	'lqt-newpost-summary' => 'Discuție nouă: $1',
 	'lqt-reply-summary' => 'Răspunde la [[$2|$1]]',
@@ -16401,7 +16870,7 @@ Queste operazione no se pò annullà.",
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|messagge|messagge}} signate cumme lette.',
 	'lqt-email-undo' => 'Annulle',
 	'lqt-no-new-messages' => 'Non ge stonne messagge nuève pe te.',
-	'lqt-new-messages' => '✒ Stonne messagge nuève pe te.',
+	'lqt-new-messages' => 'Stonne messagge nuève pe te.',
 	'lqt-email-info-undo' => "Puèrte rrete l'argomende ca è appene dismesse.",
 	'lqt-date-info' => 'Stu collegamende jè disabbeletate purcé tu ste vide le argumende da tutte le date.',
 	'lqt-newmessages-context' => 'Argomende comblete',
@@ -16438,6 +16907,7 @@ Pe evità stu fatte, apprime de scangellà divide l'argomende.",
 	'lqt-newmessages-from' => 'Da $1',
 	'lqt-hot-topics' => 'Argumende cavede',
 	'lqt-add-reply' => "Aggiunge 'na resposte",
+	'lqt-changesortorder' => 'Ordine',
 	'lqt_rc_new_discussion' => 'Postate \'n\'argomende nuève, "$1"',
 	'lqt_rc_new_reply' => 'Postate \'na resposte a "$1"',
 	'right-lqt-split' => "Divide l'argumende",
@@ -16458,6 +16928,7 @@ Pe evità stu fatte, apprime de scangellà divide l'argomende.",
 	'lqt-log-action-merge-down' => 'scuagghiate [[$1]] sotte a [[$3]]',
 	'lqt-log-action-subjectedit' => 'cangiate \'u suggette de [[$1]] da "$2" a "$3"',
 	'lqt-log-action-resort' => "cangiate l'ordenamende de [[$1]]. Cangiate chiave d'ordinamende da $2 a $3",
+	'lqt-log-action-signatureedit' => 'cangiate \'a firme de [[$1]] da "$2" a "$3"',
 	'lqt-preference-notify-talk' => "Manname 'na mail sus a le resposte a 'n'argomende ca ije stoche a condrolle",
 	'lqt-preference-watch-threads' => 'Condrolle le argumende ca ije ccreje o responne',
 	'prefs-lqt' => "'Ngazzamende argomendate",
@@ -16483,8 +16954,6 @@ Tu 'a puè vedè a <$6>
 
 'U teste d'a resposte jè:
 $7",
-	'lqt-quote-intro' => "'U $2 a le $3, [[User:$1|$1]] ha scritte:",
-	'lqt-quote' => 'Cite',
 	'lqt-search-legend' => "Cirche le 'ngazzaminde sus a sta pàgene",
 	'lqt-search-label' => 'Cirche le termine:',
 	'lqt-search-button' => 'Cirche',
@@ -16529,8 +16998,8 @@ $7",
 	'lqt-feed-new-thread-intro' => 'Argomende nuève sus a $1 lassate da {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'Resposte a $3 (sus a $1) lassate da {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => "Fa vedè le messagge nuève a le argomende o sus a le pàggene de le 'ngazzaminde argomendate ca tu stè uarde",
-	'lqt-newmessages-n' => 'Messagge nuève ($1)',
-	'lqt_newmessages' => 'Le messagge nuève mije (Ninde)',
+	'lqt-newmessages-n' => 'Messàgge nuève ($1)',
+	'lqt_newmessages' => 'Le messagge nuève (ninde)',
 	'lqt_newmessages-title' => 'Messagge nuève',
 	'lqt-newpost-summary' => 'Argomende nuève: $1',
 	'lqt-reply-summary' => 'Respunne a [[$2|$1]]',
@@ -16548,6 +17017,10 @@ $7",
 	'lqt-reply-subpage' => 'respunne',
 	'nstab-thread' => 'Argomende',
 	'nstab-summary' => 'Riepileghe',
+	'echo-pref-email-lqt-new-topic' => "Ccreje 'nu 'ngazzamende nuève argomendate",
+	'echo-pref-email-lqt-reply' => "Respunne a 'u 'ngazzamende argomendate",
+	'pageinfo-usinglqt' => "'Ngazzaminde argomendate abbilitate",
+	'pageinfo-usinglqt-yes' => 'Sìne',
 );
 
 /** Faeag Rotuma (Faeag Rotuma)
@@ -16560,6 +17033,7 @@ $messages['rtm'] = array(
 
 /** Russian (русский)
  * @author Ferrer
+ * @author Ignatus
  * @author Innv
  * @author KPu3uC B Poccuu
  * @author Kaganer
@@ -16683,7 +17157,7 @@ $messages['ru'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|сообщение отмечено как прочитанное|сообщения отмечены как прочитанные|сообщений отмечены как прочитанные}}.',
 	'lqt-email-undo' => 'Отменить',
 	'lqt-no-new-messages' => 'Для вас нет новых сообщений.',
-	'lqt-new-messages' => '✒ Для вас есть новые сообщения.',
+	'lqt-new-messages' => 'Для вас есть новые сообщения.',
 	'lqt-email-info-undo' => 'Вернуть назад только что убранную ветку.',
 	'lqt-date-info' => 'Эта ссылка отключена, так как вы просматриваете ветки за все даты.',
 	'lqt-newmessages-context' => 'Полная ветка',
@@ -16719,6 +17193,7 @@ $messages['ru'] = array(
 	'lqt-newmessages-from' => 'Со страницы $1',
 	'lqt-hot-topics' => 'Горячие темы',
 	'lqt-add-reply' => 'Добавить ответ',
+	'lqt-changesortorder' => 'Сортировать',
 	'lqt_rc_new_discussion' => 'создал новую ветку, «$1»',
 	'lqt_rc_new_reply' => 'написал ответ на «$1»',
 	'right-lqt-split' => 'разделение ветвей',
@@ -16739,11 +17214,12 @@ $messages['ru'] = array(
 	'lqt-log-action-merge-down' => 'объединил [[$1]] в [[$3]]',
 	'lqt-log-action-subjectedit' => 'изменил тему [[$1]] с «$2» на «$3»',
 	'lqt-log-action-resort' => 'изменил порядок сортировки [[$1]]. Смена ключа сортировки с $2 на $3',
+	'lqt-log-action-signatureedit' => 'измениена подпись [[$1]] с «$2» на «$3»',
 	'lqt-preference-notify-talk' => 'Уведомлять меня по почте о новых ответах на ветке, за которой я слежу',
 	'lqt-preference-watch-threads' => 'Следить за ветками, которые я создал, или на которые отвечал',
 	'prefs-lqt' => 'Обсуждения по веткам',
-	'lqt-preference-display-depth' => '* Максимальная глубина ответов для отображения:',
-	'lqt-preference-display-count' => '* Максимальное количество ответов для отображения:',
+	'lqt-preference-display-depth' => 'Максимальная глубина ответов для отображения:',
+	'lqt-preference-display-count' => 'Максимальное количество ответов для отображения:',
 	'lqt-preference-custom-signatures' => 'Показать настраиваемые подписи участников',
 	'lqt-enotif-subject-reply' => '{{SITENAME}} обсуждение — Ответ: $1',
 	'lqt-enotif-subject-newthread' => '{{SITENAME}} обсуждение — Новая ветка: $1',
@@ -16765,8 +17241,6 @@ $7',
 
 Текст ответа:
 $7',
-	'lqt-quote-intro' => '$2 $3, [[User:$1|$1]] написал:',
-	'lqt-quote' => 'Цитировать',
 	'lqt-search-legend' => 'Поиск обсуждений на этой странице',
 	'lqt-search-label' => 'Условия поиска:',
 	'lqt-search-button' => 'Найти',
@@ -16774,7 +17248,7 @@ $7',
 	'searchprofile-threads-tooltip' => 'Поиск в обсуждениях по веткам и на страницах обсуждений',
 	'lqt-ajax-updated' => 'В этой ветке есть новые сообщения.',
 	'lqt-ajax-update-link' => 'Обновить',
-	'lqt-thread-show-replies' => '* Показать $1 ответов',
+	'lqt-thread-show-replies' => 'Показать $1 {{PLURAL:$1|ответ|ответа|ответов}}',
 	'lqt-thread-show-more' => 'Показать больше ответов',
 	'lqt-thread-link-url' => 'Ссылка на URL:',
 	'lqt-thread-link-title' => 'Вики-ссылка:',
@@ -16830,6 +17304,10 @@ $7',
 	'lqt-reply-subpage' => 'ответить',
 	'nstab-thread' => 'Ветка',
 	'nstab-summary' => 'Описание',
+	'echo-pref-email-lqt-new-topic' => 'Создаёт новую ветку обсуждения',
+	'echo-pref-email-lqt-reply' => 'Отвечает в ветке обсуждения',
+	'pageinfo-usinglqt' => 'Дискуссия по веткам включена',
+	'pageinfo-usinglqt-yes' => 'Да',
 );
 
 /** Rusyn (русиньскый)
@@ -16948,7 +17426,7 @@ $messages['rue'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|повідомлїня позначене як проччтане|повідомлїня позначены як прочітаны|повідомлїнь позначеных як прочітаных}}.',
 	'lqt-email-undo' => 'Вернути назад',
 	'lqt-no-new-messages' => 'Не маєте жадны новы повідомлїя.',
-	'lqt-new-messages' => '✒ Маєте новы повідомлїня.',
+	'lqt-new-messages' => 'Маєте новы повідомлїня.',
 	'lqt-email-info-undo' => 'Верне назад волокно, котре сьте акурат одбыли.',
 	'lqt-date-info' => 'Тот одказ недоступный, бо зображуєте волокна без огляду на датум.',
 	'lqt-newmessages-context' => 'Цале волокно',
@@ -17030,8 +17508,6 @@ $7',
 
 Текст одповідї:
 $7',
-	'lqt-quote-intro' => '$2 о $3, [[User:$1|$1]] написав:',
-	'lqt-quote' => 'Цітовати',
 	'lqt-search-legend' => 'Глядати в діскузіях на тій сторінцї',
 	'lqt-search-label' => 'Гляданы выразы:',
 	'lqt-search-button' => 'Глядати',
@@ -17076,8 +17552,8 @@ $7',
 	'lqt-feed-new-thread-intro' => 'Нове волокно на $1 послане $2', # Fuzzy
 	'lqt-feed-reply-intro' => 'Одповідь про $3 (на $1), публікована $2', # Fuzzy
 	'tooltip-pt-newmessages' => 'Указує новы повідомлїня у волокнах або на діскузных сторінках, котры слїдуєте',
-	'lqt-newmessages-n' => 'Новы повідомлїня $1',
-	'lqt_newmessages' => 'Новы повідомлїня (жадны)',
+	'lqt-newmessages-n' => 'Новы повідомлїня $1', # Fuzzy
+	'lqt_newmessages' => 'Новы повідомлїня (жадны)', # Fuzzy
 	'lqt_newmessages-title' => 'Новы повідомлїня',
 	'lqt-newpost-summary' => 'Нова волокно: $1',
 	'lqt-reply-summary' => 'Одповідь на [[$2|$1]]',
@@ -17226,7 +17702,7 @@ $messages['sah'] = array(
 	'lqt-count-marked-read' => '$1 этии ааҕыллыбыт курдук бэлиэтэннэ.',
 	'lqt-email-undo' => 'Төннөр',
 	'lqt-no-new-messages' => 'Эйиэхэ анаммыт саҥа сурук суох.',
-	'lqt-new-messages' => '✒ Эйиэхэ саҥа суруктар бааллар.',
+	'lqt-new-messages' => 'Эйиэхэ саҥа суруктар бааллар.',
 	'lqt-email-info-undo' => 'Билигин көрбүт салаабын төннөр.',
 	'lqt-date-info' => 'Бу сигэ арахса сылдьар, тоҕо диэтэххэ эн туох баар салаалары барытын көрө олороҕун.',
 	'lqt-newmessages-context' => 'Толору салаа',
@@ -17300,8 +17776,6 @@ $messages['sah'] = array(
 
 Хоруй тиэкиһэ:
 $7', # Fuzzy
-	'lqt-quote-intro' => '$2 $3, [[User:$1|$1]] суруйбут:',
-	'lqt-quote' => 'Цитааталааһын',
 	'lqt-search-legend' => 'Бу сирэйгэ баар ырытыылары көрдөөһүн',
 	'lqt-search-label' => 'Көрдөөһүн усулуобуйата:',
 	'lqt-search-button' => 'Буларга',
@@ -17346,8 +17820,8 @@ $7', # Fuzzy
 	'lqt-feed-new-thread-intro' => 'Манна $1 $2 оҥорбут саҥа салаата', # Fuzzy
 	'lqt-feed-reply-intro' => '$3 сурукка хоруй ($1) манна баар $2', # Fuzzy
 	'tooltip-pt-newmessages' => 'Эн кэтиир салааларгар уонна ырытыыларгар саҥа суруктары көрдөрөр',
-	'lqt-newmessages-n' => 'Саҥа этиилэр ($1)',
-	'lqt_newmessages' => 'Саҥа этиилэрим (Суох)',
+	'lqt-newmessages-n' => 'Саҥа этиилэр ($1)', # Fuzzy
+	'lqt_newmessages' => 'Саҥа этиилэрим (Суох)', # Fuzzy
 	'lqt_newmessages-title' => 'Саҥа этиилэр',
 	'lqt-newpost-summary' => 'Саҥа салаа: $1',
 	'lqt-reply-summary' => 'Манна [[$2|$1]] хоруй',
@@ -17384,7 +17858,7 @@ $messages['scn'] = array(
 	'searchprofile-threads' => 'Discussioni',
 	'lqt-save-subject' => 'Sarva',
 	'lqt-drag-reason' => 'Mutivu:',
-	'lqt_newmessages' => 'Missaggi novi (mancu unu)',
+	'lqt_newmessages' => 'Missaggi novi (mancu unu)', # Fuzzy
 );
 
 /** Tachelhit (Tašlḥiyt/ⵜⴰⵛⵍⵃⵉⵜ)
@@ -17403,6 +17877,8 @@ $messages['shi'] = array(
  * @author බිඟුවා
  */
 $messages['si'] = array(
+	'lqt_movethread' => 'සම්බන්ධය වෙනත් පිටුවකට ගෙනයන්න',
+	'lqt_deletethread' => 'සම්බන්ධය මකන්න හෝ මකා නොදමන්න',
 	'lqt_contents_title' => 'අන්තර්ගතයන්',
 	'lqt_toc_thread_title' => 'සම්බන්ධයේ මාතෘකාව',
 	'lqt_toc_thread_author' => 'ආරම්භ කලේ',
@@ -17428,8 +17904,15 @@ $messages['si'] = array(
 	'lqt_hist_undeleted' => 'මකාදැමීම අවලංගු කරන ලදී',
 	'lqt_hist_moved_talkpage' => 'ගෙනගියා',
 	'lqt_hist_listing_subtitle' => 'ඉතිහාස ලැයිස්තුව නරඹමින්',
+	'lqt_hist_view_whole_thread' => 'සම්පූර්ණ සම්බන්ධය සඳහා ඉතිහාසය නරඹන්න',
+	'lqt_hist_edited_subject' => 'විෂය "$2" වෙතින් "$3" වෙතට වෙනස් කරන ලදී',
 	'lqt_hist_edited_subject_corrupt' => 'වෙනස්කල මාතෘකාව',
+	'lqt_hist_merged_from' => '[[$1|පිළිතුර]] වෙනත් සම්බන්ධයකට ගෙනයන ලදී',
+	'lqt_hist_merged_to' => '[[$1|පිළිතුර]] වෙනත් සම්බන්ධයකින් ගෙනෙන ලදී',
+	'lqt_hist_split_from' => 'නව සම්බන්ධයකට බෙදන්න',
 	'lqt_hist_root_blanked' => 'පරිකථන පාඨය ඉවත් කරන ලදී',
+	'lqt_hist_adjusted_sortkey' => 'යථාවත් කල සම්බන්ධක පිහිටීම',
+	'lqt_change_edited_summary' => 'සම්බන්ධක සාරාංශය සංස්කරණය කරන ලදී',
 	'lqt_youhavenewmessages' => 'ඔබට [[$1|නව පණිවුඩ]] ලැබී ඇත.',
 	'lqt_protectedfromreply_link' => 'ආරක්‍ෂිත',
 	'lqt_subject' => 'විෂයය:',
@@ -17463,7 +17946,7 @@ $messages['si'] = array(
 	'lqt-marked-read' => "'''$1''' සම්බන්ධය කියෙව්වා ලෙස සලකුණු කරන ලදී.",
 	'lqt-email-undo' => 'අහෝසිය',
 	'lqt-no-new-messages' => 'ඔබ සඳහා නව පණිවුඩ නොමැත.',
-	'lqt-new-messages' => '✒ ඔබ සඳහා නව පණිවුඩ ඇත.',
+	'lqt-new-messages' => 'ඔබ සඳහා නව පණිවුඩ ඇත.',
 	'lqt-newmessages-context' => 'සම්පූර්ණ සම්බන්ධය',
 	'lqt-thread-created' => 'තනන ලද',
 	'lqt-history-time' => 'වේලාව',
@@ -17473,6 +17956,7 @@ $messages['si'] = array(
 	'lqt-history-thread' => 'ත්‍රෙඩ් (Thread)',
 	'lqt-header-actions' => 'කාර්යයන්',
 	'lqt_summarize_link' => 'සාරාංශකරණය',
+	'lqt-thread-split' => 'නව සම්බන්ධයකට බෙදන්න',
 	'lqt_split_thread' => 'සම්බන්ධයක් විභේදනය කරන්න',
 	'lqt-thread-split-subject' => 'නව සම්බන්ධයේ විෂය:',
 	'lqt-thread-split-thread' => 'සම්බන්ධය:',
@@ -17483,6 +17967,7 @@ $messages['si'] = array(
 	'lqt-newmessages-from' => '$1 ගෙන්',
 	'lqt-hot-topics' => 'උණුසුම් මාතෘකා',
 	'lqt-add-reply' => 'පිළිතුරක් එක් කරන්න',
+	'lqt_rc_new_reply' => '"$1" වෙත පිළිතුරක් තැපැල් කරන ලදී',
 	'right-lqt-split' => 'සම්බන්ධ විභේදනය කරන්න',
 	'right-lqt-merge' => 'සම්බන්ධතා ඒකාබද්ධ කරන්න',
 	'right-lqt-react' => 'සම්බන්ධවලට පිළිතුරු දෙන්න',
@@ -17492,16 +17977,19 @@ $messages['si'] = array(
 	'lqt-thread-merge-source' => 'මූලාශ්‍ර සම්බන්ධය:',
 	'lqt-thread-merge-dest' => 'ගමනාන්ත සම්බන්ධය:',
 	'lqt-merge-submit' => 'ඒකාබද්ධ කරන්න',
+	'lqt-log-name' => 'සම්බන්ධක සාකච්ඡා ලොගය',
+	'lqt-log-action-move' => '[[$1]] [[$2]] වෙතින් [[$3]] වෙතට ගෙනයන ලදී',
 	'prefs-lqt' => 'සම්බන්ධක සාකච්ඡාව',
 	'lqt-preference-display-count' => 'පෙන්වීමට ඇති උපරිම පිළිතුරු ගණන:',
 	'lqt-preference-custom-signatures' => 'රිසිකරණයය කල පරිශිලක අත්සන් පෙන්වන්න',
 	'lqt-enotif-subject-reply' => '{{SITENAME}} සාකච්ඡාව - පිළිතුර: $1',
 	'lqt-enotif-subject-newthread' => '{{SITENAME}} සාකච්ඡාව - නව සම්බන්ධය: $1',
-	'lqt-quote' => 'උද්ධරණය',
 	'lqt-search-legend' => 'මෙම පිටුවේ ඇති සාකච්ඡා සොයන්න',
 	'lqt-search-label' => 'සෙවුම් කොන්දේසි:',
 	'lqt-search-button' => 'සොයන්න',
 	'searchprofile-threads' => 'සාකච්ඡා',
+	'searchprofile-threads-tooltip' => 'සම්බන්ධක සාකච්ඡා සහ කතාබහ පිටු සොයන්න',
+	'lqt-ajax-updated' => 'මෙම සම්බන්ධය සතුව නව හසුන් ඇත.',
 	'lqt-ajax-update-link' => 'යාවත්කාල කරන්න',
 	'lqt-thread-show-more' => 'තවත් පිළිතුරු පෙන්වන්න',
 	'lqt-thread-link-url' => ' URL සබැඳුම:',
@@ -17514,6 +18002,8 @@ $messages['si'] = array(
 	'lqt-cancel-subject-edit' => 'අත් හරින්න',
 	'lqt-drag-activate' => 'නව ස්ථානයකට අත් හරින්න',
 	'lqt-drag-drop-zone' => 'මෙතනට අත් හරින්න',
+	'lqt-drag-split' => 'හසුන එහිම සම්බන්ධය වෙත ගෙනයන්න',
+	'lqt-drag-setsortkey' => 'පිටුව මත හසුනේ පිහිටීම සකසන්න',
 	'lqt-drag-save' => 'තහවුරුකරන්න',
 	'lqt-drag-title' => 'අතහැරීම තහවුරු කරන්න',
 	'lqt-drag-reason' => 'හේතුව:',
@@ -17525,8 +18015,8 @@ $messages['si'] = array(
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — $1 ගෙන් නව සම්බන්ධ',
 	'lqt-feed-title-replies' => '{{SITENAME}} — පිළිතුරු',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — $1 ගෙන් පිළිතුරු',
-	'lqt-newmessages-n' => 'මගේ නව පණිවුඩ ($1)',
-	'lqt_newmessages' => 'මගේ නව පණිවුඩ (නැත)',
+	'lqt-newmessages-n' => 'නව පණිවුඩ ($1)',
+	'lqt_newmessages' => 'නව පණිවුඩ (නැත)',
 	'lqt_newmessages-title' => 'නව පණිවුඩ',
 	'lqt-newpost-summary' => 'නව සම්බන්ධය: $1',
 	'lqt-reply-summary' => '[[$2|$1]] වෙත පිළිතුරු දෙන්න',
@@ -17539,6 +18029,8 @@ $messages['si'] = array(
 	'lqt-reply-subpage' => 'පිළිතුරු',
 	'nstab-thread' => 'සම්බන්ධය',
 	'nstab-summary' => 'සාරාංශය',
+	'echo-pref-email-lqt-new-topic' => 'නව සම්බන්ධක සාකච්ඡාවක් තනයි',
+	'echo-pref-email-lqt-reply' => 'සම්බන්ධක සාකච්ඡාවකට පිළිතුරු දෙයි',
 );
 
 /** Slovak (slovenčina)
@@ -17656,7 +18148,7 @@ Stále bude viditeľné na jeho pôvodnej diskusnej stránke.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|správa bola označená ako prečítaná|správy boli označené ako prečítané|správ bolo označených ako prečítané}}.',
 	'lqt-email-undo' => 'Vrátiť',
 	'lqt-no-new-messages' => 'Nemáte žiadne nové správy.',
-	'lqt-new-messages' => '✒ Máte nové správy.',
+	'lqt-new-messages' => 'Máte nové správy.',
 	'lqt-email-info-undo' => 'Vrátiť vlákno, ktoré ste práve zrušili.',
 	'lqt-date-info' => 'Tento odkaz je vypnutý, pretože zobrazujete vlákna bez ohľadu na dátum.',
 	'lqt-newmessages-context' => 'Celé vlákno',
@@ -17736,8 +18228,6 @@ Môžete si ju pozrieť na <$6>
 
 Text odpovede je:
 $7',
-	'lqt-quote-intro' => '$2 $3 [[User:$1|$1]] napísal:',
-	'lqt-quote' => 'Citovať',
 	'lqt-search-legend' => 'Hľadať v diskusiách k tejto stránke',
 	'lqt-search-label' => 'Hľadaný výraz:',
 	'lqt-search-button' => 'Hľadať',
@@ -17782,8 +18272,8 @@ Podpis sa zobrazí automaticky.',
 	'lqt-feed-new-thread-intro' => 'Nové vlákno na tému $1, ktoré poslal $2', # Fuzzy
 	'lqt-feed-reply-intro' => 'Odpoveď na $3 (na tému $1), ktorú poslal $2', # Fuzzy
 	'tooltip-pt-newmessages' => 'Zobrazuje nové príspevky vo vláknach alebo na diskusných stránkach s vláknami, ktoré sledujete',
-	'lqt-newmessages-n' => '{{PLURAL:$1|Nová správa|Nové správy}} ($1)',
-	'lqt_newmessages' => 'Moje nové správy (žiadne)',
+	'lqt-newmessages-n' => '{{PLURAL:$1|Nová správa|Nové správy}} ($1)', # Fuzzy
+	'lqt_newmessages' => 'Moje nové správy (žiadne)', # Fuzzy
 	'lqt_newmessages-title' => 'Nové správy',
 	'lqt-newpost-summary' => 'Nové vlákno: $1',
 	'lqt-reply-summary' => 'Odpoveď na [[$2|$1]]',
@@ -17920,7 +18410,7 @@ To operacijo je mogoče razveljaviti.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|sporočilo označeno kot prebrano|sporočili označeni kot prebrani|sporočila označena kot prebrana|sporočil označenih kot prebranih}}',
 	'lqt-email-undo' => 'Razveljavi',
 	'lqt-no-new-messages' => 'Ni novih sporočil za vas.',
-	'lqt-new-messages' => '✒ Imate nova sporočila.',
+	'lqt-new-messages' => 'Imate nova sporočila.',
 	'lqt-email-info-undo' => 'Vrni razpravo, ki ste jo pravkar odpisali.',
 	'lqt-date-info' => 'Ta povezava je onemogočena, ker si ogledujete teme iz vseh dni.',
 	'lqt-newmessages-context' => 'Polna razprava',
@@ -17957,6 +18447,7 @@ Da se temu izognete, jih pred brisanjem odcepite od razprave.',
 	'lqt-newmessages-from' => 'Od $1',
 	'lqt-hot-topics' => 'Vroče teme',
 	'lqt-add-reply' => 'Dodaj odgovor',
+	'lqt-changesortorder' => 'Razvrsti',
 	'lqt_rc_new_discussion' => 'objavil novo razpravo, »$1«',
 	'lqt_rc_new_reply' => 'objavil odgovor na »$1«',
 	'right-lqt-split' => 'Razcep razprav',
@@ -17977,6 +18468,7 @@ Da se temu izognete, jih pred brisanjem odcepite od razprave.',
 	'lqt-log-action-merge-down' => 'je združil(-a) [[$1]] pod [[$2]]',
 	'lqt-log-action-subjectedit' => 'je spremenil(-a) zadevo [[$1]] iz »$2« v »$3«',
 	'lqt-log-action-resort' => 'je spremenil(-a) vrsti red razvrščanja [[$1]]. Ključ razvrščanja je spremenjen iz $2 v $3',
+	'lqt-log-action-signatureedit' => 'je spremenil(-a) podpis [[$1]] z »$2« na »$3«',
 	'lqt-preference-notify-talk' => 'Pošlji e-pošto ob odgovorih na razprave, ki jih opazujem',
 	'lqt-preference-watch-threads' => 'Opazuj razprave, ki sem jih ustvaril ali nanje odgovoril',
 	'prefs-lqt' => 'Povezana razprava',
@@ -18003,8 +18495,6 @@ Odgovor si lahko ogledate na <$6>
 
 Besedilo odgovora je:
 $7',
-	'lqt-quote-intro' => 'Dne $2 ob $3 je [[User:$1|$1]] napisal:',
-	'lqt-quote' => 'Navedi',
 	'lqt-search-legend' => 'Iskanje razprav na tej strani',
 	'lqt-search-label' => 'Iskalni pojmi:',
 	'lqt-search-button' => 'Iskanje',
@@ -18050,7 +18540,7 @@ Podpis se prikaže samodejno.',
 	'lqt-feed-reply-intro' => 'Odgovor na $3 (na $1), {{GENDER:$4|objavil|objavila|objavil(-a)}} ga je $2',
 	'tooltip-pt-newmessages' => 'Prikaže nove objave v razpravah ali na razpravljalnih pogovornih straneh, ki jih spremljate',
 	'lqt-newmessages-n' => 'Nova sporočila ($1)',
-	'lqt_newmessages' => 'Moja nova sporočila (Nobena)',
+	'lqt_newmessages' => 'Nova sporočila (nobeno)',
 	'lqt_newmessages-title' => 'Nova sporočila',
 	'lqt-newpost-summary' => 'Nova razprava: $1',
 	'lqt-reply-summary' => 'Odgovor na [[$2|$1]]',
@@ -18068,6 +18558,10 @@ Podpis se prikaže samodejno.',
 	'lqt-reply-subpage' => 'odgovor',
 	'nstab-thread' => 'Razprava',
 	'nstab-summary' => 'Povzetek',
+	'echo-pref-email-lqt-new-topic' => 'Ustvari novo nitno razpravo',
+	'echo-pref-email-lqt-reply' => 'Odgovori na nitno razpravo',
+	'pageinfo-usinglqt' => 'Nitna razprava je omogočena',
+	'pageinfo-usinglqt-yes' => 'Da',
 );
 
 /** Lower Silesian (Schläsch)
@@ -18078,10 +18572,23 @@ $messages['sli'] = array(
 );
 
 /** Somali (Soomaaliga)
+ * @author Abshirdheere
  * @author Maax
  */
 $messages['so'] = array(
+	'lqt_new_thread' => 'Biloow wadahadal cusub',
+	'lqt_reply' => 'Jawaab',
+	'lqt_youhavenewmessages' => 'Waxaa kuu taal [[$1|Fariin cusub]].',
+	'lqt_sorting_order' => 'Kala horaysiin:',
+	'lqt_sort_newest_changes' => 'Bedelkii ugu dambeeyey ee hore',
+	'lqt_sort_newest_threads' => 'Wadahadaladii ugu cusub ugu horayn',
+	'lqt_sort_oldest_threads' => 'Wadahadaladii ugu horeeyey koowaad',
+	'lqt-no-new-messages' => 'wax fariin cusub ah kuuma yaalaan.',
+	'lqt-new-messages' => 'waxaa kuu taala fariin cusub.',
+	'lqt-no-threads' => 'Ilaa iyo hadda wax qoraal ah kuma jiraan boggaan.',
+	'lqt-search-label' => 'Habka raadinta:',
 	'lqt-search-button' => 'Raadi',
+	'lqt_newmessages' => 'Fariin cusub (Maleh)',
 );
 
 /** Serbian (Cyrillic script) (српски (ћирилица)‎)
@@ -18205,7 +18712,7 @@ $messages['sr-ec'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|порука је означена као прочитана|поруке су означене као прочитане|порука је означено као прочитано}}.',
 	'lqt-email-undo' => 'Опозови',
 	'lqt-no-new-messages' => 'Нема нових порука.',
-	'lqt-new-messages' => '✒ Имате нових порука.',
+	'lqt-new-messages' => 'Имате нових порука.',
 	'lqt-email-info-undo' => 'Вратите тему коју сте управо одбацили.',
 	'lqt-date-info' => 'Ова веза је онемогућена јер прегледате теме из свих датума.',
 	'lqt-newmessages-context' => 'Цела тема',
@@ -18288,8 +18795,6 @@ $7',
 
 Текст поруке гласи:
 $7',
-	'lqt-quote-intro' => '$2 у $3, [[User:$1|$1]] {{GENDER:$1|је написао|је написала|је написао}}:',
-	'lqt-quote' => 'Цитат',
 	'lqt-search-legend' => 'Претражи расправе на овој страници',
 	'lqt-search-label' => 'Упити претраге:',
 	'lqt-search-button' => 'Претражи',
@@ -18301,7 +18806,7 @@ $7',
 	'lqt-thread-show-more' => 'Прикажи више одговора',
 	'lqt-thread-link-url' => 'Адреса везе:',
 	'lqt-thread-link-title' => 'Веза викитекста:',
-	'lqt-thread-link-copy' => 'Умножи',
+	'lqt-thread-link-copy' => 'Копирај',
 	'lqt-sign-not-necessary' => 'Није неопходно да се потпишете.
 Потпис је аутоматски приказан.',
 	'lqt-marked-as-read-placeholder' => 'Тема „$1“ је означена као прочитана.',
@@ -18334,8 +18839,8 @@ $7',
 	'lqt-feed-new-thread-intro' => 'Нова тема на $1, коју је {{GENDER:$4|послао|послала|послао}} $2',
 	'lqt-feed-reply-intro' => 'Одговор на $3 (за $1), који је {{GENDER:$4|поставио|поставила|поставио}} $2',
 	'tooltip-pt-newmessages' => 'Приказује нове поруке на темама или на страницама за разговор које пратите',
-	'lqt-newmessages-n' => 'Нове поруке ($1)',
-	'lqt_newmessages' => 'Поруке',
+	'lqt-newmessages-n' => 'Нове поруке ($1)', # Fuzzy
+	'lqt_newmessages' => 'Поруке', # Fuzzy
 	'lqt_newmessages-title' => 'Поруке',
 	'lqt-newpost-summary' => 'Нова тема: $1',
 	'lqt-reply-summary' => 'Одговор на [[$2|$1]]',
@@ -18476,7 +18981,7 @@ Ova radnja se ne može opozvati.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|poruka označena kao pročitana|poruka označenih kao pročitane}}.',
 	'lqt-email-undo' => 'Vrati',
 	'lqt-no-new-messages' => 'Nema novih poruka.',
-	'lqt-new-messages' => '✒ Imate novih poruka.',
+	'lqt-new-messages' => 'Imate novih poruka.',
 	'lqt-email-info-undo' => 'Vratite temu koju ste upravo odbacili.',
 	'lqt-date-info' => 'Ova veza je onemogućena jer pregledate teme iz svih datuma.',
 	'lqt-newmessages-context' => 'Cela tema',
@@ -18562,8 +19067,6 @@ Možete je pogledati na $6
 
 Tekst poruke glasi:
 $7',
-	'lqt-quote-intro' => '$2 u $3, [[User:$1|$1]] {{GENDER:$1|je napisao|je napisala|napisa}}:',
-	'lqt-quote' => 'Citat',
 	'lqt-search-legend' => 'Pretraži rasprave na ovoj stranici',
 	'lqt-search-label' => 'Uslovi pretrage:',
 	'lqt-search-button' => 'Pretraga',
@@ -18608,8 +19111,8 @@ Potpis je automatski prikazan.',
 	'lqt-feed-new-thread-intro' => 'Nova tema na $1, koju je {{GENDER:$4|poslao|poslala|poslao}} $2',
 	'lqt-feed-reply-intro' => 'Odgovor na $3 (za $1), koji je {{GENDER:$4|postavio|postavila|postavio}} $2',
 	'tooltip-pt-newmessages' => 'Prikazuje nove poruke na temama ili na stranicama za razgovor koje pratite',
-	'lqt-newmessages-n' => 'Nove poruke ($1)',
-	'lqt_newmessages' => 'Nove poruke',
+	'lqt-newmessages-n' => 'Nove poruke ($1)', # Fuzzy
+	'lqt_newmessages' => 'Nove poruke', # Fuzzy
 	'lqt_newmessages-title' => 'Nove poruke',
 	'lqt-newpost-summary' => 'Nova tema: $1',
 	'lqt-reply-summary' => 'Odgovor na [[$2|$1]]',
@@ -18722,7 +19225,7 @@ $messages['su'] = array(
 	'lqt_move_move' => 'Pindah',
 	'lqt_move_noreason' => 'Henteu di béré alesan.',
 	'lqt_header_warning_big' => 'Anjeun keur ngédit $1',
-	'lqt_newmessages' => 'Talatah anyar (teu aya)',
+	'lqt_newmessages' => 'Talatah anyar (teu aya)', # Fuzzy
 );
 
 /** Swedish (svenska)
@@ -18779,7 +19282,7 @@ Det kan bero på att:
 	'lqt_hist_moved_talkpage' => 'Flyttad',
 	'lqt_hist_listing_subtitle' => 'Visar en historiklista',
 	'lqt_hist_view_whole_thread' => 'Se historiken för hela diskussionssidan',
-	'lqt_hist_no_revisions_error' => 'Den här diskussionssidan har ingen versionshistorik.',
+	'lqt_hist_no_revisions_error' => 'Den här tråden har ingen versionshistorik.',
 	'lqt_hist_past_last_page_error' => 'Det finns inga fler sidor med historik.',
 	'lqt_hist_tooltip_newer_disabled' => 'Den här länken är avaktiverad för du är på den första sidan.',
 	'lqt_hist_tooltip_older_disabled' => 'Den här länken är avaktiverad för att du är på den sista sidan.',
@@ -18792,7 +19295,7 @@ Det kan bero på att:
 	'lqt_hist_root_blanked' => 'Tog bort kommentartext',
 	'lqt_hist_adjusted_sortkey' => 'Justerade trådposition',
 	'lqt_revision_as_of' => 'Version från $2 vid $3.',
-	'lqt_change_new_thread' => 'Detta är diskussionssidans första version.',
+	'lqt_change_new_thread' => 'Detta är trådens första version.',
 	'lqt_change_reply_created' => 'Den [$1 markerade kommentaren] skapades i denna version.',
 	'lqt_change_edited_root' => 'Den [$1 markerade kommentaren] redigerades i denna version.',
 	'lqt_change_edited_summary' => 'Trådens sammanfattning har redigerats',
@@ -18858,7 +19361,7 @@ Denna handling kan inte göras om.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|meddelande markerat som läst|meddelanden markerade som lästa}}.',
 	'lqt-email-undo' => 'Ångra',
 	'lqt-no-new-messages' => 'Du har inga nya meddelanden.',
-	'lqt-new-messages' => '✒ Du har nya meddelanden.',
+	'lqt-new-messages' => 'Du har nya meddelanden.',
 	'lqt-email-info-undo' => 'Ta tillbaka tråden du precis tog bort.',
 	'lqt-date-info' => 'Denna länk är avaktiverad eftersom du ser trådar från alla datum.',
 	'lqt-newmessages-context' => 'Hela tråden',
@@ -18894,6 +19397,7 @@ För att undvika detta, splitta dem från denna tråd innan du raderar den.',
 	'lqt-newmessages-from' => 'Från $1',
 	'lqt-hot-topics' => 'Heta ämnen',
 	'lqt-add-reply' => 'Lägg till ett svar',
+	'lqt-changesortorder' => 'Sortera',
 	'lqt_rc_new_discussion' => 'skapade en ny tråd, "$1"',
 	'lqt_rc_new_reply' => 'skrev ett svar till "$1"',
 	'right-lqt-split' => 'Delade trådar',
@@ -18914,6 +19418,7 @@ För att undvika detta, splitta dem från denna tråd innan du raderar den.',
 	'lqt-log-action-merge-down' => 'slog samman [[$1]] till under [[$3]]',
 	'lqt-log-action-subjectedit' => 'ändrade ämnet för [[$1]] från "$2" till "$3"',
 	'lqt-log-action-resort' => 'modifierade sorderingsordningen för [[$1]]. Ändrade sorderingsnyckel från $2 till $3.',
+	'lqt-log-action-signatureedit' => 'ändrade signaturen för [[$1]] från "$2" till "$3"',
 	'lqt-preference-notify-talk' => 'E-posta mig när någon svarar i en tråd jag bevakar',
 	'lqt-preference-watch-threads' => 'Bevaka trådar jag skapar eller svarar i',
 	'prefs-lqt' => 'Trådad diskussion',
@@ -18939,8 +19444,6 @@ Du kan läsa svaret på <$6>
 
 Texten i svaret är:
 $7",
-	'lqt-quote-intro' => 'Den $2 klockan $3 skrev [[User:$1|$1]]:',
-	'lqt-quote' => 'Citera',
 	'lqt-search-legend' => 'Sök i diskussionerna på den här sidan',
 	'lqt-search-label' => 'Sökord:',
 	'lqt-search-button' => 'Sök',
@@ -18985,8 +19488,8 @@ Signaturen visas automatiskt.',
 	'lqt-feed-new-thread-intro' => 'Ny tråd på $1 skapades av {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'Svar till $3 (på $1) skrivet av {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Visar nya inlägg i trådar eller trådade diskussionssidor du bevakar',
-	'lqt-newmessages-n' => 'Mina nya meddelanden ($1)',
-	'lqt_newmessages' => 'Mina nya meddelanden (0)',
+	'lqt-newmessages-n' => 'Nya meddelanden ($1)',
+	'lqt_newmessages' => 'Nya meddelanden (inga)',
 	'lqt_newmessages-title' => 'Nya meddelanden',
 	'lqt-newpost-summary' => 'Ny tråd: $1',
 	'lqt-reply-summary' => 'Svar på [[$2|$1]]',
@@ -19004,6 +19507,10 @@ Signaturen visas automatiskt.',
 	'lqt-reply-subpage' => 'svar',
 	'nstab-thread' => 'Tråd',
 	'nstab-summary' => 'Sammanfattning',
+	'echo-pref-email-lqt-new-topic' => 'Skapar en ny trådad diskussion',
+	'echo-pref-email-lqt-reply' => 'Svarar till en trådad diskussion',
+	'pageinfo-usinglqt' => 'Trådad diskussion aktiverat',
+	'pageinfo-usinglqt-yes' => 'Ja',
 );
 
 /** Swahili (Kiswahili)
@@ -19054,7 +19561,7 @@ $messages['sw'] = array(
 	'lqt_sort_newest_changes' => 'zilizobadilishwa mwishoni',
 	'lqt_sort_newest_threads' => 'zilizoanzishwa hivi karibuni',
 	'lqt_sort_oldest_threads' => 'zilizoanzishwa mwanzoni',
-	'lqt-title' => 'Cheo',
+	'lqt-title' => 'Kichwa',
 	'lqt-summary' => 'Muhtasari',
 	'lqt-newmessages-context' => 'Mlolongo wote',
 	'lqt-thread-created' => 'Ilianzishwa',
@@ -19085,7 +19592,7 @@ Haririo ya mwisho: $1', # Fuzzy
 	'lqt-drag-subject' => 'Mada ya mlolongo mpya (inatakiwa):', # Fuzzy
 	'lqt-edit-signature' => '(hariri sahihi)', # Fuzzy
 	'lqt-preview-signature' => '(hakiki)',
-	'lqt-newmessages-n' => 'Jumbe mpya ($1)',
+	'lqt-newmessages-n' => 'Jumbe mpya ($1)', # Fuzzy
 	'lqt_newmessages' => 'Jumbe mpya', # Fuzzy
 	'lqt_newmessages-title' => 'Jumbe mpya',
 	'lqt-newpost-summary' => 'Mlolongo mpya: $1',
@@ -19131,6 +19638,7 @@ $messages['ta'] = array(
 	'lqt_protectedfromreply_link' => 'காக்கப்பட்டது',
 	'lqt_subject' => 'பொருள்:',
 	'lqt_noreason' => 'காரணம் தரப்படவில்லை.',
+	'lqt_summary_notice_link' => 'ஒரு சுருக்கத்தை எழுதவும்',
 	'lqt_move_torename_edit' => 'இதைத் தொகுக்கவும்',
 	'lqt_move_move' => 'நகர்த்தவும்',
 	'lqt_move_nodestination' => 'நீங்கள் கண்டிப்பாக ஓர் இலக்கினைக் குறிப்பிட வேண்டும்.',
@@ -19143,7 +19651,7 @@ $messages['ta'] = array(
 	'lqt-read-all' => 'அனைத்தையும் படித்ததாய்க் குறித்துக் கொள்',
 	'lqt-email-undo' => 'மீளமை',
 	'lqt-no-new-messages' => 'உங்களுக்குப் புதிய தகவல் ஏதுமில்லை.',
-	'lqt-new-messages' => '✒ உங்களுக்குப் புதிய தகவல் ஏதுமில்லை.',
+	'lqt-new-messages' => 'உங்களுக்குப் புதிய தகவல் ஏதுமில்லை.',
 	'lqt-thread-created' => 'உருவாக்கப்பட்டுவிட்டது',
 	'lqt-history-time' => 'நேரம்',
 	'lqt-history-user' => 'பயனர்',
@@ -19158,7 +19666,6 @@ $messages['ta'] = array(
 	'lqt-add-reply' => 'மறுமொழியைச் சேர்',
 	'lqt-merge-submit' => 'இணைக்கவும்',
 	'lqt-preference-display-count' => 'காட்டப்பட வேண்டிய அதிகபட்ச மறுமொழிகள்:',
-	'lqt-quote' => 'மேற்கோள்',
 	'lqt-search-legend' => 'இப்பக்கத்தில் கலந்துரையாடல்களைத் தேடவும்',
 	'lqt-search-label' => 'பதங்களைத் தேடவும்:',
 	'lqt-search-button' => 'தேடுக',
@@ -19179,8 +19686,8 @@ $messages['ta'] = array(
 	'lqt-feed-title-all' => '{{SITENAME}} — புதிய பதிவுகள்',
 	'lqt-feed-title-replies' => '{{SITENAME}} — மறுமொழிகள்',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} —  $1 இடமிருந்து மறுமொழிகள்',
-	'lqt-newmessages-n' => 'எனது புதியசெய்திகள் ( $1 )',
-	'lqt_newmessages' => 'எனது புதிய செய்திகள்(ஏதுமில்லை)',
+	'lqt-newmessages-n' => 'எனது புதியசெய்திகள் ( $1 )', # Fuzzy
+	'lqt_newmessages' => 'எனது புதிய செய்திகள்(ஏதுமில்லை)', # Fuzzy
 	'lqt_newmessages-title' => 'புதிய செய்திகள்',
 	'lqt-talkpage-history-title' => 'உரையாடல் பக்க வரலாறு',
 	'lqt-talkpage-history-tab' => 'தலைப்பு',
@@ -19269,7 +19776,7 @@ $messages['te'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|సందేశాన్ని|సందేశాలని}} చదివినట్లుగా గుర్తించాం.',
 	'lqt-email-undo' => 'రద్దుచెయ్యి',
 	'lqt-no-new-messages' => 'మీకు కొత్త సందేశాలేమీ లేవు.',
-	'lqt-new-messages' => '✒ మీకు కొత్త సందేశాలు ఉన్నాయి.',
+	'lqt-new-messages' => 'మీకు కొత్త సందేశాలు ఉన్నాయి.',
 	'lqt-date-info' => 'మీరు అన్ని తేదీల నుండి చర్చాహారాలని చూస్తున్నారు కాబట్టి ఈ లంకెని అచేతనం చేసారు.',
 	'lqt-newmessages-context' => 'పూర్తి చర్చాహారం',
 	'lqt-thread-created' => 'సృష్టించినది',
@@ -19311,8 +19818,6 @@ $messages['te'] = array(
 	'lqt-preference-display-count' => 'చూపించాల్సిన స్పందనల యొక్క గరిష్ఠ సంఖ్య:',
 	'lqt-enotif-subject-reply' => '{{SITENAME}} చర్చ - స్పందన: $1',
 	'lqt-enotif-subject-newthread' => '{{SITENAME}} చర్చ - కొత్త చర్చాహారం: $1',
-	'lqt-quote-intro' => '$2 నాడు $3 కి, [[User:$1|$1]] వ్రాసారు:',
-	'lqt-quote' => 'ఉదహరించు',
 	'lqt-search-legend' => 'ఈ పేజీలోని చర్చల్లో వెతుకు',
 	'lqt-search-label' => 'అన్వేషణ పదాలు:',
 	'lqt-search-button' => 'వెతుకు',
@@ -19344,8 +19849,8 @@ $messages['te'] = array(
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — $1 నుండి కొత్త చర్చాహారాలు',
 	'lqt-feed-title-replies' => '{{SITENAME}} — స్పందనలు',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — $1 నుండి స్పందనలు',
-	'lqt-newmessages-n' => 'కొత్త సందేశాలు ($1)',
-	'lqt_newmessages' => 'నా కొత్త సందేశాలు (ఏమీలేవు)',
+	'lqt-newmessages-n' => 'కొత్త సందేశాలు ($1)', # Fuzzy
+	'lqt_newmessages' => 'నా కొత్త సందేశాలు (ఏమీలేవు)', # Fuzzy
 	'lqt_newmessages-title' => 'కొత్త సందేశాలు',
 	'lqt-newpost-summary' => 'కొత్త చర్చాహారం: $1',
 	'lqt-reply-summary' => '[[$2|$1]]కి స్పందన',
@@ -19524,7 +20029,7 @@ Belkem:
 	'lqt_change_merged_to' => '[$1 Nygtalan jogap] başga bir tredden geçirildi',
 	'lqt_change_split_from' => 'Bu trediň [$1 kiçi tredi] öz tredine bölündi',
 	'lqt_change_root_blanked' => '[$1 Teswiriň] teksti aýyryldy.',
-	'lqt_youhavenewmessages' => 'Size [[$1|täze habarlaşyk]] bar.',
+	'lqt_youhavenewmessages' => 'Size [[$1|täze habar]] bar.',
 	'lqt_protectedfromreply' => 'Bu tred jogap berilmezligi üçin $1.',
 	'lqt_protectedfromreply_link' => 'goragly',
 	'lqt_subject' => 'Tema:',
@@ -19577,8 +20082,8 @@ Bu operasiýany yzyna alyp bolmaýar.',
 	'lqt-marked-read' => "'''$1''' tredi okalan diýlip bellenildi.",
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|habarlaşyk|habarlaşyk}} okalan diýlip bellenildi.',
 	'lqt-email-undo' => 'Yzyna al',
-	'lqt-no-new-messages' => 'Size täze habarlaşyk ýok.',
-	'lqt-new-messages' => '✒ Size täze habarlar bar.',
+	'lqt-no-new-messages' => 'Size täze habar ýok.',
+	'lqt-new-messages' => 'Size täze habarlar bar.',
 	'lqt-email-info-undo' => 'Ýaňyja aýyran trediňizi yzyna getirýär',
 	'lqt-date-info' => 'Bu çykgyt ýapyldy, sebäbi siz ähli senelerden tredleri görkezýärsiňiz.',
 	'lqt-newmessages-context' => 'Doly tred',
@@ -19646,8 +20151,6 @@ Ony <$6> adresinde görüp bilersiňiz.", # Fuzzy
 Bu {{SITENAME}} saýtynyň uwedomleniýasydyr: $5 sahypasynda $4 $3 senesinde '$2' tredine täze bir jogap döredildi.
 
 Ony <$6> adresinde görüp bilersiňiz.", # Fuzzy
-	'lqt-quote-intro' => '$2, $3 senesinde [[User:$1|$1]] ýazdy:',
-	'lqt-quote' => 'Sitata',
 	'lqt-search-legend' => 'Şu sahypadaky çekişmeleri gözle',
 	'lqt-search-label' => 'Gözleg terminleri:',
 	'lqt-search-button' => 'Gözle',
@@ -19691,8 +20194,8 @@ Gol awtomatik görkezilýär.',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — $1 sahypalary üçin jogaplar',
 	'lqt-feed-new-thread-intro' => '$1 sahypasynda täze tred $2 tarapyndan iberildi', # Fuzzy
 	'lqt-feed-reply-intro' => '$3 tredine jogap ($1 sahypasynda) $2 tarapyndan iberildi', # Fuzzy
-	'lqt-newmessages-n' => 'Täze habarlaşyklar ($1)',
-	'lqt_newmessages' => 'Täze habarlarym (ýok)',
+	'lqt-newmessages-n' => 'Täze habarlaşyklar ($1)', # Fuzzy
+	'lqt_newmessages' => 'Täze habarlarym (ýok)', # Fuzzy
 	'lqt_newmessages-title' => 'Täze habarlaşyklar',
 	'lqt-newpost-summary' => 'Täze tred: $1',
 	'lqt-reply-summary' => '[[$2|$1]] tredine jogap ber',
@@ -19830,7 +20333,7 @@ Hindi na maibabalik pa mula sa pagkakasakatuparan ang gawaing ito.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|mensahe|mga mensahe}}ng tinatakan bilang nabasa na.',
 	'lqt-email-undo' => 'Ibalik',
 	'lqt-no-new-messages' => 'Walang bagong mga mensahe para sa iyo.',
-	'lqt-new-messages' => '✒ Walang bagong mga mensahe para sa iyo.',
+	'lqt-new-messages' => 'Walang bagong mga mensahe para sa iyo.',
 	'lqt-email-info-undo' => 'Ibalik ang bagting na ipinagwalang-bahala mo.',
 	'lqt-date-info' => 'Hindi pinapagana ang kawing dahil tinitingnan mo ang mga bagting na nagmumula sa lahat ng mga petsa.',
 	'lqt-newmessages-context' => 'Buong sinulid',
@@ -19913,8 +20416,6 @@ Makikita mo ito sa <$6>
 
 Ang teksto ng tugon ay:
 $7",
-	'lqt-quote-intro' => 'Noong $2 noong $3, si [[User:$1|$1]] ang nagsulat ng:',
-	'lqt-quote' => 'Sipi',
 	'lqt-search-legend' => 'Maghanap sa mga talakayan sa pahinang ito',
 	'lqt-search-label' => 'Mga katagang hahanapin:',
 	'lqt-search-button' => 'Maghanap',
@@ -19959,8 +20460,8 @@ Kusang ipinapakita ang lagda.',
 	'lqt-feed-new-thread-intro' => 'Bagong sinulid sa $1 na ipinaskil ni {{GENDER:$4|$2}}',
 	'lqt-feed-reply-intro' => 'Tugon sa $3 (na nasa $1) na ipinaskil ni {{GENDER:$4|$2}}',
 	'tooltip-pt-newmessages' => 'Nagpapakita ng bagong mga pagpapaskil sa mga sinulid o sa ibabaw ng sinulidang mga pahina ng usapan na binabantayan mo',
-	'lqt-newmessages-n' => 'Bagong mga mensahe ($1)',
-	'lqt_newmessages' => 'Mga bagong mensahe ko (wala)',
+	'lqt-newmessages-n' => 'Bagong mga mensahe ($1)', # Fuzzy
+	'lqt_newmessages' => 'Mga bagong mensahe ko (wala)', # Fuzzy
 	'lqt_newmessages-title' => 'Bagong mga mensahe',
 	'lqt-newpost-summary' => 'Bagong sinulid: $1',
 	'lqt-reply-summary' => 'Tumugon sa [[$2|$1]]',
@@ -19984,7 +20485,7 @@ Kusang ipinapakita ang lagda.',
  * @author Гусейн
  */
 $messages['tly'] = array(
-	'lqt_newmessages' => 'Тожә хәбон (Нин)',
+	'lqt_newmessages' => 'Тожә хәбон (Нин)', # Fuzzy
 );
 
 /** Tok Pisin (Tok Pisin)
@@ -20115,7 +20616,7 @@ Bu operasyon gerialınabilirdir.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|mesaj|mesaj}} okunmuş olarak işaretlendi.',
 	'lqt-email-undo' => 'Geri al',
 	'lqt-no-new-messages' => 'Sizin için yeni bir mesaj yok.',
-	'lqt-new-messages' => '✒ Yeni mesajlarınız var.',
+	'lqt-new-messages' => 'Yeni mesajlarınız var.',
 	'lqt-email-info-undo' => 'Daha önce attığınız ileti dizisini geri getir.',
 	'lqt-date-info' => 'Bu bağlantı devre dışı bırakıldı çünkü tüm tarihlerden ileti dizilerini görüntülüyorsunuz.',
 	'lqt-newmessages-context' => 'Tam ileti dizisi',
@@ -20187,8 +20688,6 @@ Bunu <$6> adresinde görebilirsin.", # Fuzzy
 Bu {{SITENAME}} sitesinden bir bildirimdir: $5 sayfasında '$2' ileti dizisine yeni bir cevap $3 $4 tarihinde oluşturuldu.
 
 Bunu <$6> adresinde görebilirsin.", # Fuzzy
-	'lqt-quote-intro' => '$2 $3 tarihinde, [[User:$1|$1]] yazdı:',
-	'lqt-quote' => 'Alıntı',
 	'lqt-search-legend' => 'Bu sayfadaki tartışmaları ara',
 	'lqt-search-label' => 'Arama terimleri:',
 	'lqt-search-button' => 'Ara',
@@ -20231,8 +20730,8 @@ Bunu <$6> adresinde görebilirsin.", # Fuzzy
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — $1 sayfaları için cevaplar',
 	'lqt-feed-new-thread-intro' => '$1 sayfasına $2 tarafından yeni bir ileti dizisi gönderildi', # Fuzzy
 	'lqt-feed-reply-intro' => '$3 ileti dizisine cevap ($1 sayfasında) $2 tarafından gönderildi', # Fuzzy
-	'lqt-newmessages-n' => 'Yeni mesaj ($1)',
-	'lqt_newmessages' => 'Yeni mesajlarım (Yok)',
+	'lqt-newmessages-n' => 'Yeni mesaj ($1)', # Fuzzy
+	'lqt_newmessages' => 'Yeni mesajlarım (Yok)', # Fuzzy
 	'lqt_newmessages-title' => 'Yeni mesaj',
 	'lqt-newpost-summary' => 'Yeni ileti dizisi: $1',
 	'lqt-reply-summary' => '[[$2|$1]] ileti dizisine cevap ver',
@@ -20254,8 +20753,8 @@ Bunu <$6> adresinde görebilirsin.", # Fuzzy
  * @author Ariyo
  */
 $messages['tru'] = array(
-	'lqt-newmessages-n' => 'Ṫebe ḥaṭe ($1)',
-	'lqt_newmessages' => 'aṪebe ḥaṭe (0)',
+	'lqt-newmessages-n' => 'Ṫebe ḥaṭe ($1)', # Fuzzy
+	'lqt_newmessages' => 'aṪebe ḥaṭe (0)', # Fuzzy
 );
 
 /** Tatar (Cyrillic script) (татарча)
@@ -20267,7 +20766,7 @@ $messages['tt-cyrl'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|хат укылган итеп билгеләнде|хатлар укылган итеп билгеләнде|хат укылган итеп билгеләнде}}.',
 	'lqt-email-undo' => 'Кире кагу',
 	'lqt-no-new-messages' => 'Сезнең өчен яңа хатлар юк.',
-	'lqt-new-messages' => '✒ Сезнең өчен яңа хатлар бар.',
+	'lqt-new-messages' => 'Сезнең өчен яңа хатлар бар.',
 	'lqt-preference-notify-talk' => 'Тармакта яңа җаваплар килү белән минем почтага хәбәр итәргә',
 	'prefs-lqt' => 'Тармаклар буенча аралашу',
 	'lqt-preference-display-depth' => '* Күрсәтү өчен максималь зурлык:',
@@ -20278,8 +20777,8 @@ $messages['tt-cyrl'] = array(
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — Яңа тармаклар $1',
 	'lqt-feed-title-replies' => '{{SITENAME}} — Җаваплар',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Җаваплар $1',
-	'lqt-newmessages-n' => 'Яңа хатлар ($1)',
-	'lqt_newmessages' => 'Яңа хатлар (Юк)',
+	'lqt-newmessages-n' => 'Яңа хатлар ($1)', # Fuzzy
+	'lqt_newmessages' => 'Яңа хатлар (Юк)', # Fuzzy
 	'lqt_newmessages-title' => 'Яңа хатлар',
 	'lqt-newpost-summary' => 'Яңа элемтә: $1',
 	'lqt-reply-summary' => '[[$2|$1]]гә җавап',
@@ -20290,14 +20789,60 @@ $messages['tt-cyrl'] = array(
 	'restriction-newthread' => 'яңа элемтәләр ясау',
 );
 
+/** Uyghur (Arabic script) (ئۇيغۇرچە)
+ * @author Sahran
+ */
+$messages['ug-arab'] = array(
+	'lqt_contents_title' => 'مەزمۇنى',
+	'lqt_toc_thread_replycount' => 'جاۋاب',
+	'lqt_toc_thread_modified' => 'ئاخىرقى ئۆزگەرتىش',
+	'lqt_reply' => 'جاۋاب',
+	'lqt-parent' => 'ئاتا',
+	'lqt_delete' => 'ئۆچۈر',
+	'lqt_undelete' => 'ئەسلىگە قايتۇر',
+	'lqt_hist_deleted' => 'ئۆچۈرۈلگەن',
+	'lqt_subject' => 'تېما:',
+	'lqt_move_move' => 'يۆتكە',
+	'lqt-title' => 'ماۋزۇ',
+	'lqt-summary' => 'ئۈزۈندە',
+	'lqt-read-all' => 'ھەممىسىگە ئوقۇلدى بەلگىسى قوي',
+	'lqt-email-undo' => 'يېنىۋال',
+	'lqt-thread-created' => 'قۇرغان',
+	'lqt-history-time' => 'سائەت',
+	'lqt-history-user' => 'ئىشلەتكۈچى',
+	'lqt-history-action' => 'پائالىيەت',
+	'lqt-history-comment' => 'ئىزاھات',
+	'lqt-history-thread' => 'جەريان',
+	'lqt-header-actions' => 'مەشغۇلات',
+	'lqt-split-submit' => 'پارچىلا',
+	'lqt-movethread' => 'يۆتكە',
+	'lqt-menu-trigger' => 'كۆپ',
+	'lqt-merge-submit' => 'بىرىكتۈر',
+	'lqt-search-label' => 'ئىزدەيدىغان ھالقىلىق سۆز:',
+	'lqt-search-button' => 'ئىزدە',
+	'lqt-ajax-update-link' => 'يېڭىلا',
+	'lqt-thread-link-url' => 'ئۇلانما URL:',
+	'lqt-save-subject' => 'ساقلا',
+	'lqt-cancel-subject-edit' => 'ۋاز كەچ',
+	'lqt-drag-save' => 'جەزملە',
+	'lqt-drag-reason' => 'سەۋەب:',
+	'lqt_newmessages-title' => 'يېڭى ئۇچۇرلار',
+	'lqt-talkpage-history-tab' => 'قاش',
+	'lqt-reply-subpage' => 'جاۋاب',
+	'nstab-thread' => 'جەريان',
+	'nstab-summary' => 'ئۈزۈندە',
+);
+
 /** Ukrainian (українська)
  * @author AS
  * @author Alex Khimich
+ * @author Base
  * @author Dim Grits
  * @author Microcell
  * @author NickK
  * @author Olvin
  * @author Prima klasy4na
+ * @author Ата
  * @author Тест
  */
 $messages['uk'] = array(
@@ -20414,7 +20959,7 @@ $messages['uk'] = array(
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|повідомлення позначене як прочитане|повідомлення позначені як прочитані|повідомлень позначені як прочитані}}.',
 	'lqt-email-undo' => 'Скасувати',
 	'lqt-no-new-messages' => 'Немає нових повідомлень для вас.',
-	'lqt-new-messages' => '✒ Є нові повідомлення для вас.',
+	'lqt-new-messages' => 'Є нові повідомлення для вас.',
 	'lqt-email-info-undo' => 'Повернути назад тему, яку ви щойно відключили.',
 	'lqt-date-info' => 'Це посилання відключене, тому що ви переглядаєте гілки за всі дати.',
 	'lqt-newmessages-context' => 'Вся тема',
@@ -20451,6 +20996,7 @@ $messages['uk'] = array(
 	'lqt-newmessages-from' => 'На $1',
 	'lqt-hot-topics' => 'Гарячі теми',
 	'lqt-add-reply' => 'Додати відповідь',
+	'lqt-changesortorder' => 'Сортувати',
 	'lqt_rc_new_discussion' => 'написав нову тему, "$1"',
 	'lqt_rc_new_reply' => 'написав відповідь на «$1»',
 	'right-lqt-split' => 'Розділити теми',
@@ -20471,6 +21017,7 @@ $messages['uk'] = array(
 	'lqt-log-action-merge-down' => "об'єднав [[$1]] з [[$3]]",
 	'lqt-log-action-subjectedit' => 'змінив назву теми [[$1]] з "$2" на "$3"',
 	'lqt-log-action-resort' => 'змінив порядок сортування [[$1]]. Змінено ключ сортування з $2 на $3',
+	'lqt-log-action-signatureedit' => 'змінено підпис [[$1]] з «$2» на «$3»',
 	'lqt-preference-notify-talk' => 'Повідомляти мене електронною поштою про відповіді у темі, за якою я спостерігаю',
 	'lqt-preference-watch-threads' => 'Спостерігати за темами, що я створюю або в яких відповідаю',
 	'prefs-lqt' => 'Обговорення за темами',
@@ -20497,8 +21044,6 @@ $7",
 
 Текст відповіді:
 $7",
-	'lqt-quote-intro' => '$2 о $3, [[User:$1|$1]] написав:',
-	'lqt-quote' => 'Цитувати',
 	'lqt-search-legend' => 'Пошук обговорень на цій сторінці',
 	'lqt-search-label' => 'Умови пошуку:',
 	'lqt-search-button' => 'Знайти',
@@ -20540,11 +21085,11 @@ $7",
 	'lqt-feed-title-new-threads-from' => '{{SITENAME}} — Нові теми на $1',
 	'lqt-feed-title-replies' => '{{SITENAME}} — Відповіді',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Відповіді $1',
-	'lqt-feed-new-thread-intro' => 'Нова тема на $1 розміщена $2', # Fuzzy
-	'lqt-feed-reply-intro' => 'Відповідь у $3 (на $1), опублікована $2', # Fuzzy
+	'lqt-feed-new-thread-intro' => '$2 {{GENDER:$4|розпочав|розпочала}} нову тему на $1',
+	'lqt-feed-reply-intro' => 'Відповідь на $3 (у $1), {{GENDER:$4|розмістив|розмістила}} $2',
 	'tooltip-pt-newmessages' => 'Показує нові повідомлення в темах обговорень, за якими ви слідкуєте',
 	'lqt-newmessages-n' => 'Нові повідомлення ($1)',
-	'lqt_newmessages' => 'Повідомлень немає',
+	'lqt_newmessages' => 'Нові повідомлення (немає)',
 	'lqt_newmessages-title' => 'Нові повідомлення',
 	'lqt-newpost-summary' => 'Нова тема: $1',
 	'lqt-reply-summary' => 'Відповідь на [[$2|$1]]',
@@ -20562,22 +21107,43 @@ $7",
 	'lqt-reply-subpage' => 'відповідь',
 	'nstab-thread' => 'Тема',
 	'nstab-summary' => 'Резюме',
+	'echo-pref-email-lqt-new-topic' => 'Створює нове гілчасте обговорення',
+	'echo-pref-email-lqt-reply' => 'Відповідає на гілчасті обговорення',
+	'pageinfo-usinglqt' => 'Увімкнено деревовидні теми обговорень',
+	'pageinfo-usinglqt-yes' => 'Так',
 );
 
 /** Urdu (اردو)
+ * @author Muhammad Shuaib
  * @author පසිඳු කාවින්ද
  */
 $messages['ur'] = array(
-	'lqt_movethread' => 'ایک اور پیج دھاگے میں منتقل',
-	'lqt_contents_title' => 'فہرست',
-	'lqt_toc_thread_replycount' => 'جواب دیتا ہے',
-	'lqt_toc_thread_modified' => 'آخری دفع جب تبدیل کیا گیا',
-	'lqt_add_header' => 'ہیڈر شامل کریں',
-	'lqt_reply' => 'جواب دیں',
-	'lqt-parent' => 'والدین',
-	'lqt_delete' => 'حذف کرو',
+	'lqt-desc' => 'اضافہ دھاگہ بند پیغامات در تبادلۂ خیال صفحات',
+	'lqt_movethread' => 'دھاگہ کو دوسرے صفحہ میں منتقل کریں',
+	'lqt_deletethread' => 'حذف یا بحالیٔ دھاگہ',
+	'lqt_contents_title' => 'مشمولات',
+	'lqt_toc_thread_title' => 'دھاگہ کا عنوان',
+	'lqt_toc_thread_author' => 'شروع از',
+	'lqt_toc_thread_replycount' => 'جوابات',
+	'lqt_toc_thread_modified' => 'آخری تبدیلی',
+	'lqt_add_header' => 'عنوان کا اندراج',
+	'lqt_new_thread' => 'نیا موضوع شروع کریں',
+	'lqt_invalid_subject' => 'جو موضوع آپ نے درج کیا ہے وہ غلط ہے۔
+شایہ یہ:
+٭ بہت طویل ہو، یا
+٭ بین الویکی سابقات یا نامہائے فضا سے متصادم ہو۔',
+	'lqt-empty-text' => 'آپ خالی پیغام ارسال نہیں کرسکتے',
+	'lqt_empty_subject' => 'موضوع کا اندراج لازمی ہے۔',
+	'lqt_reply' => 'جواب',
+	'lqt-parent' => 'مادہ',
+	'lqt_delete' => 'حذف',
+	'lqt_undelete' => 'بحال',
+	'lqt_permalink' => 'ربط بجانب',
+	'lqt_fragment' => 'قطعہ ایک $1 از $2',
 	'lqt_discussion_link' => 'تبادلہٴ خیال',
-	'lqt-history-title' => 'دھاگے کی تاریخ',
+	'lqt_from_talk' => 'از $1',
+	'lqt-history-title' => 'تاریخچہ دھاگہ',
+	'lqt_hist_comment_edited' => 'متن تبصرہ کی [$2 ترمیم کی گئی]',
 	'lqt_hist_thread_created' => 'نئے دھاگے پیدا',
 	'lqt_hist_deleted' => 'خارج کر دیا گیا',
 	'lqt_hist_moved_talkpage' => 'منتقل',
@@ -20627,7 +21193,6 @@ $messages['ur'] = array(
 	'lqt-preference-display-depth' => 'زیادہ سے زیادہ جواب گہرائی کو دکھانے کے لئے:',
 	'lqt-preference-display-count' => 'جوابات کو دکھانے کے لئے زیادہ سے زیادہ تعداد:',
 	'lqt-preference-custom-signatures' => 'مخصوص صارف کے دستخط ظاہر',
-	'lqt-quote' => 'از:',
 	'lqt-search-legend' => 'اس صفحے پر تلاش کی بحث',
 	'lqt-search-label' => 'تلاش کی اصطلاحات:',
 	'lqt-search-button' => 'تلاش',
@@ -20652,6 +21217,7 @@ $messages['ur'] = array(
 
 /** Uzbek (oʻzbekcha)
  * @author CoderSI
+ * @author Sociologist
  */
 $messages['uz'] = array(
 	'lqt-desc' => "Munozara sahifalariga munozaralar tarmog'ini (oqimini) qo'shadi",
@@ -20661,7 +21227,7 @@ $messages['uz'] = array(
 	'lqt_toc_thread_title' => 'Tarmoq sarlavhasi',
 	'lqt_toc_thread_author' => 'Boshlandi',
 	'lqt_toc_thread_replycount' => 'Javoblar',
-	'lqt_toc_thread_modified' => "Oxirgi o'zgarish",
+	'lqt_toc_thread_modified' => 'Oxirgi oʻzgarish',
 	'lqt_add_header' => "Sarlavha qo'shish",
 	'lqt_new_thread' => 'Yangi munozara boshlash',
 	'lqt-empty-text' => "Siz bo'sh xat jo'nata olmaysiz",
@@ -20690,14 +21256,14 @@ $messages['uz'] = array(
 	'lqt_summary_notice_link' => 'xulosa yozish',
 	'lqt_header_warning_new_discussion' => 'yangi munozara boshlash',
 	'lqt_sorting_order' => 'Saralash tartibi:',
-	'lqt_sort_newest_changes' => "oxirgi o'zgarishlar birinchi",
+	'lqt_sort_newest_changes' => 'birinchi qilingan oʻzgarishlar',
 	'lqt_sort_newest_threads' => 'yangi tarmoqlar birinchi',
 	'lqt_sort_oldest_threads' => 'eski tarmoqlar birinchi',
 	'lqt-title' => 'Sarlavha',
 	'lqt-summary' => 'Tavsif',
-	'lqt-searching' => "Tarmoqlar bo'yicha qidirish",
+	'lqt-searching' => 'Tarmoqlar boʻylab qidirish',
 	'lqt-read-message' => "O'qilgan deb belgilash",
-	'lqt-count-marked-read' => "$1 ta {{PLURAL:$1|xabar}} o'qilgan deb belgilandi.",
+	'lqt-count-marked-read' => '$1 ta xabar oʻqilgan deb belgilandi.', # Fuzzy
 	'lqt-email-undo' => 'Bekor qilish',
 	'lqt-no-new-messages' => 'Siz uchun yangi xabarlar mavjud emas.',
 	'lqt-new-messages' => 'Siz uchun yangi xabarlar bor.',
@@ -20708,8 +21274,8 @@ $messages['uz'] = array(
 	'lqt-history-action' => 'Faollik',
 	'lqt-history-comment' => 'Izoh',
 	'lqt-history-thread' => 'Tarmoq',
-	'lqt-thread-edited-others' => "{{PLURAL:$2|Boshqa ishtirokchi|$2 ta boshqa ishtirokchi}} tomonidan o'zgartirildi.<br />
-Oxirgi tahrir: $1",
+	'lqt-thread-edited-others' => '{{PLURAL:$2|Bitta boshqa foydalanuvchi|$2 ta boshqa foydalanuvchi}} tomonidan oʻzgartirilgan.<br />
+Oxirgi tahrir: $1',
 	'lqt-header-actions' => 'Amallar',
 	'lqt_summarize_link' => 'Xulosa chiqarish',
 	'lqt-thread-split' => 'Yangi tarmoqqa ajratish',
@@ -20727,20 +21293,19 @@ Oxirgi tahrir: $1",
 	'right-lqt-split' => "Tarmoqni bo'lish",
 	'lqt-merge-submit' => 'Birlashtirmoq',
 	'lqt-log-name' => "Munozaralar tarmog'i qaydlari",
-	'prefs-lqt' => "Tarmoqlar bo'yicha munozaralar",
+	'prefs-lqt' => 'Munozaralar (tarmoqlar boʻyicha)',
 	'lqt-preference-display-depth' => "Tasvirlash uchun javoblarning eng ko'p chuqurligi:",
 	'lqt-preference-display-count' => "Tasvirlash uchun javoblarning eng ko'p soni:",
-	'lqt-preference-custom-signatures' => "Foydalanuvchilarning sozlanadigan imzolarini ko'rsatish",
-	'lqt-quote' => 'Iqtibos',
+	'lqt-preference-custom-signatures' => 'Foydalanuvchilarning sozlanadigan imzolarini koʻrsatish',
 	'lqt-search-legend' => 'Ushbu sahifada munozaralarni qidirish',
 	'lqt-search-label' => 'Qidiruv shartlari',
 	'lqt-search-button' => 'Qidiruv',
 	'searchprofile-threads' => 'Munozaralar',
-	'searchprofile-threads-tooltip' => "Tarmoqlar bo'yicha munozaralardan va munozara sahifalaridan izlash",
+	'searchprofile-threads-tooltip' => 'Tarmoqlar boʻyicha munozaralardan va munozara sahifalaridan izlash',
 	'lqt-ajax-updated' => 'Mazkur tarmoqda yangi xabarlar mavjud.',
 	'lqt-ajax-update-link' => 'Yangilash',
 	'lqt-thread-show-replies' => "$1 ta javobni ko'rsatish", # Fuzzy
-	'lqt-thread-show-more' => "Ko'proq javoblarni ko'rsatish",
+	'lqt-thread-show-more' => 'Yana boshqa javoblarni koʻrsatish',
 	'lqt-thread-link-url' => 'URLga havola:',
 	'lqt-thread-link-title' => 'Vikimatn-havola',
 	'lqt-thread-link-copy' => 'Xotiraga nusxalash',
@@ -20754,9 +21319,9 @@ Oxirgi tahrir: $1",
 	'lqt-drag-reason' => 'Sabab:',
 	'lqt-drag-subject' => 'Yangi tarmoq uchun mavzu (majburiy)',
 	'lqt-edit-signature' => '(imzoni tahrirlash)',
-	'lqt-preview-signature' => "(ko'rib chiqish)",
-	'lqt-newmessages-n' => 'Yangi xabarlar ($1)',
-	'lqt_newmessages' => "Yangi xabarlar (yo'q)",
+	'lqt-preview-signature' => '(koʻrib chiqish)',
+	'lqt-newmessages-n' => 'Yangi xabarlar ($1)', # Fuzzy
+	'lqt_newmessages' => "Yangi xabarlar (yo'q)", # Fuzzy
 	'lqt_newmessages-title' => 'Yangi xabarlar',
 	'lqt-newpost-summary' => 'Yangi tarmoq: $1',
 	'lqt-reply-summary' => '[[$2|$1]]ning javobi',
@@ -20772,6 +21337,7 @@ Oxirgi tahrir: $1",
 
 /** vèneto (vèneto)
  * @author Candalua
+ * @author GatoSelvadego
  */
 $messages['vec'] = array(
 	'lqt-desc' => 'Zonta dei argomenti de discussion a le pagine de discussion',
@@ -20885,7 +21451,7 @@ Na olta fata sta operassion, no se pole mia anularla.',
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|messagio segnà come lèto|messagi segnà come lèti}}.',
 	'lqt-email-undo' => 'Anula',
 	'lqt-no-new-messages' => 'No ghe xe messagi novi par ti.',
-	'lqt-new-messages' => '✒ Ghe xe dei messagi novi par ti.',
+	'lqt-new-messages' => 'Ghe xe de i mesaji novi par ti.',
 	'lqt-email-info-undo' => "Recùpera l'argomento che te ghè pena butà via.",
 	'lqt-date-info' => "Sto colegamento no'l va, parché te sì drio védar i argomenti de tute le date.",
 	'lqt-newmessages-context' => 'Argomento intiero',
@@ -20960,8 +21526,6 @@ Te pol védarlo qua: $6
 
 El testo de la risposta xe:
 $7', # Fuzzy
-	'lqt-quote-intro' => 'El $2 a le $3, [[User:$1|$1]] el gà scrito:',
-	'lqt-quote' => 'Cita',
 	'lqt-search-legend' => 'Serca discussion in sta pagina',
 	'lqt-search-label' => 'Parole da sercar:',
 	'lqt-search-button' => 'Serca',
@@ -21005,7 +21569,7 @@ La firma la vien fora da sola.',
 	'lqt-feed-title-replies-from' => '{{SITENAME}} — Risposte da $1',
 	'lqt-feed-new-thread-intro' => 'Argomento novo su $1, tacà da $2', # Fuzzy
 	'lqt-feed-reply-intro' => 'Risposta a $3 (su $1) mandà da $2', # Fuzzy
-	'lqt-newmessages-n' => 'Messagi novi ($1)',
+	'lqt-newmessages-n' => 'Messagi novi ($1)', # Fuzzy
 	'lqt_newmessages' => 'Messagi novi', # Fuzzy
 	'lqt_newmessages-title' => 'Messagi novi',
 	'lqt-newpost-summary' => 'Argomento novo: $1',
@@ -21058,11 +21622,10 @@ $messages['vep'] = array(
 	'lqt-header-actions' => 'Tegendad',
 	'lqt-split-submit' => 'Jagada',
 	'lqt-merge-submit' => 'Ühtenzoitta',
-	'lqt-quote' => 'Citiruida',
 	'lqt-search-button' => 'Ectä',
 	'searchprofile-threads' => 'Lodu',
 	'lqt-ajax-update-link' => 'Udištada',
-	'lqt_newmessages' => 'Uded tedotused (ei ole)',
+	'lqt_newmessages' => 'Uded tedotused (ei ole)', # Fuzzy
 );
 
 /** Vietnamese (Tiếng Việt)
@@ -21174,7 +21737,7 @@ Thay vào đó bạn có thể muốn $2.',
 	'lqt-read-message' => 'Đánh dấu đã đọc',
 	'lqt-read-message-tooltip' => 'Dời luồng này khỏi danh sách tin nhắn mới.
 Nó vẫn còn tại trang thảo luận đầu tiên.',
-	'lqt-read-all' => 'Đánh dấu đọc tất cả',
+	'lqt-read-all' => 'Đánh dấu tất cả là đã đọc',
 	'lqt-read-all-tooltip' => 'Dời các luồng khỏi danh sách tin nhắn mới.
 Chúng vẫn còn tại các trang thảo luận đầu tiên.
 Có thể lùi lại tác động này.',
@@ -21182,7 +21745,7 @@ Có thể lùi lại tác động này.',
 	'lqt-count-marked-read' => 'Đã đánh dấu {{PLURAL:$1|tin nhắn|$1 tin nhắn}} là đã đọc.',
 	'lqt-email-undo' => 'Hoàn tác',
 	'lqt-no-new-messages' => 'Bạn không có tin nhắn mới.',
-	'lqt-new-messages' => '✒ Bạn có tin nhắn mới.',
+	'lqt-new-messages' => 'Bạn có tin nhắn mới.',
 	'lqt-email-info-undo' => 'Lấy lại luồng vừa được bỏ qua.',
 	'lqt-date-info' => 'Liên kết này bị tắt vì bạn đang xem các trao đổi bất cứ ngày tháng.',
 	'lqt-newmessages-context' => 'Tất cả luồng',
@@ -21217,6 +21780,7 @@ Bạn có thể sử dụng cú pháp wiki trong tóm tắt. Khi nào xong, hãy
 	'lqt-newmessages-from' => 'Từ $1',
 	'lqt-hot-topics' => 'Chủ đề nóng',
 	'lqt-add-reply' => 'Ghi trả lời',
+	'lqt-changesortorder' => 'Sắp xếp',
 	'lqt_rc_new_discussion' => 'đã bắt đầu luồng mới, “$1”',
 	'lqt_rc_new_reply' => 'đã trả lời “$1”',
 	'right-lqt-split' => 'Chia luồng',
@@ -21237,6 +21801,7 @@ Bạn có thể sử dụng cú pháp wiki trong tóm tắt. Khi nào xong, hãy
 	'lqt-log-action-merge-down' => 'hợp nhất [[$1]] vào dưới [[$3]]',
 	'lqt-log-action-subjectedit' => 'đã đổi tiêu đề [[$1]] từ “$2” thành “$3”',
 	'lqt-log-action-resort' => 'đã thay đổi thứ tự sắp xếp của [[$1]] bằng cách đổi từ khóa sắp xếp từ $2 thành $3',
+	'lqt-log-action-signatureedit' => 'đã đổi chữ ký trong [[$1]] từ “$2” thành “$3”',
 	'lqt-preference-notify-talk' => 'Gửi thư cho tôi khi ai trả lời luồng tôi đang theo dõi',
 	'lqt-preference-watch-threads' => 'Theo dõi các luồng tôi tạo hay trả lời',
 	'prefs-lqt' => 'Thảo luận theo luồng',
@@ -21263,8 +21828,6 @@ Bạn có thể đọc nó tại <$6>
 
 Văn bản trả lời là:
 $7',
-	'lqt-quote-intro' => 'Ngày $2 lúc $3, [[User:$1|Thành viên:$1]] viết:',
-	'lqt-quote' => 'Trích dẫn',
 	'lqt-search-legend' => 'Tìm kiếm thảo luận tại trang này',
 	'lqt-search-label' => 'Từ khóa tìm kiếm:',
 	'lqt-search-button' => 'Tìm kiếm',
@@ -21298,7 +21861,7 @@ $7',
 	'lqt-drag-reason' => 'Lý do:',
 	'lqt-drag-subject' => 'Chủ đề cho luồng mới (bắt buộc):',
 	'lqt-edit-signature' => '(sửa chữ ký)',
-	'lqt-preview-signature' => '(xem thử)',
+	'lqt-preview-signature' => '(bản xem trước)',
 	'lqt-feed-title-all' => '{{SITENAME}} – Mục mới',
 	'lqt-feed-title-all-from' => '{{SITENAME}} – Mục mới từ $1',
 	'lqt-feed-title-new-threads' => '{{SITENAME}} – Luồng mới',
@@ -21327,6 +21890,10 @@ $7',
 	'lqt-reply-subpage' => 'trả lời',
 	'nstab-thread' => 'Luồng',
 	'nstab-summary' => 'Tóm lược',
+	'echo-pref-email-lqt-new-topic' => 'Bắt đầu luồng thảo luận mới',
+	'echo-pref-email-lqt-reply' => 'Trả lời trong luồng thảo luận',
+	'pageinfo-usinglqt' => 'Thảo luận theo luồng được kích hoạt',
+	'pageinfo-usinglqt-yes' => 'Có',
 );
 
 /** Volapük (Volapük)
@@ -21355,14 +21922,13 @@ $messages['vo'] = array(
 	'lqt-history-user' => 'Geban',
 	'lqt-history-comment' => 'Küpet',
 	'lqt-movethread' => 'Topätükön',
-	'lqt-quote' => 'Saitön',
 	'lqt-search-button' => 'Sukön',
 	'searchprofile-threads' => 'Bespiks',
 	'lqt-change-subject' => 'Votükön yegädi',
 	'lqt-save-subject' => 'Dakipön',
 	'lqt-cancel-subject-edit' => 'Stöpädön',
 	'lqt-drag-reason' => 'Kod:',
-	'lqt-newmessages-n' => 'Nuns nulik ($1)',
+	'lqt-newmessages-n' => 'Nuns nulik ($1)', # Fuzzy
 	'lqt_newmessages' => 'Nuns Nulik', # Fuzzy
 	'lqt_newmessages-title' => 'Nuns nulik',
 	'lqt-talkpage-history-subtitle' => 'Pro $1',
@@ -21422,7 +21988,7 @@ Motoit:
 	'lqt-count-marked-read' => '$1 {{PLURAL:$1|messaedje marké come léjhou|messaedjes markés come léjhous}}.',
 	'lqt-email-undo' => 'Disfé',
 	'lqt-no-new-messages' => "I gn a pont d' novea messaedje por vos.",
-	'lqt-new-messages' => '✒ I gn a des noveas messaedjes por vos.',
+	'lqt-new-messages' => 'I gn a des noveas messaedjes por vos.',
 	'lqt-newmessages-context' => 'Fyi en etir',
 	'lqt-header-actions' => 'Accions',
 	'lqt_summarize_link' => 'Rascourti',
@@ -21446,8 +22012,8 @@ Cwand vos avoz fini, clitchîz so «{{int:savearticle}}».",
 	'lqt-drag-activate' => 'Displaecî al sori',
 	'lqt-drag-drop-zone' => 'El mete droci',
 	'tooltip-pt-newmessages' => 'Mostere les noveas messaedjes so les sudjets les pådjes di copene ki vos shuvoz',
-	'lqt-newmessages-n' => 'Mes messaedjes ($1)',
-	'lqt_newmessages' => 'Mes messaedjes (nouk)',
+	'lqt-newmessages-n' => 'Mes messaedjes ($1)', # Fuzzy
+	'lqt_newmessages' => 'Mes messaedjes (nouk)', # Fuzzy
 	'lqt_newmessages-title' => 'Noveas messaedjes',
 	'nstab-thread' => "Fyi d' berdelaedje",
 	'nstab-summary' => 'Rascourti',
@@ -21465,7 +22031,7 @@ $messages['wuu'] = array(
  */
 $messages['xal'] = array(
 	'lqt_youhavenewmessages' => 'Та [[$1|шин зәңгстә]] бәәнәт.',
-	'lqt_newmessages' => 'Шин зәңгс (уга)',
+	'lqt_newmessages' => 'Шин зәңгс (уга)', # Fuzzy
 );
 
 /** Yiddish (ייִדיש)
@@ -21473,6 +22039,7 @@ $messages['xal'] = array(
  * @author פוילישער
  */
 $messages['yi'] = array(
+	'lqt_movethread' => 'באוועגן קייטל צו אן אנדער בלאט',
 	'lqt_deletethread' => 'אויסמעקן אדער צוריקשטעלן קייטל',
 	'lqt_contents_title' => 'אינהאַלטן',
 	'lqt_toc_thread_title' => 'קייטל קעפל',
@@ -21501,6 +22068,12 @@ $messages['yi'] = array(
 	'lqt_hist_moved_talkpage' => 'באַװעגט',
 	'lqt_hist_listing_subtitle' => 'באקוקן א היסטאריע',
 	'lqt_hist_view_whole_thread' => 'באקוקן היסטאריע פארן גאנצן קייטל',
+	'lqt_hist_edited_subject_corrupt' => 'געענדערט סוביעקט',
+	'lqt_hist_merged_from' => '[[$1|ענטפֿער]] באוועגט צו אן אנדער קייטל',
+	'lqt_hist_merged_to' => '[[$1|ענטפֿער]] באוועגט פֿון אן אנדער קייטל',
+	'lqt_hist_split_from' => 'צעשפאלטן צו א נייעם קייטל',
+	'lqt_hist_root_blanked' => 'אראפגענומען הערה טעקסט',
+	'lqt_youhavenewmessages' => 'איר האט [[$1|נײַע מעלדונגען]].',
 	'lqt_protectedfromreply_link' => 'באשיצט',
 	'lqt_subject' => 'טעמע:',
 	'lqt_thread_deleted_for_sysops' => "דאס קייטל איז געווארן '''אויסגעמעקט''' און נאר סיסאפן קען עס זען.",
@@ -21510,7 +22083,9 @@ $messages['yi'] = array(
 	'lqt_summary_subtitle' => 'קאנספעקט פון "$1"',
 	'lqt_nosuchrevision' => 'נישט פאראן אזא ווערסיע פון דעם קייטל.',
 	'lqt_move_torename_edit' => 'באַאַרבעטס עס',
+	'lqt_move_destinationtitle' => 'קעפל פון ציל שמועס בלאט:',
 	'lqt_move_move' => 'באַװעגן',
+	'lqt_header_warning_new_discussion' => 'אָנהייבן אַ נייַע דיסקוסיע',
 	'lqt_sorting_order' => 'סארטירן סדר:',
 	'lqt_sort_newest_changes' => 'לעצטע מאדיפֿיצירט צוערשט',
 	'lqt-title' => 'טיטל',
@@ -21525,12 +22100,15 @@ $messages['yi'] = array(
 	'lqt-history-comment' => 'הערה',
 	'lqt-history-thread' => 'פֿאדעם',
 	'lqt-header-actions' => 'אַקציעס',
+	'lqt-split-submit' => 'צעשפאלטן',
+	'lqt_split_badsubject' => 'דער סוביעקט איר האט אריינגעגעבן איז אומגילטיק.',
 	'lqt-delete-replies-done' => 'אלע ענטפֿערס צו דעם פֿאדעם זענען אויך געווארן אויסגעמעקט.',
 	'lqt-movethread' => 'באַװעגן',
 	'lqt-menu-trigger' => 'מער',
 	'lqt-newmessages-from' => 'פֿון $1',
 	'lqt-hot-topics' => 'ווארעמע טעמעס',
 	'lqt-add-reply' => 'צולייגן אן ענטפֿער',
+	'lqt-changesortorder' => 'סארטירן',
 	'lqt_rc_new_discussion' => 'אנגהויבן א נייעם פֿאדעם,  "$1"',
 	'lqt_rc_new_reply' => 'געשיקט ענטפֿער צו "$1"',
 	'right-lqt-split' => 'שפאַלטן פֿעדעם',
@@ -21548,12 +22126,28 @@ $messages['yi'] = array(
 	'lqt-search-button' => 'זוכן',
 	'searchprofile-threads' => 'דיסקוסיעס',
 	'lqt-ajax-update-link' => 'דערהײַנטיקן',
+	'lqt-thread-show-replies' => 'ווייזן $1 {{PLURAL:$1|ענטפער|ענטפערן}}',
+	'lqt-change-subject' => 'ענדערן סוביעקט',
 	'lqt-save-subject' => 'אויפֿהיטן',
 	'lqt-cancel-subject-edit' => 'אַנולירן',
 	'lqt-drag-save' => 'באַשטעטיקן',
 	'lqt-drag-reason' => 'אורזאַך:',
+	'lqt-edit-signature' => '(באארבעטן חתימה)',
+	'lqt-preview-signature' => '(פארויסשטעלונג)',
+	'lqt-feed-reply-intro' => 'ענטפער צו $3 (אויף $1) וואס{{GENDER:$4|$2}} האט געשיקט',
+	'tooltip-pt-newmessages' => 'ווײַזט נײַע מעלדונגען צו קייטלעך אדער אויף געקייטלטע שמועס־בלעטער וואס איר פאסט אויף זיי.',
+	'lqt-newmessages-n' => 'נײַע מעלדונגען ($1)',
+	'lqt_newmessages' => 'נײַע מעלדונגען (קיין)',
+	'lqt_newmessages-title' => 'נייע מעלדונגען',
+	'lqt-newpost-summary' => 'נײַע מעלדונג: $1',
+	'lqt-reply-summary' => 'ענטפֿער צו [[$2|$1]]',
+	'lqt-talkpage-history-title' => 'שמועס־בלאט היסטאריע',
 	'lqt-talkpage-history-subtitle' => 'פֿאַר $1',
+	'lqt-talkpage-history-tab' => 'קעפל',
+	'lqt-reply-subpage' => 'אָנרופֿן',
+	'nstab-thread' => 'קייטל',
 	'nstab-summary' => 'רעזומע',
+	'pageinfo-usinglqt-yes' => 'יא',
 );
 
 /** Cantonese (粵語)
@@ -21624,6 +22218,7 @@ $messages['yue'] = array(
  * @author Bencmq
  * @author Gaoxuewei
  * @author Hydra
+ * @author Kuailong
  * @author Liangent
  * @author PhiLiP
  * @author Shinjiman
@@ -21631,6 +22226,7 @@ $messages['yue'] = array(
  * @author Tommyang
  * @author Wmr89502270
  * @author Xiaomingyan
+ * @author Yfdyh000
  */
 $messages['zh-hans'] = array(
 	'lqt-desc' => '在讨论页增加话题讨论功能',
@@ -21738,8 +22334,8 @@ $messages['zh-hans'] = array(
 	'lqt-marked-read' => "话题'''$1'''已被标记为已读。",
 	'lqt-count-marked-read' => '$1条消息被标记为已读。',
 	'lqt-email-undo' => '撤销',
-	'lqt-no-new-messages' => '您没有收到新消息。',
-	'lqt-new-messages' => '✒您有新消息。',
+	'lqt-no-new-messages' => '你没有新信息。',
+	'lqt-new-messages' => '你有新信息。',
 	'lqt-email-info-undo' => '恢复之前您取消的话题。',
 	'lqt-date-info' => '此链接已被停用，因为您正在浏览所有日期的话题。',
 	'lqt-newmessages-context' => '话题的所有内容',
@@ -21770,6 +22366,7 @@ $messages['zh-hans'] = array(
 	'lqt-newmessages-from' => '来自$1',
 	'lqt-hot-topics' => '热门话题',
 	'lqt-add-reply' => '添加回复',
+	'lqt-changesortorder' => '排序',
 	'lqt_rc_new_discussion' => '$1有新讨论',
 	'lqt_rc_new_reply' => '对$1发表回复',
 	'right-lqt-split' => '分割话题',
@@ -21813,8 +22410,6 @@ $7',
 
 回复的内容是：
 $7',
-	'lqt-quote-intro' => '[[User:$1|$1]]在$2 $3时写道：',
-	'lqt-quote' => '引用',
 	'lqt-search-legend' => '在本页搜索讨论',
 	'lqt-search-label' => '搜索词语：',
 	'lqt-search-button' => '搜索',
@@ -21859,7 +22454,7 @@ $7',
 	'lqt-feed-reply-intro' => '{{GENDER:$4|$2}}在$1上对$3的回复',
 	'tooltip-pt-newmessages' => '显示话题或您正在监视的话题讨论页中的新发言',
 	'lqt-newmessages-n' => '新消息（$1）',
-	'lqt_newmessages' => '我的新消息（无）',
+	'lqt_newmessages' => '新消息（无）',
 	'lqt_newmessages-title' => '新消息',
 	'lqt-newpost-summary' => '新话题：$1',
 	'lqt-reply-summary' => '回复到[[$2|$1]]',
@@ -21877,6 +22472,10 @@ $7',
 	'lqt-reply-subpage' => '回复',
 	'nstab-thread' => '话题',
 	'nstab-summary' => '摘要',
+	'echo-pref-email-lqt-new-topic' => '创建新的讨论主题',
+	'echo-pref-email-lqt-reply' => '回复讨论主题',
+	'pageinfo-usinglqt' => '主题讨论已启用',
+	'pageinfo-usinglqt-yes' => '是',
 );
 
 /** Traditional Chinese (中文（繁體）‎)
@@ -21888,6 +22487,7 @@ $7',
  * @author Mark85296341
  * @author Oapbtommy
  * @author Shinjiman
+ * @author Simon Shek
  * @author Waihorace
  */
 $messages['zh-hant'] = array(
@@ -21997,10 +22597,10 @@ $messages['zh-hant'] = array(
 您仍然可以在其原始討論頁找到它們。
 此操作是可撤銷的。',
 	'lqt-marked-read' => "話題 '''$1''' 已被標記為已讀。",
-	'lqt-count-marked-read' => '$1 條{{PLURAL:$1|訊息|訊息}}被標記為已讀。',
+	'lqt-count-marked-read' => '$1則{{PLURAL:$1|訊息|訊息}}被標記為已讀。',
 	'lqt-email-undo' => '撤銷',
 	'lqt-no-new-messages' => '您沒有新訊息。',
-	'lqt-new-messages' => '✒您有新的訊息。',
+	'lqt-new-messages' => '您有新的訊息。',
 	'lqt-email-info-undo' => '恢復之前您取消的話題。',
 	'lqt-date-info' => '此連結已被停用，因為您正在瀏覽所有日期的話題。',
 	'lqt-newmessages-context' => '話題的所有內容',
@@ -22078,8 +22678,6 @@ $7',
 
 回复的內容是：
 $7',
-	'lqt-quote-intro' => '[[User:$1|$1]] 在 $2 $3 時寫道：',
-	'lqt-quote' => '引用',
 	'lqt-search-legend' => '在本頁搜尋討論',
 	'lqt-search-label' => '搜尋詞語：',
 	'lqt-search-button' => '搜尋',
@@ -22124,7 +22722,7 @@ $7',
 	'lqt-feed-reply-intro' => '{{GENDER:$4|$2}}在$1上對$3的回復',
 	'tooltip-pt-newmessages' => '顯示在你的監視列表中的新話題討論',
 	'lqt-newmessages-n' => '新訊息（$1）',
-	'lqt_newmessages' => '我的新訊息（無）',
+	'lqt_newmessages' => '新訊息（無）',
 	'lqt_newmessages-title' => '新訊息',
 	'lqt-newpost-summary' => '新話題：$1',
 	'lqt-reply-summary' => '回覆到 [[$2|$1]]',
@@ -22142,4 +22740,6 @@ $7',
 	'lqt-reply-subpage' => '回覆',
 	'nstab-thread' => '話題',
 	'nstab-summary' => '摘要',
+	'echo-pref-email-lqt-new-topic' => '建立新討論串',
+	'echo-pref-email-lqt-reply' => '回覆討論串',
 );

@@ -118,13 +118,13 @@ QUnit.test( 'commit/rollback', function ( assert ) {
 					['pushReplaceElementAttribute', 'style', 'bullet', 'number'],
 					['pushReplaceElementAttribute', 'test', undefined, 'abcd'],
 					['pushRetain', 27],
-					['pushReplaceElementAttribute', 'html/0/src', ve.dm.example.imgSrc, undefined]
+					['pushReplaceElementAttribute', 'src', ve.dm.example.imgSrc, undefined]
 				],
 				'expected': function ( data ) {
 					data[0].attributes.level = 2;
 					data[12].attributes.style = 'number';
 					data[12].attributes.test = 'abcd';
-					delete data[39].attributes['html/0/src'];
+					delete data[39].attributes.src;
 				}
 			},
 			'changing attributes on non-element data throws an exception': {
@@ -252,9 +252,9 @@ QUnit.test( 'commit/rollback', function ( assert ) {
 					['pushRetainMetadata', 2 ],
 					['pushReplaceMetadata', [], [ metaElementInsert ] ],
 					['pushRetainMetadata', 2 ],
-					['pushRetain', 1 ],
+					['pushRetain', 1 ]
 				],
-				'expected': function( data ) {
+				'expected': function ( data ) {
 					data.splice( 25, 0, metaElementInsert, metaElementInsertClose );
 				}
 			},
@@ -263,9 +263,9 @@ QUnit.test( 'commit/rollback', function ( assert ) {
 				'calls': [
 					['pushRetain', 3 ],
 					['pushReplaceMetadata', [], [ metaElementInsert ] ],
-					['pushRetain', 9 ],
+					['pushRetain', 9 ]
 				],
-				'expected': function( data ) {
+				'expected': function ( data ) {
 					data.splice( 7, 0, metaElementInsert, metaElementInsertClose );
 				}
 			},
@@ -274,9 +274,9 @@ QUnit.test( 'commit/rollback', function ( assert ) {
 				'calls': [
 					['pushRetain', 11 ],
 					['pushReplaceMetadata', ve.dm.example.withMetaMetaData[11], [] ],
-					['pushRetain', 1 ],
+					['pushRetain', 1 ]
 				],
-				'expected': function( data ) {
+				'expected': function ( data ) {
 					data.splice( 21, 8 );
 				}
 			},
@@ -287,9 +287,9 @@ QUnit.test( 'commit/rollback', function ( assert ) {
 					['pushRetainMetadata', 1 ],
 					['pushReplaceMetadata', ve.dm.example.withMetaMetaData[11].slice( 1, 3 ), [] ],
 					['pushRetainMetadata', 1 ],
-					['pushRetain', 1 ],
+					['pushRetain', 1 ]
 				],
-				'expected': function( data ) {
+				'expected': function ( data ) {
 					data.splice( 23, 4 );
 				}
 			},
@@ -299,9 +299,9 @@ QUnit.test( 'commit/rollback', function ( assert ) {
 					['pushRetain', 11 ],
 					['pushRetainMetadata', 3 ],
 					['pushReplaceMetadata', [ ve.dm.example.withMetaMetaData[11][3] ], [ metaElementInsert ] ],
-					['pushRetain', 1 ],
+					['pushRetain', 1 ]
 				],
-				'expected': function( data ) {
+				'expected': function ( data ) {
 					data.splice( 27, 2, metaElementInsert, metaElementInsertClose );
 				}
 			},
@@ -310,9 +310,9 @@ QUnit.test( 'commit/rollback', function ( assert ) {
 				'calls': [
 					['pushRetain', 7 ],
 					['pushReplace', 7, 2, []],
-					['pushRetain', 2 ],
+					['pushRetain', 2 ]
 				],
-				'expected': function( data ) {
+				'expected': function ( data ) {
 					data.splice( 15, 2 );
 				}
 			}
@@ -352,7 +352,7 @@ QUnit.test( 'commit/rollback', function ( assert ) {
 			);
 			// Commit
 			testDoc.commit( tx );
-			assert.deepEqual( testDoc.getFullData(), expectedDoc.getFullData(), 'commit (data): ' + msg );
+			assert.deepEqualWithDomElements( testDoc.getFullData(), expectedDoc.getFullData(), 'commit (data): ' + msg );
 			assert.equalNodeTree(
 				testDoc.getDocumentNode(),
 				expectedDoc.getDocumentNode(),
@@ -360,7 +360,7 @@ QUnit.test( 'commit/rollback', function ( assert ) {
 			);
 			// Rollback
 			testDoc.rollback( tx );
-			assert.deepEqual( testDoc.getFullData(), originalDoc.getFullData(), 'rollback (data): ' + msg );
+			assert.deepEqualWithDomElements( testDoc.getFullData(), originalDoc.getFullData(), 'rollback (data): ' + msg );
 			assert.equalNodeTree(
 				testDoc.getDocumentNode(),
 				originalDoc.getDocumentNode(),

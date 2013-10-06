@@ -56,6 +56,17 @@ ve.mixinClass( ve.ui.SelectWidget, ve.ui.GroupElement );
  * @param {ve.ui.OptionWidget|null} item Selected item or null if no item is selected
  */
 
+/**
+ * @event add
+ * @param {ve.ui.OptionWidget[]} items Added items
+ * @param {number} index Index items were added at
+ */
+
+/**
+ * @event remove
+ * @param {ve.ui.OptionWidget[]} items Removed items
+ */
+
 /* Static Properties */
 
 ve.ui.SelectWidget.static.tagName = 'ul';
@@ -89,7 +100,7 @@ ve.ui.SelectWidget.prototype.onMouseDown = function ( e ) {
  *
  * @method
  * @private
- * @param {jQuery.Event} e Mouse down event
+ * @param {jQuery.Event} e Mouse up event
  */
 ve.ui.SelectWidget.prototype.onMouseUp = function ( e ) {
 	this.pressed = false;
@@ -101,11 +112,11 @@ ve.ui.SelectWidget.prototype.onMouseUp = function ( e ) {
 };
 
 /**
- * Handle mouse up events.
+ * Handle mouse move events.
  *
  * @method
  * @private
- * @param {jQuery.Event} e Mouse down event
+ * @param {jQuery.Event} e Mouse move event
  */
 ve.ui.SelectWidget.prototype.onMouseMove = function ( e ) {
 	var item;
@@ -271,53 +282,47 @@ ve.ui.SelectWidget.prototype.selectItem = function ( item, silent ) {
  * @returns {ve.ui.OptionWidget|null} Item at position, `null` if there are no items in the menu
  */
 ve.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direction ) {
-	var index = this.items.indexOf( item ),
-		i = direction > 0 ?
-			// Default to 0 instead of -1, if nothing is selected let's start at the beginning
-			Math.max( 0, index + direction ) :
-			// Default to n-1 instead of -1, if nothing is selected let's start at the end
-			Math.min( index + direction, this.items.length - 1 ),
+	var inc = direction > 0 ? 1 : -1,
 		len = this.items.length,
-		inc = direction > 0 ? 1 : -1,
-		stopAt = i;
-	// Iterate to the next item in the sequence
-	while ( i <= len ) {
+		index = item instanceof ve.ui.OptionWidget ?
+			ve.indexOf( item, this.items ) : ( inc > 0 ? -1 : 0 ),
+		stopAt = Math.max( Math.min( index, len - 1 ), 0 ),
+		i = inc > 0 ?
+			// Default to 0 instead of -1, if nothing is selected let's start at the beginning
+			Math.max( index, -1 ) :
+			// Default to n-1 instead of -1, if nothing is selected let's start at the end
+			Math.min( index, len );
+
+	while ( true ) {
+		i = ( i + inc + len ) % len;
 		item = this.items[i];
 		if ( item instanceof ve.ui.OptionWidget && item.isSelectable() ) {
 			return item;
 		}
-		// Wrap around
-		i = ( i + inc + len ) % len;
+		// Stop iterating when we've looped all the way around
 		if ( i === stopAt ) {
-			// We've looped around, I guess we're all alone
-			return item;
+			break;
 		}
 	}
 	return null;
 };
 
 /**
- * Selects the next item in the menu.
+ * Get the next selectable item.
  *
  * @method
- * @param {number} index Item index
- * @returns {ve.ui.OptionWidget|null} Item, `null` if there's not an item at the `index`
+ * @returns {ve.ui.OptionWidget|null} Item, `null` if ther aren't any selectable items
  */
-ve.ui.SelectWidget.prototype.getClosestSelectableItem = function ( index ) {
-	var item,
-		i = 0,
-		len = this.items.length,
-		at = 0;
-	while ( i < len ) {
+ve.ui.SelectWidget.prototype.getFirstSelectableItem = function () {
+	var i, len, item;
+
+	for ( i = 0, len = this.items.length; i < len; i++ ) {
 		item = this.items[i];
 		if ( item instanceof ve.ui.OptionWidget && item.isSelectable() ) {
-			if ( at === index ) {
-				return item;
-			}
-			at++;
+			return item;
 		}
-		i++;
 	}
+
 	return null;
 };
 
@@ -328,9 +333,10 @@ ve.ui.SelectWidget.prototype.getClosestSelectableItem = function ( index ) {
  *
  * @method
  * @param {ve.ui.OptionWidget[]} items Items to add
+ * @param {number} [index] Index to insert items after
  * @chainable
  */
-ve.ui.SelectWidget.prototype.addItems = function ( items ) {
+ve.ui.SelectWidget.prototype.addItems = function ( items, index ) {
 	var i, len, item, hash;
 
 	for ( i = 0, len = items.length; i < len; i++ ) {
@@ -344,7 +350,10 @@ ve.ui.SelectWidget.prototype.addItems = function ( items ) {
 			this.hashes[hash] = item;
 		}
 	}
-	ve.ui.GroupElement.prototype.addItems.call( this, items );
+	ve.ui.GroupElement.prototype.addItems.call( this, items, index );
+
+	// Always provide an index, even if it was omitted
+	this.emit( 'add', items, index === undefined ? this.items.length - items.length - 1 : index );
 
 	return this;
 };
@@ -368,8 +377,13 @@ ve.ui.SelectWidget.prototype.removeItems = function ( items ) {
 			// Remove existing item
 			delete this.hashes[hash];
 		}
+		if ( item.isSelected() ) {
+			this.selectItem( null );
+		}
 	}
 	ve.ui.GroupElement.prototype.removeItems.call( this, items );
+
+	this.emit( 'remove', items );
 
 	return this;
 };
@@ -383,9 +397,14 @@ ve.ui.SelectWidget.prototype.removeItems = function ( items ) {
  * @chainable
  */
 ve.ui.SelectWidget.prototype.clearItems = function () {
+	var items = this.items.slice();
+
 	// Clear all items
 	this.hashes = {};
 	ve.ui.GroupElement.prototype.clearItems.call( this );
+	this.selectItem( null );
+
+	this.emit( 'remove', items );
 
 	return this;
 };

@@ -18,48 +18,84 @@
 $rtl = true;
 
 $namespaceNames = array(
-	NS_SPECIAL          => 'ހާއްޞަ',
+	NS_MEDIA            => 'މީޑިއާ',
+	NS_SPECIAL          => 'ޚާއްސަ',
+	NS_MAIN             => '',
 	NS_TALK             => 'ޚިޔާލު',
 	NS_USER             => 'މެމްބަރު',
-	NS_FILE             => 'ފައިލް',
-	NS_FILE_TALK        => 'ފައިލް_ޚިޔާލު',
+	NS_USER_TALK        => 'މެމްބަރުގެ_ވާހަކަ',
+	NS_PROJECT_TALK     => '$1ގެ_ވާހަކަ',
+	NS_FILE             => 'ފައިލު',
+	NS_FILE_TALK        => 'ފައިލުގެ_ޚިޔާލު',
 	NS_MEDIAWIKI        => 'މީޑިއާވިކީ',
-	NS_MEDIAWIKI_TALK   => 'މީޑިޔާވިކި_ޚިޔާލު',
+	NS_MEDIAWIKI_TALK   => 'މިޑިއާވިކީ_ޚިޔާލު',
 	NS_TEMPLATE         => 'ފަންވަތް',
-	NS_TEMPLATE_TALK    => 'ފަންވަތް_ޚިޔާލު',
+	NS_TEMPLATE_TALK    => 'ފަންވަތުގެ_ޚިޔާލު',
 	NS_HELP             => 'އެހީ',
-	NS_HELP_TALK        => 'އެހީ_ޚިޔާލު',
+	NS_HELP_TALK        => 'އެހީގެ_ޚިޔާލު',
 	NS_CATEGORY         => 'ޤިސްމު',
-	NS_CATEGORY_TALK    => 'ޤިސްމު_ޚިޔާލު',
+	NS_CATEGORY_TALK    => 'ޤިސްމުގެ_ޚިޔާލު',
+);
+
+$namespaceAliases = array(
+	'ހާއްޞަ'          => NS_SPECIAL,
+	'ފައިލް'           => NS_FILE,
+	'ފައިލް_ޚިޔާލު'    => NS_FILE_TALK,
+	'މީޑިޔާވިކި_ޚިޔާލު' => NS_MEDIAWIKI_TALK,
+	'ފަންވަތް_ޚިޔާލު'  => NS_TEMPLATE_TALK,
+	'އެހީ_ޚިޔާލު'      => NS_HELP_TALK,
+	'ޤިސްމު_ޚިޔާލު'   => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(
-	'Allpages'                  => array( 'ހުރިހާ ސަފްޙާއެއް' ),
+	'Activeusers'               => array( 'ހަރަކާތްތެރި_މެމްބަރުން' ),
+	'Allmessages'               => array( 'ހުރިހާ_މެސެޖެއް' ),
+	'Allpages'                  => array( 'ހުރިހާ_ޞަފްޙާއެއް' ),
+	'Ancientpages'              => array( 'ބާ_ޞަފްޙާތައް' ),
+	'Blankpage'                 => array( 'ހުސް_ޞަފްޙާ' ),
 	'Contributions'             => array( 'ޙިއްސާ' ),
-	'CreateAccount'             => array( 'މެމްބަރުކަން ހާސިލްކުރައްވާ' ),
-	'Emailuser'                 => array( 'މެމްބަރަށް އީ-މެއިލް ފޮނުވާ' ),
-	'BlockList'                 => array( 'ބްލޮކް ކުރެވިފައިވާ ލިސްޓް' ),
-	'Listfiles'                 => array( 'ފައިލް ލިސްޓް' ),
-	'Longpages'                 => array( 'ދިގު ސަފްޙާތައް' ),
-	'Newimages'                 => array( 'އާ ފައިލް' ),
-	'Newpages'                  => array( 'އާ ސަފްހާތައް' ),
+	'CreateAccount'             => array( 'މެމްބަރުކަން_ހާސިލްކުރައްވާ' ),
+	'Emailuser'                 => array( 'މެމްބަރަށް_އީ-މެއިލް_ފޮނުވާ' ),
+	'BlockList'                 => array( 'ބްލޮކް_ކުރެވިފައިވާ_ލިސްޓް' ),
+	'Listfiles'                 => array( 'ފައިލް_ލިސްޓް' ),
+	'Log'                       => array( 'ލޮގު' ),
+	'Longpages'                 => array( 'ދިގު_ސަފްޙާތައް' ),
+	'Mypage'                    => array( 'މަގޭ_ޞަފްޙާ' ),
+	'Mytalk'                    => array( 'މަގޭ_ވާހަކަ' ),
+	'Myuploads'                 => array( 'މަގޭ_ފައިލުތައް' ),
+	'Newimages'                 => array( 'އާ_ފައިލް' ),
+	'Newpages'                  => array( 'އާ_ސަފްހާތައް' ),
 	'Preferences'               => array( 'ތަރުޖީހުތައް' ),
-	'Protectedpages'            => array( 'ދިފާޢުކުރެވިފައިވާ ސަފްޙާތައް' ),
-	'Randompage'                => array( 'ކޮންމެވެސް ސަފްޙާއެއް' ),
-	'Recentchanges'             => array( 'އެންމެ ފަހުގެ ބަދަލްތައް' ),
-	'Shortpages'                => array( 'ކުރު ސަފްޙާތައް' ),
-	'Specialpages'              => array( 'ޙާއްސަ ސަފްޙާތައް' ),
-	'Uncategorizedtemplates'    => array( 'ޤިސްމުކުރެވިފައި ނުވާ ފަންވަތް' ),
-	'Unusedcategories'          => array( 'ބޭނުން ނުކުރާ ޤިސްމުތައް' ),
-	'Unusedimages'              => array( 'ބޭނުން ނުކުރާ ފައިލް' ),
+	'Protectedpages'            => array( 'ދިފާޢުކުރެވިފައިވާ_ސަފްޙާތައް' ),
+	'Protectedtitles'           => array( 'ދިފާޢުކުރެވިފައިވާ_ނަންތައް' ),
+	'Randompage'                => array( 'ކޮންމެވެސް_ސަފްޙާއެއް' ),
+	'Recentchanges'             => array( 'އެންމެ_ފަހުގެ_ބަދަލުތައް' ),
+	'Search'                    => array( 'ހޯއްދަވާ' ),
+	'Shortpages'                => array( 'ކުރު_ސަފްޙާތައް' ),
+	'Specialpages'              => array( 'ޙާއްސަ_ސަފްޙާތައް' ),
+	'Statistics'                => array( 'ތަފާސްހިސާބު' ),
+	'Uncategorizedpages'        => array( 'ޤިސްމުކުރެވިފައިނުވާ_ޞަފްޙާތައް' ),
+	'Uncategorizedtemplates'    => array( 'ޤިސްމުކުރެވިފައިނުވާ_ފަންވަތް' ),
+	'Unusedcategories'          => array( 'ބޭނުން_ނުކުރާ_ޤިސްމުތައް' ),
+	'Unusedimages'              => array( 'ބޭނުން_ނުކުރާ_ފައިލް' ),
+	'Unusedtemplates'           => array( 'ބޭނުންނުކުރާ_ފަންވަތްތައް' ),
 	'Upload'                    => array( 'ފޮނުއްވާ' ),
 	'Userlogin'                 => array( 'ވަދެވަޑައިގަންނަވާ' ),
-	'Userlogout'                => array( 'ބޭރަށް ވަޑައިގަންނަވާ' ),
+	'Userlogout'                => array( 'ބޭރަށް_ވަޑައިގަންނަވާ' ),
+	'Wantedcategories'          => array( 'ބޭނުންވާ_ޤިސްމުތައް' ),
+	'Wantedfiles'               => array( 'ބޭނުންވާ_ފައިލުތައް' ),
+	'Wantedpages'               => array( 'ބޭނުންވާ_ޞަފްޙާތައް' ),
+	'Wantedtemplates'           => array( 'ބޭނުންވާ_ފަންވަތްތައް' ),
+	'Watchlist'                 => array( 'މަގޭ_ނަޒަރު' ),
 );
 
 $messages = array(
 # User preference toggles
 'tog-hideminor' => 'ކުދި އުނި އިތުރުތައް އެންމެފަހުގެ ބަދަލުތަކުގެ ލިސްޓުން ފޮރުއްވަވާ',
+'tog-watchlisthideown' => 'މަގޭ ނަޒަރުން މަގޭ ހިއްސާ ފޮރުއްވާ',
+'tog-watchlisthidebots' => 'މަގޭ ނަޒަރުން ބޮޓުންގެ ހިއްސާ ފޮރުއްވާ',
+'tog-watchlisthideminor' => 'މަގޭ ނަޒަރުން ކުދި އުނިއިތުރުތައް ފޮރުއްވާ',
+'tog-watchlisthideliu' => 'މަގޭ ނަޒަރުން ވަދެފައިވާ މެމްބަރުންގެ އުނިއުތުރުތައް ފޮރުއްވާ',
 'tog-ccmeonemails' => 'އަޅުގަނޑު އެހެން މެމްބަރުންނަށް ފޮނުވާ އީމެއިލްގެ ނަކަލެއް އަޅުގަނޑަށް ފޮނުވާ',
 'tog-showhiddencats' => 'ފޮރުވިފައިވާ ޤިސްމުތައް ދައްކަވާ',
 
@@ -252,6 +288,10 @@ $1',
 'youhavenewmessages' => 'ތިޔަބޭފުޅާއަށް $1 ($2)',
 'newmessageslink' => 'އައު މެސެޖުތައް',
 'newmessagesdifflink' => 'އެންމެ ފަހުގެ ބަދަލު',
+'youhavenewmessagesfromusers' => 'ތިބޭފުޅާއަށް {{PLURAL:$3|މެމްބަރެއް|$3 މެމްބަރުން}} $1 ފޮނުއްވާފައިވެއެވެ. ($2)',
+'youhavenewmessagesmanyusers' => 'ތިބޭފުޅާއަށް ގިނަ މެމްބަރުން $1 ފޮނުއްވާފައިވެއެވެ. ($2)',
+'newmessageslinkplural' => '{{PLURAL:$1|އާ މެސެޖެއް|މެސެޖުތައް}}',
+'newmessagesdifflinkplural' => 'ފަހު {{PLURAL:$1|ބަދަލު|ބަދަލުތައް}}',
 'editsection' => 'އުނިއިތުރު ގެންނަވާ',
 'editold' => 'އުނިއިތުރު ގެންނަވާ',
 'viewsourceold' => 'މަސްދަރު ބައްލަވާ',
@@ -294,8 +334,10 @@ $1',
 'ns-specialprotected' => 'ޚާއްސަ ޞަފްޙާތަކަށް އުނިއިތުރު ނުގެންނެވޭނެއެވެ.',
 
 # Login and logout pages
-'welcomecreation' => '== މަރުހަބާ، $1 ! ==
-ތިޔަބޭފުޅާގެ މެންބަރުޝިޕް ހެދިއްޖެއެވެ. ތިޔަ ބޭފުޅާގެ ވިކިޕީޑިއާގެ ތަރުޖީހުތައް ބަދަލުކުރައްވަން ހަނދުމަފުޅު ބަހައްޓަވާށެވެ.',
+'logouttext' => "'''ތިބޭފުޅާއަށް ބޭރަށް ވަޑައިގެންނެވިއްޖެ.'''
+
+ތިބޭފުޅާއަށް {{SITENAME}} ބޭނުންކުރެވޭނެއެވެ. ނަމަވެސް އެހެން މެމްބަރެއްގެ ގޮތުގައި <span class='plainlinks'>[$1 ވަދެވަޑައިގަނެވިދާނެއެވެ.]</span> ނުވަތަ ތި މެމްބަރުގެ ގޮތުގައި ވަދެވަޑައިގެންނެވޭނެއެވެ.",
+'welcomeuser' => 'މަރުޙަބާ،  $1!',
 'yourname' => 'މެންބަރުގެނަން',
 'yourpassword' => 'ސިއްރުބަސް',
 'yourpasswordagain' => 'ސިއްރުބަސް އަލުންލިޔުއްވާ',
@@ -351,6 +393,7 @@ $1',
 'changeemail-header' => 'އެކައުންޓްގެ އީމެއިލް އެޑްރެސް ބަދަލުކުރައްވާ',
 'changeemail-oldemail' => 'މިހާރު ބޭނުންކުރާ އީމެއިލް އެޑްރެސް:',
 'changeemail-newemail' => 'އައު އީމެއިލް އެޑްރެސް:',
+'changeemail-password' => 'ތިޔަބޭފުޅާގެ {{SITENAME}} ސިއްރުބަސް:',
 'changeemail-submit' => 'އީމެއިލް ބަދަލުކުރައްވާ',
 'changeemail-cancel' => 'މަންސޫޚް',
 
@@ -393,8 +436,15 @@ $1',
 'accmailtitle' => 'ސިއްރުބަސް ފޮނުވިއްޖެ.',
 'accmailtext' => '"$1" އަށްޓަކައިވާ ސިއްރު ބަސް $2 އަށް ވަނީ ފޮނުވިފައި',
 'newarticle' => '(އައު)',
-'noarticletext' => 'މި ޞަފްޙާގައި އެއްވެސް ލިޔުމެއް ނުވެއެވެ. ތިޔަބޭފުޅާއަށް މި ނަން [[Special:Search/{{PAGENAME}}|އެހެން ޞަފްޙާތަކުން ހޯއްދެވިދާނެއެވެ]]. ނުވަތަ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} މިއާ ގުޅޭ ލޮގްތައް ހޯއްދެވިދާނެއެވެ].
-[{{fullurl:{{FULLPAGENAME}}|action=edit}} ނުވަތަ މި ޞަފްޙާއަށް އުނިއިތުރު ގެނެވިދާނެއެވެ].</span>.',
+'newarticletext' => "<div style=\"border:1px solid black;\">
+<big>'''ވިކިޕީޑިއާގައި އަދި މިހާތަނަށް ތިނަމުންވާ މަޒުމޫނެއް އެކުލެވިފައިނުވެއެވެ.'''</big>
+* ތިޔަ ވަޑައިގެންނެވި ޞަފްޙާގައި އެއްވެސް ލިޔުމެއް އެކުލެވިފައި ނުވެއެވެ.
+*މި ޞަފްޙާއަށް ތިބޭފުޅާއަށް ވަޑައިގަނެވުނީ އޮޅުމަކުން ކަމަށް ވާނަމަ ކޮމްޕިޔުޓަރުގެ `ވެބް ބްރޯޒަރ` ގެ ''ފަހަތް'' ފިތައް އޮބާލައްވާށެވެ. އޭރުން އެންމެ ފަހުން ހުންނެވި ޞަފްޙާ އަށް ވަޑައިގަނެވޭނެއެވެ.
+* މަޒްމޫނެއް ފެއްޓެވުމަށް ތިރީގައި ވާ ފޮށީގައި ލިޔުއްވުމަށް ފަހު މަޒުމޫނުގެ ނަމޫނާ ބެއްލެވުމަށް ފަހު ކުށެއްވާނަމަ ރަނގަޅު ކުރައްވާފައި ފޮށީގެ ތިރީގައިވާ '''ޞަފްޙާ ރައްކާކުރައްވާ'''އަށް ފިއްތަވާ ލައްވަވާ.
+* އިތުރު އެހީ ބޭނުންފުޅު ނަމަ [[{{MediaWiki:Helppage}}|އެހީ ޞަފްހާއަށް]] ވަޑައިގަންނަވާށެވެ.
+</div>",
+'noarticletext' => 'މި ޞަފްޙާގައި އެއްވެސް ލިޔުމެއް ނުވެއެވެ. ތިޔަބޭފުޅާއަށް މި ނަން [[Special:Search/{{PAGENAME}}|އެހެން ޞަފްޙާއަކުން ހޯއްދެވިދާނެއެވެ]]. ނުވަތަ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} މިއާ ގުޅޭ ލޮގްތައް ހޯއްދެވިދާނެއެވެ].
+[{{fullurl:{{FULLPAGENAME}}|action=edit}} ނުވަތަ މި ޞަފްޙާއަށް އުނިއިތުރު ގެނެވިދާނެއެވެ].</span>',
 'previewnote' => "'''މިއީ ހަމައެކަނި ނަމޫނާ އެކެވެ.'''
 އަދި ތިބޭފުޅާގެ ބަދަލުތައް ރައްކާނުކުރެވެއެވެ!",
 'editing' => '$1 އަށް އުނިއިތުރު ގެންނަނީ',
@@ -417,12 +467,15 @@ $1',
 ފޮހެލުމުގެ އަދި ނަން ބަދަލުކުރުމުގެ ލޮގް ތިރީގައިވަނީއެވެ.',
 
 # History pages
+'viewpagelogs' => 'މިޞަފްޙާގެ ލޮގުތައް ބައްލަވާ',
 'currentrev' => 'އެންމެފަހުން ގެނެވުނު ބަދަލު',
 'currentrev-asof' => 'އެންމެ ފަހުން ގެނެވުނު ބަދަލު $1',
 'revisionasof' => '$1ގެ ނުސްހާ',
 'previousrevision' => '→ ކުރީގެ ނުސްހާ',
 'nextrevision' => 'ފަހުގެ ނުސްހާ ←',
+'cur' => 'އެންމެ ފަހުގެ',
 'next' => 'ކުރިޔަށް',
+'last' => 'ފަރަޤު',
 'histfirst' => 'އެންމެ ކުރީގެ',
 'histlast' => 'އެންމެ ފަހުގެ',
 
@@ -431,8 +484,10 @@ $1',
 'revdel-restore-visible' => 'ފާޅު ނުސްހާތައް',
 
 # Diffs
+'history-title' => '"$1"ގެ ތާރީޚް',
 'lineno' => 'ފޮޅުވަތް $1:',
 'compareselectedversions' => 'އިހުތިޔާރު ކުރެވިފައިވާ ނުސްހާތައް އަޅައިކިޔުއްވާ',
+'editundo' => 'ކުރީގެ ނުސްހާއަށް ބަދަލުކުރައްވާ',
 
 # Search results
 'searchresults' => 'ހޯދުމުގެ ނަތީޖާ',
@@ -616,7 +671,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListGroupRights
 'listgrouprights-members' => '(މެމްބަރުންގެ ލިސްޓު)',
 
-# E-mail user
+# Email user
 'emailuser' => 'މި މެންބަރަށް އީމޭލު ފޮނުއްވާ',
 
 # Watchlist
@@ -660,7 +715,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'blanknamespace' => '(މައި)',
 
 # Contributions
-'contributions' => 'މެންބަރު ގެ ހިއްސާ',
+'contributions' => '{{GENDER:$1|މެމްބަރުގެ}} ހިއްސާ',
 'mycontris' => 'މަގޭ ހިއްސާ',
 
 'sp-contributions-talk' => 'ވާހަކަ',
@@ -756,8 +811,13 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'tooltip-ca-nstab-category' => 'ޤިސްމު ޞަފްޙާ ބައްލަވާ',
 'tooltip-save' => 'ބަދަލުތައް ރައްކާކުރައްވާ',
 'tooltip-preview' => 'ބަދަލުތައް ދައްކަވާ، ރައްކާކުރެއްވުމުގެ ކުރިން މި ބޭނުންކުރައްވާ!',
+'tooltip-watch' => 'މިޞަފްޙާއަށް ނަޒަރުބަހައްޓަވާ',
 'tooltip-rollback' => '"ކުރީގެ ނުސްހާ އަކަށް ބަދަލުކުރައްވާ" އިން މި ޞަފްޙާއަށް އެންމެ ފަހުން އުނިއިތުރު ގެންނެވި މެމްބަރުގެ އުނިއިތުރު(އުނިއިތުރުތައް) ފޮހެލެވޭނެއެވެ.',
+'tooltip-undo' => '"ކުރީގެ ނުސްހާއަށް ބަދަލުކުރައްވާ" އިން މި ނުސްހާގެ ކުރީގައި އިން ނުސްހާއަށް ބަދަލުކޮށްދޭނެއެވެ. އަދި އުނިއިތުރުގެ ޚުލާސާ ލިޔުމުގެ ފުރުސަތު ދޭނެއެވެ.',
 'tooltip-summary' => 'ކުރު ޚުލާސާއެއް ލިޔުއްވާ',
+
+# Info page
+'pageinfo-toolboxlink' => 'ސަފްޙާ އާއި ބެހޭ މައުލޫމާތު',
 
 # Browsing diffs
 'previousdiff' => '→ ކުރީގެ ނުސްހާ',
@@ -770,7 +830,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Metadata
 'metadata' => 'މެޓަޑޭޓާ',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'ފުޅާމިން',
 'exif-imagelength' => 'އުސްމިން',
 'exif-imagedescription' => 'ތަސްވީރުގެ ސުރުހީ',
@@ -798,7 +858,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistall2' => 'ހުރިހާ',
 'namespacesall' => 'ހުރިހާ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'އީމޭލު އެޑްރެސް ޔަގީންކުރައްވާ',
 
 # action=purge

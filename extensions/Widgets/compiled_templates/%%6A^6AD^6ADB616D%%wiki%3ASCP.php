@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18-dev, created on 2013-05-05 06:22:00
+<?php /* Smarty version 2.6.18-dev, created on 2013-05-06 04:10:57
          compiled from wiki:SCP */ ?>
 <script language="javascript"> 
 if(!$.cookie("scp"))
@@ -17,4 +17,3 @@ $(document.body).append(
 );
 })();
 </script>
-<meta name="robots" content="noindex,follow" />

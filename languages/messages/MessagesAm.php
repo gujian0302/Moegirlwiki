@@ -77,8 +77,6 @@ $messages = array(
 'tog-shownumberswatching' => 'የሚከታተሉ ተጠቃሚዎችን ቁጥር አሳይ',
 'tog-oldsig' => 'የቀድሞው ፊርማ ቅደመ እይታ',
 'tog-fancysig' => 'ጥሬ ፊርማ (ያለራስገዝ ማያያዣ)',
-'tog-externaleditor' => 'በቀዳሚነት ውጪያዊ አራሚን ተጠቀም',
-'tog-externaldiff' => 'በቀዳሚነት የውጭ ልዩነት-ማሳያን ተጠቀም',
 'tog-showjumplinks' => 'የ"ዝለል" አቅላይ መያያዣዎችን አስችል',
 'tog-uselivepreview' => 'ቀጥታ ቅድመ-ዕይታን ይጠቀሙ (JavaScript) (የሙከራ)',
 'tog-forceeditsummary' => 'ማጠቃለያው ባዶ ከሆነ ማስታወሻ ይስጠኝ',
@@ -185,7 +183,6 @@ $messages = array(
 'qbbrowse' => 'ቃኝ',
 'qbedit' => 'አርም',
 'qbpageoptions' => 'ይህ ገጽ',
-'qbpageinfo' => 'አግባብ',
 'qbmyoptions' => 'የኔ ገጾች',
 'qbspecialpages' => 'ልዩ ገጾች',
 'faq' => 'ብጊየጥ (ብዙ ጊዜ የሚጠየቁ ጥያቀዎች)',
@@ -277,7 +274,6 @@ $1',
 'disclaimers' => 'የኃላፊነት ማስታወቂያ',
 'disclaimerpage' => 'Project:አጠቃላይ የሕግ ነጥቦች',
 'edithelp' => 'የማረም መመሪያ',
-'edithelppage' => 'Help:የማዘጋጀት እርዳታ',
 'helppage' => 'Help:ይዞታ',
 'mainpage' => 'ዋናው ገጽ',
 'mainpage-description' => 'ዋና ገጽ',
@@ -410,9 +406,7 @@ $2",
 
 አሁንም በቁጥር መታወቂያዎ ማዘጋጀት ይቻላል። ወይም ደግሞ እንደገና በብዕር ስምዎ መግባት ይችላሉ።
 በጥቂት ሴኮንድ ውስጥ ወደሚከተለው ገጽ በቀጥታ ይመለሳል፦",
-'welcomecreation' => '== ሰላምታ፣ $1! ==
-
-የብዕር ስምዎ ተፈጥሯል። ምርጫዎችዎን ለማስተካከል ይችላሉ።',
+'welcomeuser' => 'ሰላምታ $1!  እንኳን ደህናመጡ።',
 'yourname' => 'Username / የብዕር ስም:',
 'yourpassword' => 'Password / መግቢያ ቃል',
 'yourpasswordagain' => 'መግቢያ ቃልዎን ዳግመኛ ይስጡ',
@@ -486,7 +480,7 @@ $2",
 'login-abort-generic' => 'መግባትዎ አልተከናወነም፤ ተሠርዟል።',
 'loginlanguagelabel' => 'ቋምቋ፦ $1',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => 'እሚደርስበት ኢ-ሜል አድራሻ ሳይታወቅ መላክ አይቻልም።',
 
 # Change password dialog
@@ -526,6 +520,7 @@ $2",
 'changeemail-oldemail' => 'የቆየው ኢ-ሜል አድራሻዎ፦',
 'changeemail-newemail' => 'አዲስ ኢ-ሜል አድራሻ፦',
 'changeemail-none' => '(የለም)',
+'changeemail-password' => 'የ{{SITENAME}} መግቢያ ቃልዎ፦',
 'changeemail-submit' => 'አድራሻዎን ለመቀይር',
 'changeemail-cancel' => 'ይቅር',
 
@@ -652,7 +647,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'template-protected' => '(የተቆለፈ)',
 'template-semiprotected' => '(በከፊል የተቆለፈ)',
 'hiddencategories' => 'ይህ ገጽ በ{{PLURAL:$1|1 የተደበቀ መደብ|$1 የተደበቁ መድቦች}} ውስጥ ይገኛል።',
-'nocreatetitle' => 'የገጽ መፍጠር ተወሰነ',
 'nocreatetext' => '{{SITENAME}} አዳዲስ ገጾችን ለመፍጠር ያሚያስችል ሁኔታ ከለክሏል። ተመልሰው የቆየውን ገጽ ማዘጋጀት ይችላሉ፤ አለዚያ [[Special:UserLogin|በብዕር ስም መግባት]] ይችላሉ።',
 'nocreate-loggedin' => 'አዲስ ገጽ በ{{SITENAME}} ለመፍጠር ፈቃድ የለዎም።',
 'permissionserrors' => 'የፈቃድ ስሕተቶች',
@@ -674,6 +668,9 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'edit-already-exists' => 'አዲስ ገጽ ለመፍጠር አልተቻለም፤
 ገና ይኖራልና።',
 'defaultmessagetext' => 'የቆየው ጽሕፈት',
+
+# Content models
+'content-model-javascript' => 'ጃቫ ስክሪፕት',
 
 # "Undo" feature
 'undo-success' => "ያ ለውጥ በቀጥታ ሊገለበጥ ይቻላል። እባክዎ ከታች ያለውን ማነጻጸርያ ተመልክተው ይህ እንደሚፈልጉ ያረጋግጡና ለውጡ እንዲገለበጥ '''ገጹን ለማቅረብ''' ይጫኑ።",
@@ -808,7 +805,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'searchmenu-legend' => 'የፍለጋ ምርጫዎች',
 'searchmenu-exists' => "'''\"[[:\$1]]\" የሚባል መጣጥፍ በዚሁ ዊኪ ላይ አለ።'''",
 'searchmenu-new' => "'''\"[[:\$1]]\" የሚባል መጣጥፍ ይፈጠር?'''",
-'searchhelp-url' => 'Help:ይዞታ',
 'searchprofile-articles' => 'ይዞታ ያላቸው መጣጥፎች',
 'searchprofile-project' => 'የመርሃግብሩ ገጾች',
 'searchprofile-images' => 'ፋይሎች',
@@ -845,13 +841,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'powersearch-togglenone' => ' ምንም',
 'search-external' => 'አፍአዊ ፍለጋ',
 'searchdisabled' => '{{SITENAME}} ፍለጋ አሁን እንዳይሠራ ተደርጓል። ለጊዜው ግን በGoogle ላይ መፈልግ ይችላሉ። የ{{SITENAME}} ይዞታ ማውጫ በዚያ እንዳልታደሰ ማቻሉ ያስታውሱ።',
-
-# Quickbar
-'qbsettings-none' => ' ምንም',
-'qbsettings-fixedleft' => 'በግራ የተለጠፈ',
-'qbsettings-fixedright' => 'በቀኝ የተለጠፈ',
-'qbsettings-floatingleft' => 'በግራ ተንሳፋፊ',
-'qbsettings-floatingright' => 'በቀኝ ተንሳፋፊ',
 
 # Preferences page
 'preferences' => 'ምርጫዎች፤',
@@ -945,7 +934,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'prefs-displayrc' => 'የማሳያ አማራጮች',
 'prefs-diffs' => 'ልዩነቶች',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ኢ-ሜል አድራሻ ትክክለኛ ይመስላል።',
 'email-address-validity-invalid' => 'ትክክለኛ ኢ-ሜል ማቅረብ ያስፈልጋል።',
 
@@ -1022,11 +1011,13 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'right-userrights' => 'ያባላት ሁሉ መብቶች ለማስተካከል',
 'right-sendemail' => 'ወደ ሌላ አባል ኢ-ሜል ለመላክ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'የአባልነት መዝገብ (user log)',
+'newuserlogpagetext' => 'ይህ መዝገብ ወደ አባልነት የገቡትን ብዕር ስሞች ይዘርዝራል።',
+
 # User rights log
 'rightslog' => 'የአባል መብቶች መዝገብ',
 'rightslogtext' => 'ይህ መዝገብ የአባል መብቶች ሲለወጡ ይዘረዝራል።',
-'rightslogentry' => 'የ$1 ማዕረግ ከ$2 ወደ $3 ለወጠ',
-'rightsnone' => '(የለም)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ይህን ገጽ ለማንበብ',
@@ -1480,17 +1471,13 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'activeusers-hidesysops' => 'መጋቢዎች ይደበቁ',
 'activeusers-noresult' => 'ማንም ተጠቃሚ አልተገኘም።',
 
-# Special:Log/newusers
-'newuserlogpage' => 'የአባልነት መዝገብ (user log)',
-'newuserlogpagetext' => 'ይህ መዝገብ ወደ አባልነት የገቡትን ብዕር ስሞች ይዘርዝራል።',
-
 # Special:ListGroupRights
 'listgrouprights' => 'የተጠቃሚ ስብስባ መብቶች',
 'listgrouprights-group' => 'ስብስባ',
 'listgrouprights-rights' => 'መብቶች',
 'listgrouprights-members' => '(የአባላት ዝርዝር)',
 
-# E-mail user
+# Email user
 'mailnologin' => 'ምንም መነሻ አድራሻ የለም',
 'mailnologintext' => 'ኢ-ሜል ወደ ሌላ አባል ለመላክ [[Special:UserLogin|መግባት]]ና በ[[Special:Preferences|ምርጫዎችዎ]] ትክክለኛ የኢሜል አድራሻዎ መኖር ያስፈልጋል።',
 'emailuser' => 'ለዚህ/ች ሰው ኢሜል መላክ',
@@ -1541,8 +1528,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'notvisiblerev' => 'ዕትሙ ጠፍቷል',
 'watchnochange' => 'ከተካከሉት ገጾች አንዳችም በተወሰነው ጊዜ ውስጥ አልተለወጠም።',
 'watchlist-details' => 'አሁን {{PLURAL:$1|$1 ገፅ|$1 ገፆች}} በምትከታተላቸው ገፆች ላይ አሉ (የውይይት ገፅ ሳይጨመር)።',
-'wlheader-enotif' => '* የ-ኢሜል ማስታወቂያ እንዲሠራ ተደርጓል።',
-'wlheader-showupdated' => "* መጨረሻ ከጎበኟቸው ጀምሮ የተቀየሩት ገጾች በ'''ጉልህ ፊደላት''' ይታያሉ",
+'wlheader-enotif' => 'የ-ኢሜል ማስታወቂያ እንዲሠራ ተደርጓል።',
+'wlheader-showupdated' => "መጨረሻ ከጎበኟቸው ጀምሮ የተቀየሩት ገጾች በ'''ጉልህ ፊደላት''' ይታያሉ",
 'watchmethod-recent' => 'የቅርብ ለውጦችን ለሚከታተሉት ገጾች በመፈለግ',
 'watchmethod-list' => 'የሚከታተሉትን ገጾች ለቅርብ ለውጦች በመፈለግ',
 'watchlistcontains' => 'አሁን በሙሉ $1 ገጾች እየተከታተሉ ነው።',
@@ -1556,11 +1543,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 'enotif_mailer' => 'የ{{SITENAME}} ኢሜል-ማስታወቂያ',
 'enotif_reset' => 'ገጾች ሁሉ የተጎበኙ ሆነው ለማመልከት',
-'enotif_newpagetext' => 'ይህ አዲስ ገጽ ነው።',
 'enotif_impersonal_salutation' => '{{SITENAME}} ተጠቃሚ',
-'changed' => 'ተለወጠ',
-'created' => 'ተፈጠረ',
-'enotif_subject' => 'የ{{SITENAME}} ገጽ $PAGETITLE  በ$PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => 'መጨረሻ ከጎበኙ ጀምሮ ለውጦችን ሁሉ ለመመልከት $1 ይዩ።',
 'enotif_lastdiff' => 'ይህን ለውጥ ለማመልከት $1 ይዩ።',
 'enotif_anon_editor' => 'ቁጥር አድራሻ $1',
@@ -1586,6 +1569,8 @@ $NEWPAGE
 
 በተጨማሪ ለመረዳት፦
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'ተፈጠረ',
+'changed' => 'ተለወጠ',
 
 # Delete
 'deletepage' => 'ገጹ ይጥፋ',
@@ -2071,6 +2056,9 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'pageinfo-lastuser' => 'የመጨረሻው አራሚ',
 'pageinfo-lasttime' => 'የመጨረሻው ዕትም ቀን',
 'pageinfo-edits' => 'ጠቅላላ የእርማት ቁጥር',
+'pageinfo-toolboxlink' => 'የዚህ ገጽ መረጃ',
+'pageinfo-contentpage-yes' => 'አዎ',
+'pageinfo-protect-cascading-yes' => 'አዎ',
 
 # Patrolling
 'markaspatrolleddiff' => 'የተሳለፈ ሆኖ ማመልከት',
@@ -2127,6 +2115,7 @@ $1',
 'hours' => '$1 ሰዓት',
 'days' => '$1 ቀን',
 'ago' => 'ከ$1 በፊት',
+'just-now' => 'ገና አሁን',
 
 # Bad image list
 'bad_image_list' => 'ሥርዓቱ እንዲህ ነው፦
@@ -2153,7 +2142,7 @@ $1',
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'ስፋት',
 'exif-imagelength' => 'ቁመት',
 'exif-compression' => 'የመጨመቅ ዘዴ',
@@ -2260,7 +2249,7 @@ $1',
 'exif-cameraownername' => 'ባለ ካሜራ',
 'exif-personinimage' => 'የታየው ሰው',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'ያልተጨመቀ',
 
 'exif-unknowndate' => 'ያልታወቀ ቀን',
@@ -2406,7 +2395,7 @@ $1',
 'monthsall' => 'ሁሉ',
 'limitall' => 'ሁሉ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ኢ-ሜልዎን ለማረጋገጥ',
 'confirmemail_noemail' => 'በ[[Special:Preferences|ምርጫዎችዎ]] ትክክለኛ ኢሜል አድራሻ አልሰጡም።',
 'confirmemail_text' => 'አሁን በ{{SITENAME}} በኩል «ኢ-ሜል» ለመላክም ሆነ ለመቀበል አድራሻዎን ማረጋገጥ ግዴታ ሆኗል። እታች ያለውን በተጫኑ ጊዜ አንድ የማረጋገጫ መልእክት ቀድሞ ወደ ሰጡት ኢሜል አድራሻ በቀጥታ ይላካል። በዚህ መልእክት ልዩ ኮድ ያለበት መያያዣ ይገኝበታል፣ ይህንን መያያዣ ከዚያ ቢጎብኙ ኢ-ሜል አድራሻዎ የዛኔ ይረጋግጣል።',
@@ -2528,13 +2517,6 @@ $3
 'version-software-product' => 'ሶፍትዌር',
 'version-software-version' => 'ዝርያ',
 
-# Special:FilePath
-'filepath' => 'የፋይል መንገድ',
-'filepath-page' => 'ፋይሉ፦',
-'filepath-submit' => 'መንገድ',
-'filepath-summary' => 'ይህ ልዩ ገጽ ለ1 ፋይል ሙሉ መንገድ ይሰጣል።<br />
-ስዕል በሙሉ ማጉላት ይታያል፤ ሌላ አይነት ፋይል በሚገባው ፕሮግራም በቀጥታ ይጀመራል።',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'ለቅጂ ፋይሎች መፈልግ',
 'fileduplicatesearch-legend' => 'ለቅጂ ለመፈልግ',
@@ -2572,7 +2554,7 @@ $3
 
 # New logging system
 'logentry-delete-delete' => '$1 ገጹን $3 አጠፋ',
-'newuserlog-byemail' => 'ማለፊያ-ቃል በኤ-መልዕክት ተልኳል',
+'rightsnone' => '(የለም)',
 
 # Feedback
 'feedback-cancel' => 'ይቅር',

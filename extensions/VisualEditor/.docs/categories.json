@@ -1,14 +1,5 @@
 [
 	{
-		"name": "Actions",
-		"groups": [
-			{
-				"name": "Actions",
-				"classes": ["ve.*Action"]
-			}
-		]
-	},
-	{
 		"name": "ContentEditable",
 		"groups": [
 			{
@@ -76,6 +67,10 @@
 			{
 				"name": "Linear data",
 				"classes": ["ve.dm.*LinearData"]
+			},
+			{
+				"name": "Models",
+				"classes": ["ve.dm.*Model"]
 			}
 		]
 	},
@@ -103,13 +98,19 @@
 				"name": "General",
 				"classes": [
 					"ve.ui",
+					"ve.ui.Surface",
 					"ve.ui.Context",
 					"ve.ui.Frame",
 					"ve.ui.Toolbar",
-					"ve.ui.Element",
 					"ve.ui.Window",
-					"ve.ui.WindowSet"
+					"ve.ui.WindowSet",
+					"ve.ui.Action",
+					"ve.ui.Trigger"
 				]
+			},
+			{
+				"name": "Actions",
+				"classes": ["ve.ui.*Action"]
 			},
 			{
 				"name": "Factories",
@@ -150,23 +151,15 @@
 		"groups": [
 			{
 				"name": "Utilities",
-				"classes": ["ve", "ve.EventEmitter", "ve.Registry", "ve.Factory", "ve.Range"]
-			},
-			{
-				"name": "Registries",
-				"classes": ["ve.CommandRegistry", "ve.TriggerRegistry"]
+				"classes": ["ve", "ve.EventEmitter", "ve.Registry", "ve.Factory", "ve.Range", "ve.Element"]
 			},
 			{
 				"name": "Factories",
-				"classes": ["ve.ActionFactory", "ve.NamedClassFactory"]
+				"classes": ["ve.NamedClassFactory"]
 			},
 			{
 				"name": "Nodes",
 				"classes": ["ve.Node", "ve.BranchNode", "ve.LeafNode", "ve.Document"]
-			},
-			{
-				"name": "Misc",
-				"classes": ["ve.Trigger", "ve.Surface"]
 			},
 			{
 				"name": "Test",
@@ -180,7 +173,7 @@
 			{
 				"name": "UnicodeJS",
 				"classes": [
-					"unicodeJS.TextString", "unicodeJS.wordbreak"
+					"unicodeJS", "unicodeJS.TextString", "unicodeJS.wordbreak", "unicodeJS.graphemebreak"
 				]
 			}
 		]
@@ -191,6 +184,10 @@
 			{
 				"name": "jQuery",
 				"classes": ["jQuery", "jQuery.Event", "jQuery.Promise", "jQuery.Deferred", "jQuery.jqXHR", "QUnit"]
+			},
+			{
+				"name": "OOJS",
+				"classes": ["OO", "OO.*"]
 			},
 			{
 				"name": "JavaScript",

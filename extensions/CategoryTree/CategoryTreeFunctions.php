@@ -324,14 +324,7 @@ class CategoryTree {
 	 * @return string
 	 */
 	function getOptionsAsUrlParameters() {
-		$u = '';
-
-		foreach ( $this->mOptions as $k => $v ) {
-			if ( $u != '' ) $u .= '&';
-			$u .= $k . '=' . urlencode( $v ) ;
-		}
-
-		return $u;
+		return http_build_query( $this->mOptions );
 	}
 
 	/**
@@ -345,7 +338,7 @@ class CategoryTree {
 		global $wgLang, $wgContLang, $wgRenderHashAppend;
 		$title = self::makeTitle( $category );
 
-		if ( ! $title ) {
+		if ( !$title ) {
 			return false; # TODO: error message?
 		}
 
@@ -567,22 +560,19 @@ class CategoryTree {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
-		# additional stuff to be used if "transaltion" by interwiki-links is desired
-		$transFields = '';
-		$transJoin = '';
-		$transWhere = '';
-
-		$categorylinks = $dbr->tableName( 'categorylinks' );
-
-		$sql = "SELECT " . NS_CATEGORY . " as page_namespace, cl_to as page_title $transFields
-				FROM $categorylinks
-				$transJoin
-				WHERE cl_from = " . $title->getArticleID() . "
-				$transWhere
-				ORDER BY cl_to";
-		$sql = $dbr->limitResult( $sql, (int)$wgCategoryTreeMaxChildren );
-
-		$res = $dbr->query( $sql, __METHOD__ );
+		$res = $dbr->select(
+			'categorylinks',
+			array(
+				'page_namespace' => NS_CATEGORY,
+				'page_title' => 'cl_to',
+			),
+			array( 'cl_from' => $title->getArticleID() ),
+			__METHOD__,
+			array(
+				'LIMIT' => $wgCategoryTreeMaxChildren,
+				'ORDER BY' => 'cl_to'
+			)
+		);
 
 		$special = SpecialPage::getTitleFor( 'CategoryTree' );
 
@@ -596,16 +586,20 @@ class CategoryTree {
 			$trans = ''; # place holder for when translated titles are available
 
 			$label = htmlspecialchars( $t->getText() );
-			if ( $trans && $trans != $label ) $label .= ' ' . Xml::element( 'i', array( 'class' => 'translation' ), $trans );
+			if ( $trans && $trans != $label ) {
+				$label .= ' ' . Xml::element( 'i', array( 'class' => 'translation' ), $trans );
+			}
 
-			$wikiLink = $special->getLocalURL( 'target=' . $t->getPartialURL() . '&' . $this->getOptionsAsUrlParameters() );
+			$wikiLink = $special->getLocalURL( 'target=' . $t->getPartialURL() .
+				'&' . $this->getOptionsAsUrlParameters() );
 
 			if ( $s !== '' ) {
 				$s .= wfMessage( 'pipe-separator' )->escaped();
 			}
 
 			$s .= Xml::openElement( 'span', array( 'class' => 'CategoryTreeItem' ) );
-			$s .= Xml::openElement( 'a', array( 'class' => 'CategoryTreeLabel', 'href' => $wikiLink ) ) . $label . Xml::closeElement( 'a' );
+			$s .= Xml::openElement( 'a', array( 'class' => 'CategoryTreeLabel', 'href' => $wikiLink ) )
+				. $label . Xml::closeElement( 'a' );
 			$s .= Xml::closeElement( 'span' );
 
 			$s .= "\n\t\t";
@@ -770,7 +764,8 @@ class CategoryTree {
 		}
 		$s .= Xml::tags( 'span', $attr, $bullet ) . ' ';
 
-		$s .= Xml::openElement( 'a', array( 'class' => $labelClass, 'href' => $wikiLink ) ) . $label . Xml::closeElement( 'a' );
+		$s .= Xml::openElement( 'a', array( 'class' => $labelClass, 'href' => $wikiLink ) )
+			. $label . Xml::closeElement( 'a' );
 
 		if ( $count !== false && $this->getOption( 'showcount' ) ) {
 			$pages = $allCount - $subcatCount - $fileCount;
@@ -848,7 +843,8 @@ class CategoryTree {
 		if ( $load ) {
 			$s .= "\n\t\t";
 			$s .= Xml::openElement( 'script', array( 'type' => 'text/javascript' ) );
-			$s .= 'categoryTreeExpandNode("' . Xml::escapeJsString( $key ) . '", ' . $this->getOptionsAsJsStructure( $children ) . ', document.getElementById("' . $load . '"));';
+			$s .= 'categoryTreeExpandNode("' . Xml::escapeJsString( $key ) . '", '
+				. $this->getOptionsAsJsStructure( $children ) . ', document.getElementById("' . $load . '"));';
 			$s .= Xml::closeElement( 'script' );
 		}
 
@@ -865,7 +861,7 @@ class CategoryTree {
 	static function makeTitle( $title ) {
 		$title = trim( $title );
 
-		if ( $title === null || $title === '' || $title === false ) {
+		if ( strval( $title ) === '' ) {
 			return null;
 		}
 

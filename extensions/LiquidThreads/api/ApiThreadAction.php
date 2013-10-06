@@ -4,12 +4,6 @@ class ApiThreadAction extends ApiEditPage {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		if ( isset( $params['gettoken'] ) ) {
-			$result = array( 'token' => $this->getUser()->getEditToken() );
-			$this->getResult()->addValue( null, 'threadaction', $result );
-			return;
-		}
-
 		if ( !count( $params['threadaction'] ) ) {
 			$this->dieUsageMsg( array( 'missingparam', 'action' ) );
 		}
@@ -58,6 +52,11 @@ class ApiThreadAction extends ApiEditPage {
 				'result' => 'Success',
 				'action' => 'markread',
 				'threads' => 'all',
+				'unreadlink' => array(
+					'href' => SpecialPage::getTitleFor( 'NewMessages' )->getLocalURL(),
+					'text' => wfMessage( 'lqt_newmessages' )->text(),
+					'active' => false,
+				)
 			);
 		} else {
 			foreach ( $threads as $t ) {
@@ -69,6 +68,12 @@ class ApiThreadAction extends ApiEditPage {
 					'title' => $t->title()->getPrefixedText()
 				);
 			}
+			$newMessagesCount = NewMessages::newMessageCount( $user, DB_MASTER );
+			$result[count( $result ) - 1]['unreadlink'] = array( // Only bother to put this on the last threadaction
+				'href' => SpecialPage::getTitleFor( 'NewMessages' )->getLocalURL(),
+				'text' => wfMessage( $newMessagesCount ? 'lqt-newmessages-n' : 'lqt_newmessages' )->numParams( $newMessagesCount )->text(),
+				'active' => $newMessagesCount > 0,
+			);
 		}
 
 		$this->getResult()->setIndexedTagName( $result, 'thread' );
@@ -862,7 +867,6 @@ class ApiThreadAction extends ApiEditPage {
 			'value' => 'Specifies the value associated with the reaction to add',
 			'method' => 'For getting inline edit forms, the method to get a form for',
 			'operand' => '',
-			'gettoken' => 'Gets a thread token',
 		);
 	}
 
@@ -928,7 +932,6 @@ class ApiThreadAction extends ApiEditPage {
 			'value' => null,
 			'method' => null,
 			'operand' => null,
-			'gettoken' => null,
 		);
 	}
 

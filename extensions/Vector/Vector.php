@@ -18,8 +18,6 @@
 // Each module may be configured individually to be globally on/off or user preference based
 $wgVectorFeatures = array(
 	'collapsiblenav' => array( 'global' => true, 'user' => true ),
-	'collapsibletabs' => array( 'global' => true, 'user' => false ),
-	'editwarning' => array( 'global' => false, 'user' => true ),
 	// The follwing are experimental and likely unstable - use at your own risk
 	'expandablesearch' => array( 'global' => false, 'user' => false ),
 	'footercleanup' => array( 'global' => false, 'user' => false ),
@@ -80,19 +78,6 @@ $wgResourceModules += array(
 			'jquery.tabIndex',
 		),
 	),
-	'ext.vector.collapsibleTabs' => $vectorResourceTemplate + array(
-		'scripts' => 'ext.vector.collapsibleTabs.js',
-		'dependencies' => array(
-			'jquery.collapsibleTabs',
-			'jquery.delayedBind',
-		),
-	),
-	'ext.vector.editWarning' => $vectorResourceTemplate + array(
-		'scripts' => 'ext.vector.editWarning.js',
-		'messages' => array(
-			'vector-editwarning-warning',
-		),
-	),
 	'ext.vector.expandableSearch' => $vectorResourceTemplate + array(
 		'scripts' => 'ext.vector.expandableSearch.js',
 		'styles' => 'ext.vector.expandableSearch.css',
@@ -125,7 +110,6 @@ $wgResourceModules += array(
 		'styles' => 'ext.vector.sectionEditLinks.css',
 		'dependencies' => array(
 			'jquery.cookie',
-			'jquery.clickTracking',
 		),
 	),
 );

@@ -56,7 +56,7 @@ ve.ui.TextInputMenuWidget.prototype.show = function () {
 	ve.ui.MenuWidget.prototype.show.call( this );
 
 	this.position();
-	$( window ).on( 'resize', this.onWindowResizeHandler );
+	$( this.getElementWindow() ).on( 'resize', this.onWindowResizeHandler );
 	return this;
 };
 
@@ -70,7 +70,7 @@ ve.ui.TextInputMenuWidget.prototype.hide = function () {
 	// Parent method
 	ve.ui.MenuWidget.prototype.hide.call( this );
 
-	$( window ).off( 'resize', this.onWindowResizeHandler );
+	$( this.getElementWindow() ).off( 'resize', this.onWindowResizeHandler );
 	return this;
 };
 
@@ -86,12 +86,14 @@ ve.ui.TextInputMenuWidget.prototype.position = function () {
 		dimensions = $container.offset();
 
 	// Position under input
-	dimensions.top += $container.outerHeight( true );
-	dimensions.width = $container.outerWidth( true );
+	dimensions.top += $container.height();
+	dimensions.width = $container.width();
 
 	// Compensate for frame position if in a differnt frame
 	if ( this.input.$$.frame && this.input.$$.context !== this.$[0].ownerDocument ) {
-		frameOffset = this.input.$$.frame.$.offset();
+		frameOffset = ve.Element.getRelativePosition(
+			this.input.$$.frame.$, this.$.closest( '.ve-ui-surface' )
+		);
 		dimensions.left += frameOffset.left;
 		dimensions.top += frameOffset.top;
 	}

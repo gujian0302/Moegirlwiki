@@ -187,21 +187,6 @@ ve.dm.NodeFactory.prototype.doesNodeHaveSignificantWhitespace = function ( type 
 };
 
 /**
- * Check if the node stores HTML attributes in the linear model.
- *
- * @method
- * @param {string} type Node type
- * @returns {boolean} Whether the node stores HTML attributes
- * @throws {Error} Unknown node type
- */
-ve.dm.NodeFactory.prototype.doesNodeStoreHtmlAttributes = function ( type ) {
-	if ( type in this.registry ) {
-		return this.registry[type].static.storeHtmlAttributes;
-	}
-	throw new Error( 'Unknown node type: ' + type );
-};
-
-/**
  * Check if the node handles its own children.
  *
  * @method
@@ -227,6 +212,21 @@ ve.dm.NodeFactory.prototype.doesNodeHandleOwnChildren = function ( type ) {
 ve.dm.NodeFactory.prototype.isNodeInternal = function ( type ) {
 	if ( type in this.registry ) {
 		return this.registry[type].static.isInternal;
+	}
+	throw new Error( 'Unknown node type: ' + type );
+};
+
+/**
+ * Check if the node is focusable.
+ *
+ * @method
+ * @param {string} type Node type
+ * @returns {boolean} Whether the node is focusable
+ * @throws {Error} Unknown node type
+ */
+ve.dm.NodeFactory.prototype.isNodeFocusable = function ( type ) {
+	if ( ve.dm.nodeFactory.lookup( type ) ) {
+		return ve.isMixedIn( ve.ce.nodeFactory.registry[type], ve.ce.FocusableNode );
 	}
 	throw new Error( 'Unknown node type: ' + type );
 };

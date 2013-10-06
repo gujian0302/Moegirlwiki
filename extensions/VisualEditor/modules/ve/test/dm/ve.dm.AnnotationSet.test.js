@@ -9,7 +9,7 @@ QUnit.module( 've.dm.AnnotationSet' );
 
 /* Tests */
 
-QUnit.test( 'Basic usage', 33, function ( assert ) {
+QUnit.test( 'Basic usage', 32, function ( assert ) {
 	var annotationSet3,
 		store = new ve.dm.IndexValueStore(),
 		bold = new ve.dm.TextStyleBoldAnnotation(),
@@ -59,21 +59,19 @@ QUnit.test( 'Basic usage', 33, function ( assert ) {
 	annotationSet2.push( bold );
 	annotationSet2.push( italic );
 	assert.deepEqual( annotationSet2.get(), [bold, italic], 'set2 contains bold then italic after two pushes' );
-	annotationSet2.push( italic );
-	assert.deepEqual( annotationSet2.getLength(), 2, 'pushing existing annotation doesn\'t change length' );
 
 	annotationSet2 = new ve.dm.AnnotationSet( store, store.indexes( [ italic, underline ] ) );
 	annotationSet2.removeNotInSet( annotationSet );
 	assert.equal( annotationSet.contains( italic ) && !annotationSet.contains( underline ), true, 'contains italic not underline after removeNotInSet' );
 	annotationSet2.add( underline, 1 );
 	annotationSet3 = annotationSet2.reversed();
-	assert.equal( annotationSet3.indexOf( underline ), 0, 'underline has indexOf 0 after reverse');
+	assert.equal( annotationSet3.indexOf( underline ), 0, 'underline has indexOf 0 after reverse' );
 	annotationSet3 = annotationSet.mergeWith( annotationSet2 );
-	assert.equal( annotationSet3.getLength(), 3, 'set merged with set2 has length 3');
+	assert.equal( annotationSet3.getLength(), 3, 'set merged with set2 has length 3' );
 	annotationSet3 = annotationSet.diffWith( annotationSet2 );
-	assert.equal( annotationSet3.getLength(), 1, 'set diffed with set2 has length 1');
-	assert.equal( annotationSet3.contains( bold ), true, 'set diffed with set2 contains bold');
+	assert.equal( annotationSet3.getLength(), 1, 'set diffed with set2 has length 1' );
+	assert.equal( annotationSet3.contains( bold ), true, 'set diffed with set2 contains bold' );
 	annotationSet3 = annotationSet.intersectWith( annotationSet2 );
-	assert.equal( annotationSet3.getLength(), 1, 'set intersected with set2 has length 1');
-	assert.equal( annotationSet3.contains( italic ), true, 'set intersected with set2 contains italic');
+	assert.equal( annotationSet3.getLength(), 1, 'set intersected with set2 has length 1' );
+	assert.equal( annotationSet3.contains( italic ), true, 'set intersected with set2 contains italic' );
 } );

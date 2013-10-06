@@ -173,6 +173,9 @@ class Thread {
 		}
 
 		$original = $this->dbVersion;
+		if ( $original->signature() != $this->signature() ) {
+			$this->logChange( Threads::CHANGE_EDITED_SIGNATURE, $original, null, $reason );
+		}
 
 		$this->modified = wfTimestampNow();
 		$this->updateEditedness( $change_type );
@@ -226,6 +229,10 @@ class Thread {
 			case Threads::CHANGE_ADJUSTED_SORTKEY:
 				$log->addEntry( 'resort', $this->title(), $reason,
 					array( $original->sortkey(), $this->sortkey() ) );
+			case Threads::CHANGE_EDITED_SIGNATURE:
+				$log->addEntry( 'signatureedit', $this->title(), $reason,
+					array( $original->signature(), $this->signature() ) );
+				break;
 		}
 	}
 
@@ -371,6 +378,8 @@ class Thread {
 	}
 
 	function moveToPage( $title, $reason, $leave_trace ) {
+		global $wgUser;
+
 		if ( !$this->isTopmostThread() )
 			throw new MWException( "Attempt to move non-toplevel thread to another page" );
 
@@ -409,6 +418,9 @@ class Thread {
 		$this->article = null;
 
 		$this->commitRevision( Threads::CHANGE_MOVED_TALKPAGE, null, $reason );
+
+		// Notifications
+		NewMessages::writeMessageStateForUpdatedThread( $this, $this->type, $wgUser );
 
 		if ( $leave_trace ) {
 			$this->leaveTrace( $reason, $oldTitle, $newTitle );

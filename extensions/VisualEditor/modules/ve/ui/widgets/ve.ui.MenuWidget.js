@@ -24,19 +24,14 @@ ve.ui.MenuWidget = function VeUiMenuWidget( config ) {
 
 	// Properties
 	this.newItems = [];
-	this.$input = config.input ? config.input.$input : this.$$( '<input>' );
+	this.$input = config.input ? config.input.$input : null;
 	this.$previousFocus = null;
 	this.isolated = !config.input;
 	this.visible = false;
-
-	// Events
-	this.$input.on( 'keydown', ve.bind( this.onKeyDown, this ) );
+	this.keydownHandler = ve.bind( this.onKeyDown, this );
 
 	// Initialization
 	this.$.hide().addClass( 've-ui-menuWidget' );
-	if ( !config.input ) {
-		this.$.append( this.$input );
-	}
 };
 
 /* Inheritance */
@@ -57,23 +52,19 @@ ve.ui.MenuWidget.prototype.onKeyDown = function ( e ) {
 
 	if ( !this.disabled && this.visible ) {
 		switch ( e.keyCode ) {
-			// Enter
-			case 13:
+			case ve.Keys.ENTER:
 				this.selectItem( highlightItem );
 				handled = true;
 				break;
-			// Up arrow
-			case 38:
+			case ve.Keys.UP:
 				this.highlightItem( this.getRelativeSelectableItem( highlightItem, -1 ) );
 				handled = true;
 				break;
-			// Down arrow
-			case 40:
+			case ve.Keys.DOWN:
 				this.highlightItem( this.getRelativeSelectableItem( highlightItem, 1 ) );
 				handled = true;
 				break;
-			// Escape
-			case 27:
+			case ve.Keys.ESCAPE:
 				if ( highlightItem ) {
 					highlightItem.setHighlighted( false );
 				}
@@ -82,6 +73,8 @@ ve.ui.MenuWidget.prototype.onKeyDown = function ( e ) {
 				break;
 		}
 		if ( handled ) {
+			e.preventDefault();
+			e.stopPropagation();
 			return false;
 		}
 	}
@@ -95,6 +88,34 @@ ve.ui.MenuWidget.prototype.onKeyDown = function ( e ) {
  */
 ve.ui.MenuWidget.prototype.isVisible = function () {
 	return this.visible;
+};
+
+
+/**
+ * Bind keydown listener
+ *
+ * @method
+ */
+ve.ui.MenuWidget.prototype.bindKeydownListener = function () {
+	if ( this.$input ) {
+		this.$input.on( 'keydown', this.keydownHandler );
+	} else {
+		// Capture menu navigation keys
+		window.addEventListener( 'keydown', this.keydownHandler, true );
+	}
+};
+
+/**
+ * Unbind keydown listener
+ *
+ * @method
+ */
+ve.ui.MenuWidget.prototype.unbindKeydownListener = function () {
+	if ( this.$input ) {
+		this.$input.off( 'keydown' );
+	} else {
+		window.removeEventListener( 'keydown', this.keydownHandler, true );
+	}
 };
 
 /**
@@ -132,12 +153,13 @@ ve.ui.MenuWidget.prototype.selectItem = function ( item, silent ) {
  *
  * @method
  * @param {ve.ui.MenuItemWidget[]} items Items to add
+ * @param {number} [index] Index to insert items after
  * @chainable
  */
-ve.ui.MenuWidget.prototype.addItems = function ( items ) {
+ve.ui.MenuWidget.prototype.addItems = function ( items, index ) {
 	var i, len, item;
 
-	ve.ui.SelectWidget.prototype.addItems.call( this, items );
+	ve.ui.SelectWidget.prototype.addItems.call( this, items, index );
 
 	for ( i = 0, len = items.length; i < len; i++ ) {
 		item = items[i];
@@ -164,8 +186,10 @@ ve.ui.MenuWidget.prototype.show = function () {
 	if ( this.items.length ) {
 		this.$.show();
 		this.visible = true;
+		this.bindKeydownListener();
+
 		// Change focus to enable keyboard navigation
-		if ( this.isolated && !this.$input.is( ':focus' ) ) {
+		if ( this.isolated && this.$input && !this.$input.is( ':focus' ) ) {
 			this.$previousFocus = this.$$( ':focus' );
 			this.$input.focus();
 		}
@@ -189,6 +213,8 @@ ve.ui.MenuWidget.prototype.show = function () {
 ve.ui.MenuWidget.prototype.hide = function () {
 	this.$.hide();
 	this.visible = false;
+	this.unbindKeydownListener();
+
 	if ( this.isolated && this.$previousFocus ) {
 		this.$previousFocus.focus();
 		this.$previousFocus = null;

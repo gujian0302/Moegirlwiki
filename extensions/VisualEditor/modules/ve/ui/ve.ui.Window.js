@@ -10,13 +10,18 @@
  *
  * @class
  * @abstract
+ * @extends ve.Element
  * @mixins ve.EventEmitter
  *
  * @constructor
- * @param {ve.Surface} surface
+ * @param {ve.ui.Surface} surface
+ * @param {Object} [config] Config options
  * @emits initialize
  */
-ve.ui.Window = function VeUiWindow( surface ) {
+ve.ui.Window = function VeUiWindow( surface, config ) {
+	// Parent constructor
+	ve.Element.call( this, config );
+
 	// Mixin constructors
 	ve.EventEmitter.call( this );
 
@@ -26,27 +31,24 @@ ve.ui.Window = function VeUiWindow( surface ) {
 	this.opening = false;
 	this.closing = false;
 	this.frame = null;
-	this.$ = $( '<div>' );
-	this.$frame = $( '<div>' );
+	this.$frame = this.$$( '<div>' );
 
 	// Initialization
 	this.$
 		.addClass( 've-ui-window' )
 		.append( this.$frame );
-	this.frame = new ve.ui.Frame( { 'stylesheets': this.constructor.static.stylesheets } );
+	this.frame = new ve.ui.Frame();
 	this.$frame
 		.addClass( 've-ui-window-frame' )
 		.append( this.frame.$ );
 
 	// Events
 	this.frame.connect( this, { 'initialize': 'onFrameInitialize' } );
-
-	this.$.load( ve.bind( function () {
-		this.frame.initialize();
-	}, this ) );
 };
 
 /* Inheritance */
+
+ve.inheritClass( ve.ui.Window, ve.Element );
 
 ve.mixinClass( ve.ui.Window, ve.EventEmitter );
 
@@ -75,18 +77,10 @@ ve.mixinClass( ve.ui.Window, ve.EventEmitter );
 /* Static Properties */
 
 /**
- * @static
- * @property
- * @inheritable
- */
-ve.ui.Window.static = {};
-
-ve.ui.Window.static.stylesheets = [];
-
-/**
  * Symbolic name of icon.
  *
  * @static
+ * @inheritable
  * @property {string}
  */
 ve.ui.Window.static.icon = 'window';
@@ -95,43 +89,10 @@ ve.ui.Window.static.icon = 'window';
  * Localized message for title.
  *
  * @static
+ * @inheritable
  * @property {string}
  */
 ve.ui.Window.static.titleMessage = null;
-
-/* Static Methods */
-
-/**
- * Add a stylesheet to be loaded into the window's frame.
- *
- * @method
- * @param {string[]} paths List of absolute stylesheet paths
- */
-ve.ui.Window.static.addStylesheetFiles = function ( paths ) {
-	if ( !this.hasOwnProperty( 'stylesheets' ) ) {
-		this.stylesheets = this.stylesheets.slice( 0 );
-	}
-	this.stylesheets.push.apply( this.stylesheets, paths );
-};
-
-/**
- * Add a stylesheet from the /ve/ui/styles directory.
- *
- * @method
- * @param {string[]} files Names of stylesheet files
- */
-ve.ui.Window.static.addLocalStylesheets = function ( files ) {
-	var i, len,
-		base = ve.init.platform.getModulesUrl() + '/ve/ui/styles/',
-		paths = [];
-
-	// Prepend base path to each file name
-	for ( i = 0, len = files.length; i < len; i++ ) {
-		paths[i] = base + files[i];
-	}
-
-	this.addStylesheetFiles( paths );
-};
 
 /* Methods */
 
@@ -152,7 +113,6 @@ ve.ui.Window.prototype.onFrameInitialize = function () {
  */
 ve.ui.Window.prototype.initialize = function () {
 	// Properties
-	this.$$ = this.frame.$$;
 	this.$title = this.$$( '<div class="ve-ui-window-title"></div>' );
 	if ( this.constructor.static.titleMessage ) {
 		this.$title.text( ve.msg( this.constructor.static.titleMessage ) );
@@ -293,6 +253,7 @@ ve.ui.Window.prototype.open = function () {
 		this.emit( 'setup' );
 		this.$.show();
 		this.visible = true;
+		this.frame.$.focus();
 		this.frame.run( ve.bind( function () {
 			this.onOpen();
 			this.opening = false;
@@ -318,20 +279,11 @@ ve.ui.Window.prototype.close = function ( action ) {
 		this.$.hide();
 		this.visible = false;
 		this.onClose( action );
-		this.closing = false;
 		this.frame.$content.find( ':focus' ).blur();
-		this.surface.getView().getDocument().getDocumentNode().$.focus();
+		this.surface.getView().focus();
 		this.emit( 'close', action );
+		// Note that focussing the surface view calls an on focus event, which in turn will
+		// try to close the window again, hence we put this.closing = false right at the bottom
+		this.closing = false;
 	}
 };
-
-/* Initialization */
-
-ve.ui.Window.static.addLocalStylesheets( [
-	've.ui.Frame.css',
-	've.ui.Window.css',
-	've.ui.Element.css',
-	've.ui.Layout.css',
-	've.ui.Widget.css',
-	( window.devicePixelRatio > 1 ? 've.ui.Icons-vector.css' : 've.ui.Icons-raster.css' )
-] );

@@ -21,11 +21,12 @@ $messages['de'] = array(
         'msu-insert_picture' =>  'als Bild einfügen',
         'msu-insert_movie' => 'als Film einfügen',
         'msu-cancel_upload' => 'Upload abbrechen',
+        'msu-clean_all' => 'Liste leeren',
         'msu-upload_possible' => 'Datei kann hochgeladen werden',
         'msu-ext_not_allowed' => 'Es sind nur folgende Dateitypen erlaubt:',
         'msu-upload_this' => 'Hier klicken um diese Datei hochzuladen',
 		'msu-upload_all' => 'Hier klicken um alle Dateien hochzuladen',   
-		'msu-dropzone' => 'Dateien hier ablegen',
+		'msu-dropzone' => 'Datei(en) hier ablegen',
 		'msu-comment' => 'MsUpload',
 );
 
@@ -34,7 +35,6 @@ $messages['de'] = array(
  * @author Taylor Braun-Jones 
  * @author kotra
  */
-
 $messages['en'] = array(
 		'msu-desc' => 'Enables easy uploads (when available also via drag&drop) for one or multiple files simultaneously',
         'msu-button_title' => 'Select files',
@@ -43,6 +43,7 @@ $messages['en'] = array(
         'msu-insert_picture' =>  'Insert picture',
         'msu-insert_movie' => 'Insert movie',
         'msu-cancel_upload' => 'Cancel upload',
+        'msu-clean_all' => 'Clear list',
         'msu-upload_possible' => 'File can be uploaded',
         'msu-ext_not_allowed' => 'Only the following filetypes are allowed:',
         'msu-upload_this' => 'Click here to upload this file',
@@ -54,7 +55,6 @@ $messages['en'] = array(
 /** Russian
  * @author alexandr
  */
-
 $messages['ru'] = array(
 		'msu-desc' => 'Используется для удобной загрузки (при поддержке - через drag&drop) одного или нескольких файлов одновременно',
 		'msu-button_title' => 'Выберите файлы',
@@ -63,6 +63,7 @@ $messages['ru'] = array(
 		'msu-insert_picture' =>  'Вставить картинку',
 		'msu-insert_movie' => 'Вставить видео',
 		'msu-cancel_upload' => 'Отменить загрузку',
+		'msu-clean_all' => 'Clear list',
 		'msu-upload_possible' => 'Файл можно загрузить',
 		'msu-ext_not_allowed' => 'Разрешены следующие типы файлов:',
 		'msu-upload_this' => 'Щелкните, чтобы загрузить этот файл',
@@ -73,7 +74,6 @@ $messages['ru'] = array(
 /** Chinese Simplified 
  * @author 晒太阳的冰 （zoglun@gmail.com）
  */
-
 $messages['zh-hans'] = array(
 	   'msu-desc' => '开启轻松上传',
        'msu-button_title' => '上传图片',
@@ -82,6 +82,7 @@ $messages['zh-hans'] = array(
        'msu-insert_picture' =>  '插入图片',
        'msu-insert_movie' => '插入视频',
        'msu-cancel_upload' => '取消上传',
+       'msu-clean_all' => '清空图片',
        'msu-upload_possible' => '文件没有问题，可以被上传',
        'msu-ext_not_allowed' => '只有下列类型文件可以被上传:',
        'msu-upload_this' => '点这里上传这个文件',
@@ -93,7 +94,6 @@ $messages['zh-hans'] = array(
 /** Chinese Traditional
  * @author 晒太阳的冰 （zoglun@gmail.com）
 */
-
 $messages['zh-hant'] = array(
 	   'msu-desc' => '開啟輕鬆上傳',
        'msu-button_title' => '上傳圖片',
@@ -102,6 +102,7 @@ $messages['zh-hant'] = array(
        'msu-insert_picture' =>  '插入圖片',
        'msu-insert_movie' => '插入視頻',
        'msu-cancel_upload' => '取消上傳',
+       'msu-clean_all' => 'Clear list',
        'msu-upload_possible' => '經檢查閣下所選圖片可被上傳',
        'msu-ext_not_allowed' => '只有下列類型文件可被上傳:',
        'msu-upload_this' => '點此上傳該文件',
@@ -113,7 +114,6 @@ $messages['zh-hant'] = array(
 /** Brazilian Portuguese 
  * @author Michael Siegwarth (msiegwarth@gmail.com)
  */
-
 $messages['pt-br'] = array(
                 'msu-desc' => 'Habilita uploads fáceis (quando disponível, também por drag&drop), para um ou vários arquivos, simultaneamente',
         'msu-button_title' => 'Selecionar arquivos',
@@ -122,10 +122,71 @@ $messages['pt-br'] = array(
         'msu-insert_picture' =>  'Inserir imagem',
         'msu-insert_movie' => 'Inserir filme',
         'msu-cancel_upload' => 'Cancelar upload',
+        'msu-clean_all' => 'Clear list',
         'msu-upload_possible' => 'Upload habilitado',
         'msu-ext_not_allowed' => 'Somente esses tipos de arquivo são permitidos:',
         'msu-upload_this' => 'Clique aqui para fazer upload deste arquivo',
         'msu-upload_all' => 'Clique aqui para fazer upload de todos os arquivos',
         'msu-dropzone' => 'Arraste arquivos para cá',
+        'msu-comment' => 'MsUpload',
+);
+
+/** Spanish 
+ * @author Hernan Hegykozi
+ */
+$messages['es'] = array(
+        'msu-desc' => 'Permite la transferencia sencilla (si está disponible también a través de arrastrar y soltar) para uno o varios archivos al mismo tiempo',
+        'msu-button_title' => 'Seleccione los archivos',
+        'msu-insert_link' => 'Inserte el link',
+        'msu-insert_gallery' => 'Inserte imagen como galería',
+        'msu-insert_picture' =>  'Inserte la imagen',
+        'msu-insert_movie' => 'Inserte la película',
+        'msu-cancel_upload' => 'Cancelar carga',
+        'msu-clean_all' => 'Clear list',
+        'msu-upload_possible' => 'El archivo puede ser cargado',
+        'msu-ext_not_allowed' => 'Sólo se permiten los siguientes tipos de archivos:',
+        'msu-upload_this' => 'Haga click aquí para cargar este archivo',
+        'msu-upload_all' => 'Haga click aquí para cargar todos los archivos',
+        'msu-dropzone' => 'Soltar los archivos aquí',
+        'msu-comment' => 'MsUpload',
+);
+
+/**  Italian
+ * @author teokraba 
+ */
+$messages['it'] = array(
+        'msu-desc' => 'Abilita uploads veloci(quando e\' disponibile il drag&drop) per uno o piu\' file contemporaneamente',
+        'msu-button_title' => 'Seleziona files',
+        'msu-insert_link' => 'Inserisci link',
+        'msu-insert_gallery' => 'Inserisci immagini come galleria',
+        'msu-insert_picture' =>  'Inserisci immagine',
+        'msu-insert_movie' => 'Inserisci film',
+        'msu-cancel_upload' => 'Cancella upload',
+        'msu-clean_all' => 'Clear list',
+        'msu-upload_possible' => 'Il file non puo\' essere caricato',
+        'msu-ext_not_allowed' => 'Solo i seguenti tipi di file sono accettati:',
+        'msu-upload_this' => 'Clicca qui per effettuare l\'upload del file',
+        'msu-upload_all' => 'Clicca qui per effettuare l\'upload di tutti i files',
+        'msu-dropzone' => 'Posiziona i files qui',
+        'msu-comment' => 'MsUpload',
+);
+
+/** Japanese 
+ * @author Kouichi Nishizawa
+ */
+$messages['ja'] = array(
+		'msu-desc' => 'ひとつまたは複数の同時ファイルアップロード（可能な場合はドラッグ＆ドロップで）をすることができます。',
+        'msu-button_title' => 'ファイル選択',
+        'msu-insert_link' => 'リンクを挿入',
+        'msu-insert_gallery' => 'ギャラリーとして画像を挿入',
+        'msu-insert_picture' =>  '画像を挿入',
+        'msu-insert_movie' => '動画を挿入',
+        'msu-cancel_upload' => 'アップロードをキャンセル',
+        'msu-clean_all' => 'Clear list',
+        'msu-upload_possible' => 'ファイルをアップロードすることができます',
+        'msu-ext_not_allowed' => '次の形式のファイルのみアップロードできます:',
+        'msu-upload_this' => 'このファイルをアップロードするにはここをクリックしてください',
+        'msu-upload_all' => 'すべてのファイルをアップロード',
+        'msu-dropzone' => 'ファイルをここにドロップしてください',
         'msu-comment' => 'MsUpload',
 );

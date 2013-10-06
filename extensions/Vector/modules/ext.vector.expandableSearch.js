@@ -2,7 +2,7 @@
  * Expandable search for Vector
  */
 jQuery( document ).ready( function ( $ ) {
-	
+
 	/* Browser Support */
 
 	var map = {
@@ -27,10 +27,10 @@ jQuery( document ).ready( function ( $ ) {
 	if ( !$.client.test( map ) ) {
 		return true;
 	}
-	
+
 	$( '#searchInput' )
-		.expandableField( { 
-			beforeExpand: function ( context ) {
+		.expandableField( {
+			beforeExpand: function () {
 				// Animate the containers border
 				$( this )
 					.parent()
@@ -41,7 +41,7 @@ jQuery( document ).ready( function ( $ ) {
 						borderBottomColor: '#a0d8ff'
 					}, 'fast' );
 			},
-			beforeCondense: function ( context ) {
+			beforeCondense: function () {
 				// Animate the containers border
 				$( this )
 					.parent()
@@ -52,13 +52,13 @@ jQuery( document ).ready( function ( $ ) {
 						borderBottomColor: '#aaaaaa'
 					}, 'fast' );
 			},
-			afterExpand: function ( context ) {
+			afterExpand: function () {
 				// Trigger the collapsible tabs resize handler
 				if ( $.collapsibleTabs ) {
 					$.collapsibleTabs.handleResize();
 				}
 			},
-			afterCondense: function ( context ) {
+			afterCondense: function () {
 				// Trigger the collapsible tabs resize handler
 				if ( $.collapsibleTabs ) {
 					$.collapsibleTabs.handleResize();

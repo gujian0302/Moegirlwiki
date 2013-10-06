@@ -27,7 +27,7 @@ ve.ui.GroupElement = function VeUiGroupElement( $group ) {
  * Get items.
  *
  * @method
- * @returns {ve.ui.Element[]} Items
+ * @returns {ve.Element[]} Items
  */
 ve.ui.GroupElement.prototype.getItems = function () {
 	return this.items.slice( 0 );
@@ -37,24 +37,42 @@ ve.ui.GroupElement.prototype.getItems = function () {
  * Add items.
  *
  * @method
- * @param {ve.ui.Element[]} items Item
+ * @param {ve.Element[]} items Item
+ * @param {number} [index] Index to insert items after
  * @chainable
  */
-ve.ui.GroupElement.prototype.addItems = function ( items ) {
-	var i, len, item;
+ve.ui.GroupElement.prototype.addItems = function ( items, index ) {
+	var i, len, item, currentIndex,
+		$items = $( [] );
 
 	for ( i = 0, len = items.length; i < len; i++ ) {
 		item = items[i];
 
 		// Check if item exists then remove it first, effectively "moving" it
-		if ( this.items.indexOf( item ) !== -1 ) {
-			this.removeItems( [item] );
+		currentIndex = this.items.indexOf( item );
+		if ( currentIndex >= 0 ) {
+			this.removeItems( [ item ] );
+			// Adjust index to compensate for removal
+			if ( currentIndex < index ) {
+				index--;
+			}
 		}
 		// Add the item
-		this.items.push( item );
-		this.$.append( item.$ );
-		this.$items = this.$items.add( item.$ );
+		$items = $items.add( item.$ );
 	}
+
+	if ( index === undefined || index < 0 || index >= this.items.length ) {
+		this.$group.append( $items );
+		this.items.push.apply( this.items, items );
+	} else if ( index === 0 ) {
+		this.$group.prepend( $items );
+		this.items.unshift.apply( this.items, items );
+	} else {
+		this.$items.eq( index ).before( $items );
+		this.items.splice.apply( this.items, [ index, 0 ].concat( items ) );
+	}
+
+	this.$items = this.$items.add( $items );
 
 	return this;
 };
@@ -65,7 +83,7 @@ ve.ui.GroupElement.prototype.addItems = function ( items ) {
  * Items will be detached, not removed, so they can be used later.
  *
  * @method
- * @param {ve.ui.Element[]} items Items to remove
+ * @param {ve.Element[]} items Items to remove
  * @chainable
  */
 ve.ui.GroupElement.prototype.removeItems = function ( items ) {
@@ -95,6 +113,7 @@ ve.ui.GroupElement.prototype.removeItems = function ( items ) {
 ve.ui.GroupElement.prototype.clearItems = function () {
 	this.items = [];
 	this.$items.detach();
+	this.$items = $( [] );
 
 	return this;
 };

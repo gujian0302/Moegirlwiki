@@ -6,8 +6,10 @@
  */
 
 /* ve.ui.GridLayout */
+/* ve.ui.PanelLayout */
 
-.ve-ui-gridLayout {
+.ve-ui-gridLayout,
+.ve-ui-panelLayout {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -15,26 +17,21 @@
 	bottom: 0;
 }
 
-/* ve.ui.PanelLayout */
+/* ve.ui.FieldsetLayout */
 
-.ve-ui-panelLayout {
-	position: absolute;
+.ve-ui-fieldsetLayout {
+	border: none;
+	margin: -0.75em 0 1.75em 0;
+	padding: 0;
 }
 
-/* ve.ui.EditorPanelLayout */
-
-.ve-ui-editorPanelLayout {
-	padding: 1.5em;
-	width: 100%;
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	box-sizing:border-box;
-}
-
-.ve-ui-editorPanelLayout > .ve-ui-labeledElement-label {
+.ve-ui-fieldsetLayout > legend.ve-ui-labeledElement-label {
 	font-size: 1.5em;
+	margin-bottom: 0.5em;
+}
+
+.ve-ui-fieldsetLayout-decorated > legend.ve-ui-labeledElement-label {
 	padding-left: 1.75em;
-	margin-bottom: 1em;
 	background-position: left center;
 	background-repeat: no-repeat;
 }

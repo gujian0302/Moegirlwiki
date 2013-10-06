@@ -1,35 +1,35 @@
 <?php
 if ( !defined( 'MEDIAWIKI' ) ) {
-	exit(1);
+	exit( 1 );
 }
 
-//@{
+// @{
 /**
- * @package MediaWiki
- * @subpackage Extensions
+ * @file
+ * @ingroup Extensions
  */
 
-$wgExtensionCredits['other'][] = array(
+$wgExtensionCredits['antispam'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'Title Blacklist',
-	'author'         => array( 'VasilievVV', 'Fran Rogers' ),
+	'author'         => array( 'Victor Vasiliev', 'Fran McCrory' ),
 	'version'        => '1.4.2',
-	'url'            => 'http://www.mediawiki.org/wiki/Extension:Title_Blacklist',
-	'description'    => 'Allows administrators to forbid creation of certain pages and user accounts',
+	'url'            => 'https://www.mediawiki.org/wiki/Extension:Title_Blacklist',
 	'descriptionmsg' => 'titleblacklist-desc',
 );
 
-$wgExtensionMessagesFiles['TitleBlacklist'] = dirname( __FILE__ ) . '/TitleBlacklist.i18n.php';
-$wgAutoloadClasses['TitleBlacklist']      = dirname( __FILE__ ) . '/TitleBlacklist.list.php';
-$wgAutoloadClasses['TitleBlacklistHooks'] = dirname( __FILE__ ) . '/TitleBlacklist.hooks.php';
+$dir = __DIR__;
+$wgExtensionMessagesFiles['TitleBlacklist'] = $dir . '/TitleBlacklist.i18n.php';
+$wgAutoloadClasses['TitleBlacklist'] = $dir . '/TitleBlacklist.list.php';
+$wgAutoloadClasses['TitleBlacklistHooks'] = $dir . '/TitleBlacklist.hooks.php';
 
 /** @defgroup Title blacklist source types
  *  @{
  */
-define( 'TBLSRC_MSG',       0 );	///< For internal usage
-define( 'TBLSRC_LOCALPAGE', 1 );	///< Local wiki page
-define( 'TBLSRC_URL',	    2 );	///< Load blacklist from URL
-define( 'TBLSRC_FILE',      3 );	///< Load from file
+define( 'TBLSRC_MSG', 0 ); ///< For internal usage
+define( 'TBLSRC_LOCALPAGE', 1 ); ///< Local wiki page
+define( 'TBLSRC_URL', 2 ); ///< Load blacklist from URL
+define( 'TBLSRC_FILE', 3 ); ///< Load from file
 /** @} */
 
 /** Array of title blacklist sources */
@@ -41,22 +41,23 @@ $wgTitleBlacklistCaching = array(
 	'warningexpiry' => 600,
 );
 
-$wgAvailableRights[] = 'tboverride';
+$dir = dirname( __FILE__ );
+
+// Register the API method
+$wgAutoloadClasses['ApiQueryTitleBlacklist'] = "$dir/api/ApiQueryTitleBlacklist.php";
+$wgAPIModules['titleblacklist'] = 'ApiQueryTitleBlacklist';
+
+$wgAvailableRights[] = 'tboverride'; // Implies tboverride-account
+$wgAvailableRights[] = 'tboverride-account'; // For account creation
 $wgGroupPermissions['sysop']['tboverride'] = true;
 
 $wgHooks['getUserPermissionsErrorsExpensive'][] = 'TitleBlacklistHooks::userCan';
 $wgHooks['AbortMove'][] = 'TitleBlacklistHooks::abortMove';
 $wgHooks['AbortNewAccount'][] = 'TitleBlacklistHooks::abortNewAccount';
+$wgHooks['AbortAutoAccount'][] = 'TitleBlacklistHooks::abortNewAccount';
+$wgHooks['CentralAuthAutoCreate'][] = 'TitleBlacklistHooks::centralAuthAutoCreate';
 $wgHooks['EditFilter'][] = 'TitleBlacklistHooks::validateBlacklist';
 $wgHooks['ArticleSaveComplete'][] = 'TitleBlacklistHooks::clearBlacklist';
+$wgHooks['UserCreateForm'][] = 'TitleBlacklistHooks::addOverrideCheckbox';
 
-/**
- * Initialize the title blacklist
- */
-function efInitTitleBlacklist() {
-	global $wgTitleBlacklist;
-	if( isset( $wgTitleBlacklist ) && $wgTitleBlacklist ) return;
-	$wgTitleBlacklist = new TitleBlacklist();
-}
-
-//@}
+// @}

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Hiong3-eng5
  * @author Ianbu
  * @author Kaihsu
  */
@@ -18,8 +19,8 @@ $datePreferences = array(
 $defaultDateFormat = 'nan';
 $dateFormats = array(
 	'nan time' => 'H:i',
-	'nan date' => 'Y-"nî" n-"goe̍h" j-"jἰt" (l)',
-	'nan both' => 'Y-"nî" n-"goe̍h" j-"jἰt" (D) H:i',
+	'nan date' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (l)',
+	'nan both' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (D) H:i',
 );
 
 $messages = array(
@@ -53,8 +54,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Hián-sī tng leh khoàⁿ ê iōng-chiá sò͘-bo̍k',
 'tog-oldsig' => 'Chit-má ê chhiam-miâ:',
 'tog-fancysig' => 'Chhiam-miâ mài chò liân-kiat',
-'tog-externaleditor' => 'Iōng gōa-pō· pian-chi̍p-khì',
-'tog-externaldiff' => 'Iōng gōa-pō· diff',
 'tog-showjumplinks' => 'Hō͘ "thiàu khì" chit ê liân-chiap ē-sái',
 'tog-uselivepreview' => 'Ēng sui khoàⁿ-māi (ài ū JavaScript) (chhì-giām--ê)',
 'tog-forceeditsummary' => 'Pian-chi̍p khài-iàu bô thiⁿ ê sî-chūn, kā goá thê-chhéⁿ',
@@ -167,7 +166,6 @@ $messages = array(
 'qbbrowse' => 'Liū-lám',
 'qbedit' => 'Siu-kái',
 'qbpageoptions' => 'Chit ia̍h',
-'qbpageinfo' => 'Bo̍k-lo̍k',
 'qbmyoptions' => 'Goá ê ia̍h',
 'qbspecialpages' => 'Te̍k-sû-ia̍h',
 'faq' => 'Būn-tah',
@@ -264,7 +262,6 @@ $1',
 'disclaimers' => 'Bô-hū-chek seng-bêng',
 'disclaimerpage' => 'Project:It-poaⁿ ê seng-bêng',
 'edithelp' => 'Án-choáⁿ siu-kái',
-'edithelppage' => 'Help:Pian-chi̍p',
 'helppage' => 'Help:Bo̍k-lio̍k',
 'mainpage' => 'Thâu-ia̍h',
 'mainpage-description' => 'Thâu-ia̍h',
@@ -396,10 +393,10 @@ $2',
 
 Lí ē-sái mài kì-miâ kè-siok sú-iōng {{SITENAME}}, mā ē-sái iōng kāng-ê a̍h-sī pa̍t-ê sin-hūn têng teng-ji̍p.
 Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-goân teng-ji̍p tiong; che chi-iàu piàⁿ tiāu lí ê browser ê cache chiū ē chèng-siông.",
-'welcomecreation' => '==Hoan-gêng $1!==
-Í-keng khui hó lí ê kháu-chō.  M̄-hó bē-kì-tit chhiâu lí ê iōng-chiá siat-tēng.',
 'yourname' => 'Lí ê iōng-chiá miâ-chheng:',
+'userlogin-yourname' => 'Iōng-chiá miâ-chheng',
 'yourpassword' => 'Lí ê bi̍t-bé:',
+'userlogin-yourpassword' => 'Bi̍t-bé',
 'yourpasswordagain' => 'Têng phah bi̍t-bé:',
 'remembermypassword' => 'Kì tiâu góa ê bi̍t-bé (āu-chhiú teng-ji̍p iōng) (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login' => 'Teng-ji̍p',
@@ -440,7 +437,7 @@ Tùi khoàⁿ-māi,  lí phah--ê.',
 'noemailprefs' => 'Tī lí ê siat-piān chí-tēng chi̍t ê tiān-chú-phoe tē-chí thang hō͘ chia ê kong-lêng ē-tàng ēng.',
 'emailconfirmlink' => 'Chhiáⁿ khak-jīn lí ê e-mail chū-chí ū-hāu',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => 'Siūⁿ beh kià tiān-chú-phoe, m̄-koh bô siá tē-chí.',
 
 # Change password dialog
@@ -591,7 +588,6 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'nextn' => 'āu {{PLURAL:$1|$1}} hāng',
 'shown-title' => 'Múi ia̍h hián-sī $1 {{PLURAL:$1|kiat-kó|kiat-kó}}',
 'viewprevnext' => 'Khoàⁿ ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Bo̍k-lio̍k',
 'searchprofile-articles' => 'Loē-iông ia̍h',
 'searchprofile-images' => 'To-mûi-thé',
 'searchprofile-everything' => 'Só͘-ū ê',
@@ -605,9 +601,6 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'showingresultsnum' => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$3</b> hāng kiat-kó.',
 'powersearch' => 'Kiám-sek',
 'powersearch-legend' => 'Kiám-sek',
-
-# Quickbar
-'qbsettings' => 'Quickbar ê siat-tēng',
 
 # Preferences page
 'preferences' => 'Siat-tēng',
@@ -846,7 +839,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:LinkSearch
 'linksearch' => 'Chhiau-chhoē chām-goā liân-kiat',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Bô siu-phoe ê chū-chí',
 'mailnologintext' => 'Lí it-tēng ài [[Special:UserLogin|teng-ji̍p]] jī-chhiáⁿ ū 1 ê ū-hāu ê e-mail chū-chí tī lí ê [[Special:Preferences|iōng-chiá siat-tēng]] chiah ē-tàng kià e-mail hō· pa̍t-ūi iōng-chiá.',
 'emailuser' => 'Kià e-mail hō· iōng-chiá',
@@ -1108,7 +1101,7 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'monthsall' => 'choân-pō͘',
 'limitall' => '全部',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Khak-jīn e-mail chū-chí',
 'confirmemail_text' => 'Sú-iōng e-mail kong-lêng chìn-chêng tio̍h seng khak-jīn lí ê e-mail chū-chí ū-hāu. Chhi̍h ē-pêng hit-ê liú-á thang kià 1 tiuⁿ khak-jīn phoe hō· lí. Hit tiuⁿ phoe lāi-bīn ū 1 ê te̍k-sû liân-kiat. Chhiáⁿ iōng liû-lám-khì khui lâi khoàⁿ, án-ne tō ē-tit khak-jīn lí ê chū-chí ū-hāu.',
 'confirmemail_send' => 'Kià khak-jīn phoe',
@@ -1178,9 +1171,6 @@ Chit tiuⁿ phoe ê khak-jīn-bé ē chū-tōng tī $4 kòe-kî.',
 
 # Special:Version
 'version' => 'Pán-pún',
-
-# Special:FilePath
-'filepath' => 'Tóng-àn ê soàⁿ-lō·',
 
 # Special:SpecialPages
 'specialpages' => 'Te̍k-sû-ia̍h',

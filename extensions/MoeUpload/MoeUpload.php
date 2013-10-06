@@ -1,5 +1,4 @@
 <?php   
-//ugly but useful 
 //在上传界面增加三个字段
 
 if (!defined('MEDIAWIKI')) {
@@ -11,8 +10,8 @@ $wgExtensionCredits['specialpage'][] = array(
 	'name'           => 'MoeUpload',
 	'descriptionmsg' => 'moemoeQdec',
 	'author'         => array('March','nybux.tsui','XpAhH','baskice',),
-	'url'            => 'http://wiki.moegirl.org/Mainpage',
-	'version'        => '1.0'
+	'url'            => 'https://github.com/moegirlwiki/MoeUpload',
+	'version'        => '1.11'
 );
 
 $wgExtensionMessagesFiles['moemoeQ'] = dirname(__FILE__).'/'. 'MoeUpload.i18n.php';
@@ -59,10 +58,19 @@ function onUploadFormInitDescriptor( &$descriptor ) {
 }
 
 function BeforeProcessing( &$uploadFormObj ) {
-	if( $uploadFormObj->mRequest->getFileName( 'wpUploadFile' ) !== null ) {
-		$uploadFormObj->mAuthor            = $uploadFormObj->mRequest->getText( 'wpAuthor' );
+	if( $uploadFormObj->mRequest->getFileName( 'wpUploadFile' ) !== null || $uploadFormObj->mRequest->getFileName( 'wpUploadFileURL' ) !== null) {
+	  $uploadFormObj->mAuthor            = $uploadFormObj->mRequest->getText( 'wpAuthor' );
 	  $uploadFormObj->mSrcUrl            = $uploadFormObj->mRequest->getText( 'wpSrcUrl' );
 	  $uploadFormObj->mCharName          = $uploadFormObj->mRequest->getText( 'wpCharName' );
+	  $uploadFormObj->mUploadDescription = $uploadFormObj->mRequest->getText('wpUploadDescription');
+	  $suffix = "";
+	  if ($uploadFormObj->mUploadDescription != "" && $uploadFormObj->mComment == "") {
+	      if ($uploadFormObj->mSrcUrl != "") {
+	          $suffix .= " ";
+	      }
+	      $suffix .= $uploadFormObj->mUploadDescription;
+	  }
+
 	  foreach (explode(" ", $uploadFormObj->mAuthor) as $author) {
 	      if ($author != "") {
 	          $uploadFormObj->mComment .= "[[分类:作者:$author]]";
@@ -77,12 +85,7 @@ function BeforeProcessing( &$uploadFormObj ) {
 	  if ($uploadFormObj->mSrcUrl != "") {
 	      $uploadFormObj->mComment .= "源地址:".$uploadFormObj->mSrcUrl;
 	  }
-	  if ($uploadFormObj->mRequest->getText( 'wpUploadDescription' ) != "") {
-	      if ($uploadFormObj->mSrcUrl != "") {
-	          $uploadFormObj->mComment .= " ";
-	      }
-	      $uploadFormObj->mComment .= $uploadFormObj->mRequest->getText( 'wpUploadDescription' );
-	  }
+	  $uploadFormObj->mComment .= $suffix;
 	}
 
 	return $uploadFormObj;

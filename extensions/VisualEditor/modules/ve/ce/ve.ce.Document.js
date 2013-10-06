@@ -10,8 +10,10 @@
  *
  * @class
  * @extends ve.Document
+ *
  * @constructor
  * @param {ve.dm.Document} model Model to observe
+ * @param {ve.ce.Surface} surface Surface document is part of
  */
 ve.ce.Document = function VeCeDocument( model, surface ) {
 	// Parent constructor
@@ -47,7 +49,7 @@ ve.ce.Document.prototype.getNodeFromOffset = function ( offset ) {
  *
  * @method
  * @param {number} offset Offset to get slug at
- * @returns {jQuery} Slug at offset
+ * @returns {HTMLElement} Slug at offset
  */
 ve.ce.Document.prototype.getSlugAtOffset = function ( offset ) {
 	var node = this.getNodeFromOffset( offset );
@@ -123,17 +125,17 @@ ve.ce.Document.prototype.getRelativeOffset = function ( offset, direction, unit 
  * @method
  * @param {number} offset Linear model offset
  * @returns {Object} Object containing a node and offset property where node is an HTML element and
- * offset is the position within the element
+ * offset is the byte position within the element
  * @throws {Error} Offset could not be translated to a DOM element and offset
  */
 ve.ce.Document.prototype.getNodeAndOffset = function ( offset ) {
 	var node, startOffset, current, stack, item, $item, length,
-		$slug = this.getSlugAtOffset( offset );
-	if ( $slug ) {
-		return { node: $slug[0].childNodes[0], offset: 0 };
+		slug = this.getSlugAtOffset( offset );
+	if ( slug ) {
+		return { node: slug, offset: 0 };
 	}
 	node = this.getNodeFromOffset( offset );
-	startOffset = this.getDocumentNode().getOffsetFromNode( node ) + ( ( node.isWrapped() ) ? 1 : 0 );
+	startOffset = node.getOffset() + ( ( node.isWrapped() ) ? 1 : 0 );
 	current = [node.$.contents(), 0];
 	stack = [current];
 	while ( stack.length > 0 ) {
@@ -144,18 +146,19 @@ ve.ce.Document.prototype.getNodeAndOffset = function ( offset ) {
 		}
 		item = current[0][current[1]];
 		if ( item.nodeType === Node.TEXT_NODE ) {
-			length = item.textContent.length;
+			// offset, startOffset and length are all data model lengths (not byte lengths)
+			length = ve.getClusterOffset( item.textContent, item.textContent.length );
 			if ( offset >= startOffset && offset <= startOffset + length ) {
 				return {
 					node: item,
-					offset: offset - startOffset
+					offset: ve.getByteOffset( item.textContent, offset - startOffset )
 				};
 			} else {
 				startOffset += length;
 			}
 		} else if ( item.nodeType === Node.ELEMENT_NODE ) {
 			$item = current[0].eq( current[1] );
-			if ( $item.hasClass('ve-ce-slug') ) {
+			if ( $item.hasClass( 've-ce-branchNode-slug' ) ) {
 				if ( offset === startOffset ) {
 					return {
 						node: $item[0],
@@ -182,4 +185,85 @@ ve.ce.Document.prototype.getNodeAndOffset = function ( offset ) {
 		current[1]++;
 	}
 	throw new Error( 'Offset could not be translated to a DOM element and offset: ' + offset );
+};
+
+/**
+ * Get the nearest focusable node.
+ *
+ * @method
+ * @param {number} offset Offset to start looking at
+ * @param {number} direction Direction to look in, +1 or -1
+ * @param {number} limit Stop looking after reaching certain offset
+ */
+ve.ce.Document.prototype.getNearestFocusableNode = function ( offset, direction, limit ) {
+	// It is never an offset of the node, but just an offset for which getNodeFromOffset should
+	// return that node. Usually it would be node offset + 1 or offset of node closing tag.
+	var coveredOffset;
+	this.model.data.getRelativeOffset(
+		offset,
+		direction === 1 ? 0 : -1,
+		function ( index, limit ) {
+			if ( ( index >= limit ? 1 : -1 ) === direction ) {
+				return true;
+			}
+			if (
+				this.isOpenElementData( index ) &&
+				ve.dm.nodeFactory.isNodeFocusable( this.getType( index ) )
+			) {
+				coveredOffset = index + 1;
+				return true;
+			}
+			if (
+				this.isCloseElementData( index ) &&
+				ve.dm.nodeFactory.isNodeFocusable( this.getType( index ) )
+			) {
+				coveredOffset = index;
+				return true;
+			}
+		},
+		limit
+	);
+	if ( coveredOffset ) {
+		return this.documentNode.getNodeFromOffset( coveredOffset );
+	} else {
+		return null;
+	}
+};
+
+/**
+ * Get the relative range.
+ *
+ * @method
+ * @param {ve.Range} range Input range
+ * @param {number} direction Direction to look in, +1 or -1
+ * @param {string} unit Unit [word|character]
+ * @param {boolean} expand Expanding range
+ * @returns {ve.Range} Relative range
+ */
+ve.ce.Document.prototype.getRelativeRange = function ( range, direction, unit, expand ) {
+	var contentOrSlugOffset,
+		focusableNode,
+		node;
+
+	contentOrSlugOffset = this.getRelativeOffset( range.to, direction, unit );
+
+	if ( expand ) {
+		return new ve.Range( range.from, contentOrSlugOffset );
+	}
+
+	node = this.documentNode.getNodeFromOffset( range.start + 1 );
+	if ( node && ve.dm.nodeFactory.isNodeFocusable( node.type ) ) {
+		if ( node === this.documentNode.getNodeFromOffset( range.end - 1 ) ) {
+			if ( this.model.data.isContentOffset( range.to ) || !!this.getSlugAtOffset( range.to ) ) {
+				return new ve.Range( direction === 1 ? range.end : range.start );
+			}
+		}
+	}
+
+	focusableNode = this.getNearestFocusableNode( range.to, direction, contentOrSlugOffset );
+	if ( focusableNode ) {
+		return focusableNode.getOuterRange( direction === -1 /* backwards */ );
+	} else {
+		return new ve.Range( contentOrSlugOffset );
+	}
 };

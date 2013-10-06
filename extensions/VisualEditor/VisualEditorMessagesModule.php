@@ -22,22 +22,37 @@ class VisualEditorMessagesModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		$msgInfo = $this->getMessageInfo();
 		$parsedMesssages = array();
+		$messages = array();
 		foreach ( $msgInfo['args'] as $msgKey => $msgArgs ) {
 			$parsedMesssages[ $msgKey ] = call_user_func_array( 'wfMessage', $msgArgs )
 				->inLanguage( $context->getLanguage() )
 				->parse();
 		}
-		return 've.init.platform.addParsedMessages(' . FormatJson::encode( $parsedMesssages ) . ');';
+		foreach ( $msgInfo['vals'] as $msgKey => $msgVal ) {
+			$messages[ $msgKey ] = $msgVal;
+		}
+		return
+			've.init.platform.addParsedMessages(' . FormatJson::encode( $parsedMesssages ) . ');'.
+			've.init.platform.addMessages(' . FormatJson::encode( $messages ) . ');';
 	}
 
 	protected function getMessageInfo() {
 		$msgKeys = array();
 
-		// Simple ones
+		// Messages that just require simple parsing
 		$msgArgs = array(
 			'minoredit' => array( 'minoredit' ),
 			'watchthis' => array( 'watchthis' ),
+			'visualeditor-browserwarning' => array( 'visualeditor-browserwarning' ),
 			'visualeditor-report-notice' => array( 'visualeditor-report-notice' ),
+			'missingsummary' => array( 'missingsummary' ),
+		);
+
+		// Override message value
+		$msgVals = array(
+			'visualeditor-feedback-link' => wfMessage( 'visualeditor-feedback-link' )
+				->inContentLanguage()
+				->text(),
 		);
 
 		// Copyright warning (based on EditPage::getCopyrightWarning)
@@ -61,11 +76,16 @@ class VisualEditorMessagesModule extends ResourceLoaderModule {
 		// Normalise to 'copyrightwarning' so we have a consistent key in the front-end.
 		$msgArgs[ 'copyrightwarning' ] = $copywarnMsg;
 
-		$msgKeys = array_values( array_unique( array_merge( $msgKeys, array_keys( $msgArgs ) ) ) );
+		$msgKeys = array_values( array_unique( array_merge(
+			$msgKeys,
+			array_keys( $msgArgs ),
+			array_keys( $msgVals )
+		) ) );
 
 		return array(
 			'keys' => $msgKeys,
 			'args' => $msgArgs,
+			'vals' => $msgVals,
 		);
 	}
 
@@ -86,8 +106,9 @@ class VisualEditorMessagesModule extends ResourceLoaderModule {
 		return max(
 			$this->getMsgBlobMtime( $context->getLanguage() ),
 			// Also invalidate this module if this file changes (i.e. when messages were
-			// added or removed, or when the javascript invocation in getScript is changes).
-			file_exists( __FILE__ )  ? filemtime( __FILE__ ) : 1 // use 1 because 0 = now, would invalidate continously
+			// added or removed, or when the Javascript invocation in getScript is changes).
+			// Use 1 because 0 = now, would invalidate continously
+			file_exists( __FILE__ ) ? filemtime( __FILE__ ) : 1
 		);
 	}
 }

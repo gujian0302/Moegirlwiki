@@ -3,23 +3,24 @@
  */
 ( function ( $, mw ) {
 
-var eventBase = 'ext.vector.sectionEditLinks-bucket:';
-var cookieBase = 'ext.vector.sectionEditLinks-';
-var bucket = null;
+var currentExperiment, experiment, odds,
+	eventBase = 'ext.vector.sectionEditLinks-bucket:',
+	cookieBase = 'ext.vector.sectionEditLinks-',
+	bucket = null;
 
 if ( mw.config.get( 'wgVectorSectionEditLinksBucketTest', false ) ) {
 	// If the version in the client's cookie doesn't match wgVectorSectionEditLinksExperiment, then
 	// we need to disregard the bucket they may already be in to ensure accurate redistribution
-	var currentExperiment = $.cookie( cookieBase + 'experiment' );
-	var experiment = Number( mw.config.get( 'wgVectorSectionEditLinksExperiment', 0 ) );
-	if ( currentExperiment === null || Number( currentExperiment ) != experiment ) {
+	currentExperiment = $.cookie( cookieBase + 'experiment' );
+	experiment = Number( mw.config.get( 'wgVectorSectionEditLinksExperiment', 0 ) );
+	if ( currentExperiment === null || Number( currentExperiment ) !== experiment ) {
 		$.cookie( cookieBase + 'experiment', experiment );
 	} else {
 		bucket = $.cookie( cookieBase + 'bucket' );
 	}
 	if ( bucket === null ) {
 		// Percentage chance of being tracked
-		var odds = Math.min( 100, Math.max( 0,
+		odds = Math.min( 100, Math.max( 0,
 			Number( mw.config.get( 'wgVectorSectionEditLinksLotteryOdds', 0 ) )
 		) );
 		// 0 = not tracked, 1 = tracked with old version, 2 = tracked with new version
@@ -38,21 +39,7 @@ if ( bucket <= 0 ) {
 }
 
 $(document).ready( function () {
-	// Transform the targets of section edit links to route through the click tracking API
-	var session = $.cookie( 'clicktracking-session' );
-	$( 'span.editsection a, #ca-edit a' ).each( function () {
-		var event = eventBase + bucket + '@' + experiment;
-		if ( $(this).is( '#ca-edit a' ) ) {
-			event += '-tab';
-		}
-		var href = $( this ).attr( 'href' );
-		var editUrl = href + ( href.indexOf( '?' ) >= 0 ? '&' : '?' ) + $.param( {
-			'clicktrackingsession': session,
-			'clicktrackingevent': event + '-save'
-		} );
-		$(this).attr( 'href', $.trackActionURL( editUrl, event + '-click' ) );
-	} );
-	if ( bucket == 2 ) {
+	if ( bucket === '2' || bucket === 2 ) {
 		// Move the link over to be next to the heading text and style it with an icon
 		$( 'span.mw-headline' ).each( function () {
 			$(this)

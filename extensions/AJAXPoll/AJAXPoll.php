@@ -5,12 +5,28 @@
  * Licensed under the GFDL.
  *
  * <poll>
- * [Option]
  * Question
  * Answer 1
  * Answer 2
  * Answer ...
  * Answer n
+ * </poll>
+ *
+ * to allow the viewing of the poll results even without having voted
+ * <poll show-results-before-voting>
+ * Question
+ * Answer 1
+ * Answer 2
+ * Answer ...
+ * Answer n
+ * </poll>
+ *
+ * If the first line after <poll> is "STATS",
+ * then some statistics about the wiki and its polls will be displayed.
+ * These statistics are not localizable and this whole feature will probably be
+ * removed (or at least refactored, but probably removed) in the future.
+ * <poll>
+ * STATS
  * </poll>
  *
  * @file
@@ -19,7 +35,7 @@
  * @author Jack Phoenix <jack@countervandalism.net>
  * @author Thomas Gries
  * @maintainer Thomas Gries
- * @version 1.78
+ * @version 1.85
  * @link http://www.mediawiki.org/wiki/Extension:AJAX_Poll Documentation
  */
 
@@ -31,7 +47,7 @@ if( !defined( 'MEDIAWIKI' ) ) {
 $wgExtensionCredits['parserhook'][] = array(
 	'path' => __FILE__,
 	'name' => 'AJAX Poll',
-	'version' => '1.79 20130101',
+	'version' => '1.85 20130728',
 	'author' => array( 'Dariusz Siedlecki', 'Jack Phoenix', 'Thomas Gries' ),
 	'descriptionmsg' => 'ajaxpoll-desc',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:AJAX_Poll',
@@ -58,15 +74,38 @@ $wgResourceModules['ext.ajaxpoll'] = $myResourceTemplate + array(
 		'ajaxpoll.css',
 	),
 	'dependencies' => array(
+	),
+	'messages' => array(
+		'ajaxpoll-submitting',
 	)
 );
 
 # new user rights
 $wgAvailableRights[] = 'ajaxpoll-vote';
+$wgAvailableRights[] = 'ajaxpoll-viewresults';
+$wgAvailableRights[] = 'ajaxpoll-viewresults-before-vote';
 
-# default: everyone can vote
-$wgGroupPermissions['*']['ajaxpoll-vote'] = true;
-# if you want to allow only users to vote, use the following code lines
-# in your LocalSettings.php after calling the AJAXPoll extension:
-# $wgGroupPermissions['*']['ajaxpoll-vote'] = false;
-# $wgGroupPermissions['user']['ajaxpoll-vote'] = true;
+# The 'ajaxpoll-view-results-before-vote' group permission allows the specified
+# group members to view poll results even without having voted
+# but only if the high-level group permission 'ajaxpoll-vote' allows to view
+# results in general.
+#
+# This 'ajaxpoll-view-results-before-vote' can be overwritten with the specific
+# per-poll setting "show-results-before-voting" which takes precedence over the
+# group permission.
+#
+# permission 'ajaxpoll-view-results' >>
+# >> per-poll setting "show-results-before-voting" (if present)
+# >> permission 'ajaxpoll-view-results-before-vote'
+#
+
+# anons
+# default: anons cannot vote and will never see results
+$wgGroupPermissions['*']['ajaxpoll-vote'] = false;
+$wgGroupPermissions['*']['ajaxpoll-view-results'] = false;
+$wgGroupPermissions['*']['ajaxpoll-view-results-before-vote'] = false;
+
+# users
+# default: users can vote and can see poll results - when they have voted
+$wgGroupPermissions['user']['ajaxpoll-vote'] = true;
+$wgGroupPermissions['user']['ajaxpoll-view-results'] = true;

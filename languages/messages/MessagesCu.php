@@ -14,12 +14,16 @@
  * @author ОйЛ
  */
 
-$separatorTransformTable = array(
-	',' => ".",
-	'.' => ','
+$specialPageAliases = array(
+	'Allpages'                  => array( 'Вьсѩ_страницѧ' ),
+	'Categories'                => array( 'Катигорїѩ' ),
+	'Contributions'             => array( 'Добродѣꙗниꙗ' ),
+	'Preferences'               => array( 'Строи' ),
+	'Recentchanges'             => array( 'Послѣдьнѩ_мѣнꙑ' ),
+	'Search'                    => array( 'Исканиѥ' ),
+	'Statistics'                => array( 'Статїстїка' ),
+	'Upload'                    => array( 'Положєниѥ_дѣла' ),
 );
-
-$linkPrefixExtension = true;
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Срѣдьства',
@@ -64,6 +68,13 @@ $magicWords = array(
 	'redirect'                  => array( '0', '#ПРѢНАПРАВЛЄНИѤ', '#REDIRECT' ),
 	'language'                  => array( '0', '#ѨꙀꙐКЪ:', '#LANGUAGE:' ),
 );
+
+$separatorTransformTable = array(
+	',' => ".",
+	'.' => ','
+);
+
+$linkPrefixExtension = true;
 
 $defaultDateFormat = 'mdy';
 
@@ -445,6 +456,9 @@ $messages = array(
 'grouppage-sysop' => '{{ns:project}}:Съмотритєлє',
 'grouppage-bureaucrat' => '{{ns:project}}:Чинодатєлє',
 
+# Special:Log/newusers
+'newuserlogpage' => 'новъ мѣстъ сътворѥниꙗ їсторїꙗ',
+
 # User rights log
 'rightslog' => 'чинодатєльства їсторїꙗ',
 
@@ -596,10 +610,7 @@ $messages = array(
 # Special:ListUsers
 'listusers-submit' => 'виждь',
 
-# Special:Log/newusers
-'newuserlogpage' => 'новъ мѣстъ сътворѥниꙗ їсторїꙗ',
-
-# E-mail user
+# Email user
 'emailuser' => 'посъли єпїстолѫ',
 
 # Watchlist
@@ -738,6 +749,9 @@ $messages = array(
 'tooltip-minoredit' => 'оꙁначи ꙗко малоу мѣноу',
 'tooltip-watch' => 'си страницѧ блюдєниѥ',
 
+# Info page
+'pageinfo-toolboxlink' => 'страницѧ плирофорїꙗ',
+
 # Media information
 'file-info-size' => '$1 × $2 п҃ѯ · дѣла мѣра : $3 · MIME тѷпъ : $4',
 'svg-long-desc' => 'дѣло SVG · обꙑчьнъ обраꙁъ : $1 × $2 п҃ѯ · дѣла мѣра : $3',
@@ -746,7 +760,7 @@ $messages = array(
 # Special:NewFiles
 'ilsubmit' => 'ищи',
 
-# EXIF tags
+# Exif tags
 'exif-artist' => 'творьць',
 
 # 'all' in various places, this might be different for inflected languages
@@ -777,9 +791,6 @@ $messages = array(
 'version-version' => '(обраꙁъ $1)',
 'version-license' => 'прощєниѥ',
 'version-software-version' => 'обраꙁъ',
-
-# Special:FilePath
-'filepath-page' => 'дѣло :',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'ищи',

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18-dev, created on 2013-05-05 04:34:25
+<?php /* Smarty version 2.6.18-dev, created on 2013-06-24 07:18:55
          compiled from wiki:Bilibili */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'wiki:Bilibili', 5, false),)), $this); ?>

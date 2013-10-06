@@ -1,5 +1,5 @@
 <?php
-/** Assamese (অসমীয়া)
+/** Assamese (অসমীয়া)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bishnu Saikia
+ * @author Britul
  * @author Chaipau
  * @author Gahori
  * @author Gitartha.bordoloi
@@ -86,7 +87,7 @@ $specialPageAliases = array(
 	'CreateAccount'             => array( 'সদস্যভুক্তি' ),
 	'DeletedContributions'      => array( 'বিলোপ_কৰা_বৰঙনিসমূহ' ),
 	'Disambiguations'           => array( 'দ্ব্যৰ্থতা_দূৰীকৰণসমূহ' ),
-	'DoubleRedirects'           => array( 'দ্বি_পুণঃনিৰ্দেশনাসমূহ' ),
+	'DoubleRedirects'           => array( 'দ্বি_পুনৰ্নিৰ্দেশনাসমূহ' ),
 	'EditWatchlist'             => array( 'লক্ষ্যতালিকা_সম্পাদনা_কৰক' ),
 	'Emailuser'                 => array( 'সদস্যলৈ_ই-মেইল_পঠিয়াওক' ),
 	'Export'                    => array( 'ৰপ্তানি' ),
@@ -102,14 +103,14 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'বটৰ_তালিকা' ),
 	'Listfiles'                 => array( 'চিত্ৰ-তালিকা' ),
 	'Listgrouprights'           => array( 'গোটৰ_অধিকাৰসমূহ' ),
-	'Listredirects'             => array( 'পুণঃনিৰ্দেশনাসমূহৰ_তালিকা' ),
+	'Listredirects'             => array( 'পুনৰ্নিৰ্দেশনাসমূহৰ_তালিকা' ),
 	'Listusers'                 => array( 'সদস্য-তালিকা' ),
 	'Lockdb'                    => array( 'তথ্যকোষ_বন্ধ_কৰক' ),
 	'Log'                       => array( 'অভিলেখ', 'অভিলেখসমূহ' ),
 	'Lonelypages'               => array( 'অকলশৰীয়া_পৃষ্ঠা' ),
 	'Longpages'                 => array( 'দীঘলীয়া_পৃষ্ঠাসমূহ' ),
 	'MergeHistory'              => array( 'একত্ৰীকৰণ_ইতিহাস' ),
-	'MIMEsearch'                => array( 'MIME_অনুসন্ধান' ),
+	'MIMEsearch'                => array( 'MIMEMIMEmmmgM_অনুসন্ধান' ),
 	'Movepage'                  => array( 'পৃষ্ঠা_স্থানান্তৰ' ),
 	'Mycontributions'           => array( 'মোৰ_বৰঙনি' ),
 	'Mypage'                    => array( 'মোৰ_পৃষ্ঠা' ),
@@ -124,11 +125,10 @@ $specialPageAliases = array(
 	'Protectedpages'            => array( 'সুৰক্ষিত_পৃষ্ঠাসমূহ' ),
 	'Protectedtitles'           => array( 'সুৰক্ষিত_শিৰোনামসমূহ' ),
 	'Randompage'                => array( 'আকস্মিক' ),
-	'Randomredirect'            => array( 'আকস্মিক_পুণঃনিৰ্দেশনা' ),
+	'Randomredirect'            => array( 'আকস্মিক_পুনৰ্নিৰ্দেশনা' ),
 	'Recentchanges'             => array( 'শেহতীয়া_সালসলনি' ),
 	'Recentchangeslinked'       => array( 'সম্পৰ্কিত_সালসলনিসমূহ' ),
 	'Revisiondelete'            => array( 'সংস্কৰণ_বিলোপ' ),
-	'RevisionMove'              => array( 'সংস্কৰণ_স্থানান্তৰ' ),
 	'Search'                    => array( 'সন্ধান' ),
 	'Shortpages'                => array( 'চমু_পৃষ্ঠা' ),
 	'Specialpages'              => array( 'বিশেষ_পৃষ্ঠাসমূহ' ),
@@ -184,7 +184,7 @@ $digitGroupingPattern = "##,##,###";
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'সংযোগ সমূহ অধোৰেখিত কৰক:',
+'tog-underline' => 'সংযোগসমূহ অধোৰেখিত কৰক:',
 'tog-justify' => 'দফাৰ সীমা সমান কৰাক',
 'tog-hideminor' => 'সাম্প্ৰতিক সাল-সলনিত অগুৰুত্বপূৰ্ণ সম্পাদনা নেদেখুৱাব',
 'tog-hidepatrolled' => 'সাম্প্ৰতিক সাল-সলনিত তহলদাৰী সম্পাদনা নেদেখুৱাব',
@@ -213,8 +213,6 @@ $messages = array(
 'tog-shownumberswatching' => 'লক্ষ্য কৰি থকা সদস্য সমূহৰ সংখ্যা দেখুৱাওক',
 'tog-oldsig' => 'বৰ্তমানৰ স্বাক্ষৰ:',
 'tog-fancysig' => 'স্বাক্ষৰ ৱিকিটেক্সট হিচাপে ব্যৱহাৰ কৰক (স্বয়ংক্ৰিয় সংযোগ অবিহনে)',
-'tog-externaleditor' => 'ডিফ’ল্ট ভাবে বাহ্যিক সম্পাদন-সঁজুলি ব্যৱহাৰ কৰক (দক্ষ জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [//www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
-'tog-externaldiff' => 'ডিফ’ল্ট ভাবে বাহ্যিক তফাৎ (diff) ব্যৱহাৰ কৰক (দক্ষ জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [//www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
 'tog-showjumplinks' => '"জঁপিয়াই যাওক" সংযোগ সক্ৰিয় কৰক',
 'tog-uselivepreview' => 'সম্পাদনাৰ লগে লগে খচৰা দেখুৱাওক (জাভাস্ক্ৰিপ্টৰ প্ৰয়োজন) (পৰীক্ষামূলক)',
 'tog-forceeditsummary' => 'সম্পাদনাৰ সাৰাংশ নিদিলে মোক জনাব',
@@ -228,6 +226,7 @@ $messages = array(
 'tog-diffonly' => 'পার্থক্যৰ তলত পৃষ্ঠাৰ বিষয়বস্তু নেদেখুৱাব',
 'tog-showhiddencats' => 'নিহিত শ্ৰেণী সমূহ দেখুৱাওক',
 'tog-norollbackdiff' => 'পূৰ্বৱত কৰা পাছত পাৰ্থক্য নেদেখুৱাব',
+'tog-useeditwarning' => 'সালসলনি সংৰক্ষণ নকৰাকৈ সম্পাদনা পৃষ্ঠা ত্যাগৰ সময়ত মোক সাৱধান কৰক',
 
 'underline-always' => 'সদায়',
 'underline-never' => 'কেতিয়াও নহয়',
@@ -241,14 +240,14 @@ $messages = array(
 'editfont-serif' => 'চেৰিফ ফন্ট',
 
 # Dates
-'sunday' => 'দেওঁবাৰ',
+'sunday' => 'দেওবাৰ',
 'monday' => 'সোমবাৰ',
 'tuesday' => 'মঙ্গলবাৰ',
 'wednesday' => 'বুধবাৰ',
 'thursday' => 'বৃহস্পতিবাৰ',
 'friday' => 'শুক্ৰবাৰ',
 'saturday' => 'শণিবাৰ',
-'sun' => 'দেওঁ',
+'sun' => 'দেও',
 'mon' => 'সোম',
 'tue' => 'মংগল',
 'wed' => 'বুধ',
@@ -283,7 +282,7 @@ $messages = array(
 'feb' => 'ফেব্ৰুৱাৰী:',
 'mar' => 'মাৰ্চ',
 'apr' => 'এপ্ৰিল',
-'may' => 'মে',
+'may' => "মে'",
 'jun' => 'জুন',
 'jul' => 'জুলাই',
 'aug' => 'আগষ্ট',
@@ -291,6 +290,18 @@ $messages = array(
 'oct' => 'অক্টোবৰ:',
 'nov' => 'নৱেম্বৰ:',
 'dec' => 'ডিচেম্বৰ:',
+'january-date' => 'জানুৱাৰী $1',
+'february-date' => 'ফেব্ৰুৱাৰী $1',
+'march-date' => 'মাৰ্চ $1',
+'april-date' => 'এপ্ৰিল $1',
+'may-date' => "মে' $1",
+'june-date' => 'জুন $1',
+'july-date' => 'জুলাই $1',
+'august-date' => 'আগষ্ট $1',
+'september-date' => 'ছেপ্টেম্বৰ $1',
+'october-date' => 'অক্টোবৰ $1',
+'november-date' => 'নৱেম্বৰ $1',
+'december-date' => 'ডিচেম্বৰ $1',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|শ্ৰেণী|শ্ৰেণীসমূহ}}',
@@ -316,6 +327,7 @@ $messages = array(
 'newwindow' => "(নতুন ৱিণ্ড'ত খোল খায়)",
 'cancel' => 'বাতিল কৰক',
 'moredotdotdot' => 'অধিক...',
+'morenotlisted' => 'আৰু তালিকাভুক্ত কৰা হোৱা নাই...',
 'mypage' => 'মোৰ পৃষ্ঠা',
 'mytalk' => 'কথা-বতৰা',
 'anontalk' => 'এই IP-ত যোগাযোগ কৰক',
@@ -327,7 +339,6 @@ $messages = array(
 'qbbrowse' => 'ব্ৰাওজ',
 'qbedit' => 'সম্পাদনা',
 'qbpageoptions' => 'এই পৃষ্ঠা',
-'qbpageinfo' => 'প্ৰসংগ',
 'qbmyoptions' => 'মোৰ পৃষ্ঠাসমূহ',
 'qbspecialpages' => 'বিশেষ পৃষ্ঠাসমূহ',
 'faq' => 'সততে উদিত প্ৰশ্নসমূহ (FAQ)',
@@ -350,6 +361,7 @@ $messages = array(
 'namespaces' => 'নামস্থান',
 'variants' => 'বিকল্পসমূহ',
 
+'navigation-heading' => 'সা-সঁজুলি',
 'errorpagetitle' => 'ভুল',
 'returnto' => '$1লৈ ঘূৰি যাওক ।',
 'tagline' => '{{SITENAME}}ৰ পৰা',
@@ -358,16 +370,16 @@ $messages = array(
 'searchbutton' => 'সন্ধান কৰক',
 'go' => 'যাওক',
 'searcharticle' => 'যাওক',
-'history' => 'খতিয়ান',
-'history_short' => 'খতিয়ান',
-'updatedmarker' => 'মোৰ শেহতীয়া আগমনৰ পাছৰ পৰিৱৰ্তনবিলাক',
-'printableversion' => 'প্ৰকাশনযোগ্য সংস্কৰন',
+'history' => 'পৃষ্ঠা ইতিহাস',
+'history_short' => 'ইতিহাস',
+'updatedmarker' => 'মোৰ শেহতীয়া পৰিদৰ্শনৰ পাছৰ সালসলনিবোৰ',
+'printableversion' => 'প্ৰকাশযোগ্য সংস্কৰণ',
 'permalink' => 'স্থায়ী সূত্ৰ (লিংক)',
 'print' => 'প্ৰিণ্ট কৰিবলৈ',
 'view' => 'দেখুৱাওক',
 'edit' => 'সম্পাদনা',
 'create' => 'সৃষ্টি কৰক',
-'editthispage' => 'বৰ্তমান পৃষ্ঠাটো সম্পাদন কৰিবলৈ',
+'editthispage' => 'বৰ্তমান পৃষ্ঠাটো সম্পাদনা কৰিবলৈ',
 'create-this-page' => 'নতুন পৃষ্ঠা সৃষ্টি কৰক',
 'delete' => 'বিলোপ',
 'deletethispage' => 'এই পৃষ্ঠাখন বিলোপ কৰক',
@@ -424,7 +436,6 @@ $1',
 'disclaimers' => 'দায়লুপ্তি',
 'disclaimerpage' => 'Project:সাধাৰণ দায়লুপ্তি',
 'edithelp' => 'সম্পাদনাৰ বাবে সহায়',
-'edithelppage' => 'Help:সম্পাদনা',
 'helppage' => 'Help:সমল',
 'mainpage' => 'বেটুপাত',
 'mainpage-description' => 'বেটুপাত',
@@ -527,7 +538,7 @@ $1',
 'missingarticle-rev' => '(সংস্কৰণ#: $1)',
 'missingarticle-diff' => '(তফাৎ: $1, $2)',
 'readonly_lag' => 'তথ্যকোষ স্বয়ংক্ৰিয়ভাৱে বন্ধ হৈছে যাতে দ্বিতীয় শ্ৰেণীৰ তথ্যকোষৰ চাৰ্ভাৰ প্ৰধান তথ্যকোষৰ চাৰ্ভাৰৰ অৱস্থালৈ আহিব পাৰে ।',
-'internalerror' => 'আভ্যন্তৰীণ ক্ৰুটি',
+'internalerror' => 'আভ্যন্তৰীণ ত্ৰুটি',
 'internalerror_info' => 'আভ্যন্তৰীণ ত্ৰুটি: $1',
 'fileappenderrorread' => 'যোৰা দিয়াৰ সময়ত "$1" পাঠ্য কৰা নহ\'ল ।',
 'fileappenderror' => '"$2"ৰ লগত "$1"ৰ সংযোগ কৰা নহ\'ল ।',
@@ -538,10 +549,10 @@ $1',
 'filenotfound' => '"$1" নামৰ ফাইলটো বিচাৰি পোৱা নগ’ল।',
 'fileexistserror' => '"$1" ফাইলটোত লিখিব নোৱাৰি: ফাইলটো আগৰ পৰাই আছে',
 'unexpected' => 'অনাকাংক্ষিত মূল্য: "$1"="$2".',
-'formerror' => 'ভুল: ফৰ্ম খন জমা দিব পৰা নগ’ল',
-'badarticleerror' => 'এই পৃষ্ঠাটোত এই কামটো কৰিব নোৱাৰি ।',
+'formerror' => 'ত্ৰুটি: প্ৰপত্ৰখন জমা দিব পৰা নগ’ল',
+'badarticleerror' => 'এই পৃষ্ঠাখনত এই কামটো কৰিব নোৱাৰি ।',
 'cannotdelete' => '"$1" পৃষ্ঠা বা নথিখন বিলোপ কৰা অসম্ভৱ ।
-সম্ভৱ আনে আগেই বিলোপ কৰিছে ।',
+সম্ভৱ আনে আগতেই বিলোপ কৰিছে ।',
 'cannotdelete-title' => '"$1" পৃষ্ঠা বিলোপ কৰিব নোৱাৰি',
 'delete-hook-aborted' => 'হুকৰ দ্বাৰা সম্পাদনা প্ৰত্যাখ্যান কৰা হৈছে ।
 ইয়াৰ কোনো ব্যাখ্যা নাই ।',
@@ -589,15 +600,25 @@ $2',
 # Login and logout pages
 'logouttext' => "'''আপুনি প্ৰস্থান কৰিলে ।'''
 
-আপুনি বেনামী ভাবেও {{SITENAME}} ব্যৱহাৰ কৰিব পাৰে, অথবা আকৌ সেই একে বা বেলেগ নামেৰে [[Special:UserLogin|প্ৰৱেশ]] কৰিব পাৰে।
+আপুনি বেনামী ভাবেও {{SITENAME}} ব্যৱহাৰ কৰিব পাৰে, অথবা আকৌ সেই একে বা বেলেগ নামেৰে <span class='plainlinks'>[$1 প্ৰৱেশ]</span> কৰিব পাৰে।
 মন কৰিব যে যেতিয়ালৈকে আপোনাৰ ব্ৰাউজাৰৰ অস্থায়ী-স্মৃতি (cache memory) খালী নকৰে, তেতিয়ালৈকে কিছুমান পৃষ্ঠাত আপুনি প্ৰৱেশ কৰা বুলি দেখুৱাই থাকিব পাৰে।",
-'welcomecreation' => '== আদৰিছোঁ, $1! ==
+'welcomeuser' => 'আদৰিছোঁ, $1!',
+'welcomecreation-msg' => '== আদৰিছোঁ, $1! ==
 আপোনাৰ সদস্যভুক্তি হৈ গ’ল ।
 [[Special:Preferences|{{SITENAME}}ৰ পছন্দসমূহ]]ত আপোনাৰ পছন্দমতে ব্যক্তিগতকৰণ কৰি ল’বলৈ নাপাহৰে যেন ।',
 'yourname' => 'সদস্যনাম:',
+'userlogin-yourname' => 'সদস্যনাম',
+'userlogin-yourname-ph' => 'আপোনাৰ সদস্যনাম লিখক',
 'yourpassword' => 'আপোনাৰ গুপ্তশব্দ',
+'userlogin-yourpassword' => 'গুপ্তশব্দ',
+'userlogin-yourpassword-ph' => 'আপোনাৰ গুপ্তশব্দ লিখক',
+'createacct-yourpassword-ph' => 'এটা গুপ্তশব্দ লিখক',
 'yourpasswordagain' => 'গুপ্তশব্দ আকৌ এবাৰ লিখক',
+'createacct-yourpasswordagain' => 'গুপ্তশব্দ নিশ্চিত কৰক',
+'createacct-yourpasswordagain-ph' => 'গুপ্তশব্দ আকৌ লিখক',
 'remembermypassword' => 'মোৰ প্ৰৱেশ এই কম্পিউটাৰত মনত ৰাখিব (সৰ্বাধিক $1 {{PLURAL:$1|দিনলৈ|দিনলৈ}})',
+'userlogin-remembermypassword' => 'মোক লগ্‌-ইন কৰাই ৰাখক',
+'userlogin-signwithsecure' => 'নিৰাপদ সংযোগ ব্যৱহাৰ কৰক',
 'securelogin-stick-https' => 'প্ৰৱেশ কৰা পাছত HTTPS-ৰ দ্বাৰা সংযোগ ৰাখক',
 'yourdomainname' => 'আপোনাৰ ডমেইন:',
 'password-change-forbidden' => 'আপুনি এই ৱিকিত গুপ্তশব্দ সলাব নোৱাৰে।',
@@ -610,18 +631,38 @@ $2',
 'logout' => 'প্ৰস্থান',
 'userlogout' => 'প্ৰস্থান',
 'notloggedin' => 'প্ৰৱেশ কৰা নাই',
+'userlogin-noaccount' => 'কোনো একাউণ্ট নাই?',
+'userlogin-joinproject' => '{{SITENAME}}ত যোগদান কৰক',
 'nologin' => "ৱিকিপিডিয়াত আপোনাৰ একাউণ্ট নাই নেকি? তেনে '''$1'''।",
 'nologinlink' => 'নতুন একাউণ্ট খোলক',
 'createaccount' => 'সভ্যভুক্ত হবলৈ',
 'gotaccount' => "আপুনি সদস্য হয়নে? '''$1'''",
 'gotaccountlink' => 'প্ৰৱেশ',
 'userlogin-resetlink' => 'আপোনাৰ প্ৰৱেশ তথ্য পাহৰিছে?',
-'createaccountmail' => 'ই-মেইলেৰে',
+'userlogin-resetpassword-link' => 'আপোনাৰ গুপ্তশব্দ ন-কৈ বহুৱাওক',
+'helplogin-url' => 'Help:প্ৰৱেশ/লগ্‌-ইন',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|প্ৰৱেশ সম্পৰ্কীয় সাহায্য]]',
+'createacct-join' => 'আপোনাৰ তথ্যসমূহ তলত লিখক।',
+'createacct-emailrequired' => 'ই-মেইল ঠিকনা',
+'createacct-emailoptional' => 'ই-মেইল ঠিকনা (বৈকল্পিক)',
+'createacct-email-ph' => 'আপোনাৰ ই-মেইল ঠিকনা লিখক',
+'createaccountmail' => 'যিকোনো এটা অস্থায়ী গুপ্তশব্দ ব্যৱহাৰ কৰক আৰু ইয়াক তলত দিয়া ইমেইল ঠিকনাটোলৈ পঠিয়াই দিয়ক',
+'createacct-realname' => 'প্ৰকৃত নাম (বৈকল্পিক)',
 'createaccountreason' => 'কাৰণ:',
+'createacct-reason' => 'কাৰণ',
+'createacct-reason-ph' => 'আপুনি কিয় আন এটা একাউণ্ট সৃষ্টি কৰিছে',
+'createacct-captcha' => 'সুৰক্ষা পৰীক্ষা',
+'createacct-imgcaptcha-ph' => 'ওপৰত দেখা পোৱা পাঠ্য লিখক',
+'createacct-submit' => 'আপোনাৰ একাউণ্ট সৃষ্টি কৰক',
+'createacct-benefit-heading' => 'আপোনাৰ দৰে মানুহেই {{SITENAME}} তৈয়াৰ কৰিছে',
+'createacct-benefit-body1' => '{{PLURAL:$1|সম্পাদনা}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|পৃষ্ঠা|পৃষ্ঠাসমূহ}}',
+'createacct-benefit-body3' => 'শেহতীয়া {{PLURAL:$1|অৱদানকাৰী|অৱদানকাৰীসকল}}',
 'badretype' => 'আপুনি দিয়া গুপ্ত শব্দ দুটা মিলা নাই।',
 'userexists' => 'আপুনি দিয়া সদস্যনাম আগৰে পৰাই ব্যৱহাৰ হৈ আছে।
 অনুগ্ৰহ কৰি বেলেগ সদস্যনাম এটা নিৰ্বাচন কৰক।',
 'loginerror' => 'প্ৰৱেশ সমস্যা',
+'createacct-error' => 'একাউণ্ট সৃষ্টিত ত্ৰুটি',
 'createaccounterror' => "একাউন্ট সৃষ্টি কৰা নহ'ল: $1",
 'nocookiesnew' => 'আপোনাৰ সদস্যভুক্তি হৈ গৈছে, কিন্তু আপুনি প্ৰৱেশ কৰা নাই।
 {{SITENAME}}ত প্ৰৱেশ কৰিবলৈ কুকি সক্ৰিয় থাকিব লাগিব।
@@ -662,9 +703,9 @@ $2',
 'blocked-mailpassword' => 'আপোনাৰ আইপি ঠিকনাৰ পৰা সম্পাদনা কৰা বাৰণ কৰা হৈছে, এনে অৱস্থাত দুৰ্ব্যৱহাৰ ৰোধ কৰিবলৈ গুপ্তশব্দ পুনঃউদ্ধাৰ কৰা সুবিধাতো বাতিল কৰা হৈছে।',
 'eauthentsent' => 'সঞ্চিত ই-মেইল ঠিকনাত নিশ্চিতকৰণ ই-মেইল এখন পঠোৱা হৈছে।
 আৰু অন্যান্য ই-মেইল পঠোৱাৰ আগতে, আপোনাৰ সদস্যতাৰ নিশ্চিত কৰিবলৈ সেই ই-মেইলত দিয়া নিৰ্দেশনা আপুনি অনু্সৰণ কৰিব লাগিব।',
-'throttled-mailpassword' => 'যোৱা {{PLURAL:$1|এঘণ্টাত|$1 ঘণ্টাত}} গুপ্তশব্দ পুনৰুদ্ধাৰ স্মাৰক পঠিওৱা হৈছে ।
-অবৈধ ব্যৱহাৰ ৰোধ কৰিবলৈ $1 ঘণ্টাত এবাৰহে গুপ্তশব্দ পুনৰুদ্ধাৰ স্মাৰক পঠিওৱা হয়।',
-'mailerror' => 'ই-মেইল পঠোৱাত সমস্যা হৈছে: $1',
+'throttled-mailpassword' => "যোৱা {{PLURAL:$1|এঘণ্টাত|$1 ঘণ্টাত}} এখন গুপ্তশব্দ উদ্ধাৰ ইমেইল পঠিওৱা হৈছে।
+অবৈধ ব্যৱহাৰ ৰোধ কৰিবলৈ প্ৰতি {{PLURAL:$1|এঘণ্টাত|$1 ঘণ্টাত}} এবাৰহে গুপ্তশব্দ উদ্ধাৰ ইমেইল পঠিওৱা হ'ব।",
+'mailerror' => 'ই-মেইল পঠিওৱাত সমস্যা হৈছে: $1',
 'acct_creation_throttle_hit' => 'যোৱা ২৪ ঘন্টাত আপোনাৰ আই-পি ঠিকনাৰ পৰা এই ৱিকিৰ পঢ়োঁতাই  {{PLURAL:$1|১-টা একাউন্ট|$1-টা একাউন্ট}} সৃষ্টি কৰিলে, যিটো সৰ্বোচ্চ অনুমোদনকৃত ।
 এতেকে, এই আই-পি ঠিকনাৰ পৰা এই মূহুৰ্তত একাউন্ট সৃষ্টি কৰিব নোৱাৰিব ।',
 'emailauthenticated' => 'আপোনাৰ ই-মেইল ঠিকনাটো $2 তাৰিখৰ $3 বজাত নিশ্চিত কৰা হৈছিল ।',
@@ -689,9 +730,10 @@ $2',
 'loginlanguagelabel' => 'ভাষা: $1',
 'suspicious-userlogout' => 'আপোনাৰ প্ৰস্থানৰ অনুৰোধ বাতিল কৰা হৈছে কাৰণ হয়তো আপোনাৰ ব্ৰাউজাৰ অসম্পূৰ্ণ নতুবা পূৰ্বৱতী তথ্য পঠাইছে ।',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'পি.এইছ.পি মেইল () কাৰ্যত অজ্ঞাত ত্ৰুটি ।',
 'user-mail-no-addy' => 'ই-মেইল ঠিকনা নোহোৱাকৈয়ে ই-মেইল পঠোৱাৰ চেষ্টা কৰা হৈছে ।',
+'user-mail-no-body' => 'কোনো সমল নোহোৱাকৈ বা অতি সংক্ষিপ্ত কথাৰে ইমেইল পঠিয়াবলৈ চেষ্টা কৰিছিল।',
 
 # Change password dialog
 'resetpass' => 'গুপ্তশব্দ সলনি কৰক',
@@ -701,7 +743,7 @@ $2',
 'oldpassword' => 'পুৰণি গুপ্তশব্দ:',
 'newpassword' => 'নতুন গুপ্তশব্দ:',
 'retypenew' => 'নতুন গুপ্তশব্দ আকৌ লিখক',
-'resetpass_submit' => 'গুপ্তশব্দ বহাওক আৰু প্ৰৱেশ কৰক',
+'resetpass_submit' => 'গুপ্তশব্দ বহুৱাওক আৰু প্ৰৱেশ কৰক',
 'resetpass_success' => 'আপোনাৰ গুপ্তশব্দ সফলতাৰে সলনি কৰা হৈছে, এতিয়া আপুনি প্ৰৱেশ কৰি আছে...',
 'resetpass_forbidden' => 'গুপ্তশব্দ সলনি কৰিব নোৱাৰি',
 'resetpass-no-info' => 'এই পৃষ্ঠা প্ৰত্যক্ষ ভাৱে ঢুকি পাবলৈ আপুনি প্ৰৱেশ কৰিব লাগিব ।',
@@ -710,34 +752,34 @@ $2',
 'resetpass-wrong-oldpass' => 'অস্থায়ী বা সাম্প্ৰতিক গুপ্তশব্দ গ্ৰহণযোগ্য নহয় ।
 হয়টো আপুনি ইতিমধ্যেই সফলভাবে আপুনাৰ গুপ্তশব্দ সলনি কৰিছিল বা এটা নতুন অস্থায়ী গুপ্তশব্দৰ বাবে অনুৰোধ কৰিছিল ।',
 'resetpass-temp-password' => 'অস্থায়ী গুপ্তশব্দ:',
+'resetpass-abort-generic' => 'এটা এক্সটেন্‌ছনৰদ্বাৰা গুপ্তশব্দ সলনি কাৰ্য বাতিল কৰা হৈছে।',
 
 # Special:PasswordReset
-'passwordreset' => 'গুপ্তশব্দ ন-কৈ বহাওক',
-'passwordreset-text' => 'আপোনাৰ একাউণ্টৰ সবিশেষ তথ্য ই-পত্ৰৰ জৰিয়তে পাবলৈ তলৰ প্ৰ-পত্ৰ পুৰাওক ।',
+'passwordreset' => 'গুপ্তশব্দ ন-কৈ বহুৱাওক',
 'passwordreset-legend' => 'গুপ্তশব্দ ন-কৈ বহাওক',
 'passwordreset-disabled' => 'এই ৱিকিত গুপ্তশব্দ নবীকৰণ নিষ্ক্ৰিয় কৰা হৈছে ।',
-'passwordreset-pretext' => '{{PLURAL:$1||তলত উল্লেখ কৰা তথ্যৰ কোনো অংশ ভৰাওক}}',
+'passwordreset-emaildisabled' => 'এই ৱিকিত ই-মেইল বৈশিষ্টসমূহ নিষ্ক্ৰিয় কৰা হৈছে।',
 'passwordreset-username' => 'সদস্যনাম',
 'passwordreset-domain' => 'ডমেইন :',
-'passwordreset-capture' => 'ফলাফল ই-মেইলখন চাওক ?',
-'passwordreset-capture-help' => "আপুনি এই ঘৰটো চিহ্নিত কৰিলে এই ই-মেইল (আৰু অস্থায়ী গুপ্তশব্দ) আপুনি দেখা পোৱাৰ লগতে সদস্যজনলৈও পঠোৱা হ'ব।",
+'passwordreset-capture' => 'ফলাফল ই-মেইলখন চাবলৈ বিচাৰিছে ?',
+'passwordreset-capture-help' => "আপুনি এই ঘৰটো চিহ্নিত কৰিলে এই ই-মেইল (আৰু অস্থায়ী গুপ্তশব্দ) আপুনি দেখা পোৱাৰ লগতে সদস্যজনলৈও পঠিওৱা হ'ব।",
 'passwordreset-email' => 'ই-মেইল ঠিকনা:',
 'passwordreset-emailtitle' => '{{SITENAME}}ত একাউণ্টৰ সবিশেষ তথ্য আছে ।',
-'passwordreset-emailtext-ip' => 'কোনোবাই (IP ঠিকনা $1 ৰ পৰা সম্ভৱত: আপুনিয়েই) {{SITENAME}} ($4) ৰ বাবে আপোনাৰ একাউণ্টৰ সবিশেষ তথ্য বিচাৰিছিল । ই-পত্ৰ ঠিকনাটোৰ লগত এই সদস্যৰ {{PLURAL:$3|একাউণ্ট|একাউণ্টবোৰ}} জড়িত হৈ আছে ।
+'passwordreset-emailtext-ip' => 'কোনোবাই (IP ঠিকনা $1 ৰ পৰা সম্ভৱতঃ আপুনিয়েই) {{SITENAME}} ($4) ৰ বাবে আপোনাৰ গুপ্তশব্দ ন-কৈ বহুৱাবলৈ অনুৰোধ জনাইছিল। ইমেইল ঠিকনাটোৰ লগত এই সদস্যৰ {{PLURAL:$3|একাউণ্ট|একাউণ্টবোৰ}} জড়িত হৈ আছে ।
 
 $2
  
 {{PLURAL:$3|এই অস্থায়ী গুপ্তশব্দ|এই অস্থায়ী গুপ্তশব্দবোৰ}} {{PLURAL:$5|এদিনত|$5 দিনত }} নাইকীয়া হ’ব । আপুনি লগ-ইন কৰি এটা নতুন গুপ্তশব্দ দিয়া উচিত । যদি আন কোনোবাই এই অনুৰোধ কৰিছিল, বা আপুনি নিজৰ পূৰ্বৰ গুপ্তশব্দ মনত পেলাইছে আৰু ইয়াক সলাব খোজা নাই, তেন্তে আপুনি এই বাৰ্তাক অগ্ৰাহ্য কৰি নিজৰ পূৰ্বৰ গুপ্তশব্দ ব্যৱহাৰ কৰি থাকিব পাৰে ।',
-'passwordreset-emailtext-user' => '$1 ব্যৱহাৰকাৰীয়ে {{SITENAME}} ($4) ৰ বাবে আপোনাৰ একাউণ্টৰ সবিশেষ তথ্য বিচাৰিছিল । ই-পত্ৰ ঠিকনাটোৰ লগত এই সদস্যৰ {{PLURAL:$3|একাউণ্ট|একাউণ্টসমূহ}} জড়িত হৈ আছে ।
+'passwordreset-emailtext-user' => '{{SITENAME}}ত $1 ব্যৱহাৰকাৰীয়ে {{SITENAME}} ($4)ৰ বাবে আপোনাৰ গুপ্তশব্দ ন-কৈ বহুৱাবলৈ অনুৰোধ জনাইছিল। ই-পত্ৰ ঠিকনাটোৰ লগত এই সদস্যৰ {{PLURAL:$3|একাউণ্ট|একাউণ্টসমূহ}} জড়িত হৈ আছে।
  
 $2
  
-{{PLURAL:$3|এই অস্থায়ী গুপ্তশব্দ|এই অস্থায়ী গুপ্তশব্দবোৰ}} {{PLURAL:$5|এদিনত|$5 দিনত }} নাইকীয়া হ’ব । আপুনি লগ-ইন কৰি এটা নতুন গুপ্তশব্দ দিয়া উচিত । যদি আন কোনোবাই এই অনুৰোধ কৰিছিল, বা আপুনি নিজৰ পূৰ্বৰ গুপ্তশব্দ মনত পেলাইছে আৰু ইয়াক সলাব খোজা নাই, তেন্তে আপুনি এই বাৰ্তাক অগ্ৰাহ্য কৰি নিজৰ পূৰ্বৰ গুপ্তশব্দ ব্যৱহাৰ কৰি থাকিব পাৰে ।',
+{{PLURAL:$3|এই অস্থায়ী গুপ্তশব্দ|এই অস্থায়ী গুপ্তশব্দবোৰ}} {{PLURAL:$5|এদিনত|$5 দিনত }} নাইকীয়া হ’ব । আপুনি লগ-ইন কৰি এটা নতুন গুপ্তশব্দ দিয়া উচিত। যদি আন কোনোবাই এই অনুৰোধ কৰিছিল, বা আপুনি নিজৰ পূৰ্বৰ গুপ্তশব্দ মনত পেলাইছে আৰু ইয়াক সলাব খোজা নাই, তেন্তে আপুনি এই বাৰ্তাক অগ্ৰাহ্য কৰি নিজৰ পূৰ্বৰ গুপ্তশব্দ ব্যৱহাৰ কৰি থাকিব পাৰে।',
 'passwordreset-emailelement' => 'সদস্যনাম: $1
 অস্থায়ী গুপ্তশব্দ: $2',
-'passwordreset-emailsent' => 'এখন স্মাৰক ই-মেইল পঠোৱা হৈছে।',
-'passwordreset-emailsent-capture' => 'এখন স্মাৰক ই-মেইল পঠোৱা হৈছে, এইখন তলত দেখা পাব।',
-'passwordreset-emailerror-capture' => "এখন স্মাৰক ই-মেইল সৃষ্টি কৰা হ'ল কিন্তু সদস্যজনলৈ পঠিয়াব পৰা নগ'ল, এইখন তলত দেখুওৱা হৈছে: $1",
+'passwordreset-emailsent' => 'এখন গুপ্তশব্দ উদ্ধাৰ ই-মেইল পঠিওৱা হৈছে।',
+'passwordreset-emailsent-capture' => 'এখন গুপ্তশব্দ উদ্ধাৰ ইমেইল পঠিওৱা হৈছে, এইখন তলত দেখা পাব।',
+'passwordreset-emailerror-capture' => "এখন গুপ্তশব্দ উদ্ধাৰ ইমেইল সৃষ্টি কৰা হ'ল, কিন্তু {{GENDER:$2|সদস্যজনলৈ}} পঠিয়াব পৰা নগ'ল। সেইখন তলত দেখুওৱা হৈছে: $1",
 
 # Special:ChangeEmail
 'changeemail' => 'ই-মেইল ঠিকনা সলনি কৰক',
@@ -747,6 +789,7 @@ $2
 'changeemail-oldemail' => 'বৰ্তমানৰ ই-মেইল ঠিকনা:',
 'changeemail-newemail' => 'নতুন ই-মেইল ঠিকনা:',
 'changeemail-none' => '(নাই)',
+'changeemail-password' => 'আপোনাৰ  {{SITENAME}} গুপ্তশব্দ:',
 'changeemail-submit' => 'ই-মেইল ঠিকনা সলনি কৰক',
 'changeemail-cancel' => 'বাতিল কৰক',
 
@@ -772,7 +815,7 @@ $2
 'summary' => 'সাৰাংশ:',
 'subject' => 'বিষয় / শীৰ্ষক:',
 'minoredit' => 'এইটো এটা অগুৰুত্বপূৰ্ণ সম্পাদনা',
-'watchthis' => 'এই পৃষ্ঠাটো লক্ষ্য কৰক',
+'watchthis' => 'এই পৃষ্ঠাখন লক্ষ্য কৰক',
 'savearticle' => 'পৃষ্ঠা সাঁচক',
 'preview' => 'খচৰা',
 'showpreview' => 'খচৰা চাওক',
@@ -788,7 +831,7 @@ $2
 যদি আকৌ এবাৰ যদি \"{{int:savearticle}}\" টিপে, তেনেহলে সম্পাদনা শিৰোনামা অবিহনে সংৰক্ষিত হব।",
 'summary-preview' => 'সাৰাংশৰ খচৰা:',
 'subject-preview' => 'বিষয়/শিৰোনামাৰ খচৰা:',
-'blockedtitle' => 'সদস্যজনক অবৰোধ কৰা হৈছে',
+'blockedtitle' => 'সদস্যজনক অৱৰোধ কৰা হৈছে',
 'blockedtext' => "'''আপোনাৰ সদস্যনাম অথবা আই-পি ঠিকনা অৱৰোধ কৰা হৈছে ।'''
 
 $1ৰ দ্বাৰা এই অৱৰোধ কৰা হৈছে ।
@@ -894,7 +937,7 @@ $1ৰ দ্বাৰা এই অৱৰোধ কৰা হৈছে ।
 'creating' => '$1 পৃষ্ঠাখন আপুনি সৃষ্টি কৰি আছে',
 'editingsection' => '$1 (অনুচ্ছেদ) সম্পাদনা কৰি আছে',
 'editingcomment' => '$1 (নতুন অনুচ্ছেদ) সম্পাদনা কৰি আছে',
-'editconflict' => 'সম্পাদনা দ্বন্দ: $1',
+'editconflict' => 'সম্পাদনা দ্বন্দ্ব: $1',
 'explainconflict' => "আপুনি সম্পাদনা আৰম্ভ কৰাৰ পাছত আন কোনোবাই এই পৃষ্ঠাখন সলনি কৰিলে।
 পাঠ্য-স্থানৰ উপৰ ভাগত এই পৃষ্ঠাৰ প্ৰচলিত পাঠ্য দিয়া হৈছে।
 আপোনাৰ সলনিসমূহ পাঠ্য-স্থানৰ তলৰ ভাগত দেখুওৱা হৈছে।
@@ -919,8 +962,8 @@ $1ৰ দ্বাৰা এই অৱৰোধ কৰা হৈছে ।
 '''স্বত্বাধিকাৰযুক্ত কোনো সমল অনুমতি অবিহনে দাখিল নকৰে যেন!'''",
 'longpageerror' => "'''ভুল: আপুনি জমা দিয়া পাঠ {{PLURAL:$1|এক কিলো-বাইট|$1 কিলো-বাইট}} আকাৰৰ, যি {{PLURAL:$2|এক কিলো-বাইট|$2 কিলো-বাইট}} সীমাতকৈ বেছি।'''
 ইয়াক সাঁচিব পৰা নাযাব।",
-'readonlywarning' => "'''সতৰ্কবাণী: চোৱা-চিতাৰ হেতু এই তথ্যকোষ বন্ধ কৰি ৰখা হৈছে, গতিকে আপুনি এই মূহুৰ্তত আপোনাৰ সম্পাদনা সাঁচিব নোৱাৰিব ।'''
-আপুনি লেখাটো কাটি টেক্সট-ফাইলত লেপন কৰি পিছলৈ ব্যৱহাৰৰ বাবে সাঁচি ৰাখিব পাৰে ।
+'readonlywarning' => "'''সতৰ্কবাণী: চোৱা-চিতাৰ হেতু এই তথ্যকোষ বন্ধ কৰি ৰখা হৈছে, গতিকে আপুনি এই মূহুৰ্তত আপোনাৰ সম্পাদনা সাঁচিব নোৱাৰিব।'''
+আপুনি লেখাটো টেক্সট-ফাইলত কপী-পে'ষ্ট কৰি পিছলৈ ব্যৱহাৰৰ বাবে সাঁচি ৰাখিব পাৰে।
 
 তথ্যকোষ বন্ধ কৰি ৰখা প্ৰশাসকজনে এই ব্যাখ্যা দিছে: $1",
 'protectedpagewarning' => "'''সতৰ্কবাণী: এই পৃষ্ঠা বন্ধ ৰখা হৈছে; কেৱল প্ৰশাসকৰৰ মৰ্যদাৰ সদস্যইহে সম্পাদনা কৰিব পাৰিব ।'''
@@ -936,7 +979,6 @@ $1ৰ দ্বাৰা এই অৱৰোধ কৰা হৈছে ।
 'template-protected' => '(সুৰক্ষিত)',
 'template-semiprotected' => '(অৰ্ধ-সুৰক্ষিত)',
 'hiddencategories' => 'এই পৃষ্ঠা {{PLURAL:$1|১-টা নিহিত শ্ৰেণীৰ|$1-টা নিহিত শ্ৰেণীৰ}} সদস্য:',
-'nocreatetitle' => 'পৃষ্ঠা সৃষ্টি সীমিত',
 'nocreatetext' => '{{SITENAME}}ত নতুন পৃষ্ঠা সৃষ্টিৰ ক্ষমতা সীমাবদ্ধ কৰা হৈছে।
 আপুনি ঘূৰি গৈ বৰ্তমানে থকা পৃষ্ঠা এটা সম্পাদনা কৰিব পাৰে, বা [[Special:UserLogin|নতুন সদস্যভৰ্তি হওক/ প্ৰবেশ কৰক]] ।',
 'nocreate-loggedin' => 'নতুন পৃষ্ঠা সৃষ্টি কৰিবলৈ আপোনাৰ অনুমতি নাই ।',
@@ -956,11 +998,22 @@ $1ৰ দ্বাৰা এই অৱৰোধ কৰা হৈছে ।
 ইয়াৰ কোনো ব্যাখ্যা নাই ।',
 'edit-gone-missing' => 'পৃষ্ঠাখন নবীকৰণ কৰিব পৰা নগ’ল ।
 সম্ভৱতঃ পৃষ্ঠাখন বিলোপ কৰা হৈছে ।',
-'edit-conflict' => 'সম্পাদনা দ্বন্দ ।',
+'edit-conflict' => 'সম্পাদনা দ্বন্দ্ব ।',
 'edit-no-change' => 'আপোনাৰ সম্পাদনা আওকাণ কৰা হৈছে, কাৰণ লেখাত কোনো তফাৎ নাই',
+'postedit-confirmation' => "আপোনাৰ সম্পাদনা সংৰক্ষিত কৰা হ'ল ।",
 'edit-already-exists' => "নতুন পৃষ্ঠা সৃষ্টি কৰা নহ'ল ।
 পৃষ্ঠাখন ইতিমধ্যে আছেই ।",
 'defaultmessagetext' => 'সাধাৰণ বাৰ্তা পাঠ্য',
+'content-failed-to-parse' => '$1 মডেলৰ বাবে $2ৰ তথ্য নিকা কৰিব পৰা নগ’ল: $3',
+'invalid-content-data' => 'অবৈধ সমল তথ্য',
+'content-not-allowed-here' => '[[$2]] পৃষ্ঠাত "$1" সমল অনুমোদিত নহয়',
+'editwarning-warning' => 'এই পৃষ্ঠাটো এৰিলে আপুনি কৰা পৰিবৰ্তনসমূহ হেৰাব পাৰে। যদি আপুনি প্ৰৱেশ কৰা অৱস্থাত আছে, আপুনি এই সতৰ্কবাৰ্তাক আপোনাৰ পছন্দসমূহৰ "সম্পাদনা" অংশত অসামৰ্থবান কৰিব পাৰিব।',
+
+# Content models
+'content-model-wikitext' => 'ৱিকিপাঠ্য',
+'content-model-text' => 'সাধাৰণ পাঠ্য',
+'content-model-javascript' => 'জাভাস্ক্ৰিপ্ট',
+'content-model-css' => 'চি.এচ.এচ.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''সতৰ্কবাণী:''' এই পৃষ্ঠাখনত অধিক এক্সপেনচিভ পাৰ্চাৰ ফাংচন কল আছে ।
@@ -1062,7 +1115,7 @@ $3 য়ে আগবঢ়োৱা ইয়াৰ কাৰণ হৈছে 
 আপুনি এই পাৰ্থক্য চাব পাৰে; সবিশেষ পাব [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} নিবাৰণ অভিলেখত] ।",
 'rev-delundel' => 'দেখুৱাওক/নেদেখুৱাব',
 'rev-showdeleted' => 'দেখুৱাওক',
-'revisiondelete' => 'সংকলন বিলোপ কৰক / পুণৰ স্থাপন কৰক',
+'revisiondelete' => 'সংকলন বিলোপ কৰক / পুনৰ স্থাপন কৰক',
 'revdelete-nooldid-title' => 'লক্ষ্য সংশোধন যুক্তিসংগত নহয়',
 'revdelete-nooldid-text' => 'কামটো কৰাৰ বাবে আপুনি লক্ষ্য সংশোধন নিৰ্বাচন কৰা নাই, নিৰ্বাচিত সংশোধন নাই, অথবা আপুনি বৰ্তমানৰ সংশোধন লুকুৱাব বিচাৰিছে ।',
 'revdelete-nologtype-title' => 'কোনো অভিলেখ প্ৰকাৰ দিয়া হোৱা নাই',
@@ -1085,7 +1138,7 @@ $3 য়ে আগবঢ়োৱা ইয়াৰ কাৰণ হৈছে 
 'revdelete-hide-text' => 'সংশোধিত পাঠ গোপন কৰক',
 'revdelete-hide-image' => 'ফাইলৰ বিষয়বস্তু গোপন কৰক',
 'revdelete-hide-name' => 'কাৰ্য আৰু লক্ষ্য গোপন কৰক',
-'revdelete-hide-comment' => 'সম্পাদনা মন্তব্য আতৰাই থওক',
+'revdelete-hide-comment' => 'সম্পাদনা সাৰাংশ গোপন কৰক',
 'revdelete-hide-user' => 'সম্পাদকৰ সদস্যনাম/আই-পি ঠিকনা গোপন কৰক',
 'revdelete-hide-restricted' => 'প্ৰশাসকবৃন্দৰ লগতে আনৰ পৰাও তথ্য ৰোধ কৰক',
 'revdelete-radio-same' => '(সলনি নকৰিব)',
@@ -1160,7 +1213,7 @@ $1",
 # Merge log
 'mergelog' => 'অভিলেখ একত্ৰীকৰণ',
 'pagemerge-logentry' => "[[$1]] [[$2]]-ত মিলোৱা হ'ল (সংশোধনসমূহ $3-লৈ)",
-'revertmerge' => 'একত্ৰিকৰণ বাতিল কৰক',
+'revertmerge' => 'একত্ৰীকৰণ বাতিল কৰক',
 'mergelogpagetext' => 'এখন পৃষ্ঠাৰ ইতিহাস আন এখনৰ লগত কৰা একত্ৰীকৰণৰ সকলোতকৈ শেহতীয়া তালিকা তলত দিয়া হ’ল ।',
 
 # Diffs
@@ -1188,7 +1241,7 @@ $1",
 'searchsubtitleinvalid' => "আপোনাৰ অনুসন্ধান হ'ল '''$1'''",
 'toomanymatches' => "বহুত বেছি মিল পোৱা গৈছে, সন্ধান-শব্দ সলনি কৰিবলৈ অনুৰোধ কৰা হ'ল",
 'titlematches' => 'পৃষ্ঠাৰ শিৰোনামা মিলিছে',
-'notitlematches' => 'এটাও পৃষ্ঠাৰ শিৰোনামা মিলা নাই',
+'notitlematches' => 'এখন পৃষ্ঠাৰো শিৰোনামা মিলা নাই',
 'textmatches' => 'পৃষ্ঠাৰ পাঠ মিলিছে',
 'notextmatches' => 'কোনো পৃষ্ঠাৰ পাঠ মিলা নাই',
 'prevn' => 'পূৰ্বৱৰ্তী {{PLURAL:$1|$1}}টা',
@@ -1200,7 +1253,6 @@ $1",
 'searchmenu-legend' => 'সন্ধান বিকল্পসমূহ',
 'searchmenu-exists' => 'এই ৱিকিত "[[:$1]]" নামৰ পৃষ্ঠা এখন আছে ।',
 'searchmenu-new' => "'''এই ৱিকিত \"[[:\$1]]\" পৃষ্ঠাখন সৃষ্টি কৰক!'''",
-'searchhelp-url' => 'Help:সমল',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|এই উপসৰ্গ থকা পৃষ্ঠাসমূহ ব্ৰাউজ কৰক]]',
 'searchprofile-articles' => 'বিষয়বস্তুৰ পৃষ্ঠা',
 'searchprofile-project' => 'সহায় আৰু প্ৰকল্প পৃষ্ঠাসমূহ',
@@ -1222,7 +1274,7 @@ $1",
 'search-interwiki-default' => '$1 ফলাফলসমূহ:',
 'search-interwiki-more' => '(আৰু)',
 'search-relatedarticle' => 'সম্পৰ্কিত',
-'mwsuggest-disable' => 'AJAX পৰামৰ্শ নিষ্ক্ৰিয় কৰক',
+'mwsuggest-disable' => 'অনুসন্ধান পৰামৰ্শ নিষ্ক্ৰিয় কৰক',
 'searcheverything-enable' => 'সকলো নামস্থানত অনুসন্ধান কৰক',
 'searchrelated' => 'সম্পৰ্কিত',
 'searchall' => 'সকলো',
@@ -1244,15 +1296,7 @@ $1",
 'searchdisabled' => '{{SITENAME}} ত অনুসন্ধান কৰা সাময়িক ভাবে নিষ্ক্ৰিয় কৰা হৈছে।
 তেতিয়ালৈকে গুগলত অনুসন্ধান কৰক।
 মনত ৰাখিব যে তেঁওলোকৰ {{SITENAME}}ৰ ইণ্ডেক্স পুৰণি হব পাৰে।',
-
-# Quickbar
-'qbsettings' => 'শীঘ্ৰদণ্ডিকা',
-'qbsettings-none' => 'একেবাৰে নহয়',
-'qbsettings-fixedleft' => 'বাঁওফাল স্থিৰ',
-'qbsettings-fixedright' => 'সোঁফাল স্থিৰ',
-'qbsettings-floatingleft' => 'বাঁওফাল অস্থিৰ',
-'qbsettings-floatingright' => 'সোঁফাল অস্থিৰ',
-'qbsettings-directionality' => 'আপোনাৰ ভাষাৰ আৰু লিপিৰ দিশৰ ওপৰত নিৰ্ভৰ কৰি ঠিক কৰা হ’ল',
+'search-error' => 'অনুসন্ধানৰ সময়ত এটা ত্ৰুটি হৈছে: $1',
 
 # Preferences page
 'preferences' => 'পছন্দসমূহ',
@@ -1261,7 +1305,7 @@ $1",
 'prefsnologin' => 'প্ৰৱেশ কৰা নাই',
 'prefsnologintext' => 'আপোনাৰ পছন্দ সলনি কৰিবলৈ হ’লে <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} প্ৰৱেশ]</span> কৰাতো আৱশ্যক।',
 'changepassword' => 'গুপ্তশব্দ সলনি কৰক',
-'prefs-skin' => 'আৱৰন',
+'prefs-skin' => 'আৱৰণ',
 'skin-preview' => 'খচৰা',
 'datedefault' => 'কোনো পছন্দ নাই',
 'prefs-beta' => 'বিটা বৈশিষ্টসমূহ',
@@ -1331,9 +1375,9 @@ $1",
 'prefs-emailconfirm-label' => 'ইমেইল নিশ্চিতকৰণ:',
 'prefs-textboxsize' => 'সম্পাদনা ৱিণ্ড’ৰ আকাৰ',
 'youremail' => 'আপোনাৰ ই-মেইল *',
-'username' => 'সদস্যনাম:',
-'uid' => 'সদস্য চিহ্ন:',
-'prefs-memberingroups' => 'এই {{PLURAL:$1|গোটৰ|গোটবোৰৰ}} সদস্য:',
+'username' => '{{GENDER:$1|সদস্যনাম}}:',
+'uid' => '{{GENDER:$1|User}} চিহ্ন:',
+'prefs-memberingroups' => '{{PLURAL:$1|গোট|গোটসমূহৰ}} {{GENDER:$2|সদস্য}} :',
 'prefs-registration' => 'পঞ্জীয়ন কৰাৰ সময়:',
 'yourrealname' => 'প্ৰকৃত নাম:',
 'yourlanguage' => 'ভাষা:',
@@ -1361,17 +1405,17 @@ $1",
 'prefs-signature' => 'স্বাক্ষৰ',
 'prefs-dateformat' => 'তাৰিখ বিন্যাস',
 'prefs-timeoffset' => 'সময় অফচেট',
-'prefs-advancedediting' => 'উচ্চতৰ উপায়ান্তৰ সমূহ',
-'prefs-advancedrc' => 'উচ্চতৰ উপায়ান্তৰ সমূহ',
-'prefs-advancedrendering' => 'উচ্চতৰ উপায়ান্তৰ সমূহ',
-'prefs-advancedsearchoptions' => 'উচ্চতৰ উপায়ান্তৰ সমূহ',
-'prefs-advancedwatchlist' => 'উচ্চতৰ উপায়ান্তৰ সমূহ',
-'prefs-displayrc' => 'প্ৰদৰ্শনী উপায়ান্তৰ সমূহ',
-'prefs-displaysearchoptions' => 'বিকল্প প্ৰদৰ্শন কৰক',
-'prefs-displaywatchlist' => 'বিকল্প প্ৰদৰ্শন কৰক',
+'prefs-advancedediting' => 'উচ্চতৰ বিকল্পসমূহ',
+'prefs-advancedrc' => 'উচ্চতৰ বিকল্পসমূহ',
+'prefs-advancedrendering' => 'উচ্চতৰ বিকল্পসমূহ',
+'prefs-advancedsearchoptions' => 'উচ্চতৰ বিকল্পসমূহ',
+'prefs-advancedwatchlist' => 'উচ্চতৰ বিকল্পসমূহ',
+'prefs-displayrc' => 'প্ৰদৰ্শন বিকল্পসমূহ',
+'prefs-displaysearchoptions' => 'বিকল্পসমূহ প্ৰদৰ্শন কৰক',
+'prefs-displaywatchlist' => 'বিকল্পসমূহ প্ৰদৰ্শন কৰক',
 'prefs-diffs' => 'পাৰ্থক্য',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ই-মেইল ঠিকনাটো সঠিক',
 'email-address-validity-invalid' => 'সঠিক ই-মেইল ঠিকনা প্ৰদান কৰক',
 
@@ -1396,6 +1440,7 @@ $1",
 'userrights-notallowed' => 'সদস্যৰ অধিকাৰ যোগ কৰিবলৈ বা আঁতৰ কৰিবলৈ আপোনাৰ একাউণ্টৰ অনুমতি নাই ।',
 'userrights-changeable-col' => 'আপুনি সলনি কৰিব পৰা গোটসমূহ',
 'userrights-unchangeable-col' => 'আপুনি সলনি কৰিব নোৱাৰা গোটসমূহ',
+'userrights-conflict' => 'সদস্য অধিকাৰ দ্বন্দ্ব! অনুগ্ৰহ কৰি আপোনাৰ সালসলনি আকৌ এবাৰ প্ৰয়োগ কৰক।',
 
 # Groups
 'group' => 'গোট:',
@@ -1440,7 +1485,7 @@ $1",
 'right-upload_by_url' => "ইউ-আৰ-এলৰ পৰা ফাইল আপল'ড কৰক",
 'right-purge' => 'চাইট কেচৰ পৰা নিশ্চয়তা নোহোৱা পৃষ্ঠা মচি পেলাওক ।',
 'right-autoconfirmed' => 'অৰ্দ্ধ-সুৰক্ষিত পৃষ্ঠা সম্পাদনা কৰক',
-'right-bot' => 'স্বয়ংক্ৰিয় প্ৰক্ৰিয়া হিছাপে ব্যৱহৃত হওক',
+'right-bot' => 'স্বয়ংক্ৰিয় প্ৰক্ৰিয়া হিচাপে ব্যৱহৃত হওক',
 'right-nominornewtalk' => 'আলোচনা পৃষ্ঠাৰ লঘূ সম্পাদনা হওঁতে নতুন সদস্য বাৰ্তা নালাগে',
 'right-apihighlimits' => 'API প্ৰশ্নৰ বাবে উচ্চতৰ সীমা ব্যৱহাৰ কৰক',
 'right-writeapi' => 'ৰাইট এ.পি.আই.ৰ ব্যৱহাৰ',
@@ -1483,12 +1528,13 @@ $1",
 'right-sendemail' => 'আন সদস্যলৈ ই-পত্ৰ ঠিকনা পঠিয়াওক',
 'right-passwordreset' => 'পাছৱৰ্ড ৰি-চেটৰ ই-মেইলসমূহ দেখুৱাওক',
 
+# Special:Log/newusers
+'newuserlogpage' => 'সদস্যৰ সৃষ্টি অভিলেখ',
+'newuserlogpagetext' => 'এইখন এখন সদস্য সৃষ্টিৰ ল’গ।',
+
 # User rights log
 'rightslog' => 'সভ্যৰ অধিকাৰৰ লেখ',
 'rightslogtext' => 'সদস্য অধিকাৰৰ পৰিৱৰ্তনসমূহৰ ল’গ',
-'rightslogentry' => "$1-ৰ গোট সদস্যপদ $2-ৰ পৰা $3-লৈ সলনি কৰা হ'ল",
-'rightslogentry-autopromote' => '$2ৰ পৰা $3লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত হ’ল',
-'rightsnone' => '(নাই)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'এই পৃষ্ঠা পঢ়ক',
@@ -1725,6 +1771,7 @@ URL টোৰ বৈধতা বিচাৰ কৰি পুনৰ চেষ�
 'backend-fail-notsame' => '$1ত ইতিমধ্যে বেলেগ এটা ফাইল আছে।',
 'backend-fail-invalidpath' => '$1টো বৈধ সঞ্চয় পথ নহয়।',
 'backend-fail-delete' => '$1 ফাইলটো বিলোপ কৰিব পৰা নগল।',
+'backend-fail-describe' => 'নথিৰ  "$1" মিডিয়া  তথ্য সলনি কৰিব পৰা নগ’ল',
 'backend-fail-alreadyexists' => '$1 ফাইলটো ইতিমধ্যে আছেই।',
 'backend-fail-store' => "$1 ফাইলটো $2ত সাঁচিব পৰা নগ'ল।",
 'backend-fail-copy' => '$1 ফাইলটো $2 লৈ প্ৰতিলিপি কৰিব পৰা নগ’ল',
@@ -1803,7 +1850,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'http-read-error' => 'HTTP পঠন ত্ৰুটি ।',
 'http-timed-out' => 'HTTP অনুৰোধৰ সময় পাৰ হৈছে ।',
 'http-curl-error' => 'URL অনাত ত্ৰুটি হৈছে: $1',
-'http-host-unreachable' => 'URL পাব পৰা নগ’ল ।',
 'http-bad-status' => 'HTTP অনুৰোধৰ সময়ত কোনো সমস্যা হৈছে: $1, $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1963,6 +2009,12 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 তাৰ সলনি সেইবোৰত উপযুক্ত পৃষ্ঠাৰ লগত সংযোগ থাকিব পাৰে।
 [[MediaWiki:Disambiguationspage]]ৰ পৰা সংযোগ থকা কোনো সাঁচ ব্যৱহাৰ কৰিলে এখন পৃষ্ঠাক দ্ব্যৰ্থতা দূৰীকৰণ পৃষ্ঠা হিছাপে গণ্য কৰা হয়।",
 
+'pageswithprop' => 'পৃষ্ঠা উপাদান সম্বলিত পৃষ্ঠাসমূহ',
+'pageswithprop-legend' => 'পৃষ্ঠা উপাদান সম্বলিত পৃষ্ঠাসমূহ',
+'pageswithprop-text' => 'বিশেষ পৃষ্ঠা উপাদান ব্যৱহাৰ কৰা পৃষ্ঠাসমূহ ইয়াত তালিকাভুক্ত কৰা হৈছে।',
+'pageswithprop-prop' => 'উপাদান নাম:',
+'pageswithprop-submit' => 'যাওক',
+
 'doubleredirects' => 'দ্বি-পুনঃনিৰ্দেশিত',
 'doubleredirectstext' => 'আন পুনৰ্নিদেশনা পৃষ্ঠালৈ পুনৰ্নিৰ্দেশিত পৃষ্ঠাসমূহ এই তালিকাত দিয়া হৈছে ।
 প্ৰত্যেক পথালী শাৰীত প্ৰথম আৰু দ্বিতীয় পুনৰ্নিৰ্দেশনাৰ সংযোগৰ লগতে দ্বিতীয় পুনৰ্নিৰ্দেশনাৰ লক্ষ্য সংযোগ দিয়া আছে । এই লক্ষ্য সংযোগটো সাধাৰণতে "প্ৰকৃত" লক্ষ্য পৃষ্ঠা যাক প্ৰথম পুনৰ্নিৰ্দেশনাই আঙুলিয়াই দিয়ে ।
@@ -2114,9 +2166,9 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'linksearch-pat' => 'অনুসন্ধান আৰ্হি:',
 'linksearch-ns' => 'নামস্থান:',
 'linksearch-ok' => 'অনুসন্ধান',
-'linksearch-text' => 'ৱাইল্ডকাৰ্ডসমূহ যেনে "*.wikipedia.org" ব্যৱহাৰ কৰিব পাৰি।
-অন্তত এটা উচ্চ-স্তৰৰ ডমেইনৰ প্ৰয়োজন, উদাহৰণস্বৰূপ "*.org"। <br />
-সমৰ্থিত প্ৰটোকলসমূহ: <code>$1</code> (ইয়াৰ এটাকো নিজৰ সন্ধান যোগ নকৰিব)।',
+'linksearch-text' => "ৱাইল্ডকাৰ্ডসমূহ যেনে \"*.wikipedia.org\" ব্যৱহাৰ কৰিব পাৰি।
+অন্তত এটা উচ্চ-স্তৰৰ ডমেইনৰ প্ৰয়োজন, উদাহৰণস্বৰূপ \"*.org\"। <br />
+সমৰ্থিত {{PLURAL:\$2|প্ৰ'ট'ক'ল|প্ৰ'ট'ক'লসমূহ}} : <code>\$1</code> (কোনো প্ৰ'ট'ক'ল নিৰ্দিষ্ট নকৰিলে http:// সূচাব)।",
 'linksearch-line' => '$2 পৰা $1 সংযোগ কৰা হৈছে',
 'linksearch-error' => "ৱাইল্ডকাৰ্ড কেৱল হ'ষ্টনামৰ আৰম্ভণিতহে দেখা যাব ।",
 
@@ -2127,17 +2179,13 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'listusers-blocked' => '(বাৰণ কৰা)',
 
 # Special:ActiveUsers
-'activeusers' => 'সক্ৰিয় ব্যবহাৰকাৰীৰ তালিকা',
+'activeusers' => 'সক্ৰিয় ব্যৱহাৰকাৰীৰ তালিকা',
 'activeusers-intro' => 'যোৱা  {{PLURAL:$1|দিন|দিন}}ৰ ভিতৰত অৱদান আগবঢ়োৱা ব্যৱহাৰকাৰীৰ তালিকা',
-'activeusers-count' => 'যোৱা {{PLURAL:$3|দিনত|$3 দিনত}} সৰ্বমুঠ {{PLURAL:$1|সম্পাদনাৰ|সম্পাদনাৰ}} সংখ্যা $1',
+'activeusers-count' => 'যোৱা {{PLURAL:$3|দিনত|$3 দিনত}} সৰ্বমুঠ $1 {{PLURAL:$1|টা কাম}}',
 'activeusers-from' => 'ইয়াৰে আৰম্ভ হোৱা ব্যৱহাৰকাৰী সকল দেখুৱাওক:',
 'activeusers-hidebots' => 'বট নেদেখুৱাব',
 'activeusers-hidesysops' => 'প্ৰশাসক নেদেখুৱাব',
 'activeusers-noresult' => "কোনো সদস্য পোৱা নগ'ল।",
-
-# Special:Log/newusers
-'newuserlogpage' => 'সদস্যৰ সৃষ্টি অভিলেখ',
-'newuserlogpagetext' => 'এইখন এখন সদস্য সৃষ্টিৰ ল’গ।',
 
 # Special:ListGroupRights
 'listgrouprights' => 'ব্যৱহাৰকাৰী গোটৰ অধিকাৰ',
@@ -2158,7 +2206,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'listgrouprights-addgroup-self-all' => 'সকলো গোট নিজৰ একাউণ্টত যোগ কৰক',
 'listgrouprights-removegroup-self-all' => 'নিজৰ একাউণ্টৰপৰা সকলো গোট আঁতৰাওক',
 
-# E-mail user
+# Email user
 'mailnologin' => 'পাওঁতাৰ ঠিকনা নাই',
 'mailnologintext' => 'আন সদস্যক ই-মেইল পঠিয়াবলৈ আপুনি [[Special:UserLogin|লগ্‌ ইন]] কৰিব লাগিব আৰু আপোনাৰ [[Special:Preferences|পছন্দসমূহত]] এটা বৈধ ই-মেইল ঠিকনা থাকিব লাগিব ।',
 'emailuser' => 'এই সদস্যজনলৈ ই-মেইল পঠিয়াওক',
@@ -2196,7 +2244,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'usermessage-editor' => 'ব্যৱস্থাৰ বাতৰি দিওঁতা',
 
 # Watchlist
-'watchlist' => 'মোৰ লক্ষ্য-তালিকা',
+'watchlist' => 'লক্ষ্য-তালিকা',
 'mywatchlist' => 'লক্ষ্য-তালিকা',
 'watchlistfor2' => '$1 ৰ কাৰণে($2)',
 'nowatchlist' => 'আপোনাৰ নিৰীক্ষণ তালিকাত একো নাই ।',
@@ -2216,8 +2264,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'notvisiblerev' => 'অন্য কোনো সদস্যই কৰা সংশোধনী বিলোপ কৰা হৈছে',
 'watchnochange' => 'আপুনি চকু ৰখা আইটেমসমূহ প্ৰদৰ্শিত সময়সীমাৰ ভিতৰত সম্পাদনা কৰা হোৱা নাই ।',
 'watchlist-details' => 'আলোচনা পৃষ্ঠা সমূহ লেখত নধৰি {{PLURAL:$1|$1 খন পৃষ্ঠা|$1 খন পৃষ্ঠা}} আপোনাৰ লক্ষ্য-তালিকাত আছে ।',
-'wlheader-enotif' => '* ই-পত্ৰ জাননী সক্ৰিয় কৰা হৈছে ।',
-'wlheader-showupdated' => "* আপোনাৰ শেষ পৰিদৰ্শনৰ পিছত হোৱা পৰিৱৰ্তনসমূহ '''গাঢ়''' আখৰত দেখুওৱা হৈছে",
+'wlheader-enotif' => 'ইমেইল জাননী সক্ৰিয় কৰা হৈছে।',
+'wlheader-showupdated' => "আপোনাৰ শেষ পৰিদৰ্শনৰ পিছত সলনি হোৱা পৃষ্ঠাসমূহ '''গাঢ়''' আখৰত দেখুওৱা হৈছে।",
 'watchmethod-recent' => 'লক্ষ্য কৰা পৃষ্ঠাসমূহ শেহতীয়া সম্পাদনাৰ বাবে পৰীক্ষা কৰা হৈছে',
 'watchmethod-list' => 'লক্ষ্য কৰা পৃষ্ঠাসমূহ শেহতীয়া সম্পাদনাৰ বাবে পৰীক্ষা কৰা হৈছে',
 'watchlistcontains' => 'আপোনাৰ লক্ষ্য-তালিকাত $1 খন {{PLURAL:$1|পৃষ্ঠা|পৃষ্ঠা}} আছে ।',
@@ -2233,31 +2281,34 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 
 'enotif_mailer' => '{{SITENAME}} জাননী ই-পত্ৰ প্ৰেৰক',
 'enotif_reset' => 'সকলো পৃষ্ঠা পৰিদৰ্শিত বুলি চিহ্নিত কৰক',
-'enotif_newpagetext' => 'এইখন এখন নতুন পৃষ্ঠা।',
 'enotif_impersonal_salutation' => '{{SITENAME}} সদস্য',
-'changed' => 'সলোৱা হৈছে',
-'created' => 'সৃষ্টি কৰা হ’ল',
-'enotif_subject' => '{{SITENAME}}ৰ $PAGETITLE পৃষ্ঠাখন $PAGEEDITORৰ দ্বাৰা $CHANGEDORCREATED',
+'enotif_subject_deleted' => '{{SITENAME}} পৃষ্ঠা $1 {{gender:$2|$2}} ৰ দ্বাৰা বিলোপ কৰা হ’ল',
+'enotif_subject_created' => '{{SITENAME}} পৃষ্ঠা $1 {{gender:$2|$2}}ৰ দ্বাৰা সৃষ্টি কৰা হ’ল',
+'enotif_subject_moved' => '{{SITENAME}} পৃষ্ঠা  $1 {{gender:$2|$2}}ৰ দ্বাৰা স্থানান্তৰ সৃষ্টি কৰা',
+'enotif_subject_restored' => '{{SITENAME}} পৃষ্ঠা $1 {{gender:$2|$2}}ৰ দ্বাৰা পুনৰ স্থাপন কৰা',
+'enotif_subject_changed' => '{{SITENAME}} পৃষ্ঠা $1 {{gender:$2|$2}}ৰ দ্বাৰা সলনি কৰা হ’ল',
+'enotif_body_intro_deleted' => '{{SITENAME}}ৰ পৃষ্ঠা $1ক $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা বিলোপ কৰা হৈছিল। $3 চাওক।',
+'enotif_body_intro_created' => '{{SITENAME}}ৰ পৃষ্ঠা $1, $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা সৃষ্টি কৰা হৈছিল, বৰ্তমানৰ সংস্কৰণৰ বাবে $3 চাওক।',
+'enotif_body_intro_moved' => '{{SITENAME}}ৰ পৃষ্ঠা $1, $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা স্থানান্তৰ কৰা হৈছিল, বৰ্তমানৰ সংস্কৰণৰ বাবে $3 চাওক।',
+'enotif_body_intro_restored' => '{{SITENAME}}ৰ পৃষ্ঠা $1, $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা পুনৰ স্থাপন কৰা হৈছিল, বৰ্তমানৰ সংস্কৰণৰ বাবে $3 চাওক।',
+'enotif_body_intro_changed' => '{{SITENAME}}ৰ পৃষ্ঠা $1, $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা সলনি কৰা হৈছিল, বৰ্তমানৰ সংস্কৰণৰ বাবে $3 চাওক।',
 'enotif_lastvisited' => 'আপোনাৰ শেষ পৰিদৰ্শনৰ পিছত হোৱা সকলো সালসলনিৰ বাবে $1 চাওক ।',
 'enotif_lastdiff' => 'এই পৰিৱৰ্তনটো চাবৰ বাবে $1 চাওক ।',
 'enotif_anon_editor' => 'বেনামী সদস্য $1',
 'enotif_body' => 'প্ৰিয় $WATCHINGUSERNAME,
 
-
-{{SITENAME}}ৰ $PAGETITLE শিৰোনামাৰ পৃষ্ঠাখন $PAGEEDITDATE তাৰিখে $PAGEEDITORৰ দ্বাৰা $CHANGEDORCREATED। সাম্প্ৰতিক সংশোধনৰ বাবে $PAGETITLE_URL চাওক।
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 সম্পাদকৰ সাৰাংশ: $PAGESUMMARY $PAGEMINOREDIT
 
-সম্পাদকজনৰ লগত যোগাযোগ:
+সম্পাদকজনক যোগাযোগ কৰক:
 মেইল: $PAGEEDITOR_EMAIL
 ৱিকি: $PAGEEDITOR_WIKI
 
-আপুনি এই পৃষ্ঠাখন নোচোৱালৈকে আন সালসলনিৰ কোনো জাননী দিয়া নহ’ব ।
+আপুনি এই পৃষ্ঠাখন নোচোৱালৈকে আন সালসলনিৰ কোনো জাননী দিয়া নহ’ব।
 আপুনি আপোনাৰ লক্ষ্য-তালিকাৰ পৃষ্ঠাবোৰৰ জাননী ফ্লেগ পূৰ্বৰ অৱস্থালৈও ঘূৰাই নিব পাৰে ।
 
-আপোনাৰ {{SITENAME}}ৰ জাননী ব্যৱস্থা
+আপোনাৰ {{SITENAME}} জাননী ব্যৱস্থা
 
 --
 আপোনাৰ ই-মেইল জাননী ছেটিং সলনি কৰিবলৈ এইখন চাওক
@@ -2271,6 +2322,8 @@ $UNWATCHURL
 
 প্ৰতিক্ৰিয়া আৰু অধিক সহযোগিতাৰ বাবে:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'সৃষ্টি কৰা হ’ল',
+'changed' => 'সলোৱা হৈছে',
 
 # Delete
 'deletepage' => 'পৃষ্ঠা বিলোপ কৰক',
@@ -2343,6 +2396,8 @@ $UNWATCHURL
 'prot_1movedto2' => '$1 ক $2 লৈ স্থানান্তৰিত কৰা হল',
 'protect-badnamespace-title' => 'অসুৰক্ষিত নামস্থান',
 'protect-badnamespace-text' => 'এই নামস্থানৰ পৃষ্ঠাসমূহ সুৰক্ষিত কৰিব নোৱাৰি।',
+'protect-norestrictiontypes-text' => 'এই পৃষ্ঠাখন সুৰক্ষিত কৰিব নোৱাৰি কাৰণ কোনো বাধা প্ৰকাৰ নাই।',
+'protect-norestrictiontypes-title' => 'সুৰক্ষা প্ৰযোজ্য নোহোৱা পৃষ্ঠা',
 'protect-legend' => 'সুৰক্ষা নিশ্চিত কৰক',
 'protectcomment' => 'কাৰণ:',
 'protectexpiry' => 'সময় শেষ:',
@@ -2359,9 +2414,9 @@ $UNWATCHURL
 'protect-cascadeon' => 'এই পৃষ্ঠাখন বৰ্তমান সুৰক্ষিত কাৰণ ই {{PLURAL:$1|খন পৃষ্ঠাৰ|খন পৃষ্ঠাৰ}} অন্তৰ্গত য’ত প্ৰপাতাকাৰ সুৰক্ষা সক্ৰিয় ।
 আপুনি এই পৃষ্ঠাৰ সুৰক্ষা স্তৰ সলাব পাৰে কিন্তু সি প্ৰপাতাকাৰ সুৰক্ষাত কোনো প্ৰভাৱ নেপেলায ।',
 'protect-default' => 'সকলো ব্যৱহাৰকাৰীৰ বাবে',
-'protect-fallback' => '"$1" অনুমতি লাগিব',
-'protect-level-autoconfirmed' => 'নতুন বা অপঞ্জীভুক্ত সদস্যক অৱৰোধ',
-'protect-level-sysop' => 'কেৱল প্ৰশাসকবৃন্দৰ বাবে',
+'protect-fallback' => 'কেৱল "$1" অনুমতি থকা ব্যৱহাৰকাৰীকহে সুযোগ দিয়া হয়',
+'protect-level-autoconfirmed' => 'কেৱল স্বয়ংনিশ্চিত ব্যৱহাৰকাৰীকহে সুযোগ দিয়া হয়',
+'protect-level-sysop' => 'কেৱল প্ৰশাসকবৃন্দক অনুমতি দিয়া হয়',
 'protect-summary-cascade' => 'প্ৰপাতাকাৰ/কেচ্‌কেডিং',
 'protect-expiring' => ' $1 (UTC) ত সময় শেষ হব',
 'protect-expiring-local' => 'ম্যাদ উকলিব $1',
@@ -2428,8 +2483,8 @@ $UNWATCHURL
 'undeletedrevisions' => '{{PLURAL:$1|১টা সংশোধন|$1টা সংশোধন}} পুনৰুদ্ধাৰ কৰা হৈছে',
 'undeletedrevisions-files' => '{{PLURAL:$1|১টা সংশোধন|$1 টা সংশোধন}} আৰু {{PLURAL:$2|১ খন নথি|$2 খন নথি}} পুনৰুদ্ধাৰ কৰা হ’ল',
 'undeletedfiles' => '{{PLURAL:$1|১খন নথি|$1 খন নথি}} পুনৰুদ্ধাৰ কৰা হ’ল',
-'cannotundelete' => 'অৱলুপ্তি বিফল হৈছে;
-আন কোনোবাই আগতেই ইয়াক বিলোপ কৰিছে ।',
+'cannotundelete' => 'বিলোপ বাতিলকৰণ বিফল হৈছে;
+$1',
 'undeletedpage' => "'''$1ক পুনৰুদ্ধাৰ কৰা হৈছে'''
 অনুগ্ৰহ কৰি শেহতীয়া অৱলুপ্তি আৰু পুনৰুদ্ধাৰৰ বাবে [[Special:Log/delete|অৱলুপ্তি অভিলেখ]] চাওক ।",
 'undelete-header' => 'শেহতীয়াকৈ বিলোপ কৰা পৃষ্ঠাসমূহৰ বাবে [[Special:Log/delete|অৱলুপ্তি ল’গ]] চাওক ।',
@@ -2460,7 +2515,7 @@ $1',
 'blanknamespace' => '(মুখ্য)',
 
 # Contributions
-'contributions' => 'সদস্যৰ বৰঙণিসমূহ',
+'contributions' => '{{GENDER:$1|সদস্যৰ}} বৰঙণিসমূহ',
 'contributions-title' => '$1ৰ বৰঙণিসমূহ',
 'mycontris' => 'বৰঙণিসমূহ',
 'contribsub2' => '$1 ৰ কাৰণে ($2)',
@@ -2662,18 +2717,18 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 # Move page
 'move-page' => '$1 স্থানান্তৰ কৰক',
 'move-page-legend' => 'পৃষ্ঠাখন স্থানান্তৰ কৰক',
-'movepagetext' => "তলৰ প্ৰপত্ৰ ব্যৱহাৰ কৰিলে এই পৃষ্ঠাৰ শিৰোনামা সলনি হ'ব, লগতে সমগ্ৰ ইতিহাস নতুন শিৰোনামালৈ স্থানান্তৰ কৰা হ'ব।
-পুৰণা শিৰোনামাটো নতুন শিৰোনামালৈ এটা পুনৰ্নিৰ্দেশনা হৈ ৰ'ব।
-পুৰণা শিৰোনামালৈ পোনাৱা পুনৰ্নিৰ্দেশনাসমূহ আপুনি স্বয়ংক্ৰিয়ভাৱে আপডেট কৰিব পাৰিব।
-যদি এইটো কৰিব নিবিচাৰে তেনেহ'লে  [[Special:DoubleRedirects|দ্বি-পুনৰ্নিৰ্দেশনাসমূহ]] বা [[Special:BrokenRedirects|ভঙা পুনৰ্নিৰ্দেশনাসমূহ]] চয়ন কৰে যেন।
+'movepagetext' => "তলৰ প্ৰপত্ৰ ব্যৱহাৰ কৰিলে এই পৃষ্ঠাৰ শিৰোনাম সলনি হ'ব, লগতে সমগ্ৰ ইতিহাস নতুন শিৰোনামলৈ স্থানান্তৰ কৰা হ'ব।
+পুৰণা শিৰোনামটো নতুন শিৰোনামালৈ এটা পুনৰ্নিৰ্দেশনা হৈ ৰ'ব।
+পুৰণা শিৰোনামলৈ পোনাৱা পুনৰ্নিৰ্দেশনাসমূহ আপুনি স্বয়ংক্ৰিয়ভাৱে আপডে'ট কৰিব পাৰিব।
+যদি এইটো কৰিব নিবিচাৰে তেনেহ'লে  [[Special:DoubleRedirects|দ্বি-পুনৰ্নিৰ্দেশনাসমূহ]] বা [[Special:BrokenRedirects|ভঙা পুনৰ্নিৰ্দেশনাসমূহ]] বাছনি কৰে যেন।
 সকলো সংযোগ সঠিক দিশলৈ পোনাৱাৰ দায়িত্ব আপোনাৰ।
 
-মন কৰিব যে নতুন শিৰোনামাটো যদি প্ৰচলিত, এই পৃষ্ঠা নতুন শিৰোনামালৈ সলনি কৰা '''নহ'ব''' যদিহে সেই পৃষ্ঠা খালী বা কোনো পুনৰ্নিৰ্দেশনাৰ পূৰ্ব ইতিহাস নাই।
+মন কৰিব যে পৃষ্ঠাখন স্থানান্তৰ কৰা '''নহ'ব''' যদিহে নতুন শিৰোনামটোত পূৰ্বৰপৰা এখন পৃষ্ঠা আছেই, আৰু যদিহে পূৰ্বৰ পৃষ্ঠাখন কোনো পুনৰ্নিৰ্দেশ নহয় আৰু তাৰ কোনো সম্পাদনাৰ পূৰ্বইতিহাস নাই।
 ইয়াৰ অৰ্থ এয়ে যে ভুল হলে পৃষ্ঠাখন আগৰ ঠাইতে থাকিব, আৰু আপুনি প্ৰচলিত পৃষ্ঠা এখনক আন পৃষ্ঠা এখনেৰে সলনি কৰিব নোৱাৰে।
 
 '''সতৰ্কবাণী !'''
 জনপ্ৰিয় পৃষ্ঠা এখনৰ বাবে এয়া এক ডাঙৰ আৰু অনাকাংক্ষিত সাল-সলনি হ’ব পাৰে;
-এই কাৰ্য পৰিণাম ভালদৰে বিবেচনা কৰি লয় যেন।",
+আগবঢ়াৰ পূৰ্বে এই কাৰ্যৰ পৰিণাম ভালদৰে বিবেচনা কৰি লয় যেন।",
 'movepagetext-noredirectfixer' => "তলৰ প্ৰপত্ৰ ব্যৱহাৰ কৰিলে এই পৃষ্ঠাৰ শিৰোনামা সলনি হ'ব, লগতে সমগ্ৰ ইতিহাস নতুন শিৰোনামালৈ স্থানান্তৰ কৰা হ'ব।
 পুৰণা শিৰোনামাটো নতুন শিৰোনামালৈ এটা পুনৰ্নিৰ্দেশনা হৈ ৰ'ব।
 [[Special:DoubleRedirects|দ্বি পুনৰ্নিৰ্দেশনাসমূহ]] বা [[Special:BrokenRedirects|ভঙা পুনৰ্নিৰ্দেশনসমূহ]] পৰীক্ষা কৰিবলৈ নাপাহৰিব।
@@ -2738,6 +2793,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'immobile-target-namespace-iw' => 'পৃষ্ঠা স্থানান্তৰৰ বাবে আন্তঃৱিকি সংযোগ বৈধ গন্তব্যস্থল নহয় ।',
 'immobile-source-page' => 'এই পৃষ্ঠাখন স্থানান্তৰ কৰিব নোৱাৰি ।',
 'immobile-target-page' => 'গন্তব্য শিৰোনামালৈ স্থানান্তৰ কৰিব পৰা নাযাব ।',
+'bad-target-model' => 'কাংক্ষিত লক্ষ্যস্থানৰ সমলৰ মডেলৰ সতে মিলা নাই।   $1ৰ পৰা $2লৈ সলনি কৰিব পৰা নগ’ল।',
 'imagenocrossnamespace' => 'অনা-ফাইল নামস্থানলৈ ফাইল স্থানান্তৰ কৰিব নোৱাৰি',
 'nonfile-cannot-move-to-file' => 'ফাইল নামস্থানলৈ অনা-ফাইল স্থানান্তৰ কৰিব নোৱাৰি',
 'imagetypemismatch' => 'নতুন ফাইলৰ এক্সটেনছনটো ইয়াৰ প্ৰকাৰৰ লগত মিলা নাই',
@@ -2797,6 +2853,8 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'thumbnail-more' => 'ডাঙৰকৈ চাওক',
 'filemissing' => 'ফাইল বিচাৰি পোৱা নগ’ল',
 'thumbnail_error' => 'ক্ষুদ্ৰ প্ৰতিকৃতি সৃষ্টি কৰাত অসুবিধা হৈছে: $1',
+'thumbnail_error_remote' => '$1ৰপৰা ত্ৰুটি বাৰ্তা:
+$2',
 'djvu_page_error' => 'DjVu পৃষ্ঠা পৰিসীমাৰ বাহিৰত',
 'djvu_no_xml' => "DjVu ফাইলৰ বাবে XML আনিব পৰা নগ'ল",
 'thumbnail-temp-create' => 'অস্থায়ী থাম্বনেইল নথিপত্ৰ সৃষ্টি কৰিবলে অক্ষম',
@@ -2855,6 +2913,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'import-error-interwiki' => '"$1" পৃষ্ঠাখন আমদানি কৰা নহ\'ল কাৰণ ইয়াৰ নামটো বাহিৰা সংযোগৰ (আন্তঃৱিকি) বাবে সংৰক্ষিত।',
 'import-error-special' => '"$1" পৃষ্ঠাখন আমদানি কৰা নহ\'ল কাৰণ ই পৃষ্ঠা অনুমোদন নকৰা এটা বিশেষ নামস্থানৰ অন্তৰ্গত।',
 'import-error-invalid' => '"$1" পৃষ্ঠাখন আমদানি কৰা নহ\'ল কাৰণ ইয়াৰ নামটো অবৈধ।',
+'import-error-unserialize' => ' "$1" পৃষ্ঠাৰ $2 সংশোধনৰ ক্ৰম আঁতৰ কৰিব পৰা নগ\'ল। এই সংশোধনে $4 ক্ৰমৰ সমল মডেল $3 ব্যৱহাৰ কৰা বুলি জনোৱা হৈছিল।',
 'import-options-wrong' => 'ভুল {{PLURAL:$2|বিকল্প|বিকল্পসমূহ}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'মূল পৃষ্ঠাৰ শিৰোনামা অবৈধ।',
 'import-rootpage-nosubpage' => 'মূল পৃষ্ঠাৰ "$1" নামস্থানে উপপৃষ্ঠা অনুমোদন নকৰে।',
@@ -2869,7 +2928,6 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 
 # JavaScriptTest
 'javascripttest' => 'জাভাস্ক্ৰিপ্ট পৰীক্ষা।',
-'javascripttest-disabled' => 'এই ৱিকিত এই কাৰ্যটো সক্ৰিয় কৰা হোৱা নাই।',
 'javascripttest-title' => '$1 পৰীক্ষাসমূহ চলোৱা হৈছে',
 'javascripttest-pagetext-noframework' => 'এই পৃষ্ঠাখন জাভালিপি পৰীক্ষা চলোৱাৰ বাবে সংৰক্ষিত।',
 'javascripttest-pagetext-unknownframework' => 'অজ্ঞাত সম্পৰীক্ষা ফ্ৰেমৱৰ্ক "$1"।',
@@ -2983,11 +3041,13 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'pageinfo-default-sort' => 'ডিফল্ট চৰ্ট কী',
 'pageinfo-length' => 'পৃষ্ঠাৰ দৈৰ্ঘ্য (বাইটত)',
 'pageinfo-article-id' => 'পৃষ্ঠা ID',
+'pageinfo-language' => 'পৃষ্ঠাত সন্নিবিষ্ট ভাষা',
 'pageinfo-robot-policy' => 'সন্ধান ইঞ্জিনৰ স্থিতি',
 'pageinfo-robot-index' => 'ইনডেক্স উপযোগী',
 'pageinfo-robot-noindex' => 'ইনডেক্সৰ অনুপযোগী',
 'pageinfo-views' => 'দৰ্শনৰ সংখ্যা',
 'pageinfo-watchers' => 'পৃষ্ঠা নিৰীক্ষকৰ সংখ্যা',
+'pageinfo-few-watchers' => '$1 {{PLURAL:$1|তকৈ কম নিৰীক্ষক}}',
 'pageinfo-redirects-name' => 'পৃষ্ঠালৈ থকা পুনৰ্নিৰ্দেশ',
 'pageinfo-subpages-name' => 'এই পৃষ্ঠাৰ উপপৃষ্ঠাসমূহ',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|পুনৰ্নিৰ্দেশ|পুনৰ্নিৰ্দেশসমূহ}}; $3 {{PLURAL:$3|অপুনৰ্নিৰ্দেশ নাই|অপুনৰ্নিৰ্দেশসমূহ}})',
@@ -3002,6 +3062,19 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'pageinfo-magic-words' => 'যাদুকৰী {{PLURAL:$1|শব্দ|শব্দবোৰ}} ($1)',
 'pageinfo-hidden-categories' => 'অদৃশ্য {{PLURAL:$1|শ্ৰেণী|শ্ৰেণীসমূহ}} ($1)',
 'pageinfo-templates' => 'সংযুক্ত {{PLURAL:$1|সাঁচ|সাঁচসমূহ}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|পৃষ্ঠা|পৃষ্ঠাসমূহ}} ট্রান্সক্লুড কৰাৰ সময় ($1)',
+'pageinfo-toolboxlink' => 'পৃষ্ঠাখনৰ বিষয়ে তথ্য',
+'pageinfo-redirectsto' => 'পুনৰ্নিৰ্দেশ কৰা হৈছে',
+'pageinfo-redirectsto-info' => 'তথ্য',
+'pageinfo-contentpage' => 'সমল পৃষ্ঠাৰূপে গণনা কৰা হৈছে',
+'pageinfo-contentpage-yes' => 'হয়',
+'pageinfo-protect-cascading' => 'সুৰক্ষাসমূহ ইয়াৰ পৰা প্ৰপাতাকাৰ হৈছে',
+'pageinfo-protect-cascading-yes' => 'হয়',
+'pageinfo-protect-cascading-from' => 'সুৰক্ষাসমূহ প্ৰপাতাকাৰ হৈছে',
+'pageinfo-category-info' => 'শ্ৰেণী তথ্য',
+'pageinfo-category-pages' => 'পৃষ্ঠাৰ সংখ্যা',
+'pageinfo-category-subcats' => 'উপশ্ৰেণীৰ সংখ্যা',
+'pageinfo-category-files' => 'ফাইলৰ সংখ্যা',
 
 # Patrolling
 'markaspatrolleddiff' => 'নিৰীক্ষিত বুলি চিহ্নিত কৰক',
@@ -3013,6 +3086,8 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'markedaspatrollederror' => 'নিৰীক্ষিত বুলি চিহ্নিত কৰিব নোৱাৰি',
 'markedaspatrollederrortext' => 'নিৰীক্ষণ কৰা বুলি চিহ্নিত কৰিবলৈ আপুনি এটা পুনৰীক্ষণ ধাৰ্য্য কৰিব লাগিব।',
 'markedaspatrollederror-noautopatrol' => 'আপোনাক নিজৰ পৰিৱৰ্তনসমূহ নিৰিক্ষিত বুলি চিহ্নিত কৰাৰ অনুমতি নাই।',
+'markedaspatrollednotify' => '$1ৰ এই সম্পাদনা নিৰীক্ষিতৰূপে চিহ্নিত কৰা হ’ল।',
+'markedaspatrollederrornotify' => 'নিৰীক্ষণবিহীন ৰূপে চিহ্নিত কৰা হ’ল',
 
 # Patrol log
 'patrol-log-page' => 'নিৰীক্ষণ অভিলেখ',
@@ -3046,6 +3121,7 @@ $1',
 'file-nohires' => 'ইয়াতকৈ ডাঙৰকৈ দেখুৱাব নোৱাৰি ।',
 'svg-long-desc' => 'SVG ফাইল, সাধাৰণতঃ $1 × $2 পিক্সেল, ফাইল মাত্ৰা: $3',
 'svg-long-desc-animated' => 'এনিমেটেড SVG ফাইল, সাধাৰণতে $1 × $2 পিক্সেল, ফাইলৰ আকাৰ: $3',
+'svg-long-error' => 'অবৈধ SVG ফাইল: $1',
 'show-big-image' => "সম্পূৰ্ণ ৰিজ'লিউশ্যন",
 'show-big-image-preview' => 'এই খচৰাৰ আকাৰ: $1.',
 'show-big-image-other' => "আন {{PLURAL:$2|ৰিজ'লিউশ্যন|ৰিজ'লিউশ্যনসমূহ}}: $1।",
@@ -3075,7 +3151,24 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 মিনিট|$1 মিনিট}}',
 'hours' => '{{PLURAL:$1|$1 ঘন্টা|$1 ঘন্টা}}',
 'days' => '{{PLURAL:$1|$1 দিন|$1 দিন}}',
+'weeks' => '{{PLURAL:$1|$1 সপ্তাহ}}',
+'months' => '{{PLURAL:$1|$1 মাহ}}',
+'years' => '{{PLURAL:$1|$1বছৰ|$1 বছৰ}}',
 'ago' => '$1 আগেয়ে',
+'just-now' => 'এইমাত্ৰ',
+
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|ঘন্টা}} আগেয়ে',
+'minutes-ago' => '$1 {{PLURAL:$1|মাহ}} আগেয়ে',
+'seconds-ago' => '$1 {{PLURAL:$1|ছেকেন্ড}} আগতে',
+'monday-at' => 'সোমবাৰে $1ত',
+'tuesday-at' => 'মঙ্গলবাৰে  $1’ত',
+'wednesday-at' => 'বুধবাৰে $1’ত',
+'thursday-at' => 'বৃহস্পতিবাৰে $1’ত',
+'friday-at' => 'শুক্ৰবাৰে $1’ত',
+'saturday-at' => 'শনিবাৰে $1’ত',
+'sunday-at' => 'দেওবাৰে $1’ত',
+'yesterday-at' => 'কালি $1’ত',
 
 # Bad image list
 'bad_image_list' => 'The format is as follows:
@@ -3106,7 +3199,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'প্ৰস্থ',
 'exif-imagelength' => 'উচ্চতা',
 'exif-bitspersample' => 'প্ৰতি অংশৰ বিট',
@@ -3284,7 +3377,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-originalimageheight' => "ক্ৰ'প কৰাৰ আগত ছবিৰ উচ্চতা",
 'exif-originalimagewidth' => "ক্ৰ'প কৰাৰ আগত ছবিৰ প্ৰস্থতা",
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'অসংকুচিত',
 'exif-compression-2' => "CCITT দল ৩ ১-পৰিসৰ পৰিৱৰ্তীত Huffman চলন দৈৰ্ঘ্য এনক'ডিং",
 'exif-compression-3' => "CCITT দল ৩ ফেক্স এনক'ডিং",
@@ -3505,7 +3598,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'monthsall' => 'সকলো',
 'limitall' => 'সকলোবোৰ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ই-মেইল ঠিকনা নিশ্চিত কৰক',
 'confirmemail_noemail' => 'আপোনাৰ [[Special:Preferences|সদস্য পছন্দসমূহ]]ত কোনো বৈধ ই-মেইল ঠিকনা নাই ।',
 'confirmemail_text' => '{{SITENAME}}ত ই-মেইল ভিত্তিক সেৱা ব্যৱহাৰ কৰাৰ পূৰ্বে আপুনি আপোনাৰ ই-মেইল ঠিকনা নিশ্চিত কৰিব লাগিব । তলৰ বুটামটো টিপি আপোনাৰ ই-মেইল ঠিকনালৈ এখন নিশ্চিতকৰণ মেইল পঠিয়াওক ।
@@ -3577,6 +3670,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[আন্তঃৱিকি আন্তঃভুক্তি নিষ্ক্ৰিয় কৰা আছে]',
 'scarytranscludefailed' => '[$1ৰ বাবে সাঁচ অনা অসফল হৈছে]',
+'scarytranscludefailed-httpstatus' => '[$1ৰ বাবে সাঁচ অনা অসফল হৈছে: HTTP $2]',
 'scarytranscludetoolong' => '[URL অত্যাধিক দীঘল]',
 
 # Delete conflict
@@ -3688,6 +3782,7 @@ $5
 'version-license' => 'অনুজ্ঞাপত্ৰ',
 'version-poweredby-credits' => "এই ৱিকি '''[//www.mediawiki.org/ মিডিয়াৱিকিৰ]''' দ্বাৰা প্ৰচলিত , কপিৰাইট © ২০০১-$1 $2.",
 'version-poweredby-others' => 'অন্য',
+'version-credits-summary' => 'আমি নিম্নোক্ত ব্যক্তিসকলক তেওঁলোকে [[Special:Version|মিডিয়াৱিকি]]লৈ দিয়া দিয়া বৰঙনিৰ বাবে চিনাকী  কৰিব বিচাৰিছো।',
 'version-license-info' => "মিডিয়াৱিকি এটা বিনামূলীয়া চফ্টৱেৰ; আপুনি Free Software Foundation -ৰ দ্বাৰা প্ৰকাশিত GNU General Public License -ৰ চুক্তিসমূহৰ অন্তৰ্গত ইয়াক পুনৰ বিতৰণ কৰিব পাৰিব অথবা সলনি কৰিব পাৰিব; হয়তো অনুজ্ঞাপত্ৰৰ সংস্কৰণ ২ 
 অথবা (আপোনাৰ বিকল্পত) যিকোনো পৰৱৰ্তী সংস্কৰণ।
 
@@ -3702,12 +3797,17 @@ $5
 'version-entrypoints-header-entrypoint' => 'প্ৰৱেশ পইণ্ট',
 'version-entrypoints-header-url' => 'ইউআৰএল',
 
-# Special:FilePath
-'filepath' => 'নথিৰ পথ',
-'filepath-page' => 'নথি:',
-'filepath-submit' => 'যাওক',
-'filepath-summary' => 'এই বিশেষ পৃষ্ঠায় এটা নথিপত্ৰৰ বাবে সম্পূৰ্ণ পথ ঘুৰাই পঠায়।
-ছবিসমূহক সম্পূৰ্ণ বিভেদনত দেখুৱা হয়, অন্য নথিপত্ৰ ধৰণসমূহ সিহতৰ সংলঘ্ন প্ৰগ্ৰামৰ সৈতে প্ৰত্যক্ষভাৱে আৰম্ভ হয়।',
+# Special:Redirect
+'redirect' => 'ফাইল, সদস্য, বা সংশোধন আই ডিৰে পুনঃনিৰ্দেশ',
+'redirect-legend' => 'এটা ফাইল বা এখন এখন পৃষ্ঠালৈ পুনঃনিৰ্দেশ',
+'redirect-summary' => 'এই বিশেষ পৃষ্ঠাটোৱে আপোনাক পুনঃনির্দেশিত কৰিছে অন্য এটা নথিপত্রলৈ (নথিপত্রৰ নাম), এটা পৃষ্ঠালৈ (পৃষ্ঠাৰ নাম), অথবা অন্য সদস্যৰ পৃষ্ঠালৈ(সংখ্যাৰে লিখা সদস্যৰ আইডি) ।',
+'redirect-submit' => 'যাওক',
+'redirect-lookup' => 'চাওক:',
+'redirect-value' => 'মূল্য:',
+'redirect-user' => 'সদস্য আই ডি',
+'redirect-revision' => 'পৃষ্ঠা সংশোধন',
+'redirect-file' => 'ফাইলৰ নাম',
+'redirect-not-exists' => "মূল্য পোৱা নগ'ল",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'প্ৰতিলিপি পৃষ্ঠাসমূহ অনুসন্ধান কৰক',
@@ -3735,7 +3835,7 @@ $5
 'specialpages-group-highuse' => 'অধিক ব্যবহৃত পৃষ্ঠাসমূহ',
 'specialpages-group-pages' => 'পৃষ্ঠাৰ তালিকাসমূহ',
 'specialpages-group-pagetools' => 'পৃষ্ঠা সা-সঁজুলি',
-'specialpages-group-wiki' => 'ৱিকি তথ্য আৰু সা-সঁজুলি',
+'specialpages-group-wiki' => 'তথ্য আৰু সা-সঁজুলি',
 'specialpages-group-redirects' => 'পুনৰ্নিৰ্দেশ কৰা বিশেষ পৃষ্ঠাসমূহ',
 'specialpages-group-spam' => 'স্পাম সা-সঁজুলি',
 
@@ -3799,17 +3899,20 @@ $5
 'htmlform-submit' => 'দাখিল কৰক',
 'htmlform-reset' => 'সাল-সলনি বাতিল কৰক',
 'htmlform-selectorother-other' => 'অন্য',
+'htmlform-no' => 'নহয়',
+'htmlform-yes' => 'হয়',
+'htmlform-chosen-placeholder' => 'এটা বিকল্প বাছনি কৰক',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 সম্পূৰ্ণ-পাঠ অনুসন্ধান সমৰ্থন সহ',
 'sqlite-no-fts' => '$1 সম্পূৰ্ণ-পাঠ অনুসন্ধান সমৰ্থন অবিহনে',
 
 # New logging system
-'logentry-delete-delete' => '$1’ৰ দ্বাৰা $3 পৃষ্ঠাখন বিলোপ কৰা হ’ল',
-'logentry-delete-restore' => '$1 পুনৰ সংৰক্ষণ কৰা হ’ল পৃষ্ঠা $3',
+'logentry-delete-delete' => " $3 পৃষ্ঠাখন $1ৰদ্বাৰা {{GENDER:$2|বিলোপ কৰা হ'ল}}",
+'logentry-delete-restore' => "$3 পৃষ্ঠাখন $1 ৰদ্বাৰা {{GENDER:$2|পুনৰ্সংৰক্ষণ কৰা হ'ল}}",
 'logentry-delete-event' => '$3: $4 -ত {{PLURAL:$5|এটা লগ ঘটনা|$5 লগ ঘটনাসমূহ}} -ৰ $1 পৰিৱৰ্তন কৰা দৃশ্যমানতা',
 'logentry-delete-revision' => 'পৃষ্ঠা $3: $4ত {{PLURAL:$5|এটা পুনৰীক্ষন|$5 পুনৰীক্ষনসমূহ}}ৰ $1 দৃশ্যমানতা পৰিৱৰ্তন কৰা হ’ল',
-'logentry-delete-event-legacy' => '$3ত অভিলেখ ঘটনামসমূহৰ $1 দৃশ্যমানতা পৰিৱৰ্তন কৰা হ’ল',
+'logentry-delete-event-legacy' => "$3ত ল'গ ঘটনাসমূহৰ দৃশ্যমানতা $1 {{GENDER:$2|ৰদ্বাৰা সলোৱা হ'ল}}",
 'logentry-delete-revision-legacy' => 'পৃষ্ঠা $3ত পুনৰীক্ষনসমূহৰ $1 দৃশ্যমানতা পৰিৱৰ্তন কৰা হল',
 'logentry-suppress-delete' => '$1 সংকোচিত পৃষ্ঠা $3',
 'logentry-suppress-event' => '$3: $4 -ত {{PLURAL:$5|এটা লগ ঘটনা|$5 লগ ঘটনাসমূহ}} -ৰ $1 গোপন পৰিৱৰ্তন কৰা হ’ল দৃশ্যমানতা',
@@ -3831,10 +3934,14 @@ $5
 'logentry-patrol-patrol' => "পৃষ্ঠা $3 -ৰ $1 চিহ্নিত সংশোধন $4 নিৰীক্ষণ কৰা হ'ল",
 'logentry-patrol-patrol-auto' => "পৃষ্ঠা $3 -ৰ $1 চিহ্নিত সংশোধন $4 স্বচালিতভাৱে নিৰীক্ষণ কৰা হ'ল",
 'logentry-newusers-newusers' => "ব্যৱহাৰকাৰী একাউণ্ট $1 সৃষ্টি কৰা হ'ল",
-'logentry-newusers-create' => "ব্যৱহাৰকাৰী একাউণ্ট $1 সৃষ্টি কৰা হ'ল",
-'logentry-newusers-create2' => "$1ৰ দ্বাৰা এটা ব্যৱহাৰকাৰী একাউণ্ট $3 সৃষ্টি কৰা হ'ল",
-'logentry-newusers-autocreate' => '$1’ৰ একাউণ্ট স্বয়ংক্ৰিয়ভাৱে সৃষ্টি কৰা হৈছিল',
-'newuserlog-byemail' => 'গুপ্তশব্দ ই-মেইল কৰি পঠোৱা হৈছে',
+'logentry-newusers-create' => "ব্যৱহাৰকাৰী একাউণ্ট $1 {{GENDER:$2|সৃষ্টি কৰা হ'ল}}",
+'logentry-newusers-create2' => "$1ৰ দ্বাৰা এটা ব্যৱহাৰকাৰী একাউণ্ট $3 {{GENDER:$2|সৃষ্টি কৰা হ'ল}}",
+'logentry-newusers-byemail' => "$1 ৰদ্বাৰা ব্যৱহাৰকাৰী একাউণ্ট $3 {{GENDER:$2|সৃষ্টি কৰা হ'ল}} আৰু ইমেইলৰ যোগেদি গুপ্তশব্দ পঠিওৱা হ'ল",
+'logentry-newusers-autocreate' => "সদস্য একাউণ্ট $1 স্বয়ংক্ৰিয়ভাৱে {{GENDER:$2|সৃষ্টি কৰা হ'ল}}",
+'logentry-rights-rights' => "$1ৰ গোট সদস্যপদ $3ৰ পৰা $4লৈ $5 লৈ সলনি কৰা হ'ল",
+'logentry-rights-rights-legacy' => "$1-ৰ গোট সদস্যপদ $3-লৈ সলনি কৰা হ'ল",
+'logentry-rights-autopromote' => '$1ক  $4ৰ পৰা $5লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত কৰা হ’ল',
+'rightsnone' => '(নাই)',
 
 # Feedback
 'feedback-bugornote' => 'যদি আপুনি এটা কাৰিকৰী সমস্যাৰ বিৱৰণ দিবলৈ প্ৰস্তুত, অনুগ্ৰহ কৰি [$1 এটা বাগ ৰিপ\'ৰ্ট কৰক]।
@@ -3888,6 +3995,7 @@ $5
 'api-error-ok-but-empty' => 'আভ্যন্তৰীণ ত্ৰুটি: চাৰ্ভাৰে কোনো সঁহাৰি জনোৱা নাই।',
 'api-error-overwrite' => 'এতিয়া থকা ফাইলৰ ওপৰত লিখা নিষেধ।',
 'api-error-stashfailed' => 'আভ্যন্তৰীণ ত্ৰুটি: অস্থায়ী ফাইল সাঁচি ৰখাত চাৰ্ভাৰ অসমৰ্থ হৈছে।',
+'api-error-publishfailed' => "আভ্যন্তৰীণ ত্ৰুটি: অস্থায়ী ফাইল প্ৰকাশ কৰাত চাৰ্ভাৰ অসমৰ্থ হ'ল।",
 'api-error-timeout' => 'আশা কৰা সময়ৰ ভিতৰত চাৰ্ভাৰটোৱে সঁহাৰি নজনালে।',
 'api-error-unclassified' => 'এক অজ্ঞাত সমস্যাই দেখা দিছে।',
 'api-error-unknown-code' => 'অজ্ঞাত সমস্যা: "$1"।',
@@ -3907,5 +4015,8 @@ $5
 'duration-decades' => '$1 {{PLURAL:$1|দশক|দশক}}',
 'duration-centuries' => '$1 {{PLURAL:$1|শতাব্দী|শতাব্দী}}',
 'duration-millennia' => '$1 {{PLURAL:$1|সহস্ৰাব্দ|সহস্ৰাব্দ}}',
+
+# Image rotation
+'rotate-comment' => 'ছবিখন ঘড়ীৰ কাটাৰ দিশত $1 {{PLURAL:$1|ডিগ্ৰী}} ঘূৰোৱা হৈছে।',
 
 );

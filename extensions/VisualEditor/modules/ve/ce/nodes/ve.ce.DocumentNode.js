@@ -12,18 +12,22 @@
  * @extends ve.ce.BranchNode
  * @constructor
  * @param {ve.dm.DocumentNode} model Model to observe
+ * @param {ve.ce.Surface} surface Surface document is part of
+ * @param {Object} [config] Config options
  */
-ve.ce.DocumentNode = function VeCeDocumentNode( model, surface ) {
+ve.ce.DocumentNode = function VeCeDocumentNode( model, surface, config ) {
 	// Parent constructor
-	ve.ce.BranchNode.call( this, model );
+	ve.ce.BranchNode.call( this, model, config );
 
 	// Properties
 	this.surface = surface;
 
+	// Set root
+	this.setRoot( this );
+
 	// DOM Changes
 	this.$.addClass( 've-ce-documentNode' );
-	this.$.attr( 'contentEditable', 'true' );
-	this.$.attr( 'spellcheck', 'true' );
+	this.$.attr( { 'contentEditable': 'true', 'spellcheck': 'true' } );
 };
 
 /* Inheritance */
@@ -64,7 +68,7 @@ ve.ce.DocumentNode.prototype.getSurface = function () {
  * @method
  */
 ve.ce.DocumentNode.prototype.disable = function () {
-	this.$.css( 'opacity', 0.5 ).attr( 'contentEditable', 'false' );
+	this.$.attr( 'contentEditable', 'false' );
 };
 
 /**
@@ -73,7 +77,7 @@ ve.ce.DocumentNode.prototype.disable = function () {
  * @method
  */
 ve.ce.DocumentNode.prototype.enable = function () {
-	this.$.css( 'opacity', 1 ).attr( 'contentEditable', 'true' );
+	this.$.attr( 'contentEditable', 'true' );
 };
 
 /* Registration */

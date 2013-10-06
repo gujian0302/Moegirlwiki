@@ -9,33 +9,41 @@
  * Generic base class for CE views.
  *
  * @abstract
+ * @extends ve.Element
  * @mixins ve.EventEmitter
  *
  * @constructor
  * @param {ve.dm.Model} model Model to observe
- * @param {jQuery} [$element] Element to use as a container
+ * @param {Object} [config] Config options
  */
-ve.ce.View = function VeCeView( model, $element ) {
+ve.ce.View = function VeCeView( model, config ) {
+	// Setting this property before calling the parent constructor allows overriden #getTagName
+	// methods in view classes to have access to the model when they are called for the first time
+	// inside of ve.Element
+	this.model = model;
+
 	// Parent constructor
+	ve.Element.call( this, config );
+
+	// Mixin constructors
 	ve.EventEmitter.call( this );
 
 	// Properties
-	this.model = model;
-	this.$ = $element || $( '<div>' );
 	this.live = false;
 
+	// Events
+	this.connect( this, {
+		'setup': 'onSetup',
+		'teardown': 'onTeardown'
+	} );
+
 	// Initialization
-	this.$.data( 'view', this );
-	if ( this.constructor.static.renderHtmlAttributes ) {
-		ve.setDomAttributes(
-			this.$[0],
-			this.model.getAttributes( 'html/0/' ),
-			this.constructor.static.domAttributeWhitelist
-		);
-	}
+	this.renderAttributes();
 };
 
 /* Inheritance */
+
+ve.inheritClass( ve.ce.View, ve.Element );
 
 ve.mixinClass( ve.ce.View, ve.EventEmitter );
 
@@ -43,11 +51,18 @@ ve.mixinClass( ve.ce.View, ve.EventEmitter );
 
 /**
  * @event live
+ * @param {boolean} live The view is being set live
+ */
+
+/**
+ * @event setup
+ */
+
+/**
+ * @event teardown
  */
 
 /* Static Members */
-
-ve.ce.View.static = {};
 
 /**
  * Allowed attributes for DOM elements.
@@ -86,6 +101,24 @@ ve.ce.View.static.renderHtmlAttributes = true;
 /* Methods */
 
 /**
+ * Handle setup event.
+ *
+ * @method
+ */
+ve.ce.View.prototype.onSetup = function () {
+	this.$.data( 'view', this );
+};
+
+/**
+ * Handle teardown event.
+ *
+ * @method
+ */
+ve.ce.View.prototype.onTeardown = function () {
+	this.$.removeData( 'view' );
+};
+
+/**
  * Get the model the view observes.
  *
  * @method
@@ -111,8 +144,30 @@ ve.ce.View.prototype.isLive = function () {
  * @method
  * @param {boolean} live The view has been attached to the live DOM (use false on detach)
  * @emits live
+ * @emits setup
+ * @emits teardown
  */
 ve.ce.View.prototype.setLive = function ( live ) {
 	this.live = live;
 	this.emit( 'live' );
+	if ( this.live ) {
+		this.emit( 'setup' );
+	} else {
+		this.emit( 'teardown' );
+	}
+};
+
+/**
+ * Render an HTML attribute list onto this.$
+ *
+ * If no attributeList is given, the attribute list stored in the linear model will be used.
+ *
+ * @param {Object[]} [attributeList] HTML attribute list, see ve.dm.Converter#buildHtmlAttributeList
+ */
+ve.ce.View.prototype.renderAttributes = function ( attributeList ) {
+	ve.dm.Converter.renderHtmlAttributeList(
+		attributeList || this.model.getHtmlAttributes(),
+		this.$,
+		this.constructor.static.renderHtmlAttributes
+	);
 };

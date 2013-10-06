@@ -5,32 +5,56 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
-.ve-ui-context {
+.ve-ui-context,
+.ve-ui-context-inspectors,
+.ve-ui-context-menu {
 	position: absolute;
-	z-index: 2;
 }
 
-.ve-ui-context-inspectors, .ve-ui-context-menu {
-	position: absolute;
-	z-index: 2;
-}
-
-.ve-ui-context-toolbar {
+.ve-ui-context-menu .ve-ui-toolbar-bar {
 	white-space: nowrap;
-}
-
-.ve-ui-context-toolbar .ve-ui-toolbarGroup {
 	border: none;
-	padding: 0.1em;
+	background: none;
 }
 
-.ve-ui-context-toolbar .ve-ui-buttonTool,
-.ve-ui-context-toolbar .ve-ui-buttonTool:hover {
+.ve-ui-context-menu .ve-ui-toolbar-group {
+	border: none;
+	margin: 0;
+}
 
+.ve-ui-context-menu .ve-ui-buttonTool,
+.ve-ui-context-menu .ve-ui-buttonTool:hover {
 	border: none;
 }
 
-.ve-ui-context-toolbar .ve-ui-buttonTool:active,
-.ve-ui-context-toolbar .ve-ui-buttonTool-active {
+.ve-ui-context-menu .ve-ui-buttonTool:active,
+.ve-ui-context-menu .ve-ui-buttonTool-active {
 	background-image: none;
+}
+
+.ve-ui-context-embed .ve-ui-popupWidget-callout {
+	display: none;
+}
+
+.ve-ui-context-embed .ve-ui-popupWidget-body {
+	margin-top: 0.25em;
+}
+
+/* @noflip */
+.ltr .ve-ui-context-embed .ve-ui-popupWidget-body {
+	margin-left: -0.75em;
+}
+
+/* @noflip */
+.rtl .ve-ui-context-embed .ve-ui-popupWidget-body {
+	margin-left: 0.75em;
+}
+
+.ve-ui-context-embed .ve-ui-context-menu {
+	right: 0;
+}
+
+/* HACK: Compensate for ve-ui-frame-content setting the font size to 0.8em */
+.ve-ui-frame-content .ve-ui-context {
+	font-size: 1.25em;
 }

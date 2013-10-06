@@ -8,6 +8,7 @@
  * @file
  *
  * @author Chaojoker
+ * @author Nemo bis
  * @author Pandukht
  * @author Reedy
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
@@ -202,7 +203,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'Բոլորուղերձները' ),
 	'Allpages'                  => array( 'Բոլորէջերը' ),
 	'Ancientpages'              => array( 'Ամենահինէջերը' ),
-	'Block'                     => array( 'Արգելափակելip' ),
+	'Block'                     => array( 'Արգելափակել այփին' ),
 	'Blockme'                   => array( 'Արգելափակել' ),
 	'Booksources'               => array( 'Գրքայինաղբյուրները' ),
 	'BrokenRedirects'           => array( 'Կոտրվածվերահղումները' ),
@@ -216,7 +217,7 @@ $specialPageAliases = array(
 	'Export'                    => array( 'Արտահանելէջերը' ),
 	'FileDuplicateSearch'       => array( 'Կրկնօրինակֆայլերիորոնում' ),
 	'Import'                    => array( 'Ներմուծել' ),
-	'BlockList'                 => array( 'ԱրգելափակվածIPները' ),
+	'BlockList'                 => array( 'Արգելափակված այփի ները' ),
 	'Listadmins'                => array( 'Ադմիններիցանկը' ),
 	'Listfiles'                 => array( 'Պատկերներիցանկը' ),
 	'Listredirects'             => array( 'Ցույցտալվերահղումները' ),
@@ -303,8 +304,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ցույց տալ էջ հսկող մասնակիցների թիվը',
 'tog-oldsig' => 'Ներկայիս ստորագրությունն է․',
 'tog-fancysig' => 'Ստորագրությունը վիքիտեքստի տեսքով (առանց ավտոմատ հղման)',
-'tog-externaleditor' => 'Օգտագործել արտաքին խմբագրիչ ըստ լռության (պահանջում է հատուկ նախընտրություններ ձեր համակարգչում)',
-'tog-externaldiff' => 'Օգտագործել տարբերակների համեմատման արտաքին ծրագիր ըստ լռության (պահանջում է հատուկ նախընտրություններ ձեր համակարգչում)',
 'tog-showjumplinks' => 'Միացնել «անցնել դեպի» օգնական հղումները',
 'tog-uselivepreview' => 'Օգտագործել ուղիղ նախադիտում (JavaScript) (Փորձնական)',
 'tog-forceeditsummary' => 'Նախազգուշացնել խմբագրման ամփոփումը դատարկ թողնելու դեպքում',
@@ -318,6 +317,7 @@ $messages = array(
 'tog-diffonly' => 'Չցուցադրել էջի պարունակությունը տարբերությունների ներքևից',
 'tog-showhiddencats' => 'Ցուցադրել թաքնված կատեգորիաները',
 'tog-norollbackdiff' => 'Չցուցադրել տարբերությունները հետ գլորելուց հետո',
+'tog-useeditwarning' => 'Զգուշացնել ինձ, երբ ես լքում եմ խմբագրման էջը առանց կատարած փոփոխությունները հիշելու։',
 
 'underline-always' => 'Միշտ',
 'underline-never' => 'Երբեք',
@@ -381,6 +381,18 @@ $messages = array(
 'oct' => 'հոկ',
 'nov' => 'նոյ',
 'dec' => 'դեկ',
+'january-date' => 'Հունվարի $1',
+'february-date' => 'Փետրվարի $1',
+'march-date' => 'Մարտի $1',
+'april-date' => 'Ապրիլի $1',
+'may-date' => 'Մայիսի $1',
+'june-date' => 'Հունիսի $1',
+'july-date' => 'Հուլիսի $1',
+'august-date' => 'Օգոստոսի $1',
+'september-date' => 'Սեպտեմբերի $1',
+'october-date' => 'Հոկտեմբերի $1',
+'november-date' => 'Նոյեմբերի $1',
+'december-date' => 'Դեկտեմբերի $1',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Կատեգորիա|Կատեգորիաներ}}',
@@ -417,7 +429,6 @@ $messages = array(
 'qbbrowse' => 'Թերթել',
 'qbedit' => 'Խմբագրել',
 'qbpageoptions' => 'Այս էջը',
-'qbpageinfo' => 'Հոդվածի մասին',
 'qbmyoptions' => 'Իմ էջերը',
 'qbspecialpages' => 'Սպասարկող էջեր',
 'faq' => 'ՀՏՀ',
@@ -426,10 +437,11 @@ $messages = array(
 # Vector skin
 'vector-action-addsection' => 'Ավելացնել քննարկում',
 'vector-action-delete' => 'Ջնջել',
-'vector-action-move' => 'Վերանվանել',
+'vector-action-move' => 'Տեղափոխել այս էջը',
 'vector-action-protect' => 'Պաշտպանել',
 'vector-action-undelete' => 'Վերականգնել',
-'vector-action-unprotect' => 'Հանել պաշտպանումից',
+'vector-action-unprotect' => 'Փոխել պաշտպանումը',
+'vector-simplesearch-preference' => 'Միացնել պարզեցված որոնման դաշտը (միայն Վեկտոր թեմայի դեպքում)',
 'vector-view-create' => 'Ստեղծել',
 'vector-view-edit' => 'Խմբագրել',
 'vector-view-history' => 'Դիտել պատմությունը',
@@ -439,6 +451,7 @@ $messages = array(
 'namespaces' => 'Անվանատարածքներ',
 'variants' => 'Տարբերակներ',
 
+'navigation-heading' => 'Նավիգացիոն ցանկ',
 'errorpagetitle' => 'Սխալ',
 'returnto' => 'Վերադառնալ $1։',
 'tagline' => '{{SITENAME}}յից',
@@ -486,7 +499,7 @@ $messages = array(
 'categorypage' => 'Դիտել կատեգորիայի էջը',
 'viewtalkpage' => 'Դիտել քննարկումը',
 'otherlanguages' => 'Այլ լեզուներով',
-'redirectedfrom' => '(Վերահղված է $1-ից)',
+'redirectedfrom' => '(Վերահղված է $1ից)',
 'redirectpagesub' => 'Վերահղման էջ',
 'lastmodifiedat' => 'Այս էջը վերջին անգամ փոփոխվել է $2, $1։',
 'viewcount' => 'Այս էջին դիմել են {{PLURAL:$1|մեկ անգամ|$1 անգամ}}։',
@@ -502,7 +515,7 @@ $1',
 'pool-errorunknown' => 'Անհայտ սխալ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => '{{grammar:genitive|{{SITENAME}}}}ի մասին',
+'aboutsite' => '{{grammar:genitive|{{SITENAME}}}} մասին',
 'aboutpage' => 'Project:Էությունը',
 'copyright' => 'Կայքի բովանդակությունը գտնվում է «$1» արտոնագրի տակ։',
 'copyrightpage' => '{{ns:project}}:Հեղինակային իրավունքներ',
@@ -511,7 +524,6 @@ $1',
 'disclaimers' => 'Ազատում պատասխանատվությունից',
 'disclaimerpage' => 'Project:Ազատում պատասխանատվությունից',
 'edithelp' => 'Խմբագրման ուղեցույց',
-'edithelppage' => 'Help:Խմբագրում',
 'helppage' => 'Help:Գլխացանկ',
 'mainpage' => 'Գլխավոր էջ',
 'mainpage-description' => 'Գլխավոր էջ',
@@ -539,7 +551,7 @@ $1',
 'youhavenewmessagesmulti' => 'Դուք նոր ուղերձներ եք ստացել $1 վրա',
 'editsection' => 'խմբագրել',
 'editold' => 'խմբագրել',
-'viewsourceold' => 'դիտել ելատեքստը',
+'viewsourceold' => 'դիտել վիքիկոդերը',
 'editlink' => 'խմբագրել',
 'viewsourcelink' => 'դիտել ելատեքստը',
 'editsectionhint' => 'Խմբագրել բաժինը. $1',
@@ -615,7 +627,7 @@ $1',
 'missingarticle-diff' => '(Տարբ. $1, $2)',
 'readonly_lag' => 'Տվյալների բազան ավտոմատիկ կողպվել է ժամանակավորապես՝ մինչև ՏԲ-ի երկրորդական սերվերը չհամաժամանակեցվի առաջնայինի հետ։',
 'internalerror' => 'Ներքին սխալ',
-'internalerror_info' => 'Ներքին սխալ. $1',
+'internalerror_info' => 'Ներքին սխալ՝ $1',
 'fileappenderror' => 'Չհաջողվեց ավելացնել «$1» «$2»-ին։',
 'filecopyerror' => 'Չհաջողվեց պատճենել «$1» նիշքը «$2» նիշքի մեջ։',
 'filerenameerror' => 'Չհաջողվեց «$1» նիշքը վերանվանել «$2»։',
@@ -635,9 +647,9 @@ $1',
 'perfcachedts' => 'Հետևյալ տվյալները վերցված են քեշից և վերջին անգամ թարմացվել են $1։ A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Այս էջի փոփոխությունները ներկայումս արգելված են։ Այստեղի տվյալները այժմ չեն թարմացվի։',
 'wrong_wfQuery_params' => 'Անթույլատրելի պարամետրեր wfQuery() ֆունկցիայի համար<br />
-Ֆունկցիա. $1<br />
-Հայցում. $2',
-'viewsource' => 'Դիտել ելատեքստը',
+Ֆունկցիա՝ $1<br />
+Հայցում՝ $2',
+'viewsource' => 'Դիտել վիքիկոդերը',
 'viewsource-title' => 'Դիտել $1 էջի աղբյուրը',
 'actionthrottled' => 'Գործողությունը արգելափակվեց',
 'actionthrottledtext' => 'Որպես հակա-սպամային միջոց, այս գործողության չափից շատ կատարումը կարճ ժամանակահատվածի ընթացքում սահմանափակված է։ Խնդրում ենք փորձել կրկին մի քանի րոպե անց։',
@@ -645,8 +657,8 @@ $1',
 'viewsourcetext' => 'Դուք կարող եք դիտել և պատճենել այս էջի ելատեքստը.',
 'viewyourtext' => 'Դուք կարող եք դիտել «ձեր ներդրումների» աղբյուրը և պատճենել այս էջ',
 'protectedinterface' => 'Այս էջը պարունակում է ծրագրային ապահովման ինտերֆեյսի ուզերձ և կողպված է չարաշահումների կանխարգելման նպատակով։.',
-'editinginterface' => "'''Զգուշացում.''' Դուք խմբագրում եք ծրագրային ապահովման ինտերֆեյսի տեքստ պարունակող էջ։ Այս էջի փոփոխությունը կանդրադառնա այլ մասնակիցներին տեսանելի ինտերֆեյսի տեսքի վրա։
-Թարգմանությունների համար նախընտրելի է օգտագործել [//translatewiki.net/wiki/Main_Page?setlang=hy translatewiki.net]՝ MediaWiki ծրագրի տեղայնացման նախագիծը։",
+'editinginterface' => "'''Զգուշացում՝''' Դուք խմբագրում եք ծրագրային ապահովման ինտերֆեյսի տեքստ պարունակող էջ։ Այս էջի փոփոխությունը կանդրադառնա այլ մասնակիցներին տեսանելի ինտերֆեյսի տեսքի վրա։
+Թարգմանությունների համար նախընտրելի է օգտագործել [//translatewiki.net/wiki/Main_Page?setlang=hy translatewiki.net]՝ Մեդիավիքի ծրագրի տեղայնացման նախագիծը։",
 'sqlhidden' => '(SQL հայցումը թաքցված է)',
 'cascadeprotected' => 'Այս էջը պաշտպանված է խմբագրումից, քանի որ ընդգրկված է հետևյալ {{PLURAL:$1|էջի|էջերի}} տեքստում, {{PLURAL:$1|որը|որոնք}} պաշտպանվել {{PLURAL:$1|է|են}} կասկադային հնարավորությամբ.
 $2',
@@ -662,20 +674,30 @@ $2',
 # Virus scanner
 'virus-badscanner' => "Սխալ կարգավորւմ։ Անծանոթ վիրուսների զննիչ. ''$1''",
 'virus-scanfailed' => 'զննման սխալ (կոդ $1)',
-'virus-unknownscanner' => 'անծանոթ հակավիրուս.',
+'virus-unknownscanner' => 'անծանոթ հակավիրուս՝',
 
 # Login and logout pages
 'logouttext' => "'''Դուք դուրս եկաք համակարգից։'''
 
-Դուք կարող եք շարունակել օգտագործել {{SITENAME}} կայքը անանուն, կամ [[Special:UserLogin|կրկին մուտք գործել համակարգ]] նույն կամ մեկ այլ մասնակցի անվամբ։ Ի նկատի ունեցեք, որ որոշ էջեր կարող են ցուցադրվել այնպես՝ ինչպես եթե դեռ համակարգում լինեիք մինչև որ չջնջեք ձեր զննարկիչի հիշապահեստը։",
-'welcomecreation' => '== Բարի՛ գալուստ, $1 ==
-Ձեր հաշիվը ստեղծված է։
-Չմոռանաք անձնավորել ձեր [[Special:Preferences|նախընտրությունները]]։',
-'yourname' => 'Մասնակցի անուն.',
-'yourpassword' => 'Գաղտնաբառ.',
-'yourpasswordagain' => 'Կրկնեք գաղտնաբառը.',
-'remembermypassword' => 'Հիշել իմ մուտքագրված տվյալները այս համակարգչում ($1 {{PLURAL:$1|օրից|օրից}} ոչ ավել ժամկետով)',
-'yourdomainname' => 'Ձեր դոմենը.',
+Դուք կարող եք շարունակել օգտագործել {{SITENAME}} կայքը անանուն, կամ <span class='plainlinks'>[$1 կրկին մուտք գործել համակարգ]</span> նույն կամ մեկ այլ մասնակցի անվամբ։ Ի նկատի ունեցեք, որ որոշ էջեր կարող են ցուցադրվել այնպես՝ ինչպես եթե դեռ համակարգում լինեիք մինչև որ չջնջեք ձեր զննարկիչի հիշապահեստը։",
+'welcomeuser' => 'Բարի գալո՜ւստ, $1',
+'welcomecreation-msg' => 'Ձեր հաշիվն ստեղծված է։
+Չմոռանաք փոփոխել ձեր [[Special:Preferences|նախընտրությունները]]։',
+'yourname' => 'Մասնակցի անուն՝',
+'userlogin-yourname' => 'Մասնակցային անուն',
+'userlogin-yourname-ph' => 'Մուտքագրեք ձեր մասնակցային անունը',
+'yourpassword' => 'Գաղտնաբառ՝',
+'userlogin-yourpassword' => 'Գաղտնաբառ',
+'userlogin-yourpassword-ph' => 'Մուտքագրեք ձեր գաղտնաբառը',
+'createacct-yourpassword-ph' => 'Մուտքագրեք գաղտնաբառը',
+'yourpasswordagain' => 'Կրկնեք գաղտնաբառը',
+'createacct-yourpasswordagain' => 'Հաստատեք գաղտնաբառը',
+'createacct-yourpasswordagain-ph' => 'Կրկին մուտքագրեք գաղտնաբառը',
+'remembermypassword' => 'Հիշել իմ մուտքը այս դիտարկչում ($1 {{PLURAL:$1|օրից}} ոչ ավել ժամկետով)',
+'userlogin-remembermypassword' => 'Մուտք գործած մնալ',
+'userlogin-signwithsecure' => 'Օգտագործել անվտանգ միացում',
+'securelogin-stick-https' => 'Մուտք գործելուց հետո շարունակել աշխատանքը HTTPS–ով',
+'yourdomainname' => 'Ձեր դոմենը՝',
 'password-change-forbidden' => 'Այս վիքիում չեք կարող փոխել գաղտնաբառ։',
 'externaldberror' => 'Տեղի է ունեցել վավերացման արտաքին տվյալների բազայի սխալ, կամ դուք չունեք բավարար իրավունքներ ձեր արտաքին հաշվի փոփոխման համար։',
 'login' => 'Մտնել համակարգ',
@@ -686,14 +708,31 @@ $2',
 'logout' => 'Դուրս գալ համակարգից',
 'userlogout' => 'Ելնել համակարգից',
 'notloggedin' => 'Դուք չեք մտել համակարգ',
-'nologin' => "Դեռևս չե՞ք գրանցվել։ '''$1'''։",
-'nologinlink' => 'Ստեղծեք մասնակցային հաշիվ',
+'userlogin-noaccount' => 'Հաշիվ չունե՞ք։',
+'userlogin-joinproject' => 'Միացեք {{SITENAME}} նախագծին',
+'nologin' => "Չունե՞ք հաշիվ '''$1'''։",
+'nologinlink' => 'Ստեղծել մասնակցային հաշիվ',
 'createaccount' => 'Ստեղծել նոր հաշիվ',
 'gotaccount' => "Դուք արդեն գրանցվա՞ծ եք։ '''$1'''։",
 'gotaccountlink' => 'Մուտք գործեք համակարգ',
-'userlogin-resetlink' => 'Մոռացե՞լ եք Ձեր լոգին տվյալները։',
-'createaccountmail' => 'էլ-փոստով',
-'createaccountreason' => 'Պատճառ.',
+'userlogin-resetlink' => 'Մոռացե՞լ եք Ձեր հաշվի տվյալները։',
+'userlogin-resetpassword-link' => 'Զրոյացնել ձեր գաղտնաբառը։',
+'createacct-join' => 'Մուտքագրեք Ձեր տեղեկությունները ստորև',
+'createacct-emailrequired' => 'Էլ-փոստի հասցեն',
+'createacct-emailoptional' => 'Էլ–փոստի հասցե (ոչ պարտադիր)',
+'createacct-email-ph' => 'Մուտքագրեք ձեր էլ–փոստի հասցեն',
+'createaccountmail' => 'Օգտագործել ժամանակավոր պատահական գաղտնաբառ, որը կուղարկվի ձեր էլ–փոստի հասցեին։',
+'createacct-realname' => 'Իրական անուն (պարտադիր չէ)',
+'createaccountreason' => 'Պատճառը՝',
+'createacct-reason' => 'Պատճառ',
+'createacct-reason-ph' => 'Ինչո՞ւ եք փորձում ստեղծել մեկ այլ հաշիվ',
+'createacct-captcha' => 'Անվտանգության ստուգում',
+'createacct-imgcaptcha-ph' => 'Մուտքագրեք վերը բերված գրվածքը',
+'createacct-submit' => 'Ստեղծել ձեր հաշիվը',
+'createacct-benefit-heading' => '{{SITENAME}}՝ ստեղծված ձեր պես մարդկանց կողմից։',
+'createacct-benefit-body1' => '{{PLURAL:$1|խմբագրում}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|էջ}}',
+'createacct-benefit-body3' => 'վերջերս ակտիվ {{PLURAL:$1|մասնակից}}',
 'badretype' => 'Ձեր մուտքագրած գաղտնաբառերը չեն համընկնում։',
 'userexists' => 'Այս մասնակցի անունը արդեն զբաղված է։ Խնդրում ենք ընտրել մեկ այլ անուն։',
 'loginerror' => 'Մուտքի սխալ',
@@ -730,7 +769,7 @@ $2',
 'eauthentsent' => 'Նոր էլ-հասցեին ուղարկվել է վավերացման նամակ։
 Հետևե՛ք նամակի ցուցումներին՝ հաստատելու համար, որ այդ հասցեն ձեզ է պատկանում։ Մինչ այդ նոր հասցեին այլ նամակներ չեն կարող ուղարկվել։',
 'throttled-mailpassword' => 'Գաղտնաբառի հիշեցման ուղերձ արդեն ուղարկվել է վերջին {{PLURAL:$1|ժամվա|$1 ժամվա}} ընթացքում։ Չարաշահման կանխարգելման նպատակով թույլատրվում է միայն մեկ գաղտնաբառի հիշեցում ամեն {{PLURAL:$1|ժամվա|$1 ժամվա}} ընթացքում։',
-'mailerror' => 'Փոստի ուղարկման սխալ. $1',
+'mailerror' => 'Փոստի ուղարկման սխալ՝ $1',
 'acct_creation_throttle_hit' => 'Վերջին օրվա ընթացքում ձեր IP-հասցեից ստեղծվել է {{PLURAL:$1|1 մասնակցի հաշվիվ|$1 մասնակցի հաշվիվ}}, ինչը այս ժամանակաշրջանում առավելագույն թույլատրելի քանակն է։
 Այս պատճառով այդ IP-հասցեից այցելուները չեն կարող այլևս հաշիվ ստեղծել այս պահին։',
 'emailauthenticated' => 'Ձեր էլ-փոստի հասցեն վավերացվել է $2, $3-ին։',
@@ -748,9 +787,9 @@ $2',
 'usernamehasherror' => 'Մասնակցի անունը չի կարող պարունակել «#» նիշը։',
 'login-throttled' => 'Դուք կատարել եք չափից շատ մուտքի փորձ։
 Խնդրում ենք սպասել որոշ ժամանակ կրկին փորձելուց առաջ։',
-'loginlanguagelabel' => 'Լեզու $1',
+'loginlanguagelabel' => 'Լեզու՝ $1',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Անհայտ սխալ PHP-ի mail() ֆունկցիայում',
 'user-mail-no-addy' => 'Փորձվեց ուղարկել էլ․ նամակ առանց էլ․ հասցեի։',
 
@@ -774,13 +813,14 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Վերականգնել գաղտնաբառը',
-'passwordreset-text' => 'Լրացրեք ձևը՝ էլ-փոստով ձեր տվյալների մասին հիշեցում ստանալու համար։',
 'passwordreset-legend' => 'Վերականգնել գաղտնաբառը',
 'passwordreset-disabled' => 'Գաղտնաբառի վերականգնումը այս վիքիում թույլատրված չէ։',
-'passwordreset-username' => 'Մասնակցի անուն.',
+'passwordreset-username' => 'Մասնակցի անուն՝',
+'passwordreset-domain' => 'Դոմեն՝',
 'passwordreset-email' => 'Էլ-փոստի հասցեն՝',
-'passwordreset-emailelement' => 'Մասնակցային անուն. $1
-Ժամանակավոր գաղտնաբառ. $2',
+'passwordreset-emailtitle' => '{{SITENAME}} հաշվի մանրամասները',
+'passwordreset-emailelement' => 'Մասնակցային անունը՝ $1
+Ժամանակավոր գաղտնաբառը՝ $2',
 'passwordreset-emailsent' => 'Ուղարկվեց հիշեցնող էլ․ նամակ։',
 'passwordreset-emailsent-capture' => 'Ուղարկվեց հիշեցնող էլ․ նամակ։ Այն ներկայացված է ստորև։',
 'passwordreset-emailerror-capture' => 'Ուղարկվեց հիշեցնող էլ․ նամակ։ Այն ներկայացված է ստորև։ Սակայն մասնակցին ուղարկելը չհաջողվեց․',
@@ -791,6 +831,7 @@ $2',
 'changeemail-oldemail' => 'Ներկա էլ․ հասցե․',
 'changeemail-newemail' => 'Նոր էլ․ հասցե․',
 'changeemail-none' => '(ոչ մի)',
+'changeemail-password' => 'Քո {{SITENAME}} գաղտնաբառը՝',
 'changeemail-submit' => 'Փոխել էլ․ հասցեն',
 'changeemail-cancel' => 'Չեղարկել',
 
@@ -919,10 +960,10 @@ $2',
 
 '''Եթե սա բարեխիղճ խմբագրման փորձ է, խնդրում ենք փորձել կրկին։ Սխալի կրկնման դեպքում՝ փորձեք [[Special:UserLogout|դուրս գալ]], ապա կրկին մտնել համակարգ։'''",
 'token_suffix_mismatch' => "'''Ձեր խմբագրումը մերժվել է, քանի որ ձեր օգտագործած ծրագիրը աղավաղել է կետադրության նշանները խմբագրման դաշտում։ Խմբագրումը մերժվել է էջի տեքստի խաթարումը կանխելու նպատակով։ Սա երբեմն պայմանավորված է սխալներ պարունակող անանվանեցնող վեբ-փոխարինորդ (proxy) ծառայության օգտագործմամբ։'''",
-'editing' => 'Խմբագրում $1',
-'creating' => 'Ստեղծում $1',
-'editingsection' => 'Խմբագրում՝ $1 (բաժին)',
-'editingcomment' => 'Խմբագրում՝ $1 (նոր բաժին)',
+'editing' => 'Խմբագրվում է՝ $1 էջը',
+'creating' => 'Ստեղծվում է՝ $1 էջը',
+'editingsection' => 'Խմբագրվում է՝ $1 էջի (բաժինը)',
+'editingcomment' => 'Խմբագրվում է՝ $1 էջի (նոր բաժինը)',
 'editconflict' => 'Խմբագրման ընդհարում. $1',
 'explainconflict' => "Մեկ այլ մասնակից փոփոխել է այս տեքստը ձեր խմբագրման ընթացքում։
 Վերին խմբագրման դաշտում ընդգրկված է ընթացիկ տեքստը, որն ենթակա է հիշման։
@@ -952,8 +993,8 @@ $2',
 'templatesused' => 'Այս էջում օգտագործված {{PLURAL:$1|կաղապարը|կաղապարները}}.',
 'templatesusedpreview' => 'Այս նախադիտման մեջ օգտագործված {{PLURAL:$1|կաղապարը|կաղապարները}}.',
 'templatesusedsection' => 'Այս բաժնում օգտագործված {{PLURAL:$1|կաղապարը|կաղապարները}}.',
-'template-protected' => '(պաշտպանված)',
-'template-semiprotected' => '(կիսապաշտպանված)',
+'template-protected' => '(պաշտպանված է)',
+'template-semiprotected' => '(կիսա-պաշտպանված է)',
 'hiddencategories' => 'Այս էջը պատկանում է հետևյալ {{PLURAL:$1|1 թաքնված կատեգորիային|$1 թաքնված կատեգորիաներին}}.',
 'edittools' => '<!-- Այստեղ տեղադրված տեքստը կցուցադրվի խմբագրման և բեռնման ձևերի տակ։ -->
 <div id="Հատուկ նիշ:" class="toccolours specialchars" style="margin-top:.5em; padding: .3em .5em; font-size: 100%; color:#aaa; text-align:left;" title="{{int:bw-edittools-tooltip}}">
@@ -988,7 +1029,6 @@ $2',
 <charinsert>ټ څ ځ ډ ړ ږ ښ ګ ڼ ؤ ي ې ۍ ئ </charinsert>
 <charinsert>{{{+}}} {{+}} {{subst:+}} <noinclude>+</noinclude></charinsert>
 </p></div>',
-'nocreatetitle' => 'Էջերի ստեղծումը սահմանափակված է',
 'nocreatetext' => '{{SITENAME}} կայքում էջերի ստեղծման հնարավորությունը սահմանափակված է։
 Դուք կարող եք վերադառնալ և խմբագրել գոյություն ունեցող էջ կամ էլ [[Special:UserLogin|գրանցվել կամ մտնել համակարգ]]։',
 'nocreate-loggedin' => 'Դուք չունեք նոր էջեր ստեղծելու թույլտվություն։',
@@ -1003,12 +1043,19 @@ $2',
 'log-fulllog' => 'Դիտել ամբողջական տեղեկամատյանը',
 'edit-conflict' => 'Խմբագրման ընհարում։',
 'edit-no-change' => 'Ձեր խմբագրումը անտեսվել է, քանի որ ոչ մի փոփոխություն չի կատարվել տեքստի մեջ։',
+'postedit-confirmation' => 'Ձեր խմբագրումը պահպանված է:',
 'defaultmessagetext' => 'Լռելյան տեքստը',
+'editwarning-warning' => 'Այս էջը լքելով դուք կարող եք կորցնել ձեր կատարած փոփոխությունները։
+Եթե դուք գրանցված եք համակարգում, կարող եք անջատել այս նախազգուշացումը ձեր նախընրությունների «{{int:prefs-editing}}» բաժնում։',
+
+# Content models
+'content-model-wikitext' => 'վիքիտեքստ',
+'content-model-javascript' => 'ՋավաՍկրիպտ',
 
 # "Undo" feature
 'undo-success' => 'Խմբագրումը կարող է հետ շրջվել։ Ստուգեք տարբերակների համեմատությունը ստորև, որպեսզի համոզվեք, որ դա է ձեզ հետաքրքրող փոփոխությունը և մատնահարեք «Հիշել էջը»՝ գործողությունն ավարտելու համար։',
 'undo-failure' => 'Խմբագրումը չի կարող հետ շրջվել միջանկյալ խմբագրումների ընդհարման պատճառով։',
-'undo-summary' => 'Հետ է շրջվում $1 խմբագրումը, որի հեղինակն է՝ [[Special:Contributions/$2|$2]] ([[User talk:$2|քննարկում]])',
+'undo-summary' => 'Հետ է շրջվում $1 խմբագրումը, որի հեղինակն է՝ [[Special:Contributions/$2|$2]] ([[User talk:$2|քննարկում]]) {{GENDER:$2|մասնակիցը|մասնակցուհին}}',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Չհաջողվեց ստեղծել մասնակցային հաշիվ',
@@ -1039,7 +1086,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'histfirst' => 'Առաջին',
 'histlast' => 'Վերջին',
 'historysize' => '({{PLURAL:$1|1 բայթ|$1 բայթ}})',
-'historyempty' => '(դատարկ)',
+'historyempty' => '(դատարկ է)',
 
 # Revision feed
 'history-feed-title' => 'Փոփոխությունների պատմություն',
@@ -1135,7 +1182,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'searchmenu-legend' => 'Որոնման ընտրանքներ',
 'searchmenu-exists' => "'''Այս վիքիում, գոյություն ունի \"[[:\$1]]\" անվանումով էջը։'''",
 'searchmenu-new' => "'''Ստեղծե՛լ \"[[:\$1]]\" էջը այս վիքիում'''",
-'searchhelp-url' => 'Help:Գլխացանկ',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Ցուցադրել այս նախածանցով սկսվող էջերը]]',
 'searchprofile-articles' => 'Հիմնական էջեր',
 'searchprofile-project' => 'Օգնության և նախագծերի էջեր',
@@ -1176,14 +1222,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'powersearch-togglenone' => 'Ոչ մեկը',
 'search-external' => 'Արտաքին որոնում',
 'searchdisabled' => '{{SITENAME}} կայքի ներքին որոնումը անջատված է։ Դուք կարող եք որոնել կայքի պարունակությունը արտաքին որոնման շարժիչներով (Google, Yahoo...), սակայն, ի նկատի ունեցեք, որ կայքի իրենց ինդեքսները կարող են հնացած լինել։',
-
-# Quickbar
-'qbsettings' => 'Արագ անցման վահանակ',
-'qbsettings-none' => 'Չցուցադրել',
-'qbsettings-fixedleft' => 'Ձախից անշարժ',
-'qbsettings-fixedright' => 'Աջից անշարժ',
-'qbsettings-floatingleft' => 'Ձախից լողացող',
-'qbsettings-floatingright' => 'Աջից լողացող',
 
 # Preferences page
 'preferences' => 'Նախընտրություններ',
@@ -1258,7 +1296,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'prefs-emailconfirm-label' => 'Էլ-փոստի վավերացում․',
 'prefs-textboxsize' => 'Խմբագրման պատուհանի չափը',
 'youremail' => 'Էլեկտրոնային փոստ.',
-'username' => 'Մասնակցի անուն.',
+'username' => '{{GENDER:$1|Մասնակցի անուն}}՝',
 'uid' => 'Մասնակցի իդենտիֆիկատոր.',
 'prefs-memberingroups' => 'Անդամակցության {{PLURAL:$1|խումբ|խմբեր}}.',
 'prefs-registration' => 'Գրանցման ամսաթիվը․',
@@ -1295,7 +1333,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'prefs-displaywatchlist' => 'Ցուցադրման ընտրանքներ',
 'prefs-diffs' => 'Տարբերություններ',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Էլ. հասցեն վավերական է',
 'email-address-validity-invalid' => 'Մուտքագրեք վավերական էլ. հասցե',
 
@@ -1307,7 +1345,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'editinguser' => '<b>$1</b> մասնակցի համար ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
 'userrights-editusergroup' => 'Խմբագրել մասնակցի խմբերը',
 'saveusergroups' => 'Հիշել մասնակցի խմբերը',
-'userrights-groupsmember' => 'Անդամ է.',
+'userrights-groupsmember' => 'Անդամ է՝ $2-ին',
 'userrights-reason' => 'Պատճառ.',
 'userrights-changeable-col' => 'Խմբեր, որոնք դուք կարող եք ձևափոխել',
 
@@ -1349,15 +1387,19 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'right-upload_by_url' => 'Բեռնել նիշքեր ինտերնետային հասցեից',
 'right-delete' => 'Էջերի ջնջում',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Մասնակիցների գրանցման տեղեկամատյան',
+'newuserlogpagetext' => 'Սա նոր մասնակիցների գրանցման տեղեկամատյանն է.',
+
 # User rights log
 'rightslog' => 'Մասնակցի իրավունքների տեղեկամատյան',
 'rightslogtext' => 'Սա մասնակիցների իրավունքների փոփոխությունների տեղեկամատյանն է։',
-'rightslogentry' => '$1 մասնակցի անդամակցությունը փոխվել է $2-ից $3',
-'rightsnone' => '(ոչ մի)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'խմբագրել այս էջը',
 'action-createpage' => 'Ստեղծել էջ',
+'action-move-rootuserpages' => 'տեղափոխել մասնակցի էջի արմատը',
+'action-movefile' => 'տեղափոխել այս ֆայլը',
 'action-upload' => 'Բեռնել այս ֆայլը',
 'action-upload_by_url' => 'Բեռնել այս ֆայլը URL-ից',
 'action-delete' => 'Ջնջել այս էջը',
@@ -1469,6 +1511,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'uploadvirus' => 'Նիշքը պարունակում է վիրո՜ւս։ Տես $1',
 'upload-source' => 'Աղբյուրը ֆայլի',
 'sourcefilename' => 'Սկզբնական նիշք՝',
+'sourceurl' => 'Այդ Տեղի URL-ն՝',
 'destfilename' => 'Նիշքի նոր անվանում՝',
 'upload-description' => 'Ֆայլի մեկնաբանություն',
 'upload-options' => 'Բեռնման ընտրանքներ',
@@ -1476,6 +1519,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'filewasdeleted' => 'Այս անվանմամբ նիշք նախկինում բեռնվել է և հետագայում ջնջվել։ Այն կրկին բեռնելուց առաջ խնդրում ենք ստուգել $1։',
 'filename-bad-prefix' => "Բեռնվող նիշքի անվանումը սկսվում է '''<tt>«$1»</tt>''' արտահայտությամբ, որը ոչ-նկարագրական է և սովորաբար տրվում է թվային լուսանկարչական ապարատների կողմից։ Խնդրում ենք ընտրել ավելի նկարագրական անվանում ձեր նիշքի համար։",
 'upload-success-subj' => 'Բեռնումը կատարված է',
+'upload-failure-subj' => 'Ներբեռնման սխալ',
+'upload-warning-subj' => 'Ներբեռնման զգուշացում',
 
 'upload-proto-error' => 'Սխալ պրոտոկոլ',
 'upload-proto-error-text' => 'Հեռավոր բեռնումը պահանջում է URL-հասցե, որը սկսվում է <code>http://</code> կամ <code>ftp://</code> նախածանցով։',
@@ -1483,6 +1528,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'upload-file-error-text' => 'Տեղի ունեցավ ներքին սխալ՝ սերվերի վրա ժամանակավոր նիշք ստեղծելիս։ Խնդրում ենք կապվել համակարգային [[Special:ListUsers/sysop|ադմինիստրատորի]] հետ։',
 'upload-misc-error' => 'Բեռնման անհայտ սխալ',
 'upload-misc-error-text' => 'Տեղի ունեցավ անհայտ սխալ բեռնման ընթացքում։ Խնդրում ենք ստուգել URL-հասցեի ճշտությունն ու հասանելիությունը և փորձել կրկին։ Սխալի կրկնման դեպքում կապնվեք համակարգային ադմինիստրատորի հետ։',
+'upload-unknown-size' => 'Անհնար չափս',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL-հասցեն անհասանելի է',
@@ -1532,10 +1578,11 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'filepage-nofile' => 'Այս անունով նիշք գոյություն չունի։',
 'filepage-nofile-link' => 'Այս անունով նիշք գոյություն չունի, դուք կարող եք [$1 բեռնել այն]:',
 'uploadnewversion-linktext' => 'Բեռնել այս նիշքի նոր տարբերակ',
+'shared-repo-from' => '$1-ից',
 
 # File reversion
-'filerevert' => 'Հետ շրջել $1',
-'filerevert-legend' => 'Հետ շրջել նիշք',
+'filerevert' => 'Հետ շրջել $1-ը',
+'filerevert-legend' => 'Հետ շրջել նիշքը',
 'filerevert-intro' => "Դուք հետ եք շրջում '''[[Media:$1|$1]]''' նիշքը [$4 տարբերակի՝ $3, $2 պահով]։",
 'filerevert-comment' => 'Մեկնաբանություն.',
 'filerevert-defaultcomment' => 'Հետ է շրջվում հին տարբերակին՝ $2, $1 պահով',
@@ -1610,6 +1657,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 Փոխարենը նրանք, հավանաբար, պետք է հղեն համապատասխան թեմային։<br />
 Էջը համարվում է երկիմաստության փարատման էջ, եթե այն պարունակում է [[MediaWiki:Disambiguationspage]] էջում ընդգրկված կաղապարներից որևէ մեկը։',
 
+'pageswithprop-submit' => 'Անցնել',
+
 'doubleredirects' => 'Կրկնակի վերահղումներ',
 'doubleredirectstext' => 'Այս էջում բերված են վերահղման էջերին վերահղող էջերը։ Յուրաքանչյուր տող պարունակում է հղումներ դեպի առաջին և երկրորդ վերահղումները, ինչպես նաև երկրորդ վերահղման նպատակային էջի առաջին տողը, որում սովորաբար նշված է էջի անվանումը, որին պետք է հղի նաև առաջին վերահղումը։',
 'double-redirect-fixed-move' => '«[[$1]]» էջը վերանվանված է և այժմ վերահղում է «[[$2]]» էջին։',
@@ -1668,6 +1717,9 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'protectedpagesempty' => 'Ներկայումս չկան պաշտպանված էջեր նշված պարամետրերով։',
 'protectedtitles' => 'Պաշտպանված անվանումներ',
 'listusers' => 'Մասնակիցների ցանկ',
+'usereditcount' => ' 
+$1 {{PLURAL:$1|խմբագրում|խմբագրումներ}}',
+'usercreated' => '{{GENDER:$3|Ստեղծվել է}} $1-ին, ժամը $2-ին',
 'newpages' => 'Նոր էջեր',
 'newpages-username' => 'Մասնակից՝',
 'ancientpages' => 'Ամենահին էջերը',
@@ -1728,6 +1780,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:LinkSearch
 'linksearch' => 'Արտաքին հղումներ',
 'linksearch-ok' => 'Որոնել',
+'linksearch-line' => ' 
+$1-ը հղվել է $2 ից',
 
 # Special:ListUsers
 'listusersfrom' => 'Ցուցադրել մասնակիցներին՝ սկսած.',
@@ -1737,15 +1791,13 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:ActiveUsers
 'activeusers' => 'Ակտիվ մասնակիցների ցանկ',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Մասնակիցների գրանցման տեղեկամատյան',
-'newuserlogpagetext' => 'Սա նոր մասնակիցների գրանցման տեղեկամատյանն է.',
+'activeusers-noresult' => 'Այդպիսի մասնակիցներ չեն գտնվել։',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(անդամների ցանկ)',
+'listgrouprights-addgroup' => 'Ավելացնեել {{PLURAL:$2|խումբ|խմբեր}}՝  $1',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Ուղարկման հասցե չկա',
 'mailnologintext' => 'Անհրաժեշտ է [[Special:UserLogin|մտնել համակարգ]] և ունենալ գործող էլ-փոստի հասցե ձեր [[Special:Preferences|նախընտրություններում]]՝ ուրիշ մասնակիցներին էլեկտրոնային նամակներ ուղարկելու համար։',
 'emailuser' => 'էլ-նամակ ուղարկել այս մասնակցին',
@@ -1762,8 +1814,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'noemailtitle' => 'Չկա էլ-փոստի հասցե',
 'noemailtext' => 'Այս մասնակիցը չի նշել էլ-փոստի հասցե կամ նախընտրել է չստանալ էլ-նամակներ այլ մասնակիցներից։',
 'emailusername' => 'Մասնակցի անուն՝',
+'emailusernamesubmit' => 'Հաշվել',
 'email-legend' => 'Ուղարկել էլ․ նամակ {{SITENAME}}յի այլ մասնակցի',
-'emailfrom' => 'Ումից.',
+'emailfrom' => 'Ումից',
 'emailto' => 'Ում.',
 'emailsubject' => 'Թեմա.',
 'emailmessage' => 'Ուղերձ.',
@@ -1776,6 +1829,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Watchlist
 'watchlist' => 'Իմ հսկողության ցանկը',
 'mywatchlist' => 'Հսկացանկ',
+'watchlistfor2' => '$1 $2-ի համար',
 'nowatchlist' => 'Ձեր հսկողության ցանկը դատարկ է։',
 'watchlistanontext' => 'Անհրաժեշտ է $1՝ հսկացանկը դիտելու կամ խմբագրելու համար։',
 'watchnologin' => 'Չեք մտել համակարգ',
@@ -1793,8 +1847,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'notanarticle' => 'Հոդված չէ',
 'watchnochange' => 'Ոչ մի հսկվող էջ չի փոփոխվել ցուցադրվող ժամանակահատվածում։',
 'watchlist-details' => 'Ձեր հսկացանկում կա {{PLURAL:$1|$1 էջ|$1 էջ}}` քննարկման էջերը չհաշված։',
-'wlheader-enotif' => '* Էլ-փոստով տեղեկացումը միացված է։',
-'wlheader-showupdated' => "* Էջերը, որոնք փոփոխվել են ձեր դրանց վերջին այցից հետո բերված են '''թավատառ'''։",
+'wlheader-enotif' => 'Էլ-փոստով տեղեկացումը միացված է։',
+'wlheader-showupdated' => "Էջերը, որոնք փոփոխվել են ձեր դրանց վերջին այցից հետո բերված են '''թավատառ'''։",
 'watchmethod-recent' => 'վերջին փոփոխությունները հսկվող էջերի համար',
 'watchmethod-list' => 'հսկվող էջերի վերջին փոփոխությունները',
 'watchlistcontains' => 'Ձեր հսկացանկում կա $1 {{PLURAL:$1|էջ|էջ}}։',
@@ -1809,11 +1863,11 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 'enotif_mailer' => '{{grammar:genitive|{{SITENAME}}}} Տեղեկացման ծառայություն',
 'enotif_reset' => 'Նշել բոլոր էջերը այցելված',
-'enotif_newpagetext' => 'Սա նոր էջ է։',
 'enotif_impersonal_salutation' => '{{grammar:genitive|{{SITENAME}}}} մասնակից',
-'changed' => 'փոփոխված է',
-'created' => 'ստեղծված է',
-'enotif_subject' => '{{grammar:genitive|{{SITENAME}}}} «$PAGETITLE» էջը $CHANGEDORCREATED $PAGEEDITOR մասնակցի կողմից',
+'enotif_subject_deleted' => '{{SITENAME}} էջը $1 {{GENDER:$2|ջնջվել է}} $2-ի կողմից',
+'enotif_subject_created' => '{{SITENAME}} էջը $1 {{GENDER:$2|ստեղծվել է}} $2-ի կողմից',
+'enotif_subject_moved' => '{{SITENAME}} էջը $1 {{GENDER:$2|վերահղվել է}} $2-ի կողմից',
+'enotif_body_intro_created' => '{{SITENAME}} էջը $1 {{GENDER:$2|ստեղծվել է}} ժամը $PAGEEDITDATE-ին $2-ի կողմից, նայիր $3 ընդացիկ տարբերակը:',
 'enotif_lastvisited' => 'Տես $1՝ ձեր վերջին այցից ի վեր կատարված փոփոխությունների համար։',
 'enotif_lastdiff' => 'Տես $1՝ այս փոփոխությունը դիտելու համար։',
 'enotif_anon_editor' => 'անանուն մասնակից $1',
@@ -1839,6 +1893,8 @@ $NEWPAGE
 
 Հետադարձ կապ և օգնություն՝
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'ստեղծված է',
+'changed' => 'փոփոխված է',
 
 # Delete
 'deletepage' => 'Ջնջել էջը',
@@ -1939,9 +1995,9 @@ $NEWPAGE
 
 # Restrictions (nouns)
 'restriction-edit' => 'Խմբագրում',
-'restriction-move' => 'Տեղափոխում',
+'restriction-move' => 'Տեղափոխել',
 'restriction-create' => 'Ստեղծում',
-'restriction-upload' => 'Բեռնում',
+'restriction-upload' => 'Բեռնել',
 
 # Restriction levels
 'restriction-level-sysop' => 'լրիվ պաշտպանված',
@@ -2000,7 +2056,7 @@ $1',
 'blanknamespace' => '(Գլխավոր)',
 
 # Contributions
-'contributions' => 'Մասնակցի ներդրում',
+'contributions' => ' {{GENDER:$1|Մասնակցի}} ներդրում',
 'contributions-title' => '$1 մասնակցի ներդրումը',
 'mycontris' => 'Ներդրում',
 'contribsub2' => '$1-ի ներդրումները ($2)',
@@ -2181,6 +2237,7 @@ $1',
 
 Այսպիսի դեպքերում հարկավոր է տեղափոխել կամ միաձուլել էջերը ձեռքով, եթե դա ցանկանաք։",
 'movearticle' => 'Տեղափոխել էջը',
+'moveuserpage-warning' => "'''Զգուշացո՜ւմ՝ '''You are about to move a user page. Please note that only the page will be moved and the user will ''not'' be renamed.",
 'movenologin' => 'Դուք չեք մտել համակարգ',
 'movenologintext' => 'Անհրաժեշտ է [[Special:UserLogin|մտնել համակարգ]]՝ էջը տեղափոխելու համար։',
 'movenotallowed' => 'Դուք չունեք էջերի տեղափոխման իրավունք։',
@@ -2275,6 +2332,7 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'importhistoryconflict' => 'Գոյություն ունեցող տարբերակների ընդհարում (հավանաբար այս էջն արդեն ներմուծվել է նախկինում)',
 'importnosources' => 'Միջվիքի ներմուծման աղբյուր ընտրված չէ, իսկ փոփոխումների պատմության ուղիղ ներմուծումը անջատված է։',
 'importnofile' => 'Ներմուծման նիշք չի բեռնվել։',
+'import-upload' => 'Բեռնված է XML-ի դատան',
 
 # Import log
 'importlogpage' => 'Ներմուծման տեղեկամատյան',
@@ -2303,13 +2361,13 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'tooltip-ca-protect' => 'Պաշտպանել այս էջը',
 'tooltip-ca-delete' => 'Ջնջել այս էջը',
 'tooltip-ca-undelete' => 'Վերականգնել այս էջի խմբագրումները՝ կատարված ջնջումից առաջ',
-'tooltip-ca-move' => 'Վերանվանել էջը',
+'tooltip-ca-move' => 'Տեղափոխել այս էջը',
 'tooltip-ca-watch' => 'Ավելացնել այս էջը ձեր հսկողության ցանկին',
 'tooltip-ca-unwatch' => 'Հանել այս էջը ձեր հսկողության ցանկից',
 'tooltip-search' => 'Որոնել {{SITENAME}} կայքում',
 'tooltip-search-go' => 'Անցնել այս ճշգրիտ անվանումով էջին',
 'tooltip-search-fulltext' => 'Գտնել այս տեքստով էջերը',
-'tooltip-p-logo' => 'Գլխավոր էջ',
+'tooltip-p-logo' => 'Այցելեք Գլխավոր Էջը',
 'tooltip-n-mainpage' => 'Այցելեք Գլխավոր Էջը',
 'tooltip-n-mainpage-description' => 'Անցնել գլխավոր էջ',
 'tooltip-n-portal' => 'Նախագծի մասին, որտեղ գտնել ինչը, ինչով կարող եք օգնել',
@@ -2388,6 +2446,7 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'pageinfo-default-sort' => 'Լռելայն տեսակավորման բանալի',
 'pageinfo-length' => 'Ծավալ (բայթերով)',
 'pageinfo-article-id' => 'Էջի N',
+'pageinfo-language' => 'Բովանդակության լեզու',
 'pageinfo-robot-policy' => 'Կարգավիճակը որոնողական համակարգերում',
 'pageinfo-robot-index' => 'ինդեքսավորվող',
 'pageinfo-robot-noindex' => 'ինդեքսավորվող չէ',
@@ -2407,15 +2466,18 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'pageinfo-magic-words' => 'Մոգական {{PLURAL:$1|բառ|բառեր}} ($1)',
 'pageinfo-hidden-categories' => 'Թաքնված {{PLURAL:$1|կաղապար|կաղապարներ}} ($1)',
 'pageinfo-templates' => 'Օգտագործված {{PLURAL:$1|կաղապար|կաղապարներ}} ($1)',
+'pageinfo-toolboxlink' => 'Էջի վիճակագրություն',
+'pageinfo-redirectsto' => 'Վերահղում է դեպի',
+'pageinfo-redirectsto-info' => 'տվյալներ',
+'pageinfo-contentpage' => 'Հաշվառված որպես բովանդակային էջ',
+'pageinfo-contentpage-yes' => 'Այո',
+'pageinfo-protect-cascading-yes' => 'Այո',
 
 # Skin names
-'skinname-standard' => 'Դասական',
-'skinname-nostalgia' => 'Հայրենաբաղձություն',
 'skinname-cologneblue' => 'Քյոլնի թախիծ',
 'skinname-monobook' => 'ՄիաԳիրք',
-'skinname-myskin' => 'ԻմՏեսք',
-'skinname-chick' => 'Ծիտ',
-'skinname-simple' => 'Պարզ',
+'skinname-modern' => 'Մոդերն',
+'skinname-vector' => 'Սովորական',
 
 # Patrolling
 'markaspatrolleddiff' => 'Նշել որպես ստուգված',
@@ -2427,6 +2489,8 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'markedaspatrollederror' => 'Չհաջողվեց նշել որպես ստուգված',
 'markedaspatrollederrortext' => 'Անհրաժեշտ է ընտրել տարբերակ՝ որպես ստուգված նշելու համար։',
 'markedaspatrollederror-noautopatrol' => 'Ձեզ չի թույլատրվում ձեր կատարած փոփոխությունները նշել որպես ստուգված։',
+'markedaspatrollednotify' => 'Այս փոփոխությունը $1 էջում նշվել է ստուգված',
+'markedaspatrollederrornotify' => 'Ստուգված նշել չհաջողվեց։',
 
 # Patrol log
 'patrol-log-page' => 'Պարեկման տեղեկամատյան',
@@ -2450,6 +2514,7 @@ $1',
 'mediawarning' => "'''Զգուշացում'''. այս նիշքի տեսակը կարող է պարունակել վնասակար ծրագրային կոդ։ Այն կիրարկելը կարող է վտանգել ձեր համակարգը։",
 'imagemaxsize' => 'Պատկերի էջում պատկերի չափի սահմանափակում.',
 'thumbsize' => 'Պատկերների փոքրացված չափ.',
+'widthheight' => '$1 × $2',
 'widthheightpage' => '$1 × $2, $3 էջեր',
 'file-info' => 'նիշքի չափ՝ $1, MIME-տեսակ՝ $2',
 'file-info-size' => '$1 × $2 փիքսել, նիշքի չափը՝ $3, MIME-տեսակը՝ $4',
@@ -2506,7 +2571,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Լայնք',
 'exif-imagelength' => 'Բարձրություն',
 'exif-artist' => 'Հեղինակ',
@@ -2515,6 +2580,10 @@ $1',
 'exif-label' => 'Պիտակ',
 
 'exif-componentsconfiguration-0' => 'գոյություն չունի',
+
+'exif-urgency-normal' => 'Նորմալ ($1)',
+'exif-urgency-low' => 'Թույլ ($1)',
+'exif-urgency-high' => 'Ուժեղ ($1)',
 
 # External editor support
 'edit-externally' => 'Խմբագրել այս նիշքը արտաքին խմբագրիչով',
@@ -2526,7 +2595,7 @@ $1',
 'monthsall' => 'բոլոր',
 'limitall' => 'բոլոր',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Էլ-հասցեի վավերացում',
 'confirmemail_noemail' => 'Դուք չեք նշել գործող էլ-հասցե ձեր [[Special:Preferences|նախընտրություններում]]։',
 'confirmemail_text' => 'Այս վիքիում անհրաժեշտ է վավերացնել էլ-հասցեն մինչև էլ-փոստի վրա հիմնված հնարավորությունների օգտագործելը։ Մատնահարեք ստորև կոճակին՝ ձեր հասցեին վավերացման նամակ ուղարկելու համար։ Ուղերձում կգտնեք վավերացման կոդով հղում, որին հետևելով կվավերացնեք ձեր էլ-հասցեն։',
@@ -2645,10 +2714,6 @@ $3
 # Special:Version
 'version' => 'ՄեդիաՎիքի տարբերակը',
 
-# Special:FilePath
-'filepath-page' => 'Նիշք՝',
-'filepath-submit' => 'Անցնել',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Փնտրել կրկնօրինակ պատկերներ',
 'fileduplicatesearch-summary' => 'Փնտրել կրկնօրինակ պատկերներ՝ հեշ արժեքների հիման վրա',
@@ -2701,6 +2766,10 @@ $3
 'dberr-problems' => 'Այս կայքում առաջացել են տեխնիկական խնդիրներ։ Հայցում ենք ձեր ներողությունը։',
 'dberr-again' => 'Փորձեք մի քանի րոպե սպասել և վերաբեռնել էջը։',
 
+# HTML forms
+'htmlform-submit' => ' 
+Հաշվել',
+
 # New logging system
 'logentry-delete-delete' => '$1 ջնջեց էջը $3',
 'logentry-delete-restore' => '$1 վերականգնեց էջը $3',
@@ -2723,7 +2792,7 @@ $3
 'logentry-newusers-newusers' => '$1 մասնակիցը ստեղծեց նոր հաշիվ',
 'logentry-newusers-create' => '$1 մասնակիցը ստեղծեց նոր հաշիվ',
 'logentry-newusers-create2' => '$1 Ստեղծեց նոր հաշիվ $3',
-'newuserlog-byemail' => 'Գաղտնաբառն ուղարկված է էլ․ փոստով',
+'rightsnone' => '(ոչ մի)',
 
 # Feedback
 'feedback-subject' => 'Թեմա.',

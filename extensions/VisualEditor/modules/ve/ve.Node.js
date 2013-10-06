@@ -14,13 +14,10 @@
  * @constructor
  */
 ve.Node = function VeNode() {
-	// Mixin constructor
-	ve.EventEmitter.call( this );
-
 	// Properties
 	this.type = this.constructor.static.name;
 	this.parent = null;
-	this.root = this;
+	this.root = null;
 	this.doc = null;
 };
 
@@ -34,9 +31,13 @@ ve.Node = function VeNode() {
  * @param {ve.Node} parent
  */
 
-/* Inheritance */
+/**
+ * @event root
+ */
 
-ve.mixinClass( ve.Node, ve.EventEmitter );
+/**
+ * @event unroot
+ */
 
 /* Abstract Methods */
 
@@ -100,6 +101,22 @@ ve.Node.prototype.getOuterLength = function () {
 	throw new Error( 've.Node.getOuterLength must be overridden in subclass' );
 };
 
+/**
+ * Get the outer range of the node, which includes wrappers if present.
+ *
+ * @method
+ * @param {boolean} backwards Return a backwards range
+ * @returns {ve.Range} Node outer range
+ */
+ve.Node.prototype.getOuterRange = function ( backwards ) {
+	var range = new ve.Range( this.getOffset(), this.getOffset() + this.getOuterLength() );
+	if ( backwards ) {
+		return range.flip();
+	} else {
+		return range;
+	}
+};
+
 /* Methods */
 
 /**
@@ -139,9 +156,18 @@ ve.Node.prototype.getRoot = function () {
  *
  * @method
  * @param {ve.Node} root Node to use as root
+ * @emits root
+ * @emits unroot
  */
 ve.Node.prototype.setRoot = function ( root ) {
-	this.root = root;
+	if ( root !== this.root ) {
+		this.root = root;
+		if ( this.getRoot() ) {
+			this.emit( 'root' );
+		} else {
+			this.emit( 'unroot' );
+		}
+	}
 };
 
 /**
@@ -189,8 +215,8 @@ ve.Node.prototype.attach = function ( parent ) {
 ve.Node.prototype.detach = function () {
 	var parent = this.parent;
 	this.parent = null;
-	this.setRoot( this );
-	this.setDocument();
+	this.setRoot( null );
+	this.setDocument( null );
 	this.emit( 'detach', parent );
 };
 

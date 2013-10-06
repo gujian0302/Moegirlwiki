@@ -13,11 +13,12 @@
  * @extends ve.ui.Window
  *
  * @constructor
- * @param {ve.Surface} surface
+ * @param {ve.ui.Surface} surface
+ * @param {Object} [config] Config options
  */
-ve.ui.Inspector = function VeUiInspector( surface ) {
+ve.ui.Inspector = function VeUiInspector( surface, config ) {
 	// Parent constructor
-	ve.ui.Window.call( this, surface );
+	ve.ui.Window.call( this, surface, config );
 
 	// Properties
 	this.initialSelection = null;
@@ -42,10 +43,11 @@ ve.ui.Inspector.static.titleMessage = 've-ui-inspector-title';
  * @method
  */
 ve.ui.Inspector.prototype.initialize = function () {
-	// Call parent method
+	// Parent method
 	ve.ui.Window.prototype.initialize.call( this );
 
 	// Initialization
+	this.frame.$content.addClass( 've-ui-inspector-content' );
 	this.$form = this.$$( '<form>' );
 	this.closeButton = new ve.ui.IconButtonWidget( {
 		'$$': this.$$, 'icon': 'previous', 'title': ve.msg( 'visualeditor-inspector-close-tooltip' )
@@ -83,7 +85,7 @@ ve.ui.Inspector.prototype.onCloseButtonClick = function () {
  *
  * @method
  */
-ve.ui.Inspector.prototype.onRemoveButtonClick = function() {
+ve.ui.Inspector.prototype.onRemoveButtonClick = function () {
 	this.close( 'remove' );
 };
 
@@ -106,7 +108,7 @@ ve.ui.Inspector.prototype.onFormSubmit = function () {
  */
 ve.ui.Inspector.prototype.onFormKeyDown = function ( e ) {
 	// Escape
-	if ( e.which === 27 ) {
+	if ( e.which === ve.Keys.ESCAPE ) {
 		this.close( 'back' );
 		return false;
 	}
@@ -129,22 +131,3 @@ ve.ui.Inspector.prototype.onSetup = function () {
 ve.ui.Inspector.prototype.onOpen = function () {
 	this.initialSelection = this.surface.getModel().getSelection();
 };
-
-/**
- * Get matching annotations within a fragment.
- *
- * @method
- * @param {ve.dm.SurfaceFragment} fragment Fragment to get matching annotations within
- * @returns {ve.dm.AnnotationSet} Matching annotations
- */
-ve.ui.Inspector.prototype.getMatchingAnnotations = function ( fragment ) {
-	var constructor = this.constructor;
-
-	return fragment.getAnnotations().filter( function ( annnotation ) {
-		return ve.ui.viewRegistry.isViewRelatedToModel( constructor, annnotation );
-	} );
-};
-
-/* Initialization */
-
-ve.ui.Inspector.static.addLocalStylesheets( [ 've.ui.Inspector.css' ] );

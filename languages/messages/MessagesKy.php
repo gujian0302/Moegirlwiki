@@ -61,8 +61,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Көзөмөлдөп жаткан катышуучулардын санын көрсөтүү',
 'tog-oldsig' => 'Кезектеги кол тамга:',
 'tog-fancysig' => 'Кол тамганын өз уики-белгиси (автоматтык шилтемесиз)',
-'tog-externaleditor' => 'Тышкы редакторду жарыяланбасча колдонуу (адистер үчүн гана, компьютериңизде өзгөчө ырастоолор керек. [//www.mediawiki.org/wiki/Manual:External_editors кошумча маалымат.])',
-'tog-externaldiff' => 'Салыштыруу үчүн тышкы программаны жарыяланбасча колдонуу (адистер үчүн гана, компьютериңизде өзгөчө ырастоолор керек. [//www.mediawiki.org/wiki/Manual:External_editors кошумча маалымат.])',
 'tog-showjumplinks' => '«өтүү» деген жардамчы шилтемелерди күйгүзүү',
 'tog-uselivepreview' => 'Тез алдын ала көрсөтүүнү колдонуу (JavaScript талап кылынат) (эксперименталдык)',
 'tog-forceeditsummary' => 'Оңдоо баяндоосунун талаасы бош болгон кезинде мага алдын ала эскертүү',
@@ -175,7 +173,6 @@ $messages = array(
 'qbbrowse' => 'Карап чыгуу',
 'qbedit' => 'Оңдоо',
 'qbpageoptions' => 'Бул барак',
-'qbpageinfo' => 'Контекст',
 'qbmyoptions' => 'Барактарым',
 'qbspecialpages' => 'Кызмат барактары',
 'faq' => 'КБС',
@@ -198,6 +195,7 @@ $messages = array(
 'namespaces' => 'Аталыштар мейкиндиги',
 'variants' => 'Варианттар',
 
+'navigation-heading' => 'Навигация менюсу',
 'errorpagetitle' => 'Ката',
 'returnto' => '$1 барагына кайтуу.',
 'tagline' => '{{SITENAME}} дан',
@@ -272,7 +270,6 @@ $1',
 'disclaimers' => 'Жоопкерчиликтен баш тартуу',
 'disclaimerpage' => 'Project:Жоопкерчиликтен баш тартуу',
 'edithelp' => 'Өзгөртүү боюнча жардам',
-'edithelppage' => 'Help:Редакторлоо',
 'helppage' => 'Help:Мазмуну',
 'mainpage' => 'Башбарак',
 'mainpage-description' => 'Башбарак',
@@ -388,9 +385,9 @@ $1',
 'virus-unknownscanner' => 'белгисиз антивирус:',
 
 # Login and logout pages
-'welcomecreation' => '== Кош келиңиз, $1! ==
-
-Сиз катоодон өттүңүз. {{SITENAME}} түзөө киргизүүнү унутпаңыз.',
+'welcomeuser' => 'Кош келиңиз, $1!',
+'welcomecreation-msg' => 'Сиздин эсеп жазууңуз жаратылды.
+{{SITENAME}} сайтынын [[Special:Preferences|ырастоолорун]] өзгөртүүнү унутпаңыз.',
 'yourname' => 'Эсеп жазуусунун аты:',
 'yourpassword' => 'Сырсөз:',
 'yourpasswordagain' => 'Сырсөздү кайта терүү:',
@@ -444,7 +441,7 @@ $1',
 'login-abort-generic' => 'Сиздин кирүүңүз ийгиликтүү эмес болду - Үзүлдү',
 'loginlanguagelabel' => 'Тил: $1',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "PHP'нин mail() функциясындагы белгисиз ката.",
 
 # Change password dialog
@@ -484,6 +481,7 @@ $1',
 'changeemail-oldemail' => 'Кезектеги e-mail дарек:',
 'changeemail-newemail' => 'Жаңы e-mail дарек:',
 'changeemail-none' => '(жок)',
+'changeemail-password' => '«{{SITENAME}}» долбоору үчүн сиздин сырсөзүңүз:',
 'changeemail-submit' => "E-mail'ди өзгөртүү",
 'changeemail-cancel' => 'Жокко чыгаруу',
 
@@ -557,7 +555,6 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'template-protected' => '(корголгон)',
 'template-semiprotected' => '(жарым-жартылай корголгон)',
 'hiddencategories' => 'Бул барак {{PLURAL:$1|1 жашыруун категориянын|$1 жашыруун категориялардын}} мүчөсү:',
-'nocreatetitle' => 'Барактарды жаратуу чектелген',
 'nocreate-loggedin' => 'Жаңы барактарды жаратууга сизде уруксат жок.',
 'permissionserrors' => 'Кирүү укуктарынын каталары',
 'permissionserrorstext-withaction' => 'Сизге $2, төмөнкү {{PLURAL:$1|себеп|себеп}} менен уруксат жок:',
@@ -571,6 +568,12 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'edit-conflict' => 'Өзгөртүүлөрдүн конфликти',
 'edit-already-exists' => 'Жаңы барак түзүү мүмкүн эмес. Мындай барак бар',
 'defaultmessagetext' => 'Жарыяланбасча текст',
+
+# Content models
+'content-model-wikitext' => 'уики-текст',
+'content-model-text' => 'жөнөкөй текст',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''Эскертүү:''' Камтылган калыптардын өлчөмү өтө чоң.
@@ -678,7 +681,6 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'searchmenu-legend' => 'Издөө опциялары',
 'searchmenu-exists' => "'''Бул Уикиде \"[[:\$1]]\" деп аталган барак бар.'''",
 'searchmenu-new' => "'''Бул Уикиде \"[[:\$1]]\" барагын түз!'''",
-'searchhelp-url' => 'Help:Мазмун',
 'searchprofile-articles' => 'Негизги барактар',
 'searchprofile-project' => 'Жардам жана долбоор барактары',
 'searchprofile-images' => 'Мултимедиа',
@@ -714,14 +716,6 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'powersearch-toggleall' => 'Баары',
 'powersearch-togglenone' => 'Эчтеке',
 'search-external' => 'Тышкы издөө',
-
-# Quickbar
-'qbsettings' => 'Навигация панели',
-'qbsettings-none' => 'Көрсөтпөө',
-'qbsettings-fixedleft' => 'Жылбаган сол',
-'qbsettings-fixedright' => 'Жылбаган оң',
-'qbsettings-floatingleft' => 'Оома сол',
-'qbsettings-floatingright' => 'Оома оң',
 
 # Preferences page
 'preferences' => 'Ырастоолор',
@@ -781,8 +775,9 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'prefs-emailconfirm-label' => 'Эл. почтаны аныктоо:',
 'prefs-textboxsize' => 'Редакторлоо терезесинин өлчөмү',
 'youremail' => 'Электрондук дарек:',
-'username' => 'Колдонуучунун аты:',
-'uid' => 'Колдонуучунун ID си:',
+'username' => '{{GENDER:$1|Катышуучу аты}}:',
+'uid' => '{{GENDER:$1|Катышуучунун}} коду:',
+'prefs-memberingroups' => '{{GENDER:$2|Мүчөсү}} болгон {{PLURAL:$1|топ|топтор}}:',
 'prefs-registration' => 'Каттоо убагы:',
 'yourrealname' => 'Анык атыңыз:',
 'yourlanguage' => 'Тил:',
@@ -812,7 +807,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'prefs-displaysearchoptions' => 'Көрсөтүүнүн ырастоолору',
 'prefs-displaywatchlist' => 'Көрсөтүүнүн ырастоолору',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Эл. почтанын дареги анык көрүнөт',
 'email-address-validity-invalid' => 'Эл. почтанын анык дарегин киргизиңиз!',
 
@@ -865,8 +860,8 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'right-suppressionlog' => 'Жеке журналдарды көрүү',
 'right-userrights' => 'Бүт катышуучулардын укуктарын оңдоо',
 
-# User rights log
-'rightsnone' => '(жок)',
+# Special:Log/newusers
+'newuserlogpage' => 'Катышуучулардын каттоо журналы',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'бул баракты окуу',
@@ -1098,16 +1093,13 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'activeusers-hidesysops' => 'Администраторлорду жашыруу',
 'activeusers-noresult' => 'Катышуучулар табылган жок.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Катышуучулардын каттоо журналы',
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Топ',
 'listgrouprights-rights' => 'Укуктар',
 'listgrouprights-helppage' => 'Help:Топтордун укуктары',
 'listgrouprights-members' => '(мүчөлөрдүн тизмеси)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Бул катышуучуга кат жиберүү',
 'emailusername' => 'Катышуучунун аты:',
 'emailusernamesubmit' => 'Жөнөтүү',
@@ -1129,8 +1121,8 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'wlshowlast' => 'Соңку $1 саат $2 күн $3 көрсөтүү.',
 'watchlist-options' => 'Көзөмөл тизменин ырастоолору',
 
-'changed' => 'өзгөртүлдү',
 'created' => 'түзүлдү',
+'changed' => 'өзгөртүлдү',
 
 # Delete
 'deletepage' => 'Баракты өчүрүү',
@@ -1179,7 +1171,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'blanknamespace' => '(Негизги)',
 
 # Contributions
-'contributions' => 'Колдонуучунун салымдары',
+'contributions' => '{{GENDER:$1|Катышуучунун}} салымдары',
 'contributions-title' => '$1 үчүн катышуучунун салымдары',
 'mycontris' => 'Салымдар',
 'contribsub2' => '$1 үчүн ($2)',
@@ -1421,6 +1413,10 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'pageinfo-redirects-name' => 'Бул баракка багыттоолор',
 'pageinfo-firstuser' => 'Барактын жаратуучусу',
 'pageinfo-lastuser' => 'Акыркы редактор',
+'pageinfo-toolboxlink' => 'Барак жөнүндө маалымат',
+'pageinfo-redirectsto-info' => 'маалыматтар',
+'pageinfo-contentpage-yes' => 'Ооба',
+'pageinfo-protect-cascading-yes' => 'Ооба',
 
 # Patrol log
 'patrol-log-page' => 'Патрулдоо журналы',
@@ -1433,6 +1429,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'file-info-size' => '$1 × $2 пиксель, файлдын көлөмү: $3, MIME түрү: $4',
 'file-nohires' => 'Мындан чоңураак чечим жок.',
 'svg-long-desc' => 'SVG файл, шарттуу түрдө $1 × $2 пиксел, файлдын көлөмү: $3',
+'svg-long-error' => 'туура эмес SVG-файл: $1',
 'show-big-image' => 'Толук чечими',
 
 # Special:NewFiles
@@ -1450,6 +1447,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'hours' => '{{PLURAL:$1|$1 саат}}',
 'days' => '{{PLURAL:$1|$1 күн}}',
 'ago' => '$1 мурун',
+'just-now' => 'азыр эле',
 
 # Bad image list
 'bad_image_list' => 'Төмөнкү калыпта болуш керек:
@@ -1478,7 +1476,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Туурасы',
 'exif-imagelength' => 'Бийиктик',
 'exif-imagedescription' => 'Сүрөт аты',
@@ -1523,7 +1521,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'exif-intellectualgenre' => 'Объекттин түрү',
 'exif-subjectnewscode' => 'Теманын коду',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Кыстырылбаган',
 
 'exif-copyrighted-true' => 'Автордук укук менен корголгон',
@@ -1615,7 +1613,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'monthsall' => 'баары',
 'limitall' => 'баары',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Электрондук даректи аныктоо',
 'confirmemail_loggedin' => 'Электрондук дарегиңиз аныкталды.',
 
@@ -1674,11 +1672,6 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'version-software-product' => 'Продукт',
 'version-software-version' => 'Версия',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Файл жолу',
-'filepath-page' => 'Файл:',
-'filepath-submit' => 'Өтүү',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Файл аты:',
@@ -1741,7 +1734,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'logentry-newusers-create' => '$1 эсеп жазуусу жаратылды',
 'logentry-newusers-create2' => '$1 эсеп жазуусун жаратты',
 'logentry-newusers-autocreate' => 'Автоматтуу түрдө $1 эсеп жазуусу жаратылды',
-'newuserlog-byemail' => 'сырсөз эл. почта аркылуу жөнөтүлдү',
+'rightsnone' => '(жок)',
 
 # Feedback
 'feedback-subject' => 'Тема:',

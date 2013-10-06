@@ -1,4 +1,8 @@
-( function( $ ) {
+/**
+ * jQuery plugin for collapsing LiquidThreads elements.
+ */
+
+( function ( $ ) {
 	'use strict';
 
 	$.fn.thread_collapse = function( $$options ) {
@@ -33,15 +37,14 @@
 						.bind( 'click.thread_collapse', $.thread_collapse.fn.toggleCollapse )
 						.end() );
 			},
-			// FIXME - appends parent nodes twice...bad logic here
 			'getPreview': function( thread, depth ) {
 				var $out = $( '<ul />' )
 					.addClass( 'thread-collapse-preview' )
 					.addClass( 'thread-collapse-preview-depth-' + depth )
 					.append( $( '<li />' )
-						.append( thread.find( '.lqt-post-wrapper:first .lqt-thread-signature' ).clone() )
+						.append( thread.find( '> .lqt-post-wrapper > .lqt-thread-signature' ).clone() )
 					);
-				thread.find( '.lqt-thread-replies' ).children( '.lqt_thread' ).each( function() {
+				thread.find( '> .lqt-thread-replies > .lqt_thread' ).each( function() {
 					$out.append( $.thread_collapse.fn.getPreview( $( this ), depth + 1 ) );
 				} );
 				return $out;
@@ -52,25 +55,25 @@
 					// expand!
 					$thread
 						.removeClass( 'collapsed_thread' )
-						.children()
+						.children( '.lqt-post-wrapper, .lqt-thread-replies' )
 						.show()
 						.parent()
 						.children( '.thread-collapsed-preview' )
 						.hide();
-				} else { 
-					// collapse! 
+				} else {
+					// collapse!
 					// if the thread preview already exists, don't bother recreating it
-					if( $thread.children( '.thread-collapsed-preview' ).size() > 0 ) {
+					if ( $thread.children( '.thread-collapsed-preview' ).length > 0 ) {
 						$thread
 							.addClass( 'collapsed_thread' )
-							.children()
+							.children( '.lqt-post-wrapper, .lqt-thread-replies' )
 							.hide()
 							.end()
 							.children( '.thread-collapsed-preview' )
 							.show();
 					} else {
 						// counter for the number of replies
-						var numReplies =  $thread.find( '.lqt_thread' ).size() + 1;
+						var numReplies =  $thread.find( '.lqt_thread' ).length + 1;
 						// create the thread preview we'll use in the collapsed state
 						var $preview = $( '<div class="thread-collapsed-preview"></div>' )
 							.addClass( 'lqt-post-wrapper' )
@@ -86,7 +89,7 @@
 							.append( $.thread_collapse.fn.getPreview( $thread, 0 ) );
 						// hide the other elements of the thread, and append the collapsed preview
 						$thread
-							.children()
+							.children( '.lqt-post-wrapper, .lqt-thread-replies' )
 							.hide()
 							.end()
 							.addClass( 'collapsed_thread' )

@@ -17,7 +17,7 @@
  * @constructor
  * @param {ve.ui.TextInputWidget} input Input widget
  * @param {Object} [config] Config options
- * @cfg {jQuery} [$overlay=this.$$( 'body' )] Element to append menu to
+ * @cfg {jQuery} [$overlay=this.$$( '.ve-surface-overlay-local:last' )] Overlay layer
  */
 ve.ui.LookupInputWidget = function VeUiLookupInputWidget( input, config ) {
 	// Config intialization
@@ -25,9 +25,9 @@ ve.ui.LookupInputWidget = function VeUiLookupInputWidget( input, config ) {
 
 	// Properties
 	this.lookupInput = input;
-	this.$overlay = config.$overlay || this.$$( 'body' );
+	this.$overlay = config.$overlay || this.$$( '.ve-surface-overlay-local:last' );
 	this.lookupMenu = new ve.ui.TextInputMenuWidget( this, {
-		'$$': ve.ui.get$$( this.$overlay ),
+		'$$': ve.Element.get$$( this.$overlay ),
 		'input': this.lookupInput,
 		'$container': config.$container
 	} );
@@ -101,7 +101,7 @@ ve.ui.LookupInputWidget.prototype.onLookupInputChange = function () {
 ve.ui.LookupInputWidget.prototype.openLookupMenu = function () {
 	var value = this.lookupInput.getValue();
 
-	if ( value.length && $.trim( value ) !== '' ) {
+	if ( this.lookupMenu.$input.is( ':focus' ) && $.trim( value ) !== '' ) {
 		this.populateLookupMenu();
 		if ( !this.lookupMenu.isVisible() ) {
 			this.lookupMenu.show();
@@ -125,8 +125,11 @@ ve.ui.LookupInputWidget.prototype.populateLookupMenu = function () {
 	this.lookupMenu.clearItems();
 
 	if ( items.length ) {
+		this.lookupMenu.show();
 		this.lookupMenu.addItems( items );
 		this.initializeLookupMenuSelection();
+	} else {
+		this.lookupMenu.hide();
 	}
 
 	return this;
@@ -140,7 +143,7 @@ ve.ui.LookupInputWidget.prototype.populateLookupMenu = function () {
  */
 ve.ui.LookupInputWidget.prototype.initializeLookupMenuSelection = function () {
 	if ( !this.lookupMenu.getSelectedItem() ) {
-		this.lookupMenu.selectItem( this.lookupMenu.getClosestSelectableItem( 0 ), true );
+		this.lookupMenu.selectItem( this.lookupMenu.getFirstSelectableItem(), true );
 	}
 	this.lookupMenu.highlightItem( this.lookupMenu.getSelectedItem() );
 };
@@ -174,13 +177,10 @@ ve.ui.LookupInputWidget.prototype.getLookupMenuItems = function () {
 					this.lookupCache[value] = this.getLookupCacheItemFromData( data );
 					this.openLookupMenu();
 				}, this ) );
-			// Support pending input widgets
-			if ( ve.isMixedIn( this.lookupInput, ve.ui.PendingInputWidget ) ) {
-				this.pushPending();
-				this.lookupRequest.always( ve.bind( function () {
-					this.popPending();
-				}, this ) );
-			}
+			this.pushPending();
+			this.lookupRequest.always( ve.bind( function () {
+				this.popPending();
+			}, this ) );
 		}
 	}
 	return [];
@@ -191,7 +191,7 @@ ve.ui.LookupInputWidget.prototype.getLookupMenuItems = function () {
  *
  * @method
  * @abstract
- * @returns {jQuery.Deferred} Deferred object
+ * @returns {jqXHR} jQuery AJAX object, or promise object with an .abort() method
  */
 ve.ui.LookupInputWidget.prototype.getLookupRequest = function () {
 	// Stub, implemented in subclass

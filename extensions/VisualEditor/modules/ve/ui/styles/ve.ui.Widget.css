@@ -14,15 +14,19 @@
 	background-repeat: no-repeat;
 	cursor: pointer;
 	opacity: 0.8;
-	-webkit-transition: opacity 100ms;
-	-moz-transition: opacity 100ms;
-	-ms-transition: opacity 100ms;
-	-o-transition: opacity 100ms;
-	transition: opacity 100ms;
+	-webkit-transition: opacity 200ms;
+	-moz-transition: opacity 200ms;
+	-ms-transition: opacity 200ms;
+	-o-transition: opacity 200ms;
+	transition: opacity 200ms;
 }
 
 .ve-ui-iconButtonWidget:hover {
 	opacity: 1;
+}
+
+.ve-ui-iconButtonWidget.ve-ui-widget-disabled {
+	opacity: 0.2;
 }
 
 /* ve.ui.ButtonWidget */
@@ -81,7 +85,6 @@
 
 .ve-ui-widget-disabled.ve-ui-buttonWidget,
 .ve-ui-widget-disabled.ve-ui-buttonWidget:active {
-	filter: alpha(opacity=25);
 	opacity: 0.5;
 	cursor: default;
 	box-shadow: none;
@@ -157,6 +160,7 @@
 /* ve.ui.OptionWidget */
 
 .ve-ui-optionWidget {
+	position: relative;
 	display: block;
 	border: none;
 	list-style: none;
@@ -166,19 +170,37 @@
 }
 
 .ve-ui-optionWidget .ve-ui-labeledElement-label {
+	line-height: 1.5em;
 	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
-.ve-ui-optionWidget-highlighted {
+.ve-ui-optionWidget-highlighted,
+.ve-ui-optionWidget-selected {
 	background-color: #b3d6f6;
+}
+
+.ve-ui-optionWidget.ve-ui-widget-disabled {
+	cursor: default;
+}
+
+.ve-ui-optionWidget .ve-ui-optionWidget-icon {
+	position: absolute;
+	top: 50%;
+	left: 0.5em;
+	width: 2em;
+	height: 2em;
+	margin-top: -1em;
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 
 /* ve.ui.OutlineItemWidget */
 
 .ve-ui-outlineItemWidget {
-	padding: 1.25em 1.25em 1.25em 3.5em;
-	background-position: 1em center;
-	background-repeat: no-repeat; 
+	position: relative;
+	padding: 0.75em 0.75em 0.75em 3.5em;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -187,16 +209,94 @@
 	font-size: 1.1em;
 }
 
+.ve-ui-outlineItemWidget-level-1 {
+	padding-left: 5em;
+}
+
+.ve-ui-outlineItemWidget-level-2 {
+	padding-left: 6.5em;
+}
+
 .ve-ui-outlineItemWidget.ve-ui-optionWidget-selected {
 	background-color: #a7dcff;
 	text-shadow: 0 1px 1px rgba(255,255,255,0.5);
 }
 
+.ve-ui-outlineItemWidget-level-0 .ve-ui-optionWidget-icon {
+	left: 1em;
+}
+
+.ve-ui-outlineItemWidget-level-1 .ve-ui-optionWidget-icon {
+	left: 2.5em;
+}
+
+.ve-ui-outlineItemWidget-level-2 .ve-ui-optionWidget-icon {
+	left: 4em;
+}
+
+/* ve.ui.OutlineControlsWidget */
+
+.ve-ui-outlineControlsWidget {
+	height: 3em;
+	background-color: #fff;
+}
+
+.ve-ui-outlineControlsWidget-adders,
+.ve-ui-outlineControlsWidget-movers {
+	float: left;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	height: 3em;
+	padding: 0.5em;
+}
+
+.ve-ui-outlineControlsWidget-adders {
+	float: left;
+}
+.ve-ui-outlineControlsWidget-movers {
+	float: right;
+}
+
+.ve-ui-outlineControlsWidget-adders .ve-ui-iconButtonWidget {
+	float: left;
+}
+
+.ve-ui-outlineControlsWidget-movers .ve-ui-iconButtonWidget {
+	float: right;
+}
+
+.ve-ui-outlineControlsWidget-adders:not(:hover) .ve-ui-iconButtonWidget:not(:first-child) {
+	opacity: 0;
+}
+
+.ve-ui-outlineControlsWidget-adders:hover .ve-ui-iconButtonWidget:first-child {
+	opacity: 0.25;
+	cursor: default;
+}
+
+/* ve.ui.InputLabelWidget */
+
+.ve-ui-inputLabelWidget {
+	padding: 0.5em 0;
+}
+
 /* ve.ui.TextInputWidget */
+
+.ve-ui-textInputWidget {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 20em;
+	position: relative;
+}
 
 .ve-ui-textInputWidget input,
 .ve-ui-textInputWidget input:focus[readonly],
-.ve-ui-widget-disabled.ve-ui-textInputWidget input:focus {
+.ve-ui-widget-disabled.ve-ui-textInputWidget input:focus,
+.ve-ui-textInputWidget textarea,
+.ve-ui-textInputWidget textarea:focus[readonly],
+.ve-ui-widget-disabled.ve-ui-textInputWidget textarea:focus {
 	display: inline-block;
 	font-size: 1em;
 	font-family: sans-serif;
@@ -205,6 +305,11 @@
 	box-shadow: 0 0 0 white, inset 0 0.1em 0.2em #ddd;
 	padding: 0.5em;
 	border-radius: 0.25em;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	resize: none;
 
 	/* Animation */
 	-webkit-transition: border-color 200ms, box-shadow 200ms, background-color 200ms;
@@ -214,22 +319,46 @@
 	transition: border-color 200ms, box-shadow 200ms, background-color 200ms;
 }
 
-.ve-ui-textInputWidget input:focus {
+.ve-ui-textInputWidget-pending input,
+.ve-ui-textInputWidget-pending textarea {
+	background-color: transparent;
+}
+
+.ve-ui-textInputWidget input:focus,
+.ve-ui-textInputWidget textarea:focus {
 	outline: none;
 	border-color: #a7dcff;
 	box-shadow: 0 0 0.3em #a7dcff, 0 0 0 white;
 	background-color: #fff;
 }
 
-.ve-ui-textInputWidget input[readonly] {
+.ve-ui-textInputWidget input[readonly],
+.ve-ui-textInputWidget textarea[readonly] {
 	color: #777;
 	text-shadow: 0 1px 1px #fff;
 }
 
 .ve-ui-widget-disabled.ve-ui-textInputWidget input,
-.ve-ui-widget-disabled.ve-ui-textInputWidget input:focus {
+.ve-ui-widget-disabled.ve-ui-textInputWidget input:focus,
+.ve-ui-widget-disabled.ve-ui-textInputWidget textarea,
+.ve-ui-widget-disabled.ve-ui-textInputWidget textarea:focus {
 	color: #ccc;
 	text-shadow: 0 1px 1px #fff;
+}
+
+.ve-ui-textInputWidget-decorated input,
+.ve-ui-textInputWidget-decorated textarea {
+	padding-left: 2em;
+}
+
+.ve-ui-textInputWidget-icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 2em;
+	height: 100%;
+	background-position: right center;
+	background-repeat: no-repeat;
 }
 
 /* ve.ui.MenuWidget */
@@ -238,7 +367,6 @@
 	position: absolute;
 	background: #fff;
 	margin-top: -1px;
-	z-index: 101;
 	border: solid 1px #ccc;
 	border-radius: 0 0 0.25em 0.25em;
 	box-shadow: 0 0.15em 1em 0 rgba(0, 0, 0, 0.2);
@@ -255,8 +383,19 @@
 /* ve.ui.MenuItemWidget */
 
 .ve-ui-menuItemWidget {
-	background-position: 1em center;
-	background-repeat: no-repeat;
+	position: relative;
+}
+
+.ve-ui-menuItemWidget.ve-ui-optionWidget-selected:not(.ve-ui-optionWidget-highlighted) {
+	background-color: transparent;
+}
+
+.ve-ui-menuItemWidget .ve-ui-optionWidget-icon {
+	display: none;
+}
+
+.ve-ui-menuItemWidget.ve-ui-optionWidget-selected .ve-ui-optionWidget-icon {
+	display: block;
 }
 
 /* ve.ui.MenuSectionItemWidget */
@@ -265,35 +404,6 @@
 	padding: 0.33em 0.75em;
 	color: #888;
 	cursor: default;
-}
-
-/* ve.ui.PendingInputWidget */
-
-.ve-ui-pendingInputWidget input {
-	background-image: url(images/pending.gif);
-}
-
-/* ve.ui.MWLinkTargetInputWidget */
-
-.ve-ui-mwLinkTargetInputWidget-menu {
-	width: 20em;
-	margin-top: -7px;
-	font-size: 0.8em;
-}
-
-.ve-ui-mwLinkTargetInputWidget-menu .ve-ui-menuWidget-item {
-	padding: 0.33em 1.25em;
-	color: #0645AD;
-}
-
-.ve-ui-mwLinkTargetInputWidget-menu .ve-ui-menuItemWidget[rel=newPage] {
-	color: #BA0000;
-}
-
-.ve-ui-mwLinkTargetInputWidget-menu .ve-ui-menuItemWidget[rel=existingPage],
-.ve-ui-mwLinkTargetInputWidget-menu .ve-ui-menuItemWidget[rel=matchingPage],
-.ve-ui-mwLinkTargetInputWidget-menu .ve-ui-menuItemWidget[rel=externalLink] {
-	color: #0645AD;
 }
 
 /* ve.ui.PopupWidget */
@@ -306,7 +416,6 @@
 	width: 15px;
 	height: 8px;
 	margin-left: -7px;
-	z-index: 4;
 }
 
 .ve-ui-popupWidget-body {
@@ -337,158 +446,31 @@
 	outline: none;
 }
 
-/* ve.ui.CategoryListWidget */
+/* ve.ui.SearchWidget */
 
-.ve-ui-mwCategoryListWidget {
-	border: 1px solid #CCC;
-	border-radius: .25em;
-	padding: .75em;
-}
-
-.ve-ui-mwCategoryInputWidget {
-	float: left;
-}
-
-/* ve.ui.CategoryListItemWidget */
-
-.ve-ui-mwCategoryListItemWidget {
-	position: relative;
-	float: left;
-	margin: .25em;
-}
-
-.ve-ui-mwCategoryListItemButton {
-	position: relative;
-	padding: .5em .75em .5em 1.125em;
-	vertical-align: top;
-	cursor: pointer;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	opacity: 0.8;
-	/* Animation */
-	-webkit-transition: border-color 100ms;
-	-moz-transition: border-color 100ms;
-	-ms-transition: border-color 100ms;
-	-o-transition: border-color 100ms;
-	transition: border-color 100ms;
-
-	/* Gray */
-	border-radius: 1.25em;
-	border: 1px #c9c9c9 solid;
-	background-color: #ffffff;
-	filter: progid:DXImageTransform.Microsoft.gradient(
-		GradientType=0,startColorstr=#ffffff, endColorstr=#f0f0f0
-	);
-	background-image: -webkit-gradient(
-		linear, right top, right bottom, color-stop(0%,#ffffff), color-stop(100%,#f0f0f0)
-	);
-	background-image: -webkit-linear-gradient(top, #ffffff 0%, #f0f0f0 100%);
-	background-image: -moz-linear-gradient(top, #ffffff 0%, #f0f0f0 100%);
-	background-image: -ms-linear-gradient(top, #ffffff 0%, #f0f0f0 100%);
-	background-image: -o-linear-gradient(top, #ffffff 0%, #f0f0f0 100%);
-	background-image: linear-gradient(top, #ffffff 0%, #f0f0f0 100%);
-}
-
-.ve-ui-mwCategoryListItemButton:hover {
-	opacity: 1;
-}
-
-.ve-ui-mwCategoryListItemButton span {
-	float: left;
-	color: #333;
-}
-
-.ve-ui-mwCategoryListItemButton:active {
-	border-color: #ddd;
-	box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07);
-	color: black;
-}
-
-.ve-ui-mwCategoryListItemControl {
-	margin: .125em 0 0 .5em;
-	float: left;
-	width: 12px;
-	height: 12px;
-}
-
-.ve-ui-mwCategoryInputMenuWidget, .ve-ui-mwCategoryPopupMenu {
-	z-index:301;
-}
-
-.ve-ui-mwCategoryPopupMenu .ve-ui-popupWidget-body {
-	padding: 0.75em 0.5em;
-}
-/* ve.ui.CategoryInputWidget */
-
-.ve-ui-mwCategoryInputWidget {
-	float: left;
-}
-
-.ve-ui-mwCategoryInputWidget input {
-	display: inline-block;
-	font-size: 1.1em;
-	font-family: sans-serif;
-	background: none;
-	/* HACK: to match the categoryListItem height */
-	border: 1px solid #fff;
-	outline: none;
-	padding: 0.5em;
-}
-
-.ve-ui-mwCategoryPopupMenu {
+.ve-ui-searchWidget-query {
 	position: absolute;
-	z-index: 301;
-	margin-top: -10px;
-}
-
-.ve-ui-mwCategoryPopupMenu .ve-ui-iconButtonWidget {
-	display:block;
-	float: left;
-}
-
-.ve-ui-mwCategoryPopupMenu label {
-	opacity: .8;
-	display: block;
-}
-
-.ve-ui-mwCategoryPopupTitle {
-	background-position: left center;
-	background-repeat: no-repeat;
-	padding: 0.125em 0.5em 0.5em 2.25em;
-	margin: 0 0 1em 0.125em;
-}
-
-.ve-ui-mwCategoryPopupMenu .ve-ui-removeButtonLabel:hover {
-	opacity: 1;
-}
-
-.ve-ui-mwCategoryRemoveButton {
-	position: absolute;
-	margin-right: 2px;
-	padding: 0.5em;
-	right: 0;
 	top: 0;
+	left: 0;
+	right: 0;
+	height: 4em;
+	padding: 0 1em;
+	box-shadow: 0 0 0.5em rgba(0,0,0,0.2);
 }
 
-.ve-ui-mwCategorySortkeyForm {
-	padding: 0.5em;
-	display: block;
+.ve-ui-searchWidget-query .ve-ui-textInputWidget {
+	width: 100%;
+	margin: 0.75em 0;
 }
 
-.ve-ui-mwCategorySortkeyForm .ve-ui-inputLabelWidget {
-	padding: 0 0.125em 0.5em 0.125em;
-}
-
-/* RTL Definitions */
-
-/* @noflip */
-.ve-ui-rtl {
-	direction: rtl;
-}
-/* @noflip */
-.ve-ui-ltr {
-	direction: ltr;
+.ve-ui-searchWidget-results {
+	position: absolute;
+	top: 4em;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 1em;
+	overflow-x: hidden;
+	overflow-y: auto;
+	line-height: 0;
 }

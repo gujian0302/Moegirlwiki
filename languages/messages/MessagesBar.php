@@ -9,6 +9,7 @@
  *
  * @author Als-Holder
  * @author Bua333
+ * @author Geitost
  * @author Malafaya
  * @author Man77
  * @author Merlissimo
@@ -21,6 +22,41 @@
  */
 
 $fallback = 'de';
+
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Spezial',
+	NS_TALK             => 'Dischkrian',
+	NS_USER             => 'Nutza',
+	NS_USER_TALK        => 'Nutza_Dischkrian',
+	NS_PROJECT_TALK     => '$1_Dischkrian',
+	NS_FILE             => 'Datei',
+	NS_FILE_TALK        => 'Datei_Dischkrian',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_Dischkrian',
+	NS_TEMPLATE         => 'Vorlog',
+	NS_TEMPLATE_TALK    => 'Vorlog_Dischkrian',
+	NS_HELP             => 'Huif',
+	NS_HELP_TALK        => 'Huif_Dischkrian',
+	NS_CATEGORY         => 'Kategorie',
+	NS_CATEGORY_TALK    => 'Kategorie_Dischkrian',
+);
+
+$namespaceAliases = array(
+	# German namespaces
+	'Medium'               => NS_MEDIA,
+	'Diskussion'           => NS_TALK,
+	'Benutzer'             => NS_USER,
+	'Benutzer_Diskussion'  => NS_USER_TALK,
+	'$1_Diskussion'        => NS_PROJECT_TALK,
+	'Datei_Diskussion'     => NS_FILE_TALK,
+	'MediaWiki_Diskussion' => NS_MEDIAWIKI_TALK,
+	'Vorlage'              => NS_TEMPLATE,
+	'Vorlage_Diskussion'   => NS_TEMPLATE_TALK,
+	'Hilfe'                => NS_HELP,
+	'Hilfe_Diskussion'     => NS_HELP_TALK,
+	'Kategorie_Diskussion' => NS_CATEGORY_TALK,
+);
 
 $messages = array(
 # User preference toggles
@@ -53,8 +89,6 @@ $messages = array(
 'tog-shownumberswatching' => "D' Åzoi voh dé beówochterden Benutzer åzoang",
 'tog-oldsig' => 'Existente Unterschrift',
 'tog-fancysig' => 'Unterschrift ois Wikitext bhåndln (óne autómaatische Valinkung)',
-'tog-externaleditor' => "An externen Editor ois Standard bnutzen (netter fyr Experten, braucht spezielle Eihstellungen auf'm eigernen Computer)",
-'tog-externaldiff' => "A externs Programm fyr Versionsunterschiad ois Standard bnutzen (netter fyr Experten, dafordert spezielle Eihstellungen auf'm eiganen Computer)",
 'tog-showjumplinks' => '„Wexeln zu“-Links aktivirn',
 'tog-uselivepreview' => 'Live-Vurschau nutzen (dodafyr braucht ma JavaScript) (experimentoy)',
 'tog-forceeditsummary' => 'Warnen, wånn ban Speichern dé Zåmmerfossung fööd',
@@ -68,6 +102,7 @@ $messages = array(
 'tog-diffonly' => "Zoag beim Versiónsvagleich netter dé Unterschiad und néd d' voiständige Seiten",
 'tog-showhiddencats' => 'Vasteckte Kategorien åzoang',
 'tog-norollbackdiff' => "Unterschiad noch'm Zrucksetzen unterdrucker",
+'tog-useeditwarning' => ' A Warung geem, sofern a zur da Beorweitung geffnate Seiten valossen werd, de ned gspeicherde Änderrungen enthoit.',
 
 'underline-always' => 'oiwei',
 'underline-never' => 'nia',
@@ -167,7 +202,6 @@ $messages = array(
 'qbbrowse' => 'Blaadeln',
 'qbedit' => 'werkeln',
 'qbpageoptions' => 'Seitenopzionen',
-'qbpageinfo' => 'Seitendaaten',
 'qbmyoptions' => 'Meine Seiten',
 'qbspecialpages' => 'Speziaalseiten',
 'faq' => 'Oft gstejte Frong',
@@ -264,7 +298,6 @@ $1",
 'disclaimers' => 'Impressum',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Huif fias Werkln',
-'edithelppage' => 'Help:Werkln',
 'helppage' => 'Help:Inhoidsvazeichnis',
 'mainpage' => 'Hoamseitn',
 'mainpage-description' => 'Hoamseitn',
@@ -414,12 +447,8 @@ $2",
 # Login and logout pages
 'logouttext' => "'''Iatzerd bist obgmödt.'''
 
-Du kåst {{SITENAME}} iatzerd anónym weiderdoah, óder di danaid unterm söwing óder am åndern Benutzernåm [[Special:UserLogin|åmöden]].
+Du kåst {{SITENAME}} iatzerd anónym weiderdoah, óder di danaid unterm söwing óder am åndern Benutzernåm <span class='plainlinks'>[$1 åmöden]</span>.
 Beochtt ower, daas oanige Seiten noh åzoang kennern, daas du ågmödt bist, sólång du néd deih Browsercache glaard host.",
-'welcomecreation' => '== Servas, $1! ==
-
-Deih Benutzerkontó is grood eihgrichtt worn.
-Vagiss bittscheh néd, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] åzpassen',
 'yourname' => 'Nutzanama:',
 'yourpassword' => 'Passwort:',
 'yourpasswordagain' => 'Es Passwort no amoi eigebm',
@@ -435,7 +464,7 @@ Vagiss bittscheh néd, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] 
 'logout' => 'Obmöden',
 'userlogout' => 'Auslogga',
 'notloggedin' => 'Ned ågmödt',
-'nologin' => "Du host koa Nutzakonto? '''$1'''.",
+'nologin' => 'Du host koa Nutzakonto? $1.',
 'nologinlink' => 'A neichs Nutzakonto olegn',
 'createaccount' => 'Nutzakonto olegn',
 'gotaccount' => "Hosd scho a Nutzakonto? '''$1'''.",
@@ -573,7 +602,6 @@ Zur Informazion foigt da aktuöie Logbuachaitrog:",
 'template-protected' => '(schreibgschitzt)',
 'template-semiprotected' => '(schreibgschitzt fia ned-ogmejdte Nutza)',
 'hiddencategories' => 'De Seitn is in {{PLURAL:$1|a vasteckde Kategorie|$1 vasteckde Kategorina}} eisortiad:',
-'nocreatetitle' => 'De Erstöiung vo naiche Saiten is aigschränkt.',
 'nocreate-loggedin' => "Du host koah Berechtigung, neiche Seiten z' erstön.",
 'permissionserrors' => 'Berechtigungsfeeler',
 'permissionserrorstext' => 'Du bist néd berechtigt, dé Akzión auszfyrn.  {{PLURAL:$1|Grund|Grynd}}:',
@@ -585,6 +613,8 @@ Bittschee ibaleg da genau, obs sinnvoi is de Seitn ozlegn.
 Des Lesch- und Vaschiab-Logbuach dazua findsd do:",
 'moveddeleted-notice' => 'De Seitn do is glescht worn. Es foigt a Auszug ausm Lesch- und Vaschiabungs-Logbuch vo dea Seitn.',
 'edit-conflict' => 'Konflikt ban Beorwaten.',
+'editwarning-warning' => "'s Valossen vo derer Seiten kå dodazua fyrn, daas d' Änderrungen valurn geengan.
+Ois ågmödter Benutzer kå's Åzoang vo derer Warnung im \"Beorweiten\"-Bereich vo de Eistellungen obgschoiden wern.",
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => 'Obocht: De Gress vo eibundne Vorlong is z gross.
@@ -761,6 +791,9 @@ Dei Mail-Adress wead dabei ned ozoagt.',
 'right-read' => 'Seiten leesen',
 'right-edit' => 'Seiten beorweiten',
 'right-block' => 'Benutzer sperrn (Schreiwrecht)',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Neiomejdungs-Logbuach',
 
 # User rights log
 'rightslog' => 'Rechte-Logbiache',
@@ -1051,9 +1084,6 @@ Links as Naumensraim wern do néd afglistt.",
 'listusers-submit' => 'Zoag',
 'listusers-noresult' => 'Koane Benutzer gfunden.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Neiomejdungs-Logbuach',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Benutzergruppmrechtt',
 'listgrouprights-summary' => 'Dés do is a Listen voh dé in dém Wiki definierden Benutzergruppm und da dodamid vabundernen Rechtt.
@@ -1072,7 +1102,7 @@ Zuasätzlige Informaziónen ywer dé oahzelnen Rechtt kennan [[{{MediaWiki:Listg
 'listgrouprights-removegroup-self' => "'s oagerne Benutzerkóntó aus {{PLURAL:$2|derer Gruppm|dé Gruppm}} entferner: $1",
 'listgrouprights-addgroup-self-all' => 'Kauh olle Gruppm zum oagern Kóntó dazuadoah',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Du bist néd auhgmödt',
 'emailuser' => 'Mail an den Nutza',
 'emailpage' => 'E-Mail aun Benutzer',
@@ -1115,8 +1145,8 @@ Waunnst dé Seiten wieder voh deiner Beówochtungslisten weggerddoah mechst, dru
 'notvisiblerev' => 'Versión is gléschd worn',
 'watchnochange' => 'Koahne dé voh dir beówochterden Seiten san wärnd dém auhzoagten Zeidraum beorwatt worn.',
 'watchlist-details' => 'Du beoochst {{PLURAL:$1|$1 Seitn}}, Dischkriaseitn ned mitgrechnad',
-'wlheader-enotif' => '* Da E-Mail-Benoochrichtigungsdeanst is aktivierd.',
-'wlheader-showupdated' => "* Seiten mid noh néd gseengne Änderrungen wern '''fett''' dorgstöd.",
+'wlheader-enotif' => 'Da E-Mail-Benoochrichtigungsdeanst is aktivierd.',
+'wlheader-showupdated' => "Seiten mid noh néd gseengne Änderrungen wern '''fett''' dorgstöd.",
 'watchmethod-recent' => "Ywerpriaff d' létzden Beorwatungen fyr d' Beówochtungslisten",
 'watchmethod-list' => 'Ywerpriaffm voh da Beówochtungslisten auf létzde Beorwatungen',
 'watchlistcontains' => 'Deih Beówochtungslisten enthoitt $1 {{PLURAL:$1|Seiten|Seiten}}.',
@@ -1132,11 +1162,7 @@ Waunnst dé Seiten wieder voh deiner Beówochtungslisten weggerddoah mechst, dru
 
 'enotif_mailer' => '{{SITENAME}}-E-Mail-Benoochrichtigungsdeanst',
 'enotif_reset' => 'Olle Seiten ois bsuacht markiern',
-'enotif_newpagetext' => 'Dés is a neiche Seiten.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benutzer',
-'changed' => 'gänderd',
-'created' => 'erstöd',
-'enotif_subject' => '[{{SITENAME}}] Dé Seiten „$PAGETITLE“ is voh $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => 'Olle Änderrungen auf oan Blick: $1',
 'enotif_lastdiff' => 'Schaug auf $1 noch derer Änderrung.',
 'enotif_anon_editor' => 'Anonymer Benutzer $1',
@@ -1165,6 +1191,8 @@ Um d\' Eihstöungen voh deine Beówochtungslisten åzpassen, bsuachst {{canonica
 Um d\' Seiten voh deiner Beówochtungslisten ower z\' doah, bsuachst $UNWATCHURL
 
 Ryckmödungen und a weidre Hüf: {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'erstöd',
+'changed' => 'gänderd',
 
 # Delete
 'deletepage' => 'Seiten léschen',
@@ -1250,7 +1278,7 @@ Da aktuöje Text voh da gléschden Seiten is netter fyr Administraatorn zuagäng
 'blanknamespace' => '(Seitn)',
 
 # Contributions
-'contributions' => 'Benutzerbeiträg',
+'contributions' => '{{GENDER:$1|Nutza}}beidreg',
 'contributions-title' => 'Nutzabeidräg vo „$1“',
 'mycontris' => 'Meine Beidreg',
 'contribsub2' => 'Vo $1 ($2)',
@@ -1553,7 +1581,7 @@ Weidane wean standardmassi ned ozoagt.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-gpsspeed' => 'Gschwindigkeid vom GPS-Empfänger',
 
 'exif-componentsconfiguration-0' => 'Gibts néd',
@@ -1567,7 +1595,7 @@ Weidane wean standardmassi ned ozoagt.
 'namespacesall' => 'olle',
 'monthsall' => 'olle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-Post-Adressn bestäting (Authentifiziarung)',
 'confirmemail_noemail' => 'Du håst ka güitige E-Post-Adressn in deine [[Special:Preferences|persönlichn Eistellungen]] eitrång.',
 'confirmemail_send' => 'Bstätigungscode zuaschicker',

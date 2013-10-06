@@ -13,18 +13,21 @@
  * @extends ve.ui.Window
  *
  * @constructor
- * @param {ve.Surface} surface
+ * @param {ve.ui.Surface} surface
+ * @param {Object} [config] Config options
  */
-ve.ui.Dialog = function VeUiDialog( surface ) {
+ve.ui.Dialog = function VeUiDialog( surface, config ) {
 	// Parent constructor
-	ve.ui.Window.call( this, surface );
+	ve.ui.Window.call( this, surface, config );
 
 	// Properties
 	this.visible = false;
+	this.onWindowMouseWheelHandler = ve.bind( this.onWindowMouseWheel, this );
+	this.onDocumentKeyDownHandler = ve.bind( this.onDocumentKeyDown, this );
 
 	// Initialization
 	this.$.addClass( 've-ui-dialog' );
-	this.$.on( 'mousedown', ve.bind( this.onMouseDown, this ) );
+	this.$.on( 'mousedown', false );
 };
 
 /* Inheritance */
@@ -32,16 +35,6 @@ ve.ui.Dialog = function VeUiDialog( surface ) {
 ve.inheritClass( ve.ui.Dialog, ve.ui.Window );
 
 /* Methods */
-
-/**
- * Handle mouse down events.
- *
- * @method
- * @param {jQuery.Event} e Mouse down event
- */
-ve.ui.Dialog.prototype.onMouseDown = function () {
-	return false;
-};
 
 /**
  * Handle close button click events.
@@ -62,10 +55,70 @@ ve.ui.Dialog.prototype.onApplyButtonClick = function () {
 };
 
 /**
+ * Handle window mouse wheel events.
+ *
+ * @method
+ * @param {jQuery.Event} e Mouse wheel event
+ */
+ve.ui.Dialog.prototype.onWindowMouseWheel = function () {
+	return false;
+};
+
+/**
+ * Handle document key down events.
+ *
+ * @method
+ * @param {jQuery.Event} e Key down event
+ */
+ve.ui.Dialog.prototype.onDocumentKeyDown = function ( e ) {
+	switch ( e.which ) {
+		case ve.Keys.PAGEUP:
+		case ve.Keys.PAGEDOWN:
+		case ve.Keys.END:
+		case ve.Keys.HOME:
+		case ve.Keys.LEFT:
+		case ve.Keys.UP:
+		case ve.Keys.RIGHT:
+		case ve.Keys.DOWN:
+			// Prevent any key events that might cause scrolling
+			return false;
+	}
+};
+
+/**
+ * Handle frame document key down events.
+ *
+ * @method
+ * @param {jQuery.Event} e Key down event
+ */
+ve.ui.Dialog.prototype.onFrameDocumentKeyDown = function ( e ) {
+	if ( e.which === ve.Keys.ESCAPE ) {
+		this.close( 'cancel' );
+		return false;
+	}
+};
+
+/**
+ * Open window.
+ *
+ * Wraps the parent open method. Disables native top-level window scrolling behavior.
+ *
+ * @method
+ * @emits setup
+ * @emits open
+ */
+ve.ui.Dialog.prototype.open = function () {
+	ve.ui.Window.prototype.open.call( this );
+	// Prevent scrolling in top-level window
+	$( window ).on( 'mousewheel', this.onWindowMouseWheelHandler );
+	$( document ).on( 'keydown', this.onDocumentKeyDownHandler );
+};
+
+/**
  * Close dialog.
  *
- * This method overrides the parent close method to allow animation, but still provides the same
- * recursion blocking and eventually calls the parent method.
+ * Wraps the parent close method. Allows animation by delaying parent close call, while still
+ * providing the same recursion blocking. Restores native top-level window scrolling behavior.
  *
  * @method
  * @param {boolean} action Action that caused the window to be closed
@@ -78,22 +131,20 @@ ve.ui.Dialog.prototype.close = function ( action ) {
 			ve.ui.Window.prototype.close.call( this, action );
 			this.$.removeClass( 've-ui-dialog-closing' );
 		}, this ), 250 );
+		// Allow scrolling in top-level window
+		$( window ).off( 'mousewheel', this.onWindowMouseWheelHandler );
+		$( document ).off( 'keydown', this.onDocumentKeyDownHandler );
 	}
 };
 
-/**
- * Initialize frame contents.
- *
- * @method
- */
 ve.ui.Dialog.prototype.initialize = function () {
-	// Call parent method
+	// Parent method
 	ve.ui.Window.prototype.initialize.call( this );
 
+	// Properties
 	this.applyButton = new ve.ui.ButtonWidget( {
 		'$$': this.$$, 'label': ve.msg( 'visualeditor-dialog-action-apply' ), 'flags': ['primary']
 	} );
-	// Properties
 	this.closeButton = new ve.ui.IconButtonWidget( {
 		'$$': this.$$, 'title': ve.msg( 'visualeditor-dialog-action-close' ), 'icon': 'close'
 	} );
@@ -101,14 +152,12 @@ ve.ui.Dialog.prototype.initialize = function () {
 	// Events
 	this.closeButton.connect( this, { 'click': 'onCloseButtonClick' } );
 	this.applyButton.connect( this, { 'click': 'onApplyButtonClick' } );
+	this.frame.$document.on( 'keydown', ve.bind( this.onFrameDocumentKeyDown, this ) );
 
 	// Initialization
+	this.frame.$content.addClass( 've-ui-dialog-content' );
 	this.closeButton.$.addClass( 've-ui-window-closeButton' );
 	this.applyButton.$.addClass( 've-ui-window-applyButton' );
 	this.$head.append( this.closeButton.$ );
 	this.$foot.append( this.applyButton.$ );
 };
-
-/* Initialization */
-
-ve.ui.Dialog.static.addLocalStylesheets( [ 've.ui.Dialog.css' ] );

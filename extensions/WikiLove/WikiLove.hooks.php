@@ -12,9 +12,9 @@ class WikiLoveHooks {
 	/**
 	 * LoadExtensionSchemaUpdates hook
 	 *
-	 * @param $updater DatabaseUpdater
+	 * @param DatabaseUpdater $updater
 	 *
-	 * @return true
+	 * @return bool true
 	 */
 	public static function loadExtensionSchemaUpdates( $updater = null ) {
 		if ( $updater === null ) {
@@ -32,17 +32,17 @@ class WikiLoveHooks {
 
 	/**
 	 * Add the preference in the user preferences with the GetPreferences hook.
-	 * @param $user User
-	 * @param $preferences array
+	 * @param User $user
+	 * @param array $preferences
 	 *
-	 * @return true
+	 * @return bool true
 	 */
 	public static function getPreferences( $user, &$preferences ) {
 		global $wgWikiLoveGlobal;
 		if ( !$wgWikiLoveGlobal ) {
 			$preferences['wikilove-enabled'] = array(
 				'type' => 'check',
-				'section' => 'editing/labs',
+				'section' => 'misc/user-pages',
 				'label-message' => 'wikilove-enable-preference',
 			);
 		}
@@ -52,19 +52,21 @@ class WikiLoveHooks {
 	/**
 	 * Adds the required module if we are on a user (talk) page.
 	 *
-	 * @param $out OutputPage
-	 * @param $skin Skin
+	 * @param OutputPage $out
+	 * @param Skin $skin
 	 *
-	 * @return true
+	 * @return bool true
 	 */
 	public static function beforePageDisplay( $out, $skin ) {
-		global $wgWikiLoveGlobal, $wgUser;
-		if ( !$wgWikiLoveGlobal && !$wgUser->getOption( 'wikilove-enabled' ) ) {
+		global $wgWikiLoveGlobal;
+
+		if ( !$wgWikiLoveGlobal && !$out->getUser()->getOption( 'wikilove-enabled' ) ) {
 			return true;
 		}
 
 		$title = self::getUserTalkPage( $skin->getTitle() );
-		if ( !is_null( $title ) ) {
+		// getUserTalkPage() returns a string on error
+		if ( !is_string( $title ) ) {
 			$out->addModules( array( 'ext.wikiLove.icon', 'ext.wikiLove.init' ) );
 			self::$recipient = $title->getBaseText();
 		}
@@ -72,16 +74,14 @@ class WikiLoveHooks {
 	}
 
 	/**
-	 * Exports wikilove-recipient and edittoken variables to JS
+	 * Exports wikilove-recipient and wikilove-anon variables to JS
 	 *
-	 * @param $vars array
+	 * @param array $vars
 	 *
-	 * @return true
+	 * @return bool true
 	 */
 	public static function makeGlobalVariablesScript( &$vars ) {
-		global $wgUser;
 		$vars['wikilove-recipient'] = self::$recipient;
-		$vars['wikilove-edittoken'] = $wgUser->edittoken();
 
 		$vars['wikilove-anon'] = 0;
 		if ( self::$recipient !== '' ) {
@@ -92,21 +92,10 @@ class WikiLoveHooks {
 	}
 
 	/**
-	 * Adds a tab the old way (before MW 1.18)
-	 * @param $skin
-	 * @param $contentActions
-	 * @return bool
-	 */
-	public static function skinTemplateTabs( $skin, &$contentActions ) {
-		self::skinConfigViewsLinks( $skin, $contentActions );
-		return true;
-	}
-
-	/**
-	 * Adds a tab or an icon the new way (MW >1.18)
-	 * @param $skin Skin
-	 * @param $links array
-	 * @return bool
+	 * Adds a tab or an icon the new way (MediaWiki 1.18+)
+	 * @param SkinTemplate $skin
+	 * @param array $links Navigation links
+	 * @return boolean
 	 */
 	public static function skinTemplateNavigation( &$skin, &$links ) {
 		if ( self::showIcon( $skin ) ) {
@@ -122,21 +111,22 @@ class WikiLoveHooks {
 	 * Helper function for SkinTemplateTabs and SkinTemplateNavigation hooks
 	 * to configure views links.
 	 *
-	 * @param $skin Skin
-	 * @param $views array
-	 * @return bool
+	 * @param Skin $skin
+	 * @param array $views
+	 * @return boolean
 	 */
 	private static function skinConfigViewsLinks( $skin, &$views ) {
-		global $wgWikiLoveGlobal, $wgUser;
+		global $wgWikiLoveGlobal;
 
 		// If WikiLove is turned off for this user, don't display tab.
-		if ( !$wgWikiLoveGlobal && !$wgUser->getOption( 'wikilove-enabled' ) ) {
+		if ( !$wgWikiLoveGlobal && !$skin->getUser()->getOption( 'wikilove-enabled' ) ) {
 			return true;
 		}
 
-		if ( !is_null( self::getUserTalkPage( $skin->getTitle() ) ) ) {
+		// getUserTalkPage() returns a string on error
+		if ( !is_string( self::getUserTalkPage( $skin->getTitle() ) ) ) {
 			$views['wikilove'] = array(
-				'text' => wfMsg( 'wikilove-tab-text' ),
+				'text' => $skin->msg( 'wikilove-tab-text' )->text(),
 				'href' => '#',
 			);
 			if ( self::showIcon( $skin ) ) {
@@ -150,9 +140,9 @@ class WikiLoveHooks {
 	/**
 	 * Only show an icon when the global preference is enabled and the current skin is Vector.
 	 *
-	 * @param $skin Skin
+	 * @param Skin $skin
 	 *
-	 * @return bool
+	 * @return boolean
 	 */
 	private static function showIcon( $skin ) {
 		global $wgWikiLoveTabIcon;
@@ -160,35 +150,37 @@ class WikiLoveHooks {
 	}
 
 	/**
-	 * Find the editable talk page of the user we're looking at, or null
-	 * if such page does not exist.
+	 * Find the editable talk page of the user we want to send WikiLove to. This
+	 * function also does some sanity checking to make sure we will actually 
+	 * be able to send WikiLove to the target.
 	 *
-	 * @param $title Title
+	 * @param Title $title The title of a user page or user talk page
 	 *
-	 * @return Title|null
+	 * @return Title|string Returns either the Title object for the talk page or an error string
 	 */
 	public static function getUserTalkPage( $title ) {
 		global $wgUser;
 
 		// Exit early if the sending user isn't logged in
 		if ( !$wgUser->isLoggedIn() ) {
-			return null;
+			return wfMessage( 'wikilove-err-not-logged-in' )->plain();
 		}
 
-		// Exit early if we're in the wrong namespace
+		// Exit early if the page is in the wrong namespace
 		$ns = $title->getNamespace();
 		if ( $ns != NS_USER && $ns != NS_USER_TALK ) {
-			return null;
+			return wfMessage( 'wikilove-err-invalid-username' )->plain();
 		}
 
 		// If we're on a subpage, get the base page title
 		$baseTitle = Title::newFromText( $title->getBaseText(), $ns );
 		if ( $baseTitle === null ) {
-			return null;
+			return wfMessage( 'wikilove-err-invalid-username' )->plain();
 		}
 
+		// Users can't send WikiLove to themselves
 		if ( $wgUser->getName() === $baseTitle->getText() ) {
-			return null;
+			return wfMessage( 'wikilove-err-no-self-wikilove' )->plain();
 		}
 
 		// Get the user talk page
@@ -205,14 +197,14 @@ class WikiLoveHooks {
 		// This means that the WikiLove tab will not appear on user pages or user talk pages if
 		// the user talk page is a redirect.
 		if ( $talkTitle->isRedirect() ) {
-			return null;
+			return wfMessage( 'wikilove-err-redirect' )->plain();
 		}
 
 		// Make sure we can edit the page
 		if ( $talkTitle->quickUserCan( 'edit' ) ) {
 			return $talkTitle;
 		} else {
-			return null;
+			return wfMessage( 'wikilove-err-cannot-edit' )->plain();
 		}
 	}
 }

@@ -1,5 +1,5 @@
 /*!
- * Wordbreak module
+ * UnicodeJS Word Break module
  *
  * Implementation of Unicode's Default Word Boundaries
  * http://www.unicode.org/reports/tr29/#Default_Word_Boundaries
@@ -8,8 +8,8 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 ( function () {
-	var group,
-		groups = unicodeJS.groups,
+	var property,
+		properties = unicodeJS.wordbreakproperties,
 		/**
 		 * @class unicodeJS.wordbreak
 		 * @singleton
@@ -18,15 +18,42 @@
 		patterns = {};
 
 	// build regexes
-	for ( group in groups ) {
-		patterns[group] = new RegExp( '[' + groups[group] + ']' );
+	for ( property in properties ) {
+		patterns[property] = new RegExp(
+			unicodeJS.charRangeArrayRegexp( properties[property] )
+		);
 	}
 
-	function getGroup( chr ) {
-		var group;
-		for ( group in patterns ) {
-			if ( patterns[group].test( chr ) ) {
-				return group;
+	/**
+	 * Return the wordbreak property value for the cluster
+	 *
+	 * This is a slight con, because Unicode wordbreak property values are defined
+	 * per character, not per cluster, whereas we're already working with a string
+	 * split into clusters.
+	 *
+	 * We are making a working assumption that we can implement the Unicode
+	 * word boundary specification by taking the property value of the *first*
+	 * character of the cluster. In particular, this implements WB4 for us, because
+	 * non-initial Extend or Format characters disapper.
+	 *
+	 * See http://www.unicode.org/reports/tr29/#Word_Boundaries
+	 *
+	 * @private
+	 * @param {string} cluster The grapheme cluster
+	 * @returns {string} The unicode wordbreak property value
+	 */
+	function getProperty( cluster ) {
+		var character, property;
+		// cluster is always converted to a string by RegExp#test
+		// e.g. null -> 'null' and would match /[a-z]/
+		// so return null for any non-string value
+		if ( typeof cluster !== 'string' ) {
+			return null;
+		}
+		character = unicodeJS.splitCharacters( cluster )[0];
+		for ( property in patterns ) {
+			if ( patterns[property].test( character ) ) {
+				return property;
 			}
 		}
 		return null;
@@ -63,7 +90,7 @@
 	 * @returns {number} Returns the previous offset which is word break
 	 */
 	wordbreak.moveBreakOffset = function( direction, string, pos, onlyAlphaNumeric ) {
-		var lastGroup, i = pos,
+		var lastProperty, i = pos,
 			// when moving backwards, use the character to the left of the cursor
 			readCharOffset = direction > 0 ? 0 : -1;
 		// Search backwards for the previous break point
@@ -72,8 +99,12 @@
 			if ( unicodeJS.wordbreak.isBreak( string, i ) ) {
 				// Check previous character was alpha-numeric if required
 				if ( onlyAlphaNumeric ) {
-					lastGroup = getGroup( string.read( i - direction + readCharOffset ) );
-					if( lastGroup !== 'ALetter' && lastGroup !== 'Numeric' && lastGroup !== 'Katakana' ) {
+					lastProperty = getProperty(
+						string.read( i - direction + readCharOffset )
+					);
+					if ( lastProperty !== 'ALetter' &&
+						lastProperty !== 'Numeric' &&
+						lastProperty !== 'Katakana' ) {
 						continue;
 					}
 				}
@@ -99,8 +130,8 @@
 
 		// get some context
 		var lft = [], rgt = [], l = 0, r = 0;
-		rgt.push( getGroup( string.read( pos + r  ) ) );
-		lft.push( getGroup( string.read( pos - l - 1 ) ) );
+		rgt.push( getProperty( string.read( pos + r  ) ) );
+		lft.push( getProperty( string.read( pos - l - 1 ) ) );
 
 		switch ( true ) {
 			// Do not break within CRLF.
@@ -130,7 +161,7 @@
 				// start of document
 				return true;
 			}
-			lft[lft.length - 1] = getGroup( string.read( pos - l - 1 ) );
+			lft[lft.length - 1] = getProperty( string.read( pos - l - 1 ) );
 		}
 
 
@@ -143,8 +174,8 @@
 		// some tests beyond this point require more context
 		l++;
 		r++;
-		rgt.push( getGroup( string.read( pos + r ) ) );
-		lft.push( getGroup( string.read( pos - l - 1 ) ) );
+		rgt.push( getProperty( string.read( pos + r ) ) );
+		lft.push( getProperty( string.read( pos - l - 1 ) ) );
 
 		switch ( true ) {
 			// Do not break letters across certain punctuation.
